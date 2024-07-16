@@ -1,4 +1,4 @@
-vless://aad22fad-78c6-4c5d-8315-85e540434b47@626.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git.jisucf.cloudns.biz&fp=randomized&type=ws&host=git.jisucf.cloudns.biz&path=%2F%3Fed%3D2048#4-git
-vless://32953627-8822-45cd-b996-a63b8494d162@626.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=74.jisucf.cloudns.biz&fp=randomized&type=ws&host=74.jisucf.cloudns.biz&path=%2F%3Fed%3D2048#3-74
-vless://32953627-8822-45cd-b996-a63b8494d162@us02.nttkk.com:443?encryption=none&security=tls&sni=74.jisucf.cloudns.biz&fp=randomized&type=ws&host=74.jisucf.cloudns.biz&path=%2F%3Fed%3D2048#2
-vless://aad22fad-78c6-4c5d-8315-85e540434b47@us02.nttkk.com:443?encryption=none&security=tls&sni=git.jisucf.cloudns.biz&fp=randomized&type=ws&host=git.jisucf.cloudns.biz&path=%2F%3Fed%3D2048#1
+vless://aad22fad-78c6-4c5d-8315-85e540434b47@626.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git.jisucf.cloudns.biz&fp=randomized&type=ws&host=git.jisucf.cloudns.biz&path=%2F%3Fed%3D2048#4-git-626
+vless://32953627-8822-45cd-b996-a63b8494d162@626.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=74.jisucf.cloudns.biz&fp=randomized&type=ws&host=74.jisucf.cloudns.biz&path=%2F%3Fed%3D2048#3-74-626
+vless://32953627-8822-45cd-b996-a63b8494d162@us02.nttkk.com:443?encryption=none&security=tls&sni=74.jisucf.cloudns.biz&fp=randomized&type=ws&host=74.jisucf.cloudns.biz&path=%2F%3Fed%3D2048#74-us
+vless://aad22fad-78c6-4c5d-8315-85e540434b47@us02.nttkk.com:443?encryption=none&security=tls&sni=git.jisucf.cloudns.biz&fp=randomized&type=ws&host=git.jisucf.cloudns.biz&path=%2F%3Fed%3D2048#git-us
