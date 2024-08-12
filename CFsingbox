@@ -1,107 +1,343 @@
 {
   "log": {
-    "level": "warn",
+    "level": "info",
     "timestamp": true
   },
-[
-  {
-    "__id_in_gui": "ID_5c1vb2k0",
-    "type": "vless",
-    "tag": "Git-yx",
-    "server": "yx.cf02.us.kg",
-    "server_port": 443,
-    "uuid": "aad22fad-78c6-4c5d-8315-85e540434b47",
-    "packet_encoding": "xudp",
-    "tls": {
-      "enabled": true,
-      "server_name": "git.cf01.us.kg",
-      "insecure": true,
-      "utls": {
-        "enabled": true,
-        "fingerprint": "randomized"
-      }
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:20123",
+      "external_ui": "",
+      "secret": "ID_df4ri5yy",
+      "external_ui_download_url": "",
+      "default_mode": "rule"
     },
-    "transport": {
-      "type": "ws",
-      "path": "/?ed=2048",
-      "headers": {
-        "Host": "git.cf01.us.kg"
-      }
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": false,
+      "store_rdrc": false
     }
   },
-  {
-    "__id_in_gui": "ID_5c1vb2k0",
-    "type": "vless",
-    "tag": "CF-yx",
-    "server": "yx.cf02.us.kg",
-    "server_port": 443,
-    "uuid": "32953627-8822-45cd-b996-a63b8494d162",
-    "packet_encoding": "xudp",
-    "tls": {
-      "enabled": true,
-      "server_name": "cf.cf01.us.kg",
-      "insecure": true,
-      "utls": {
-        "enabled": true,
-        "fingerprint": "randomized"
-      }
-    },
-    "transport": {
-      "type": "ws",
-      "path": "/?ed=2048",
-      "headers": {
-        "Host": "cf.cf01.us.kg"
-      }
+  "inbounds": [
+    {
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 20122,
+      "sniff": true,
+      "sniff_override_destination": false,
+      "domain_strategy": "ipv4_only",
+      "tcp_fast_open": false,
+      "tcp_multi_path": false,
+      "udp_fragment": false
     }
+  ],
+  "outbounds": [
+    {
+      "tag": "🚀 节点选择",
+      "type": "selector",
+      "outbounds": [
+        "🎈 自动选择",
+        "Git-yx",
+        "CF-yx",
+        "CF-us",
+        "Git-us"
+      ]
+    },
+    {
+      "tag": "🎈 自动选择",
+      "type": "urltest",
+      "outbounds": [
+        "Git-yx",
+        "CF-yx",
+        "CF-us",
+        "Git-us"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "300s",
+      "tolerance": 150
+    },
+    {
+      "tag": "🎯 全球直连",
+      "type": "selector",
+      "outbounds": [
+        "direct",
+        "block"
+      ]
+    },
+    {
+      "tag": "🛑 全球拦截",
+      "type": "selector",
+      "outbounds": [
+        "block",
+        "direct"
+      ]
+    },
+    {
+      "tag": "🐟 漏网之鱼",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "🎯 全球直连"
+      ]
+    },
+    {
+      "tag": "GLOBAL",
+      "type": "selector",
+      "outbounds": [
+        "direct",
+        "block",
+        "🚀 节点选择",
+        "🎈 自动选择",
+        "🎯 全球直连",
+        "🛑 全球拦截",
+        "🐟 漏网之鱼"
+      ]
+    },
+    [
+      {
+        "type": "vless",
+        "tag": "Git-yx",
+        "server": "yx.cf02.us.kg",
+        "server_port": 443,
+        "uuid": "aad22fad-78c6-4c5d-8315-85e540434b47",
+        "packet_encoding": "xudp",
+        "tls": {
+          "enabled": true,
+          "server_name": "git.cf01.us.kg",
+          "insecure": true,
+          "utls": {
+            "enabled": true,
+            "fingerprint": "randomized"
+          }
+        },
+        "transport": {
+          "type": "ws",
+          "path": "/?ed=2048",
+          "headers": {
+            "Host": "git.cf01.us.kg"
+          }
+        }
+      },
+      {
+        "type": "vless",
+        "tag": "CF-yx",
+        "server": "yx.cf02.us.kg",
+        "server_port": 443,
+        "uuid": "32953627-8822-45cd-b996-a63b8494d162",
+        "packet_encoding": "xudp",
+        "tls": {
+          "enabled": true,
+          "server_name": "cf.cf01.us.kg",
+          "insecure": true,
+          "utls": {
+            "enabled": true,
+            "fingerprint": "randomized"
+          }
+        },
+        "transport": {
+          "type": "ws",
+          "path": "/?ed=2048",
+          "headers": {
+            "Host": "cf.cf01.us.kg"
+          }
+        }
+      },
+      {
+        "type": "vless",
+        "tag": "CF-us",
+        "server": "us02.nttkk.com",
+        "server_port": 443,
+        "uuid": "32953627-8822-45cd-b996-a63b8494d162",
+        "packet_encoding": "xudp",
+        "tls": {
+          "enabled": true,
+          "server_name": "cf.cf01.us.kg",
+          "insecure": true,
+          "utls": {
+            "enabled": true,
+            "fingerprint": "randomized"
+          }
+        },
+        "transport": {
+          "type": "ws",
+          "path": "/?ed=2048",
+          "headers": {
+            "Host": "cf.cf01.us.kg"
+          }
+        }
+      },
+      {
+        "type": "vless",
+        "tag": "Git-us",
+        "server": "us02.nttkk.com",
+        "server_port": 443,
+        "uuid": "aad22fad-78c6-4c5d-8315-85e540434b47",
+        "packet_encoding": "xudp",
+        "tls": {
+          "enabled": true,
+          "server_name": "git.cf01.us.kg",
+          "insecure": true,
+          "utls": {
+            "enabled": true,
+            "fingerprint": "randomized"
+          }
+        },
+        "transport": {
+          "type": "ws",
+          "path": "/?ed=2048",
+          "headers": {
+            "Host": "git.cf01.us.kg"
+          }
+        }
+      }
+    ],
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rule_set": [
+      {
+        "tag": "CATEGORY-ADS",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "GEOIP-CN",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "GEOSITE-CN",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "GEOLOCATION-!CN",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "🎯 全球直连"
+      }
+    ],
+    "rules": [
+      {
+        "protocol": "dns",
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "GLOBAL"
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "outbound": "🛑 全球拦截"
+      },
+      {
+        "rule_set": "CATEGORY-ADS",
+        "outbound": "🛑 全球拦截"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "🎯 全球直连"
+      },
+      {
+        "rule_set": "GEOIP-CN",
+        "outbound": "🎯 全球直连"
+      },
+      {
+        "rule_set": "GEOSITE-CN",
+        "outbound": "🎯 全球直连"
+      },
+      {
+        "rule_set": "GEOLOCATION-!CN",
+        "outbound": "🚀 节点选择"
+      }
+    ],
+    "final": "🐟 漏网之鱼",
+    "auto_detect_interface": true
   },
-  {
-    "__id_in_gui": "ID_5c1vb2k0",
-    "type": "vless",
-    "tag": "CF-us",
-    "server": "us02.nttkk.com",
-    "server_port": 443,
-    "uuid": "32953627-8822-45cd-b996-a63b8494d162",
-    "packet_encoding": "xudp",
-    "tls": {
-      "enabled": true,
-      "server_name": "cf.cf01.us.kg",
-      "insecure": true,
-      "utls": {
-        "enabled": true,
-        "fingerprint": "randomized"
+  "dns": {
+    "servers": [
+      {
+        "tag": "remote-dns",
+        "address": "tls://8.8.8.8",
+        "address_resolver": "remote-resolver-dns",
+        "detour": "🚀 节点选择"
+      },
+      {
+        "tag": "local-dns",
+        "address": "https://223.5.5.5/dns-query",
+        "address_resolver": "resolver-dns",
+        "detour": "direct"
+      },
+      {
+        "tag": "resolver-dns",
+        "address": "223.5.5.5",
+        "detour": "direct"
+      },
+      {
+        "tag": "remote-resolver-dns",
+        "address": "8.8.8.8",
+        "detour": "🚀 节点选择"
+      },
+      {
+        "tag": "block",
+        "address": "rcode://success"
       }
+    ],
+    "disable_cache": false,
+    "disable_expire": false,
+    "independent_cache": false,
+    "rules": [
+      {
+        "outbound": "any",
+        "disable_cache": true,
+        "server": "local-dns"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "local-dns"
+      },
+      {
+        "clash_mode": "global",
+        "server": "remote-dns"
+      },
+      {
+        "rule_set": "GEOSITE-CN",
+        "server": "local-dns"
+      },
+      {
+        "rule_set": "GEOLOCATION-!CN",
+        "server": "remote-dns"
+      }
+    ],
+    "fakeip": {
+      "enabled": false,
+      "inet4_range": "198.18.0.1/16",
+      "inet6_range": "fc00::/18"
     },
-    "transport": {
-      "type": "ws",
-      "path": "/?ed=2048",
-      "headers": {
-        "Host": "cf.cf01.us.kg"
-      }
-    }
-  },
-  {
-    "__id_in_gui": "ID_5c1vb2k0",
-    "type": "vless",
-    "tag": "Git-us",
-    "server": "us02.nttkk.com",
-    "server_port": 443,
-    "uuid": "aad22fad-78c6-4c5d-8315-85e540434b47",
-    "packet_encoding": "xudp",
-    "tls": {
-      "enabled": true,
-      "server_name": "git.cf01.us.kg",
-      "insecure": true,
-      "utls": {
-        "enabled": true,
-        "fingerprint": "randomized"
-      }
-    },
-    "transport": {
-      "type": "ws",
-      "path": "/?ed=2048",
-      "headers": {
-        "Host": "git.cf01.us.kg"
-      }
-    }
+    "final": "remote-dns",
+    "strategy": "ipv4_only"
   }
-]
+}
