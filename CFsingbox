@@ -79,7 +79,7 @@
   "outbounds": [
     {
       "type": "vless",
-      "tag": "proxy",
+      "tag": "Git-yx",
       "server": "yx.cf02.us.kg",
       "server_port": 443,
       "uuid": "aad22fad-78c6-4c5d-8315-85e540434b47",
@@ -103,7 +103,7 @@
     },
     {
       "type": "vless",
-      "tag": "proxy",
+      "tag": "Cf-yx",
       "server": "yx.cf02.us.kg",
       "server_port": 443,
       "uuid": "32953627-8822-45cd-b996-a63b8494d162",
@@ -127,7 +127,7 @@
     },
     {
       "type": "vless",
-      "tag": "proxy",
+      "tag": "Cf-us",
       "server": "us02.nttkk.com",
       "server_port": 443,
       "uuid": "32953627-8822-45cd-b996-a63b8494d162",
@@ -151,7 +151,7 @@
     },
     {
       "type": "vless",
-      "tag": "proxy",
+      "tag": "Git-us",
       "server": "us02.nttkk.com",
       "server_port": 443,
       "uuid": "aad22fad-78c6-4c5d-8315-85e540434b47",
