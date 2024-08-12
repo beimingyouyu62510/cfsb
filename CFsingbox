@@ -102,6 +102,78 @@
       }
     },
     {
+      "type": "vless",
+      "tag": "proxy",
+      "server": "yx.cf02.us.kg",
+      "server_port": 443,
+      "uuid": "32953627-8822-45cd-b996-a63b8494d162",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf.cf01.us.kg",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048",
+        "headers": {
+          "Host": "cf.cf01.us.kg"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "proxy",
+      "server": "us02.nttkk.com",
+      "server_port": 443,
+      "uuid": "32953627-8822-45cd-b996-a63b8494d162",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf.cf01.us.kg",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048",
+        "headers": {
+          "Host": "cf.cf01.us.kg"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "proxy",
+      "server": "us02.nttkk.com",
+      "server_port": 443,
+      "uuid": "aad22fad-78c6-4c5d-8315-85e540434b47",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "git.cf01.us.kg",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048",
+        "headers": {
+          "Host": "git.cf01.us.kg"
+        }
+      }
+    },
+    {
       "type": "direct",
       "tag": "direct"
     },
