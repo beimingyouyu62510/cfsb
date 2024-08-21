@@ -9,6 +9,8 @@ proxies:
   - {"name":"Cf-yx","type":"vless","server":"yx.cf02.us.kg","port":443,"uuid":"32953627-8822-45cd-b996-a63b8494d162","tls":true,"servername":"cf.cf01.us.kg","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"cf.cf01.us.kg"}},"client-fingerprint":"randomized"}
   - {"name":"Cf-us","type":"vless","server":"us02.nttkk.com","port":443,"uuid":"32953627-8822-45cd-b996-a63b8494d162","tls":true,"servername":"cf.cf01.us.kg","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"cf.cf01.us.kg"}},"client-fingerprint":"randomized"}
   - {"name":"Git-us","type":"vless","server":"us02.nttkk.com","port":443,"uuid":"aad22fad-78c6-4c5d-8315-85e540434b47","tls":true,"servername":"git.cf01.us.kg","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"git.cf01.us.kg"}},"client-fingerprint":"randomized"}
+  - {"name":"hk-yx","type":"vless","server":"yx.cf02.us.kg","port":443,"uuid":"7f7630cc-0c55-4013-ae68-63b581094ab7","tls":true,"servername":"hk.cf01.us.kg","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"hk.cf01.us.kg"}},"client-fingerprint":"randomized"}
+  - {"name":"cn-yx","type":"vless","server":"yx.cf02.us.kg","port":443,"uuid":"c521c7b7-0c20-4ced-83e5-fa6749b39e41","tls":true,"servername":"cn.cf01.us.kg","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"cn.cf01.us.kg"}},"client-fingerprint":"randomized"}
   # 以上为代理地址请插入
 proxy-groups:
   - name: 🚀 节点选择
@@ -21,6 +23,8 @@ proxy-groups:
       - Cf-yx
       - Cf-us
       - Git-us
+      - hk-yx
+      - cn-yx
       # 以上为节点选择组的自动选择代理请插入
   - name: ♻️  自动选择
     type: url-test
@@ -31,6 +35,8 @@ proxy-groups:
       - Cf-yx
       - Cf-us
       - Git-us
+      - hk-yx
+      - cn-yx
       # 以上为自动选择组下面的代理地址请插入
   - name: 🔮 负载均衡
     type: load-balance
@@ -42,6 +48,8 @@ proxy-groups:
       - Cf-yx
       - Cf-us
       - Git-us
+      - hk-yx
+      - cn-yx
       # 以上为负载均衡组下面的代理地址请插入
   - name: 🔯 故障转移
     type: fallback
@@ -52,6 +60,8 @@ proxy-groups:
       - Cf-yx
       - Cf-us
       - Git-us
+      - hk-yx
+      - cn-yx
       # 以上为故障转移组下面的代理地址请插入
   - name: 🐟 漏网之鱼
     type: select
@@ -63,6 +73,8 @@ proxy-groups:
       - Cf-yx
       - Cf-us
       - Git-us
+      - hk-yx
+      - cn-yx
       # 以上为漏网之鱼组下面的代理地址请插入
 rules:
  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🚀 节点选择
