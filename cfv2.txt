@@ -1,4 +1,4 @@
-vless://aad22fad-78c6-4c5d-8315-85e540434b47@jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git.cf01.us.kg&fp=randomized&allowInsecure=1&type=ws&host=git.cf01.us.kg&path=%2F%3Fed%3D2048#Git-yx
-vless://32953627-8822-45cd-b996-a63b8494d162@yx.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=cf.cf01.us.kg&fp=randomized&allowInsecure=1&type=ws&host=cf.cf01.us.kg&path=%2F%3Fed%3D2048#Cf-yx
-vless://32953627-8822-45cd-b996-a63b8494d162@us02.nttkk.com:443?encryption=none&security=tls&sni=cf.cf01.us.kg&fp=randomized&allowInsecure=1&type=ws&host=cf.cf01.us.kg&path=%2F%3Fed%3D2048#Cf-us
-vless://aad22fad-78c6-4c5d-8315-85e540434b47@us02.nttkk.com:443?encryption=none&security=tls&sni=git.cf01.us.kg&fp=randomized&allowInsecure=1&type=ws&host=git.cf01.us.kg&path=%2F%3Fed%3D2048#Git-us
+vless://aad22fad-78c6-4c5d-8315-85e540434b47@jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git.jisucf.cloudns.ch&fp=randomized&allowInsecure=1&type=ws&host=git.cf01.us.kg&path=%2F%3Fed%3D2048#Git-yx
+vless://32953627-8822-45cd-b996-a63b8494d162@yx.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=cf.jisucf.cloudns.ch&fp=randomized&allowInsecure=1&type=ws&host=cf.cf01.us.kg&path=%2F%3Fed%3D2048#Cf-yx
+vless://32953627-8822-45cd-b996-a63b8494d162@us02.nttkk.com:443?encryption=none&security=tls&sni=cf.jisucf.cloudns.ch&fp=randomized&allowInsecure=1&type=ws&host=cf.cf01.us.kg&path=%2F%3Fed%3D2048#Cf-us
+vless://aad22fad-78c6-4c5d-8315-85e540434b47@us02.nttkk.com:443?encryption=none&security=tls&sni=git.jisucf.cloudns.ch&fp=randomized&allowInsecure=1&type=ws&host=git.cf01.us.kg&path=%2F%3Fed%3D2048#Git-us
