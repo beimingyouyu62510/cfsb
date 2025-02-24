@@ -1,4 +1,4 @@
-vless://aad22fad-78c6-4c5d-8315-85e540434b47@162.159.4.8:443?encryption=none&security=tls&sni=jisucf.pages.dev&fp=randomized&allowInsecure=1&type=ws&host=jisucf.pages.dev&path=%2F%3Fed%3D2048#jisucf.pages.dev
+vless://aad22fad-78c6-4c5d-8315-85e540434b47@162.159.4.8:443?encryption=none&security=tls&sni=01&fp=randomized&allowInsecure=1&type=ws&host=jisucf.pages.dev&path=%2F%3Fed%3D2048#jisucf.pages.dev
 vless://aad22fad-78c6-4c5d-8315-85e540434b47@104.19.194.29:443?encryption=none&security=tls&sni=jisucf.pages.dev&fp=randomized&allowInsecure=1&type=ws&host=jisucf.pages.dev&path=%2F%3Fed%3D2048#jisucf.pages.dev
 vless://aad22fad-78c6-4c5d-8315-85e540434b47@104.18.4.139:443?encryption=none&security=tls&sni=jisucf.pages.dev&fp=randomized&allowInsecure=1&type=ws&host=jisucf.pages.dev&path=%2F%3Fed%3D2048#jisucf.pages.dev
 vless://aad22fad-78c6-4c5d-8315-85e540434b47@172.66.43.180:443?encryption=none&security=tls&sni=jisucf.pages.dev&fp=randomized&allowInsecure=1&type=ws&host=jisucf.pages.dev&path=%2F%3Fed%3D2048#jisucf.pages.dev
