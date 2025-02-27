@@ -1,5 +1,2 @@
-vless://aad22fad-78c6-4c5d-8315-85e540434b47@162.159.4.8:443?encryption=none&security=tls&sni=jisucf.pages.dev&fp=randomized&allowInsecure=1&type=ws&host=jisucf.pages.dev&path=%2F%3Fed%3D2048#01
-vless://aad22fad-78c6-4c5d-8315-85e540434b47@104.19.194.29:443?encryption=none&security=tls&sni=jisucf.pages.dev&fp=randomized&allowInsecure=1&type=ws&host=jisucf.pages.dev&path=%2F%3Fed%3D2048#02
-vless://aad22fad-78c6-4c5d-8315-85e540434b47@104.18.4.139:443?encryption=none&security=tls&sni=jisucf.pages.dev&fp=randomized&allowInsecure=1&type=ws&host=jisucf.pages.dev&path=%2F%3Fed%3D2048#03
-vless://aad22fad-78c6-4c5d-8315-85e540434b47@172.66.43.180:443?encryption=none&security=tls&sni=jisucf.pages.dev&fp=randomized&allowInsecure=1&type=ws&host=jisucf.pages.dev&path=%2F%3Fed%3D2048#04
-vless://aad22fad-78c6-4c5d-8315-85e540434b47@162.159.135.79:443?encryption=none&security=tls&sni=jisucf.pages.dev&fp=randomized&allowInsecure=1&type=ws&host=jisucf.pages.dev&path=%2F%3Fed%3D2048#05
+vless://c410dc60-8772-48bf-a1e8-747ce49d28bd@yx.cf02.us.kg:443?encryption=none&security=tls&sni=edcf.cf01.us.kg&fp=randomized&allowInsecure=1&type=ws&host=edcf.cf01.us.kg&path=%2F%3Fed%3D2048#CF
+
