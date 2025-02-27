@@ -1,2 +1,2 @@
 vless://c410dc60-8772-48bf-a1e8-747ce49d28bd@yx.cf02.us.kg:443?encryption=none&security=tls&sni=edcf.cf01.us.kg&fp=randomized&allowInsecure=1&type=ws&host=edcf.cf01.us.kg&path=%2F%3Fed%3D2048#CF
-
+vless://a3b0c4ec-7066-457f-968b-3ed38b0bb573@yx.cf02.us.kg:443?encryption=none&security=tls&sni=git.cf01.us.kg&fp=randomized&type=ws&host=git.cf01.us.kg&path=%2F%3Fed%3D2048#GIT
