@@ -1,96 +1,270 @@
 {
   "log": {
-    "level": "info",
-    "output": "stdout"
+    "level": "warn",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "remote",
+        "address": "tcp://8.8.8.8",
+        "strategy": "prefer_ipv4",
+        "detour": "proxy"
+      },
+      {
+        "tag": "local",
+        "address": "223.5.5.5",
+        "strategy": "prefer_ipv4",
+        "detour": "direct"
+      },
+      {
+        "tag": "block",
+        "address": "rcode://success"
+      },
+      {
+        "tag": "local_local",
+        "address": "223.5.5.5",
+        "detour": "direct"
+      }
+    ],
+    "rules": [
+      {
+        "server": "local_local",
+        "domain": [
+          "yx.jisucf.cloudns.biz"
+        ]
+      },
+      {
+        "server": "remote",
+        "clash_mode": "Global"
+      },
+      {
+        "server": "local_local",
+        "clash_mode": "Direct"
+      },
+      {
+        "server": "local",
+        "rule_set": [
+          "geosite-cn"
+        ]
+      },
+      {
+        "server": "block",
+        "rule_set": [
+          "geosite-category-ads-all"
+        ]
+      }
+    ],
+    "final": "remote"
   },
   "inbounds": [
     {
-      "type": "socks",
-      "tag": "socks-in",
-      "listen": "127.0.0.1",
-      "listen_port": 1080
+      "type": "mixed",
+      "tag": "socks",
+      "listen": "::",
+      "listen_port": 10808,
+      "sniff": true,
+      "sniff_override_destination": true
     }
   ],
   "outbounds": [
     {
       "type": "vless",
-      "tag": "Git-yx",
-      "server": "yx.cf02.us.kg",
+      "tag": "proxy",
+      "server": "yx.jisucf.cloudns.biz",
       "server_port": 443,
-      "uuid": "aad22fad-78c6-4c5d-8315-85e540434b47",
-      "flow": "",
+      "uuid": "c410dc60-8772-48bf-a1e8-747ce49d28bd",
+      "packet_encoding": "xudp",
       "tls": {
         "enabled": true,
-        "server_name": "git.cf01.us.kg",
-        "allow_insecure": true
+        "server_name": "cf.jisucf.cloudns.biz",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
       },
       "transport": {
         "type": "ws",
         "path": "/?ed=2048",
         "headers": {
-          "Host": "git.cf01.us.kg"
+          "Host": "cf.jisucf.cloudns.biz"
         }
       }
     },
     {
-      "type": "vless",
-      "tag": "Cf-yx",
-      "server": "yx.cf02.us.kg",
-      "server_port": 443,
-      "uuid": "32953627-8822-45cd-b996-a63b8494d162",
-      "flow": "",
-      "tls": {
-        "enabled": true,
-        "server_name": "cf.cf01.us.kg",
-        "allow_insecure": true
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/?ed=2048",
-        "headers": {
-          "Host": "cf.cf01.us.kg"
-        }
-      }
+      "type": "direct",
+      "tag": "direct"
     },
     {
-      "type": "vless",
-      "tag": "Cf-us",
-      "server": "us02.nttkk.com",
-      "server_port": 443,
-      "uuid": "32953627-8822-45cd-b996-a63b8494d162",
-      "flow": "",
-      "tls": {
-        "enabled": true,
-        "server_name": "cf.cf01.us.kg",
-        "allow_insecure": true
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/?ed=2048",
-        "headers": {
-          "Host": "cf.cf01.us.kg"
-        }
-      }
+      "type": "block",
+      "tag": "block"
     },
     {
-      "type": "vless",
-      "tag": "Git-us",
-      "server": "us02.nttkk.com",
-      "server_port": 443,
-      "uuid": "aad22fad-78c6-4c5d-8315-85e540434b47",
-      "flow": "",
-      "tls": {
-        "enabled": true,
-        "server_name": "git.cf01.us.kg",
-        "allow_insecure": true
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/?ed=2048",
-        "headers": {
-          "Host": "git.cf01.us.kg"
-        }
-      }
+      "type": "dns",
+      "tag": "dns_out"
     }
-  ]
+  ],
+  "route": {
+    "rules": [
+      {
+        "outbound": "proxy",
+        "clash_mode": "Global"
+      },
+      {
+        "outbound": "direct",
+        "clash_mode": "Direct"
+      },
+      {
+        "outbound": "dns_out",
+        "protocol": [
+          "dns"
+        ]
+      },
+      {
+        "outbound": "proxy",
+        "domain": [
+          "googleapis.cn",
+          "gstatic.com"
+        ],
+        "domain_suffix": [
+          ".googleapis.cn",
+          ".gstatic.com"
+        ]
+      },
+      {
+        "outbound": "block",
+        "network": [
+          "udp"
+        ],
+        "port": [
+          443
+        ]
+      },
+      {
+        "outbound": "block",
+        "rule_set": [
+          "geosite-category-ads-all"
+        ]
+      },
+      {
+        "outbound": "direct",
+        "ip_is_private": true
+      },
+      {
+        "outbound": "direct",
+        "rule_set": [
+          "geosite-private"
+        ]
+      },
+      {
+        "outbound": "direct",
+        "ip_cidr": [
+          "223.5.5.5",
+          "223.6.6.6",
+          "2400:3200::1",
+          "2400:3200:baba::1",
+          "119.29.29.29",
+          "1.12.12.12",
+          "120.53.53.53",
+          "2402:4e00::",
+          "2402:4e00:1::",
+          "180.76.76.76",
+          "2400:da00::6666",
+          "114.114.114.114",
+          "114.114.115.115",
+          "114.114.114.119",
+          "114.114.115.119",
+          "114.114.114.110",
+          "114.114.115.110",
+          "180.184.1.1",
+          "180.184.2.2",
+          "101.226.4.6",
+          "218.30.118.6",
+          "123.125.81.6",
+          "140.207.198.6",
+          "1.2.4.8",
+          "210.2.4.8",
+          "52.80.66.66",
+          "117.50.22.22",
+          "2400:7fc0:849e:200::4",
+          "2404:c2c0:85d8:901::4",
+          "117.50.10.10",
+          "52.80.52.52",
+          "2400:7fc0:849e:200::8",
+          "2404:c2c0:85d8:901::8",
+          "117.50.60.30",
+          "52.80.60.30"
+        ]
+      },
+      {
+        "outbound": "direct",
+        "domain": [
+          "alidns.com",
+          "doh.pub",
+          "dot.pub",
+          "360.cn",
+          "onedns.net",
+          "shouji.sougou.com",
+          "kkdzpt.com"
+        ],
+        "domain_suffix": [
+          ".alidns.com",
+          ".doh.pub",
+          ".dot.pub",
+          ".360.cn",
+          ".onedns.net",
+          ".shouji.sougou.com",
+          ".kkdzpt.com"
+        ]
+      },
+      {
+        "outbound": "direct",
+        "rule_set": [
+          "geoip-cn"
+        ]
+      },
+      {
+        "outbound": "direct",
+        "rule_set": [
+          "geosite-cn"
+        ]
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "geosite-category-ads-all",
+        "type": "local",
+        "format": "binary",
+        "path": "D:\\v2rayN-With-Core-SelfContained\\bin\\srss\\geosite-category-ads-all.srs"
+      },
+      {
+        "tag": "geosite-private",
+        "type": "local",
+        "format": "binary",
+        "path": "D:\\v2rayN-With-Core-SelfContained\\bin\\srss\\geosite-private.srs"
+      },
+      {
+        "tag": "geosite-cn",
+        "type": "local",
+        "format": "binary",
+        "path": "D:\\v2rayN-With-Core-SelfContained\\bin\\srss\\geosite-cn.srs"
+      },
+      {
+        "tag": "geoip-cn",
+        "type": "local",
+        "format": "binary",
+        "path": "D:\\v2rayN-With-Core-SelfContained\\bin\\srss\\geoip-cn.srs"
+      }
+    ]
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "D:\\v2rayN-With-Core-SelfContained\\bin\\cache.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:10813"
+    }
+  }
 }
