@@ -112,6 +112,11 @@ rule-providers:
 rules:
   - DOMAIN-SUFFIX,telegram.org,Proxy
   - DOMAIN-SUFFIX,t.me,Proxy
+  - DOMAIN-SUFFIX,api.telegram.org,Proxy
+  - DOMAIN-SUFFIX,telegram-cdn.org,Proxy
+  - IP-CIDR,91.108.4.0/22,Proxy,no-resolve
+  - IP-CIDR,91.108.8.0/22,Proxy,no-resolve
+  - IP-CIDR,149.154.160.0/20,Proxy,no-resolve
   - RULE-SET,direct,DIRECT
   - RULE-SET,proxy,Proxy
   - GEOIP,CN,DIRECT
