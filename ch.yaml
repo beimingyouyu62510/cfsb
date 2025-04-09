@@ -1,38 +1,29 @@
-# 深巷有喵的「Clash_Mini」配置
-# 日期：2024-10-04
-# 版本：2.1.6
-# 配置作者：https://github.com/Rabbit-Spec
-# 适用版本：所有使用 Mihomo 内核的程序
-
+# 简化 Clash 配置 - 单个 VLESS 节点
 port: 7890
 socks-port: 7891
 mixed-port: 7892
 redir-port: 7893
 tproxy-port: 7894
 
-unified-delay: true
-geodata-mode: false
-geodata-loader: standard
-geo-auto-update: true
-geo-update-interval: 24
-tcp-concurrent: true
-find-process-mode: strict
-global-client-fingerprint: chrome
-
 allow-lan: true
 mode: rule
 log-level: info
 ipv6: true
 udp: true
+unified-delay: true
+tcp-concurrent: true
+find-process-mode: strict
+global-client-fingerprint: chrome
 
 external-controller: 0.0.0.0:9090
-# external-ui: ui
-# external-ui-url: 'https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip'
+
+geodata-mode: false
+geo-auto-update: true
+geo-update-interval: 24
+geodata-loader: standard
 
 geox-url:
-  # geoip: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat'
-  # geosite: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat'
-  mmdb: 'https://gitlab.com/Masaiki/GeoIP2-CN/-/raw/release/Country.mmdb'
+  mmdb: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb'
   asn: 'https://gitlab.com/Loon0x00/loon_data/-/raw/main/geo/GeoLite2-ASN.mmdb'
 
 profile:
@@ -47,14 +38,12 @@ sniffer:
   sniff:
     HTTP:
       ports: [80, 8080-8880]
-      override-destination: true
     TLS:
       ports: [443, 8443]
     QUIC:
       ports: [443, 8443]
   force-domain:
     - +.v2ex.com
-
   skip-domain:
     - Mijia Cloud
 
@@ -82,126 +71,46 @@ dns:
     - https://223.5.5.5/dns-query#h3=true
     - https://223.6.6.6/dns-query#h3=true
 
-# 锚点 - 节点订阅的参数 [每24小时更新一次订阅节点，每 60 秒一次健康检查]
-NodeParam: &NodeParam {type: http, interval: 86400, health-check: {enable: true, url: 'http://www.google.com/generate_204', interval: 60}}
+proxies:
+  - name: "天书"
+    type: vless
+    server: yx.jisucf.cloudns.biz           # ← 修改为你的服务器地址
+    port: 443                         # ← 修改为你的端口
+    uuid: c410dc60-8772-48bf-a1e8-747ce49d28bd              # ← 填入你的 UUID
+    tls: true
+    network: ws
+    ws-opts:
+      path: "/?ed=2560"          # ← 修改为你的 ws 路径
+      headers:
+        Host: tscf.jisucf.cloudns.biz          # ← 修改为你的 Host
+    servername: tscf.jisucf.cloudns.biz         # ← TLS SNI，和 Host 保持一致
 
-# 锚点 - 节点订阅
-proxy-providers: 
-  我的节点:
-    url: 'https://tscf.jisucf.cloudns.biz/511622/clash'
-    <<: *NodeParam
-    path: './proxy_provider/Providers.yaml'
+proxy-groups:
+  - name: Proxy
+    type: select
+    proxies:
+      - 天书
+      - DIRECT
 
-# 锚点 - 节点筛选组
-FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b))).*$'
-FilterJP: &FilterJP '^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b))).*$'
-FilterSG: &FilterSG '^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b))).*$'
-FilterUS: &FilterUS '^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b))).*$'
-FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
-
-# 策略组参数锚点
-# 锚点 - 故障转移参数 [每 10 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
-FallBack: &FallBack {type: fallback, interval: 10, lazy: true, url: 'http://www.google.com/generate_204', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all-providers: true}
-# 锚点 - 规则参数 [每天更新一次订阅规则，更新规则时使用直连策略]
-RuleSet: &RuleSet {type: http, behavior: classical, interval: 86400, format: yaml, proxy: DIRECT}
-
-# 策略组
-proxy-groups: 
-  - {name: Proxy, type: select, proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/pompurin404/mihomo-party/master/resources/icon.png'}
-  - {name: OpenAi, type: select, include-all: true, filter: *FilterAll, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png'}
-  - {name: Apple, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png'}
-  - {name: Gamer, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png'}
-  - {name: TikTok, type: select, proxies: [Proxy, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png'}
-  - {name: GlobalMedia, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ForeignMedia.png'}
-  - {name: Telegram, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png'}
-  - {name: Microsoft, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png'}
-
-  - {name: 🇭🇰 香港节点, <<: *FallBack, filter: *FilterHK}
-  - {name: 🇺🇸 美国节点, <<: *FallBack, filter: *FilterUS}
-  - {name: 🇯🇵 日本节点, <<: *FallBack, filter: *FilterJP}
-  - {name: 🇸🇬 新加坡节点, <<: *FallBack, filter: *FilterSG}
-
-# 订阅规则
 rule-providers:
-  GlobalMedia:
-    <<: *RuleSet
-    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml'
-    path: './RuleSet/GlobalMedia.yaml'
-
-  ChinaMedia:
-    <<: *RuleSet
-    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia.yaml'
-    path: './RuleSet/ChinaMedia.yaml'
-
-  Apple:
-    <<: *RuleSet
-    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical_No_Resolve.yaml'
-    path: './RuleSet/Apple.yaml'
-
-  Microsoft:
-    <<: *RuleSet
-    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml'
-    path: './RuleSet/Microsoft.yaml'
-
-  Nintendo:
-    <<: *RuleSet
-    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.yaml'
-    path: './RuleSet/Nintendo.yaml'
-    
-  PlayStation:
-    <<: *RuleSet
-    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PlayStation/PlayStation.yaml'
-    path: './RuleSet/PlayStation.yaml'
-    
-  Epic:
-    <<: *RuleSet
-    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.yaml'
-    path: './RuleSet/Epic.yaml'
-    
-  Xbox:
-    <<: *RuleSet
-    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Xbox/Xbox.yaml'
-    path: './RuleSet/Xbox.yaml'
-
-  TikTok:
-    <<: *RuleSet
-    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok_No_Resolve.yaml'
-    path: './RuleSet/TikTok.yaml'
-
-  OpenAI:
-    <<: *RuleSet
-    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI_No_Resolve.yaml'
-    path: './RuleSet/OpenAI.yaml'
-    
-  Proxy:
-    <<: *RuleSet
-    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical_No_Resolve.yaml'
-    path: './RuleSet/Proxy.yaml'
-
   China:
-    <<: *RuleSet
+    type: http
+    behavior: classical
+    interval: 86400
+    format: yaml
+    path: ./RuleSet/China.yaml
     url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_Classical.yaml'
-    path: './RuleSet/China.yaml'
 
   LAN:
-    <<: *RuleSet
+    type: http
+    behavior: classical
+    interval: 86400
+    format: yaml
+    path: ./RuleSet/LAN.yaml
     url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml'
-    path: './RuleSet/LAN.yaml'
 
-# 分流规则指向
 rules:
- - RULE-SET,Apple,Apple
- - RULE-SET,TikTok,TikTok
- - RULE-SET,ChinaMedia,DIRECT
- - RULE-SET,GlobalMedia,GlobalMedia
- - RULE-SET,Nintendo,Gamer
- - RULE-SET,PlayStation,Gamer
- - RULE-SET,Epic,Gamer
- - RULE-SET,Xbox,Gamer
- - RULE-SET,OpenAI,OpenAi
- - RULE-SET,Microsoft,Microsoft
- - RULE-SET,Proxy,Proxy
- - RULE-SET,China,DIRECT
- - RULE-SET,LAN,DIRECT
- - GEOIP,CN,DIRECT
- - MATCH,Proxy
+  - RULE-SET,China,DIRECT
+  - RULE-SET,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,Proxy
