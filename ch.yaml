@@ -110,6 +110,8 @@ rule-providers:
     url: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt'
 
 rules:
+  - DOMAIN-SUFFIX,telegram.org,Proxy
+  - DOMAIN-SUFFIX,t.me,Proxy
   - RULE-SET,direct,DIRECT
   - RULE-SET,proxy,Proxy
   - GEOIP,CN,DIRECT
