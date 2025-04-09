@@ -93,21 +93,13 @@ proxy-groups:
       - DIRECT
 
 rule-providers:
-  China:
+  Ads:
     type: http
     behavior: classical
-    interval: 86400
+    interval: 86400   # 每24小时自动更新
     format: yaml
-    path: ./RuleSet/China.yaml
-    url: 'https://cdn.jsdelivr.net/gh/DivineEngine/Profiles@master/Clash/RuleSet/China.yaml'
-
-  LAN:
-    type: http
-    behavior: classical
-    interval: 86400
-    format: yaml
-    path: ./RuleSet/LAN.yaml
-    url: 'https://cdn.jsdelivr.net/gh/DivineEngine/Profiles@master/Clash/RuleSet/Lan.yaml'
+    path: ./RuleSet/Ads.yaml
+    url: 'https://github.com/TG-Twilight/AWAvenue-Ads-Rule/raw/main/Ads.yaml'  # 替换为您的规则源地址
 
 rules:
   - RULE-SET,China,DIRECT
