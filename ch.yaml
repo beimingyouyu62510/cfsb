@@ -93,16 +93,24 @@ proxy-groups:
       - DIRECT
 
 rule-providers:
-  Ads:
+  direct:
     type: http
     behavior: classical
-    interval: 86400   # 每24小时自动更新
+    interval: 86400
     format: yaml
-    path: ./RuleSet/Ads.yaml
-    url: 'https://github.com/TG-Twilight/AWAvenue-Ads-Rule/raw/main/Ads.yaml'  # 替换为您的规则源地址
+    path: ./RuleSet/direct.txt
+    url: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt'
+
+  proxy:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: yaml
+    path: ./RuleSet/proxy.txt
+    url: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt'
 
 rules:
-  - RULE-SET,China,DIRECT
-  - RULE-SET,LAN,DIRECT
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,proxy,Proxy
   - GEOIP,CN,DIRECT
   - MATCH,Proxy
