@@ -1,57 +1,76 @@
 dns:
+  enable: true
+  listen: 0.0.0.0:53
   nameserver:
     - 180.76.76.76
     - 2400:da00::6666
   fallback:
     - 8.8.8.8
     - 2001:4860:4860::8888
+  fallback-filter:
+    geoip: true
+    ipcidr:
+      - 240.0.0.0/4
+
 proxies:
-- name: TS-cf-yx.jisucf.cloudns.biz-443
-  type: vless
-  server: yx.jisucf.cloudns.biz
-  port: 443
-  uuid: c410dc60-8772-48bf-a1e8-747ce49d28bd
-  udp: false
-  tls: true
-  sni: tscf.jisucf.cloudns.biz
-  network: ws
-  ws-opts:
-    path: "/?ed=2560"
-    headers:
-      Host: tscf.jisucf.cloudns.biz
-      
+  - name: TS-cf-yx.jisucf.cloudns.biz-443
+    type: vless
+    server: yx.jisucf.cloudns.biz
+    port: 443
+    uuid: c410dc60-8772-48bf-a1e8-747ce49d28bd
+    udp: true # ⚠️建议开启udp
+    tls: true
+    sni: tscf.jisucf.cloudns.biz
+    network: ws
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: tscf.jisucf.cloudns.biz
+
 proxy-groups:
-- name: 🚀 节点选择
-  type: select
-  proxies:
-    - 自动选择
-    - TS-cf-yx.jisucf.cloudns.biz-443
-- name: 自动选择
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 60 #测试间隔
-  tolerance: 30
-  proxies:
-    - TS-cf-yx.jisucf.cloudns.biz-443
-- name: 漏网之鱼
-  type: select
-  proxies:
-    - DIRECT
-    - 🚀 节点选择
-rules: # 本人自用规则，不一定适合所有人所有客户端，如客户端因规则问题无法订阅就删除对应规则吧，每个人都有自己习惯的规则，自行研究哦
-# 策略规则，建议使用meta内核，部分规则需打开clash mate的使用geoip dat版数据库，比如TG规则就需要，或者自定义geoip的规则订阅
-# 这是geoip的规则订阅链接，https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb
-# - GEOSITE,category-ads-all,REJECT #简单广告过滤规则，要增加规则数可使用category-ads-all
-- GEOSITE,cn,DIRECT #国内域名直连规则
-- GEOIP,CN,DIRECT,no-resolve #国内IP直连规则
-- GEOSITE,cloudflare,DIRECT #CF域名直连规则
-- GEOIP,CLOUDFLARE,DIRECT,no-resolve #CFIP直连规则
-- GEOSITE,gfw,🚀 节点选择 #GFW域名规则
-- GEOSITE,google,🚀 节点选择 #GOOGLE域名规则
-- GEOIP,GOOGLE,🚀 节点选择,no-resolve #GOOGLE IP规则
-- GEOSITE,netflix,🚀 节点选择 #奈飞域名规则
-- GEOIP,NETFLIX,🚀 节点选择,no-resolve #奈飞IP规则
-- GEOSITE,telegram,🚀 节点选择 #TG域名规则
-- GEOIP,TELEGRAM,🚀 节点选择,no-resolve #TG IP规则
-- GEOSITE,openai,🚀 节点选择 #GPT规则
-- MATCH,漏网之鱼
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - 自动选择
+      - TS-cf-yx.jisucf.cloudns.biz-443
+
+  - name: 自动选择
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 60
+    tolerance: 50
+    proxies:
+      - TS-cf-yx.jisucf.cloudns.biz-443
+
+  - name: 漏网之鱼
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+
+rules:
+  # 屏蔽广告（可选）
+  # - GEOSITE,category-ads-all,REJECT
+
+  # 国内网站直连
+  - GEOSITE,private,DIRECT
+  - GEOSITE,cn,DIRECT
+  - GEOIP,CN,DIRECT,no-resolve
+
+  # Cloudflare 特别处理
+  - GEOSITE,cloudflare,DIRECT
+  - GEOIP,CLOUDFLARE,DIRECT,no-resolve
+
+  # 常用科学上网站点分流
+  - GEOSITE,gfw,🚀 节点选择
+  - GEOSITE,google,🚀 节点选择
+  - GEOIP,GOOGLE,🚀 节点选择,no-resolve
+  - GEOSITE,netflix,🚀 节点选择
+  - GEOIP,NETFLIX,🚀 节点选择,no-resolve
+  - GEOSITE,telegram,🚀 节点选择
+  - GEOIP,TELEGRAM,🚀 节点选择,no-resolve
+  - GEOSITE,openai,🚀 节点选择
+  - GEOIP,openai,🚀 节点选择,no-resolve
+
+  # 其余默认规则
+  - MATCH,漏网之鱼
