@@ -9,17 +9,17 @@ dns:
 proxies:
 - name: TS-cf
   type: vless
-  server: tscf.jisucf.cloudns.biz
+  server: yx.jisucf.cloudns.biz
   port: 443
   uuid: c410dc60-8772-48bf-a1e8-747ce49d28bd
   udp: false
   tls: true
-  sni: tscf.jisucf.cloudns.biz
+  sni: tscf.chenmo62510.workers.dev
   network: ws
   ws-opts:
     path: "/?ed=2560"
     headers:
-      Host: tscf.jisucf.cloudns.biz
+      Host: tscf.chenmo62510.workers.dev
       
 proxy-groups:
 - name: 🚀 节点选择
