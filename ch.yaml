@@ -14,12 +14,12 @@ proxies:
   uuid: c410dc60-8772-48bf-a1e8-747ce49d28bd
   udp: false
   tls: true
-  sni: tscf.chenmo62510.workers.dev
+  sni: tscf.jisucf.cloudns.biz
   network: ws
   ws-opts:
     path: "/?ed=2560"
     headers:
-      Host: tscf.chenmo62510.workers.dev
+      Host: tscf.jisucf.cloudns.biz
       
 proxy-groups:
 - name: 🚀 节点选择
