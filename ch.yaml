@@ -59,6 +59,19 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: tscf.jisucf.cloudns.biz
+  - name: 天书git
+    type: vless
+    server: yx.jisucf.cloudns.biz
+    port: 443
+    uuid: 1acc3cc2-26d8-4284-8cad-082d3dc46649
+    udp: false
+    tls: true
+    sni: tsgit.jisucf.cloudns.biz
+    network: ws
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: tsgit.jisucf.cloudns.biz
 
 proxy-groups:
   - name: 🚀 节点选择
@@ -67,6 +80,7 @@ proxy-groups:
       - ♻️ 自动选择
       - DIRECT
       - 天书cf
+      - 天书git
   - name: ♻️ 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
@@ -74,6 +88,7 @@ proxy-groups:
     tolerance: 5000
     proxies:
       - 天书cf
+      - 天书git
   - name: 🌍 国外媒体
     type: select
     proxies:
@@ -81,24 +96,28 @@ proxy-groups:
       - ♻️ 自动选择
       - 🎯 全球直连
       - 天书cf
+      - 天书git
   - name: 📲 电报信息
     type: select
     proxies:
       - 🚀 节点选择
       - 🎯 全球直连
       - 天书cf
+      - 天书git
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
       - 🎯 全球直连
       - 🚀 节点选择
       - 天书cf
+      - 天书git
   - name: 🍎 苹果服务
     type: select
     proxies:
       - 🚀 节点选择
       - 🎯 全球直连
       - 天书cf
+      - 天书git
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -122,6 +141,7 @@ proxy-groups:
       - 🎯 全球直连
       - ♻️ 自动选择
       - 天书cf
+      - 天书git
 rules:
   - DOMAIN-SUFFIX,acl4.ssr,🎯 全球直连
   - DOMAIN-SUFFIX,ip6-localhost,🎯 全球直连
