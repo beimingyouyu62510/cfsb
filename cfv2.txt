@@ -1,2 +1,2 @@
-vless://c410dc60-8772-48bf-a1e8-747ce49d28bd@yx.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=cf.jisucf.cloudns.biz&fp=randomized&allowInsecure=1&type=ws&host=cf.jisucf.cloudns.biz&path=%2F%3Fed%3D2048#cf.jisucf.cloudns.biz
-vless://a3b0c4ec-7066-457f-968b-3ed38b0bb573@yx.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git.jisucf.cloudns.biz&fp=randomized&allowInsecure=1&type=ws&host=git.jisucf.cloudns.biz&path=%2F%3Fed%3D2048#git.jisucf.cloudns.biz
+vless://a3b0c4ec-7066-457f-968b-3ed38b0bb573@yx.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git.jisucf.cloudns.biz&fp=randomized&allowInsecure=1&type=ws&host=git.jisucf.cloudns.biz&path=%2F%3Fed%3D2048#天书git
+vless://c410dc60-8772-48bf-a1e8-747ce49d28bd@yx.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=tscf.jisucf.cloudns.biz&type=ws&host=tscf.jisucf.cloudns.biz&path=%2F%3Fed%3D2560#天书cf
