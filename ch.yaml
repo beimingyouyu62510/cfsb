@@ -48,7 +48,7 @@ tun:
 proxies:
   - name: 天书cf
     type: vless
-    server: yx.jisucf.cloudns.biz
+    server: laji.jisucf.cloudns.biz
     port: 443
     uuid: c410dc60-8772-48bf-a1e8-747ce49d28bd
     udp: true
@@ -61,7 +61,7 @@ proxies:
         Host: tscf.jisucf.cloudns.biz
   - name: 天书git
     type: vless
-    server: yx.jisucf.cloudns.biz
+    server: laji.jisucf.cloudns.biz
     port: 443
     uuid: 1acc3cc2-26d8-4284-8cad-082d3dc46649
     udp: false
