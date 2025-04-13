@@ -167,6 +167,7 @@ rules:
   - DOMAIN,www.asusrouter.com,🎯 全球直连
   - DOMAIN,thepiratebay-plus.strem.fun,🎯 全球直连
   - DOMAIN,torrentio.strem.fun,🎯 全球直连
+  - DOMAIN,cyberflix.elfhosted.com,🎯 全球直连
   - DOMAIN-SUFFIX,hiwifi.com,🎯 全球直连
   - DOMAIN-SUFFIX,leike.cc,🎯 全球直连
   - DOMAIN-SUFFIX,miwifi.com,🎯 全球直连
