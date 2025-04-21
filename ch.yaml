@@ -3,7 +3,12 @@ allow-lan: false
 mode: rule
 log-level: info
 ipv6: false
-external-controller: 0.0.0.0:9090
+# 优化：绑定到 127.0.0.1 增强安全性，仅允许本机访问控制面板
+external-controller: 127.0.0.1:9090
+# 如果确实需要局域网访问控制面板，请取消注释下面两行，并将上面一行注释掉
+# external-controller: 0.0.0.0:9090
+# secret: '请在这里设置一个强密码' # <--- 如果使用 0.0.0.0，务必设置密码
+
 dns:
   enable: true
   listen: 0.0.0.0:53
@@ -12,10 +17,13 @@ dns:
     - 223.5.5.5
     - 114.114.114.114
   nameserver:
+    # 优化：优先使用可靠的境外 DNS (通过代理查询) 以提高 fake-ip 模式下对境外域名的解析准确性
+    - 1.1.1.1
+    - 8.8.8.8
     - 223.5.5.5
     - 114.114.114.114
-    - 119.29.29.29
-    - 180.76.76.76
+    - 119.29.29.29 # 国内 DNS 可根据需要保留或移除
+    - 180.76.76.76 # 国内 DNS 可根据需要保留或移除
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
@@ -30,7 +38,9 @@ dns:
     - router.asus.com
     - localhost.sec.qq.com
     - localhost.ptlogin2.qq.com
-    - +.msftconnecttest.com
+    # 优化：修正语法错误
+    - '*.msftconnecttest.com'
+
 tun:
   enable: true
   stack: system
@@ -45,7 +55,9 @@ tun:
     - 8.8.4.4
     - 1.1.1.1
     - 1.0.0.1
+
 proxies:
+  # 代理节点部分未作修改，请确保节点信息有效
   - name: 天书cf
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -74,6 +86,7 @@ proxies:
         Host: tsgit.jisucf.cloudns.biz
 
 proxy-groups:
+  # 代理组部分结构未作修改
   - name: 🔰 节点选择
     type: select
     proxies:
@@ -137,7 +150,9 @@ proxy-groups:
       - ♻️ 自动选择
       - 天书cf
       - 天书git
+
 rule-providers:
+  # Rule Providers 部分未作修改，请确保 ./ruleset 目录存在且可写
   reject:
     type: http
     behavior: domain
@@ -228,6 +243,7 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
     path: ./ruleset/applications.yaml
     interval: 86400
+
 rules:
   - RULE-SET,applications,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
@@ -237,12 +253,14 @@ rules:
   - RULE-SET,icloud,DIRECT
   - RULE-SET,apple,DIRECT
   - RULE-SET,google,🔰 节点选择
-  - RULE-SET,proxy,PROXY
+  # 优化：明确指定目标代理组，而不是使用模糊的 PROXY
+  - RULE-SET,proxy,🔰 节点选择
   - RULE-SET,direct,DIRECT
   - RULE-SET,lancidr,DIRECT
   - RULE-SET,cncidr,DIRECT
   - RULE-SET,telegramcidr,🔰 节点选择
-  - GEOIP,LAN,DIRECT
-  - GEOIP,CN,DIRECT
+  # 优化：移除冗余的 GEOIP 规则 (依赖上面的 RULE-SET)
+  # - GEOIP,LAN,DIRECT
+  # - GEOIP,CN,DIRECT
+  # 如果上面的 RULE-SET (lancidr, cncidr) 被移除或失效，可以考虑取消注释 GEOIP 规则，并确保 Country.mmdb 文件存在
   - MATCH,🔰 节点选择
-
