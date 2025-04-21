@@ -276,7 +276,10 @@ rules:
   - RULE-SET,applications,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
-  - DOMAIN,nekogram,♻️ 自动选择
+  - DOMAIN-SUFFIX,telegram.org,♻️ 自动选择
+  - DOMAIN-SUFFIX,t.me,♻️ 自动选择
+  - DOMAIN-SUFFIX,telegra.ph,♻️ 自动选择
+  - DOMAIN-KEYWORD,telegram,♻️ 自动选择
   - RULE-SET,private,DIRECT
   - RULE-SET,reject,REJECT
   - RULE-SET,icloud,DIRECT
