@@ -289,6 +289,14 @@ proxy-groups:
       - DIRECT
       # 在这里添加你希望作为最后选择的代理组或节点
 
+  - name: 👨‍💻 GitHub # 确保这里定义了这个代理组
+    type: select
+    proxies:
+      - 🚀 国外流量
+      - DIRECT
+      - 🔰 节点选择
+      # 根据你的需求添加代理
+
 rule-providers:
   # ... 你的其他 rule-providers ...
 
@@ -302,7 +310,7 @@ rule-providers:
 rules:
   # ... 你的其他 rules ...
 
-  - RULE-SET,GitHub,👨‍💻 GitHub
+  - RULE-SET,GitHub,👨‍💻 GitHub # 确保这里引用的代理组名称与上面定义的完全一致
   - RULE-SET,Inside,🎯 国内流量
   - RULE-SET,SteamCN,🎯 国内流量
   - RULE-SET,Outside,🚀 国外流量
