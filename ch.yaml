@@ -276,7 +276,7 @@ rules:
   - RULE-SET,applications,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
-  - DOMAIN,tw.nekomimi.nekogram,♻️ 自动选择
+  - DOMAIN,nekogram,♻️ 自动选择
   - RULE-SET,private,DIRECT
   - RULE-SET,reject,REJECT
   - RULE-SET,icloud,DIRECT
