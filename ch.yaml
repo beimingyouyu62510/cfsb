@@ -59,7 +59,6 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: tscf.jisucf.cloudns.biz
-        my-key: 622511
   - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
