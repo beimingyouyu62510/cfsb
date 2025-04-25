@@ -75,15 +75,15 @@ proxies:
     type: vless
     server: laji.jisucf.cloudns.biz
     port: 443
-    uuid: 1acc3cc2-26d8-4284-8cad-082d3dc46649
+    uuid: 49815d09-7691-427f-a9f0-f372680fb235
     udp: false
     tls: true
-    sni: tsgit.jisucf.cloudns.biz
+    sni: yh.jisucf.cloudns.biz
     network: ws
     ws-opts:
       path: "/?ed=2560"
       headers:
-        Host: tsgit.jisucf.cloudns.biz
+        Host: yh.jisucf.cloudns.biz
 proxy-groups:
   - name: 🚀 节点选择
     type: select
@@ -168,6 +168,8 @@ rules:
   - DOMAIN-SUFFIX,lan,🎯 全球直连
   - DOMAIN-SUFFIX,local,🎯 全球直连
   - DOMAIN-SUFFIX,localhost,🎯 全球直连
+  - DOMAIN,baby-beamup.club,DIRECT
+  - DOMAIN,thepiratebay-plus.strem.fun,DIRECT
   - IP-CIDR,0.0.0.0/8,🎯 全球直连,no-resolve
   - IP-CIDR,10.0.0.0/8,🎯 全球直连,no-resolve
   - IP-CIDR,100.64.0.0/10,🎯 全球直连,no-resolve
