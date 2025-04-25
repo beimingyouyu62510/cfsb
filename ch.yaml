@@ -170,6 +170,9 @@ rules:
   - DOMAIN-SUFFIX,localhost,🎯 全球直连
   - DOMAIN,baby-beamup.club,DIRECT
   - DOMAIN,thepiratebay-plus.strem.fun,DIRECT
+  - DOMAIN,61ab9c85a149-tmdb-collections.baby-beamup.club,DIRECT
+  - DOMAIN,cyberflix.elfhosted.com,DIRECT
+  - DOMAIN,94c8cb9f702d-tmdb-addon.baby-beamup.club,DIRECT
   - IP-CIDR,0.0.0.0/8,🎯 全球直连,no-resolve
   - IP-CIDR,10.0.0.0/8,🎯 全球直连,no-resolve
   - IP-CIDR,100.64.0.0/10,🎯 全球直连,no-resolve
