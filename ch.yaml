@@ -75,15 +75,15 @@ proxies:
     type: vless
     server: laji.jisucf.cloudns.biz
     port: 443
-    uuid: 49815d09-7691-427f-a9f0-f372680fb235
+    uuid: a3b0c4ec-7066-457f-968b-3ed38b0bb573
     udp: false
     tls: true
-    sni: yh.jisucf.cloudns.biz
+    sni: git.jisucf.cloudns.biz
     network: ws
     ws-opts:
       path: "/?ed=2560"
       headers:
-        Host: yh.jisucf.cloudns.biz
+        Host: git.jisucf.cloudns.biz
 proxy-groups:
   - name: 🚀 节点选择
     type: select
