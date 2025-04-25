@@ -75,7 +75,7 @@ proxies:
     type: vless
     server: laji.jisucf.cloudns.biz
     port: 443
-    uuid: 1acc3cc2-26d8-4284-8cad-082d3dc46649
+    uuid: c946921f-111f-470d-ad4c-dbeffe609fb2
     udp: false
     tls: true
     sni: tsgit.jisucf.cloudns.biz
