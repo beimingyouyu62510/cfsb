@@ -78,12 +78,12 @@ proxies:
     uuid: c946921f-111f-470d-ad4c-dbeffe609fb2
     udp: false
     tls: true
-    sni: tsgit.jisucf.cloudns.biz
+    sni: ts-git.jisucf.cloudns.biz
     network: ws
     ws-opts:
       path: "/?ed=2560"
       headers:
-        Host: tsgit.jisucf.cloudns.biz
+        Host: ts-git.jisucf.cloudns.biz
 proxy-groups:
   - name: 🚀 节点选择
     type: select
