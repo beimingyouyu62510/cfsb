@@ -11,47 +11,50 @@ external-controller: 127.0.0.1:9090
 
 dns:
   enable: true
-   listen: ':53'
-   ipv6: false
-   default-nameserver:
-     - 223.5.5.5
-     - 114.114.114.114
-   nameserver:
-     # 优化：优先使用可靠的境外 DNS (通过代理查询) 以提高 fake-ip 模式下对境外域名的解析准确性
-     - 8.8.8.8
-     - 223.5.5.5
-     - 114.114.114.114
-     - 119.29.29.29 # 国内 DNS 可根据需要保留或移除
-     - 180.76.76.76 # 国内 DNS 可根据需要保留或移除
-   enhanced-mode: fake-ip
-   fake-ip-range: 198.18.0.1/16
-   fake-ip-filter:
-     - '*.lan'
-     - '*.localdomain'
-     - '*.example'
-     - '*.invalid'
-     - '*.localhost'
-     - '*.test'
-     - '*.local'
-     - '*.home.arpa'
-     - router.asus.com
-     - localhost.sec.qq.com
-     - localhost.ptlogin2.qq.com
-     # 优化：修正语法错误
-     - '*.msftconnecttest.com'
- 
- tun:
-   enable: true
-   stack: system
-   auto-route: true
-   auto-detect-interface: true
-   dns-hijack:
-     - 114.114.114.114
-     - 180.76.76.76
-     - 119.29.29.29
-     - 223.5.5.5
-     - 8.8.8.8
-     - 8.8.4.4
+  listen: 0.0.0.0:53
+  ipv6: false
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+  nameserver:
+    # 优化：优先使用可靠的境外 DNS (通过代理查询) 以提高 fake-ip 模式下对境外域名的解析准确性
+    - 1.1.1.1
+    - 8.8.8.8
+    - 223.5.5.5
+    - 114.114.114.114
+    - 119.29.29.29 # 国内 DNS 可根据需要保留或移除
+    - 180.76.76.76 # 国内 DNS 可根据需要保留或移除
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - '*.localdomain'
+    - '*.example'
+    - '*.invalid'
+    - '*.localhost'
+    - '*.test'
+    - '*.local'
+    - '*.home.arpa'
+    - router.asus.com
+    - localhost.sec.qq.com
+    - localhost.ptlogin2.qq.com
+    # 优化：修正语法错误
+    - '*.msftconnecttest.com'
+
+tun:
+  enable: true
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - 114.114.114.114
+    - 180.76.76.76
+    - 119.29.29.29
+    - 223.5.5.5
+    - 8.8.8.8
+    - 8.8.4.4
+    - 1.1.1.1
+    - 1.0.0.1
 
 proxies:
   # 代理节点部分未作修改，请确保节点信息有效
