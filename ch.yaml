@@ -65,12 +65,12 @@ proxies:
     uuid: cb5dfbc9-c082-4f41-b586-d1b5b00fb4b5
     udp: true
     tls: true
-    sni: tscf.jisucf.cloudns.biz
+    sni: ts-cf.jisucf.cloudns.biz
     network: ws
     ws-opts:
       path: "/?ed=2560"
       headers:
-        Host: tscf.jisucf.cloudns.biz
+        Host: ts-cf.jisucf.cloudns.biz
   - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
