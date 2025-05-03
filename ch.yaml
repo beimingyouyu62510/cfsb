@@ -11,7 +11,6 @@ external-controller: 127.0.0.1:9090
 
 dns:
   enable: true
-  enable: true
   listen: ':53'
   enhanced-mode: 'fake-ip'
   fake-ip-range: '198.18.0.1/16'
