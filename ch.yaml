@@ -37,6 +37,9 @@ dns:
     - localhost.ptlogin2.qq.com
     # 优化：修正语法错误
     - '*.msftconnecttest.com'
+  fallback:
+    - tls://1.1.1.1
+    - tls://dns.google
 
 tun:
   enable: true
