@@ -1,0 +1,29 @@
+{
+  "title": "22听书网（无广告精选）",
+  "url": "https://www.22ts.com",
+  "searchUrl": "https://www.22ts.com/search.html?key={keyword}",
+  "searchFind": "div.list > ul > li",
+  "searchName": "h4 > a",
+  "searchAuthor": "p.author",
+  "searchUrlList": "h4 > a::href",
+  "searchCover": "img::src",
+  "bookFind": "div.playlist > ul > li",
+  "bookName": "h1.title",
+  "bookAuthor": "div.info > p:nth-child(1)",
+  "bookCover": "div.cover > img::src",
+  "bookUrlList": "a::href",
+  "bookChapterName": "a",
+  "bookChapterUrl": "a::href",
+  "contentFind": "audio::src",
+  "httpHeaders": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 10)"
+  },
+  "enabled": true,
+  "categories": [
+    "恐怖悬疑",
+    "玄幻武侠",
+    "历史穿越",
+    "刑侦推理",
+    "科幻异能"
+  ]
+}
