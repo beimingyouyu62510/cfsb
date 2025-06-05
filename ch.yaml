@@ -15,8 +15,8 @@ dns:
   ipv6: false
   enhanced-mode: redir-host  # 更稳定，兼容性好
   default-nameserver:
+    - 180.76.76.76
     - 223.5.5.5
-    - 119.29.29.29
   nameserver:
     - https://223.5.5.5/dns-query
     - https://119.29.29.29/dns-query
