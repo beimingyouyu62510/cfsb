@@ -63,14 +63,14 @@
         {
             "type": "vless",
             "tag": "vless-cf",
-            "server": "yx.jisucf.cloudns.biz",
+            "server": "laji.jisucf.cloudns.biz",
             "server_port": 443,
-            "uuid": "c410dc60-8772-48bf-a1e8-747ce49d28bd",
+            "uuid": "cb5dfbc9-c082-4f41-b586-d1b5b00fb4b5",
             "flow": "none",
             "encryption": "none",
             "tls": {
                 "enabled": true,
-                "server_name": "cf.jisucf.cloudns.biz",
+                "server_name": "ts-cf.jisucf.cloudns.biz",
                 "insecure": false,
                 "utls": {
                     "enabled": true,
@@ -81,21 +81,21 @@
                 "type": "ws",
                 "path": "/?ed=2048",
                 "headers": {
-                    "Host": "cf.jisucf.cloudns.biz"
+                    "Host": "ts-cf.jisucf.cloudns.biz"
                 }
             }
         },
         {
             "type": "vless",
             "tag": "vless-git",
-            "server": "yx.jisucf.cloudns.biz",
+            "server": "laji.jisucf.cloudns.biz",
             "server_port": 443,
-            "uuid": "a3b0c4ec-7066-457f-968b-3ed38b0bb573",
+            "uuid": "c946921f-111f-470d-ad4c-dbeffe609fb2",
             "flow": "none",
             "encryption": "none",
             "tls": {
                 "enabled": true,
-                "server_name": "git.jisucf.cloudns.biz",
+                "server_name": "ts-git.jisucf.cloudns.biz",
                 "insecure": false,
                 "utls": {
                     "enabled": true,
@@ -106,31 +106,10 @@
                 "type": "ws",
                 "path": "/?ed=2048",
                 "headers": {
-                    "Host": "git.jisucf.cloudns.biz"
+                    "Host": "ts-git.jisucf.cloudns.biz"
                 }
             }
         },
-        {
-            "type": "vmess",
-            "tag": "vmess-argo",
-            "server": "yx.jisucf.cloudns.biz",
-            "server_port": 443,
-            "uuid": "2066edd8-88d3-4301-820d-03e3f14a1553",
-            "alterId": 0,
-            "cipher": "auto",
-            "tls": {
-                "enabled": true,
-                "server_name": "serv.jisucf.cloudns.ch"
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/serv00?ed=2048",
-                "headers": {
-                    "Host": "serv.jisucf.cloudns.ch"
-                }
-            }
-        }
-    ],
     "route": {
         "rules": [
             {
