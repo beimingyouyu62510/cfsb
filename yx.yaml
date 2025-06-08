@@ -1,54 +1,87 @@
-# 分组
-pr:
-  &pr {
-    type: select,
-    proxies:
-      [
-        节点选择,
-        香港,
-        台湾,
-        日本,
-        新加坡,
-        美国,
-        其它地区,
-        全部节点,
-        自动选择,
-        DIRECT,
-        香港-天书cf,
-        香港-天书git,
-      ],
-  }
-
-# 延迟检测 URL
-p: &p
-  type: http
-  interval: 3600
-  health-check:
-    enable: true
-    url: https://cp.cloudflare.com
-    interval: 300
-    timeout: 1000
-    tolerance: 100
-
-# 订阅名（已注释，待提供实际订阅 URL）
-# use: &use
-#   type: url-test
-#   use:
-#     - 订阅一
-#     # - 订阅二
-
-# 订阅链接（已注释，待提供实际订阅 URL）
-# proxy-providers:
-#   订阅一:
-#     <<: *p
-#     path: "C:\\Users\\chenm\\AppData\\Roaming\\io.github.clash-verge-rev\\clash-verge-rev\\proxy_provider\\订阅一.yaml"
-#     url: "<your-subscription-url>"
-#     override:
-#       additional-prefix: "[订阅一]"
-
-# 节点信息
+# hosts:
+#   # 此处填写自定义hosts
+allow-lan: true
+# 不使用统一延迟检测，有些节点前戏太慢了
+unified-delay: false
+tcp-concurrent: true
+find-process-mode: strict
+global-client-fingerprint: chrome
+profile:
+  store-selected: true
+  store-fake-ip: true
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - dlg.io.mi.com
+    - "+.push.apple.com"
+tun:
+  enable: true
+  stack: system
+  device: mihomo
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: true
+  # 如果有使用zerotier或者headscale等，需要自己配置排除自己的网段
+  # route-exclude-address: ["10.144.144.0/24"]
+  # 打开nat1，官方文档说可能会损失一些性能，如果没有nat1需求，可以关闭
+  endpoint-independent-nat: true
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  prefer-h3: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  use-hosts: true
+  # 用于解析nameserver中的域名dns服务器，理论上如果nameserver中的dns服务器都是ip类的，这里也可以不填
+  # 前两个是我这边电信的运营商dns，可以换成你自己的，也可以全部使用大厂的公共dns
+  # 由于只用来解析nameserver，不使用doh或dot
+  default-nameserver:
+    - 117.50.11.11
+    - 180.168.255.18
+    - 223.5.5.5
+  # 在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网，因此使用google和cf的doh
+  nameserver:
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+  # 用于解析代理节点的域名
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://1.12.12.12/dns-query
+  # 国内访问的规则使用国内的dns，不考虑dns泄露，不使用doh或dot
+  nameserver-policy:
+    "geosite:cn,apple-cn,category-games@cn,private":
+      - 117.50.11.11
+      - 180.168.255.18
+      - 223.5.5.5
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter:
+    - '*'
+    - '+.lan'
+    - '+.local'
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - +.stun.*.*.*.*.*
+geodata-mode: true
+geox-url:
+  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 proxies:
-  - name: 香港-天书cf
+  # 代理节点部分未作修改，请确保节点信息有效
+  - name: 天书cf
     type: vless
     server: laji.jisucf.cloudns.biz
     port: 443
@@ -61,7 +94,7 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: ts-cf.jisucf.cloudns.biz
-  - name: 香港-天书git
+  - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
     port: 443
@@ -74,146 +107,143 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: ts-git.jisucf.cloudns.biz
-
-# 规则订阅
+proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - DIRECT
+      - 天书cf
+      - 天书git
+  - name: ♻️ 自动选择
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    proxies:
+      - 天书cf
+      - 天书git
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - 天书cf
+      - 天书git
+  - name: 📲 电报信息
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - 天书cf
+      - 天书git
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - 🎯 全球直连
+      - 🚀 节点选择
+      - 天书cf
+      - 天书git
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - 天书cf
+      - 天书git
+  - name: 📢 谷歌FCM
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - 天书cf
+      - 天书git
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      # 建议移除以下两行，以符合“全球直连”的本意
+      # - 🚀 节点选择
+      # - ♻️ 自动选择
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🍃 应用净化
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - 天书cf
+      - 天书git
 rule-providers:
-  AWAvenue-Ads:
+  Anti-Ads:
     type: http
     behavior: domain
     format: yaml
-    path: "C:\\Users\\chenm\\AppData\\Roaming\\io.github.clash-verge-rev\\clash-verge-rev\\rule_provider\\AWAvenue-Ads.yaml"
-    url: "https://testingcf.jsdelivr.net/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
-    interval: 600
-
-mode: rule
-ipv6: true
-log-level: warning
-allow-lan: true
-mixed-port: 7890
-unified-delay: true
-tcp-concurrent: true
-external-controller: :9090
-external-ui: "C:\\Users\\chenm\\AppData\\Roaming\\io.github.clash-verge-rev\\clash-verge-rev\\ui"
-geodata-mode: true
-geox-url:
-  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
-  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
-  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
-find-process-mode: strict
-keep-alive-interval: 600
-global-client-fingerprint: random
-profile:
-  store-selected: true
-  store-fake-ip: true
-ntp:
-  enable: true
-  write-to-system: false
-  server: time.apple.com
-  port: 123
-  interval: 30
-sniffer:
-  enable: true
-  sniff:
-    TLS:
-      ports: [443, 8443]
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-tun:
-  enable: true
-  stack: system
-  auto-route: true
-  auto-detect-interface: true
-dns:
-  enable: true
-  listen: :1053
-  ipv6: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.1/8
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - "*.msftconnecttest.com"
-    - "*.msftncsi.com"
-    - "time.*.com"
-    - "+.cn"
-  default-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-    - 114.114.114.114
-    - '[2402:4e00::]'
-    - '[2400:3200::1]'
-  nameserver:
-    - 'tls://8.8.4.4#dns'
-    - 'tls://1.0.0.1#dns'
-    - 'tls://[2001:4860:4860::8844]#dns'
-    - 'tls://[2606:4700:4700::1001]#dns'
-  proxy-server-nameserver:
-    - https://doh.pub/dns-query
-  nameserver-policy:
-    "geosite:cn,private": [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
-    "geosite:geolocation-!cn": ["tls://dns.google", "tls://cloudflare-dns.com"]
-proxy-groups:
-  - { name: 节点选择, type: select, proxies: [全部节点, 自动选择, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, DIRECT, 香港-天书cf, 香港-天书git] }
-  - { name: dns, <<: *pr }
-  - { name: 广告拦截, type: select, proxies: [REJECT, DIRECT, 节点选择] }
-  - { name: 境外AI, <<: *pr }
-  - { name: Apple, <<: *pr }
-  - { name: Google, <<: *pr }
-  - { name: Telegram, <<: *pr }
-  - { name: Twitter, <<: *pr }
-  - { name: Pixiv, <<: *pr }
-  - { name: ehentai, <<: *pr }
-  - { name: 巴哈姆特, <<: *pr }
-  - { name: YouTube, <<: *pr }
-  - { name: NETFLIX, <<: *pr }
-  - { name: TikTok, <<: *pr }
-  - { name: Spotify, <<: *pr }
-  - { name: Github, <<: *pr }
-  - { name: Steam, <<: *pr }
-  - { name: OneDrive, <<: *pr }
-  - { name: 微软服务, <<: *pr }
-  - { name: 国内, type: select, proxies: [DIRECT, 节点选择, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择, 香港-天书cf, 香港-天书git] }
-  - { name: 其他, <<: *pr }
-  - { name: 香港, <<: *use, filter: "(?i)港|hk|hongkong|hong kong" }
-  - { name: 台湾, <<: *use, filter: "(?i)台|tw|taiwan" }
-  - { name: 日本, <<: *use, filter: "(?i)日本|jp|japan" }
-  - { name: 美国, <<: *use, filter: "(?i)美|us|unitedstates|united states" }
-  - { name: 新加坡, <<: *use, filter: "(?i)(新|sg|singapore)" }
-  - { name: 其它地区, <<: *use, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*" }
-  - { name: 全部节点, type: select, proxies: [香港-天书cf, 香港-天书git] }
-  - { name: 自动选择, type: url-test, proxies: [香港-天书cf, 香港-天书git], tolerance: 100 }
+    path: ./rule_provider/Anti-Ads.yaml
+    url: "https://anti-ad.net/clash.yaml"
+    interval: 43200
+    lazy: false
 rules:
-  - RULE-SET,AWAvenue-Ads,广告拦截
-  - GEOSITE,CATEGORY-AI-CHAT-!CN,境外AI
-  - GEOSITE,apple,Apple
-  - GEOSITE,apple-cn,Apple
-  - GEOSITE,ehentai,ehentai
-  - GEOSITE,github,Github
-  - GEOSITE,twitter,Twitter
-  - GEOSITE,youtube,YouTube
-  - GEOSITE,google,Google
-  - GEOSITE,google-cn,Google
-  - GEOSITE,telegram,Telegram
-  - GEOSITE,netflix,NETFLIX
-  - GEOSITE,tiktok,TikTok
-  - GEOSITE,bahamut,巴哈姆特
-  - GEOSITE,spotify,Spotify
-  - GEOSITE,pixiv,Pixiv
-  - GEOSITE,steam@cn,DIRECT
-  - GEOSITE,steam,Steam
-  - GEOSITE,onedrive,OneDrive
-  - GEOSITE,microsoft,微软服务
-  - GEOSITE,geolocation-!cn,其他
-  - GEOIP,google,Google
-  - GEOIP,netflix,NETFLIX
-  - GEOIP,telegram,Telegram
-  - GEOIP,twitter,Twitter
-  - GEOSITE,CN,国内
-  - GEOIP,CN,国内
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,100.64.0.0/10,DIRECT
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - MATCH,其他
+  ## 非 IP 类规则
+  ### 自定义
+  - DOMAIN-SUFFIX,hf.co,🚀 节点选择 #hugging face model  # <-- 修改 DOWNLOAD 为 🚀 节点选择
+  - DOMAIN,api.telegram.org,📲 电报信息 # <-- 修改 PROXY 为 📲 电报信息
+  - DOMAIN-KEYWORD,easytier,DIRECT
+  - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择 # <-- 修改 DOWNLOAD 为 🚀 节点选择
+  ### quic
+  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
+  ### 广告、数据统计
+  - RULE-SET,Anti-Ads,REJECT
+  ### 以下来自https://github.com/Loyalsoldier/v2ray-rules-dat
+  ### 大流量
+  - GEOSITE,category-android-app-download,🚀 节点选择 # <-- 修改 DOWNLOAD 为 🚀 节点选择
+  - GEOSITE,category-entertainment,🚀 节点选择 # <-- 修改 DOWNLOAD 为 🚀 节点选择
+  - GEOSITE,category-porn,🚀 节点选择 # <-- 修改 DOWNLOAD 为 🚀 节点选择
+  - GEOSITE,telegram,📲 电报信息 # <-- 修改 DOWNLOAD 为 📲 电报信息
+  - GEOSITE,onedrive,🚀 节点选择 # <-- 修改 DOWNLOAD 为 🚀 节点选择
+  - GEOSITE,category-games@cn,DIRECT
+  ### 国外固定IP
+  - GEOSITE,category-ai-chat-!cn,🚀 节点选择 # <-- 修改 PROXY-STATIC 为 🚀 节点选择
+  - GEOSITE,category-cryptocurrency,🚀 节点选择 # <-- 修改 PROXY-STATIC 为 🚀 节点选择
+  - GEOSITE,category-social-media-!cn,🚀 节点选择 # <-- 修改 PROXY-STATIC 为 🚀 节点选择
+  ### google(保证google play下载规则在cn之前)
+  - GEOSITE,google,🚀 节点选择 # <-- 修改 PROXY 为 🚀 节点选择
+  ### 直连
+  - GEOSITE,cn,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  ### 国外随意
+  - GEOSITE,geolocation-!cn,🚀 节点选择 # <-- 修改 PROXY 为 🚀 节点选择
+
+  ## IP 类规则
+  ### quic
+  # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOIP,CN))),REJECT # 这条规则可能与上面重复，且容易引起问题，如果上面已拦截可注释
+  ### 国外大流量
+  - GEOIP,telegram,📲 电报信息,no-resolve # <-- 修改 DOWNLOAD 为 📲 电报信息
+  ### 国外固定IP
+  - GEOIP,facebook,🚀 节点选择,no-resolve # <-- 修改 PROXY-STATIC 为 🚀 节点选择
+  - GEOIP,twitter,🚀 节点选择,no-resolve # <-- 修改 PROXY-STATIC 为 🚀 节点选择
+  - GEOIP,netflix,🚀 节点选择,no-resolve # <-- 修改 PROXY-STATIC 为 🚀 节点选择
+  ### google
+  - GEOIP,google,🚀 节点选择,no-resolve # <-- 修改 PROXY 为 🚀 节点选择
+  ### 直连
+  - GEOIP,CN,DIRECT,no-resolve
+  ### 绕过局域网地址
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+
+  ## 兜底
+  - MATCH,🐟 漏网之鱼 # <-- 修改 PROXY 为 🐟 漏网之鱼
