@@ -58,7 +58,7 @@ proxies:
     server: laji.jisucf.cloudns.biz
     port: 443
     uuid: c946921f-111f-470d-ad4c-dbeffe609fb2
-    udp: false
+    udp: true
     tls: true
     sni: ts-git.jisucf.cloudns.biz
     network: ws
