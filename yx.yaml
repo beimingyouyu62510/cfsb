@@ -2,7 +2,7 @@
 proxy-providers:
   text1:
     type: http
-    url: "https://example.com/subscription" # 替换为实际的订阅 URL
+    url: "<your-actual-subscription-url>" # 替换为实际的订阅 URL
     interval: 86400
     header:
       User-Agent: ["mihomo"]
@@ -11,7 +11,7 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 300
 
-# 节点信息
+# 节点信息（可根据订阅清空或替换）
 proxies:
   - name: 天书cf
     type: vless
@@ -60,11 +60,16 @@ disable-keep-alive: false
 profile:
   store-selected: true
   store-fake-ip: true
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
 
 # 控制面板
 external-controller: 0.0.0.0:9090
 secret: ""
-external-ui: "/etc/mihomo/run/ui"
+external-ui: "C:\\Users\\chenm\\AppData\\Roaming\\io.github.clash-verge-rev\\clash-verge-rev\\ui"
 external-ui-name: zashboard
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 
@@ -116,6 +121,8 @@ dns:
     - 119.29.29.29
     - 8.8.8.8
     - 1.1.1.1
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
   nameserver-policy:
     "geosite:cn": [223.5.5.5, 119.29.29.29]
     "geosite:geolocation-!cn": [8.8.8.8, 1.1.1.1]
@@ -123,12 +130,12 @@ dns:
 # 出站策略
 pr: &pr
   type: select
-  proxies: [天书cf, 天书git, DIRECT] # 替换为 DIRECT
+  proxies: [DIRECT] # 根据订阅更新节点名称
 
 proxy-groups:
   - name: 🚀 默认代理
     type: select
-    proxies: [天书cf, 天书git, DIRECT] # 替换为 DIRECT
+    proxies: [DIRECT] # 根据订阅更新节点名称
   - name: 📹 YouTube
     <<: *pr
   - name: 🍀 Google
@@ -155,13 +162,13 @@ proxy-groups:
     <<: *pr
   - name: 🎯 直连
     type: select
-    proxies: [DIRECT, 🚀 默认代理] # 替换为 DIRECT
+    proxies: [DIRECT, 🚀 默认代理]
   - name: 🐟 漏网之鱼
     type: select
-    proxies: [DIRECT, 🚀 默认代理] # 替换为 DIRECT
+    proxies: [DIRECT, 🚀 默认代理]
   - name: ♻️ 自动选择
     type: url-test
-    proxies: [天书cf, 天书git]
+    proxies: [] # 根据订阅更新节点名称
     tolerance: 20
     interval: 300
   - name: 🌐 全部节点
@@ -193,31 +200,3 @@ rules:
   - RULE-SET,telegram_ip,📲 Telegram
   - RULE-SET,cn_ip,🎯 直连
   - MATCH,🐟 漏网之鱼
-
-# 规则集
-rule-anchor:
-  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
-  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
-  class: &class {type: http, interval: 86400, behavior: classical, format: text}
-rule-providers: 
-  private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
-  proxylite: { <<: *class, url: "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/proxy.list"}
-  ai: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs"}
-  youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
-  google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
-  github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
-  telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
-  netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
-  paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
-  onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
-  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
-  apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs"}
-  speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
-  tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
-  gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
-  geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
-  cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
-  cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
-  google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
-  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
-  netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
