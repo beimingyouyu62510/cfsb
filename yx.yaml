@@ -1,357 +1,223 @@
-mixed-port: 7890
-allow-lan: false
-mode: rule
-log-level: info
-ipv6: false
-# 优化：绑定到 127.0.0.1 增强安全性，仅允许本机访问控制面板
-external-controller: 127.0.0.1:9090
-# 如果确实需要局域网访问控制面板，请取消注释下面两行，并将上面一行注释掉
-# external-controller: 0.0.0.0:9090
-# secret: '请在这里设置一个强密码' # <--- 如果使用 0.0.0.0，务必设置密码
+# proxy-providers
+proxy-providers:
+  text1:
+    type: http
+    url: "https://example.com/subscription" # 替换为实际的订阅 URL
+    interval: 86400
+    header:
+      User-Agent: ["mihomo"]
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
 
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  ipv6: false
-  default-nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
-  nameserver:
-    # 优化：优先使用可靠的境外 DNS (通过代理查询) 以提高 fake-ip 模式下对境外域名的解析准确性
-    - 1.1.1.1
-    - 8.8.8.8
-    - 223.5.5.5
-    - 114.114.114.114
-    - 119.29.29.29 # 国内 DNS 可根据需要保留或移除
-    - 180.76.76.76 # 国内 DNS 可根据需要保留或移除
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-    - '*.localdomain'
-    - '*.example'
-    - '*.invalid'
-    - '*.localhost'
-    - '*.test'
-    - '*.local'
-    - '*.home.arpa'
-    - router.asus.com
-    - localhost.sec.qq.com
-    - localhost.ptlogin2.qq.com
-    # 优化：修正语法错误
-    - '*.msftconnecttest.com'
-
-tun:
-  enable: true
-  stack: system
-  auto-route: true
-  auto-detect-interface: true
-  dns-hijack:
-    - 114.114.114.114
-    - 180.76.76.76
-    - 119.29.29.29
-    - 223.5.5.5
-    - 8.8.8.8
-    - 8.8.4.4
-    - 1.1.1.1
-    - 1.0.0.1
-
+# 节点信息
 proxies:
-  # 代理节点部分未作修改，请确保节点信息有效
   - name: 天书cf
     type: vless
     server: laji.jisucf.cloudns.biz
     port: 443
-    uuid: c410dc60-8772-48bf-a1e8-747ce49d28bd
+    uuid: cb5dfbc9-c082-4f41-b586-d1b5b00fb4b5
     udp: true
     tls: true
-    sni: tscf.jisucf.cloudns.biz
+    sni: ts-cf.jisucf.cloudns.biz
     network: ws
     ws-opts:
       path: "/?ed=2560"
       headers:
-        Host: tscf.jisucf.cloudns.biz
+        Host: ts-cf.jisucf.cloudns.biz
   - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
     port: 443
-    uuid: 1acc3cc2-26d8-4284-8cad-082d3dc46649
-    udp: false
+    uuid: c946921f-111f-470d-ad4c-dbeffe609fb2
+    udp: true
     tls: true
-    sni: tsgit.jisucf.cloudns.biz
+    sni: ts-git.jisucf.cloudns.biz
     network: ws
     ws-opts:
       path: "/?ed=2560"
       headers:
-        Host: tsgit.jisucf.cloudns.biz
+        Host: ts-git.jisucf.cloudns.biz
+
+# 全局配置
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7894
+allow-lan: true
+bind-address: "*"
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+log-level: warning
+find-process-mode: 'off'
+global-client-fingerprint: chrome
+keep-alive-idle: 600
+keep-alive-interval: 15
+disable-keep-alive: false
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+# 控制面板
+external-controller: 0.0.0.0:9090
+secret: ""
+external-ui: "/etc/mihomo/run/ui"
+external-ui-name: zashboard
+external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+
+# 嗅探
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - "+.v2ex.com"
+  skip-domain:
+    - "+.baidu.com"
+
+# 入站
+tun:
+  enable: true
+  stack: mixed
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
+# DNS模块
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - "time.*.com"
+  default-nameserver:
+    - 223.5.5.5
+    - 8.8.8.8
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://1.1.1.1/dns-query
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 8.8.8.8
+    - 1.1.1.1
+  nameserver-policy:
+    "geosite:cn": [223.5.5.5, 119.29.29.29]
+    "geosite:geolocation-!cn": [8.8.8.8, 1.1.1.1]
+
+# 出站策略
+pr: &pr
+  type: select
+  proxies: [天书cf, 天书git, DIRECT] # 替换为 DIRECT
 
 proxy-groups:
-  - name: 🔰 节点选择
+  - name: 🚀 默认代理
     type: select
-    proxies:
-      - ♻️ 自动选择
-      - DIRECT
-      - 天书cf
-      - 天书git
-  - name: ♻️ 自动选择
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 5000
-    proxies:
-      - 天书cf
-      - 天书git
-  - name: 🎯 国内流量
-    type: select
-    proxies:
-      - DIRECT
-      # 在这里添加你希望用于国内流量的代理组或节点
-
-  - name: 🚀 国外流量
-    type: select
-    proxies:
-      - 🔰 节点选择 # 假设你有一个名为 "🔰 节点选择" 的代理组
-      # 在这里添加你希望用于国外流量的代理组或节点
-
-  - name: 🧚 AI
-    type: select
-    proxies:
-      - 🔰 节点选择
-      # 在这里添加你希望用于 AI 服务的代理组或节点
-
-  - name: 🛸 IP归属地伪装
-    type: select
-    proxies:
-      - DIRECT
-      - 🔰 节点选择
-      # 在这里添加你希望用于 IP 归属地伪装的代理组或节点
-
-  - name: 🛑 广告拦截
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-
+    proxies: [天书cf, 天书git, DIRECT] # 替换为 DIRECT
   - name: 📹 YouTube
-    type: select
-    proxies:
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 YouTube 的代理组或节点
-
-  - name: 🎥 Netflix
-    type: select
-    proxies:
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 Netflix 的代理组或节点
-
-  - name: 🐹 DisneyPlus
-    type: select
-    proxies:
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 DisneyPlus 的代理组或节点
-
-  - name: 📽️ PrimeVideo
-    type: select
-    proxies:
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 PrimeVideo 的代理组或节点
-
-  - name: 🎦 HBO
-    type: select
-    proxies:
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 HBO 的代理组或节点
-
-  - name: 🍎 AppleTV
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 AppleTV 的代理组或节点
-
-  - name: 🎬 EMBY
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 EMBY 的代理组或节点
-
-  - name: 📺 巴哈姆特
-    type: select
-    proxies:
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 巴哈姆特 的代理组或节点
-
-  - name: 📺 Bilibili
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 Bilibili 的代理组或节点
-
-  - name: 🎵 Spotify
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 Spotify 的代理组或节点
-
-  - name: 🎶 TikTok
-    type: select
-    proxies:
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 TikTok 的代理组或节点
-
-  - name: 🌍 国外媒体
-    type: select
-    proxies:
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 国外媒体 的代理组或节点
-
-  - name: 🌏 国内媒体
-    type: select
-    proxies:
-      - DIRECT
-      # 在这里添加你希望用于 国内媒体 的代理组或节点
-
-  - name: 📢 谷歌FCM
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 谷歌FCM 的代理组或节点
-
-  - name: Ⓜ️ 微软云盘
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 微软云盘 的代理组或节点
-
-  - name: Ⓜ️ 微软服务
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 微软服务 的代理组或节点
-
-  - name: 🍎 苹果服务
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 苹果服务 的代理组或节点
-
+    <<: *pr
+  - name: 🍀 Google
+    <<: *pr
+  - name: 🤖 ChatGPT
+    <<: *pr
+  - name: 👨🏿‍💻 GitHub
+    <<: *pr
+  - name: 🐬 OneDrive
+    <<: *pr
+  - name: 🪟 Microsoft
+    <<: *pr
+  - name: 🎵 TikTok
+    <<: *pr
   - name: 📲 Telegram
+    <<: *pr
+  - name: 🎥 NETFLIX
+    <<: *pr
+  - name: ✈️ Speedtest
+    <<: *pr
+  - name: 💶 PayPal
+    <<: *pr
+  - name: 🍎 Apple
+    <<: *pr
+  - name: 🎯 直连
     type: select
-    proxies:
-      - 🚀 国外流量
-      - DIRECT
-      - 🔰 节点选择
-      # 在这里添加你希望用于 Telegram 的代理组或节点
-
-  - name: 🤖 Discord
-    type: select
-    proxies:
-      - 🚀 国外流量
-      - DIRECT
-      - 🔰 节点选择
-      # 在这里添加你希望用于 Discord 的代理组或节点
-
-  - name: 🎮 游戏平台
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 国外流量
-      - 🔰 节点选择
-      # 在这里添加你希望用于 游戏平台 的代理组或节点
-
+    proxies: [DIRECT, 🚀 默认代理] # 替换为 DIRECT
   - name: 🐟 漏网之鱼
     type: select
-    proxies:
-      - 🔰 节点选择
-      - DIRECT
-      # 在这里添加你希望作为最后选择的代理组或节点
-
-  - name: 👨‍💻 GitHub # 确保这里定义了这个代理组
+    proxies: [DIRECT, 🚀 默认代理] # 替换为 DIRECT
+  - name: ♻️ 自动选择
+    type: url-test
+    proxies: [天书cf, 天书git]
+    tolerance: 20
+    interval: 300
+  - name: 🌐 全部节点
     type: select
-    proxies:
-      - 🚀 国外流量
-      - DIRECT
-      - 🔰 节点选择
-      # 根据你的需求添加代理
+    include-all: true
 
-rule-providers:
-  # ... 你的其他 rule-providers ...
-
-  cutethotw_rules:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/cutethotw/ClashRule/main/GeneralClashRule.ini"
-    path: ./ruleset/cutethotw_rules.ini # 建议保存的文件名
-    interval: 86400 # 可根据需要调整更新间隔，单位为秒 (这里设置为每天更新一次)
-
+# 规则
 rules:
-  # ... 你的其他 rules ...
+  - DOMAIN-SUFFIX,qichiyu.com,🚀 默认代理
+  - RULE-SET,private_domain,🎯 直连
+  - RULE-SET,apple_domain,🍎 Apple
+  - RULE-SET,proxylite,🚀 默认代理
+  - RULE-SET,ai,🤖 ChatGPT
+  - RULE-SET,github_domain,👨🏿‍💻 GitHub
+  - RULE-SET,youtube_domain,📹 YouTube
+  - RULE-SET,google_domain,🍀 Google
+  - RULE-SET,onedrive_domain,🐬 OneDrive
+  - RULE-SET,microsoft_domain,🪟 Microsoft
+  - RULE-SET,tiktok_domain,🎵 TikTok
+  - RULE-SET,speedtest_domain,✈️ Speedtest
+  - RULE-SET,telegram_domain,📲 Telegram
+  - RULE-SET,netflix_domain,🎥 NETFLIX
+  - RULE-SET,paypal_domain,💶 PayPal
+  - RULE-SET,gfw_domain,🚀 默认代理
+  - RULE-SET,geolocation-!cn,🚀 默认代理
+  - RULE-SET,cn_domain,🎯 直连
+  - RULE-SET,google_ip,🍀 Google
+  - RULE-SET,netflix_ip,🎥 NETFLIX
+  - RULE-SET,telegram_ip,📲 Telegram
+  - RULE-SET,cn_ip,🎯 直连
+  - MATCH,🐟 漏网之鱼
 
-  - RULE-SET,GitHub,👨‍💻 GitHub # 确保这里引用的代理组名称与上面定义的完全一致
-  - RULE-SET,Inside,🎯 国内流量
-  - RULE-SET,SteamCN,🎯 国内流量
-  - RULE-SET,Outside,🚀 国外流量
-  - RULE-SET,ChatGPT,🧚 AI
-  - RULE-SET,OpenAI,🧚 AI
-  - RULE-SET,Claude,🧚 AI
-  - RULE-SET,Gemini,🧚 AI
-  - RULE-SET,Copilot,🧚 AI
-  - RULE-SET,Perplexity,🧚 AI
-  - RULE-SET,Lan,🎯 国内流量
-  - RULE-SET,UnBan,🎯 国内流量
-  - RULE-SET,PikPak,🚀 国外流量
-  - RULE-SET,IP归属地伪装,🛸 IP归属地伪装
-  - RULE-SET,ZhihuAds,🛑 广告拦截
-  - RULE-SET,YouTube,📹 YouTube
-  - RULE-SET,Netflix,🎥 Netflix
-  - RULE-SET,DisneyPlus,🐹 DisneyPlus
-  - RULE-SET,AmazonPrimeVideo,📽️ PrimeVideo
-  - RULE-SET,HBO,🎦 HBO
-  - RULE-SET,HBOAsia,🎦 HBO
-  - RULE-SET,HBOUSA,🎦 HBO
-  - RULE-SET,AppleTV,🍎 AppleTV
-  - RULE-SET,Emby,🎬 EMBY
-  - RULE-SET,Bahamut,📺 巴哈姆特
-  - RULE-SET,BilibiliHMT,📺 Bilibili
-  - RULE-SET,Bilibili,📺 Bilibili
-  - RULE-SET,Spotify,🎵 Spotify
-  - RULE-SET,TikTok,🎶 TikTok
-  - RULE-SET,GlobalMedia_Classical,🌍 国外媒体
-  - RULE-SET,ChinaMedia,🌏 国内媒体
-  - RULE-SET,GoogleFCM,📢 谷歌FCM
-  - RULE-SET,GoogleCN,🎯 国内流量
-  - RULE-SET,OneDrive,Ⓜ️ 微软云盘
-  - RULE-SET,Microsoft,Ⓜ️ 微软服务
-  - RULE-SET,Apple,🍎 苹果服务
-  - RULE-SET,Telegram,📲 Telegram
-  - RULE-SET,Discord,🤖 Discord
-  - RULE-SET,Game,🎮 游戏平台
-  - RULE-SET,ProxyGFWlist,🚀 国外流量
-  - RULE-SET,ChinaDomain,🎯 国内流量
-  - RULE-SET,ChinaCompanyIp,🎯 国内流量
-  - RULE-SET,Download,🎯 国内流量
-  - GEOIP,CN,🎯 国内流量
-  - FINAL,🐟 漏网之鱼
+# 规则集
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+rule-providers: 
+  private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
+  proxylite: { <<: *class, url: "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/proxy.list"}
+  ai: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs"}
+  youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
+  google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
+  telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
+  netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
+  paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
+  onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
+  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
+  apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs"}
+  speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
+  tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
+  gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
+  geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
+  cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+  google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
+  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
+  netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
