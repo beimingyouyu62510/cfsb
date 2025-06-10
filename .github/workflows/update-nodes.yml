@@ -1,0 +1,32 @@
+name: Daily Update Clash Nodes
+
+on:
+  schedule:
+    - cron: "0 3 * * *" # 每日UTC 3点执行（北京时间上午11点）
+  workflow_dispatch: # 允许手动运行
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install PyYAML
+        run: pip install pyyaml requests
+
+      - name: Replace proxies in ch.yaml
+        run: |
+          python update_nodes.py
+
+      - name: Commit and Push if Changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git diff --quiet || (git add ch.yaml && git commit -m "🤖 自动更新节点" && git push)
+
