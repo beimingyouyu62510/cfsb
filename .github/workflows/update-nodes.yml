@@ -2,40 +2,33 @@ name: Daily Update Clash Nodes
 
 on:
   schedule:
-    - cron: "0 3 * * *"  # 每天北京时间 11 点（UTC+8）
+    - cron: "0 3 * * *"  # 每天北京时间 11 点
   workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repo
+      - name: Checkout
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # 允许 push
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install pyyaml requests
+        run: pip install requests pyyaml
 
-      - name: Update ch.yaml proxies
+      - name: Update ch.yaml
         run: python update_nodes.py
 
-      - name: Show diff
-        run: git diff || echo "No diff"
-
-      - name: Commit & push changes if any
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          if git diff --quiet; then
-            echo "✅ No changes detected, skip commit."
-          else
-            echo "🔁 Changes detected, committing..."
-            git add ch.yaml
-            git commit -m "🤖 每日自动更新节点 $(date '+%F %T')"
-            git push
-          fi
+      - name: Commit & Create PR
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "🤖 每日自动更新节点"
+          title: "每日自动更新节点"
+          body: "由 GitHub Actions 自动发起"
+          branch: auto/update-nodes
