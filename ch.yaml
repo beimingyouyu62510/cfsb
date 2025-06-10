@@ -101,14 +101,20 @@ proxy-groups:
   proxies:
   - ♻️ 自动选择
   - DIRECT
-  - 天书cf
-  - 天书git
+  - Seattle 0
+  - Seattle 1
+  - Seattle 2
+  - Seattle 3
+  - Seattle 4
   type: select
 - interval: 300
   name: ♻️ 自动选择
   proxies:
-  - 天书cf
-  - 天书git
+  - Seattle 0
+  - Seattle 1
+  - Seattle 2
+  - Seattle 3
+  - Seattle 4
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -127,30 +133,42 @@ proxy-groups:
   proxies:
   - 🚀 节点选择
   - 🎯 全球直连
-  - 天书cf
-  - 天书git
+  - Seattle 0
+  - Seattle 1
+  - Seattle 2
+  - Seattle 3
+  - Seattle 4
   type: select
 - name: Ⓜ️ 微软服务
   proxies:
   - 🎯 全球直连
   - 🚀 节点选择
-  - 天书cf
-  - 天书git
+  - Seattle 0
+  - Seattle 1
+  - Seattle 2
+  - Seattle 3
+  - Seattle 4
   type: select
 - name: 🍎 苹果服务
   proxies:
   - 🚀 节点选择
   - 🎯 全球直连
-  - 天书cf
-  - 天书git
+  - Seattle 0
+  - Seattle 1
+  - Seattle 2
+  - Seattle 3
+  - Seattle 4
   type: select
 - name: 📢 谷歌FCM
   proxies:
   - 🚀 节点选择
   - 🎯 全球直连
   - ♻️ 自动选择
-  - 天书cf
-  - 天书git
+  - Seattle 0
+  - Seattle 1
+  - Seattle 2
+  - Seattle 3
+  - Seattle 4
   type: select
 - name: 🎯 全球直连
   proxies:
