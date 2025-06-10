@@ -2,7 +2,7 @@ name: Update Nodes
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 每天0点执行一次，也可以根据需要调整
+    - cron: '0 0 * * *'   # 每天0点自动运行
   workflow_dispatch:      # 允许手动触发
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install requests pyyaml
 
       - name: Run update_nodes.py
         run: python update_nodes.py
@@ -30,6 +30,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "🤖 自动更新节点"
-          # 如果你遇到权限问题，这里需要确保workflow有写权限，或者用personal access token替代
           commit_user_name: github-actions[bot]
           commit_user_email: github-actions[bot]@users.noreply.github.com
