@@ -1,38 +1,35 @@
-name: 自动更新节点配置
+name: Update Nodes
 
 on:
   schedule:
-    - cron: '0 1 * * *'  # 每天凌晨1点
-  workflow_dispatch:
+    - cron: '0 0 * * *'   # 每天0点执行一次，也可以根据需要调整
+  workflow_dispatch:      # 允许手动触发
 
 jobs:
   update:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout 仓库
-      uses: actions/checkout@v3
-      with:
-        persist-credentials: true  # 允许使用GITHUB_TOKEN推送
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: 设置 Python 3
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    - name: 安装依赖
-      run: |
-        python -m pip install --upgrade pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
-    - name: 运行更新节点脚本
-      run: python update_nodes.py
+      - name: Run update_nodes.py
+        run: python update_nodes.py
 
-    - name: 配置 git 用户
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-    - name: 提交并推送变更
-      run: |
-        git add ch.yaml
-        git diff --cached --quiet || (git commit -m "🤖 自动更新节点" && git push)
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "🤖 自动更新节点"
+          # 如果你遇到权限问题，这里需要确保workflow有写权限，或者用personal access token替代
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
