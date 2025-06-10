@@ -1,41 +1,62 @@
 import requests
 import yaml
-from datetime import datetime
 
-# 远程节点源（目标仓库）
-SOURCE_URL = "https://raw.githubusercontent.com/hebe061103/cfip/refs/heads/master/config_dns_yes.yaml"
-# 本地仓库中的你的配置文件
-TARGET_FILE = "ch.yaml"
+# 远程配置地址（你给的两个）
+REMOTE_URLS = [
+    "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/ch.yaml",
+    "https://raw.githubusercontent.com/hebe061103/cfip/refs/heads/master/config_dns_yes.yaml"
+]
 
-def load_yaml_from_url(url):
-    response = requests.get(url)
-    response.raise_for_status()
-    return yaml.safe_load(response.text)
+# 本地配置文件路径
+LOCAL_CONFIG_FILE = "ch.yaml"
 
-def load_yaml_from_file(path):
-    with open(path, "r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+# 需要更新的代理组名称
+TARGET_PROXY_GROUP_NAME = "🌍 国外媒体"
 
-def save_yaml_to_file(data, path):
-    with open(path, "w", encoding="utf-8") as f:
-        yaml.dump(data, f, allow_unicode=True, sort_keys=False)
+# 代理组中需要保留的固定代理名称（顺序保持）
+FIXED_PROXIES = ["🚀 节点选择", "♻️ 自动选择", "🎯 全球直连"]
+
+def fetch_yaml(url):
+    resp = requests.get(url)
+    resp.raise_for_status()
+    return yaml.safe_load(resp.text)
 
 def main():
-    print("📥 正在加载远程节点配置...")
-    source_config = load_yaml_from_url(SOURCE_URL)
-    source_proxies = source_config.get("proxies", [])
+    # 1. 拉取远程配置，合并 proxies 列表
+    all_proxies = []
+    for url in REMOTE_URLS:
+        conf = fetch_yaml(url)
+        proxies = conf.get("proxies", [])
+        all_proxies.extend(proxies)
 
-    print("📂 正在加载本地配置...")
-    target_config = load_yaml_from_file(TARGET_FILE)
-    target_proxies_old = target_config.get("proxies", [])
+    # 去重并保持顺序的节点名列表
+    seen = set()
+    node_names = []
+    for p in all_proxies:
+        name = p.get("name")
+        if name and name not in seen:
+            seen.add(name)
+            node_names.append(name)
 
-    if source_proxies != target_proxies_old:
-        print("🔄 检测到节点变化，正在更新...")
-        target_config["proxies"] = source_proxies
-        save_yaml_to_file(target_config, TARGET_FILE)
-        print(f"✅ 配置已更新，节点数量：{len(source_proxies)}")
-    else:
-        print("✔️ 节点无变化，无需更新。")
+    # 2. 读取本地配置文件
+    with open(LOCAL_CONFIG_FILE, "r", encoding="utf-8") as f:
+        local_conf = yaml.safe_load(f)
+
+    # 3. 替换本地配置的 proxies 部分为远程拉取的最新节点
+    local_conf["proxies"] = all_proxies
+
+    # 4. 更新指定 proxy-group 的 proxies 字段
+    proxy_groups = local_conf.get("proxy-groups", [])
+    for group in proxy_groups:
+        if group.get("name") == TARGET_PROXY_GROUP_NAME:
+            # 组装新 proxies 列表：先固定的，再最新节点名
+            group["proxies"] = FIXED_PROXIES + node_names
+
+    # 5. 写回本地配置文件
+    with open(LOCAL_CONFIG_FILE, "w", encoding="utf-8") as f:
+        yaml.safe_dump(local_conf, f, allow_unicode=True)
+
+    print(f"更新完成，{LOCAL_CONFIG_FILE} 已同步最新节点和代理组。")
 
 if __name__ == "__main__":
     main()
