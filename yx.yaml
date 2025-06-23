@@ -91,7 +91,7 @@ proxies:
     sni: ts-cf.jisucf.cloudns.biz
     network: ws
     ws-opts:
-      path: "/?ed=2560"
+      path: "/ws?ed=2560"
       headers:
         Host: ts-cf.jisucf.cloudns.biz
   - name: 天书git
