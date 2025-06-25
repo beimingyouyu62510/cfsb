@@ -151,6 +151,61 @@ proxies:
     headers:
       Host: 56e5.hebe061103.workers.dev
     path: /?ed=2048
+- name: San Jose 0
+  network: ws
+  port: 80
+  server: 104.18.143.241
+  tls: false
+  type: vless
+  uuid: cdc1d7d3-fe56-4a38-a724-21308e4393d9
+  ws-opts:
+    headers:
+      Host: empty-rain-1b4a.hebe061103.workers.dev
+    path: /?ed=2048
+- name: San Jose 1
+  network: ws
+  port: 80
+  server: 104.18.143.30
+  tls: false
+  type: vless
+  uuid: 3d2176d3-89b8-40aa-b004-0ff837bed25c
+  ws-opts:
+    headers:
+      Host: gentle-grass-cf96.hebe061103.workers.dev
+    path: /?ed=2048
+- name: San Jose 2
+  network: ws
+  port: 80
+  server: 104.18.143.168
+  tls: false
+  type: vless
+  uuid: 3962565d-e47d-4dd0-aa19-3286e04d9cb6
+  ws-opts:
+    headers:
+      Host: nameless-resonance-6e4c.hebe061103.workers.dev
+    path: /?ed=2048
+- name: San Jose 3
+  network: ws
+  port: 80
+  server: 104.18.143.204
+  tls: false
+  type: vless
+  uuid: 4239d44c-19c7-4b8b-ae07-16607c95b6fb
+  ws-opts:
+    headers:
+      Host: gentle-night-12e3.hebe061103.workers.dev
+    path: /?ed=2048
+- name: San Jose 4
+  network: ws
+  port: 80
+  server: 104.18.143.230
+  tls: false
+  type: vless
+  uuid: 2e632913-bae0-4855-893c-02c828c835a2
+  ws-opts:
+    headers:
+      Host: 56e5.hebe061103.workers.dev
+    path: /?ed=2048
 proxy-groups:
 - name: 🚀 节点选择
   proxies:
@@ -254,6 +309,11 @@ proxy-groups:
   - Hong Kong 2
   - Hong Kong 3
   - Hong Kong 4
+  - San Jose 0
+  - San Jose 1
+  - San Jose 2
+  - San Jose 3
+  - San Jose 4
   type: select
 rule-providers:
   Anti-Ads:
