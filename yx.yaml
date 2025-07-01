@@ -58,8 +58,10 @@ dns:
     - https://1.1.1.1/dns-query
   # 用于解析代理节点的域名
   proxy-server-nameserver:
-    - https://223.5.5.5/dns-query
-    - https://1.12.12.12/dns-query
+    - 223.5.5.5
+    - https://dns.alidns.com/dns-query
+    - 119.29.29.29
+    - https://doh.pub/dns-query
   # 国内访问的规则使用国内的dns，不考虑dns泄露，不使用doh或dot
   nameserver-policy:
     "geosite:cn,apple-cn,category-games@cn,private":
