@@ -82,20 +82,19 @@ geox-url:
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 proxies:
-  # 代理节点部分未作修改，请确保节点信息有效
   - name: 天书cf
     type: vless
     server: laji.jisucf.cloudns.biz
     port: 443
-    uuid: cb5dfbc9-c082-4f41-b586-d1b5b00fb4b5
-    udp: true
-    tls: true
-    sni: ts-cf.jisucf.cloudns.biz
+    uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
     network: ws
+    tls: true
+    udp: true
+    servername: git02.jisucf.cloudns.biz
     ws-opts:
       path: "/?ed=2560"
       headers:
-        Host: ts-cf.jisucf.cloudns.biz
+        Host: git02.jisucf.cloudns.biz
   - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -166,9 +165,6 @@ proxy-groups:
     type: select
     proxies:
       - DIRECT
-      # 建议移除以下两行，以符合“全球直连”的本意
-      # - 🚀 节点选择
-      # - ♻️ 自动选择
   - name: 🛑 全球拦截
     type: select
     proxies:
@@ -199,45 +195,44 @@ rule-providers:
 rules:
   ## 非 IP 类规则
   ### 自定义
-  - DOMAIN-SUFFIX,hf.co,🚀 节点选择 #hugging face model  # <-- 修改 DOWNLOAD 为 🚀 节点选择
-  - DOMAIN,api.telegram.org,📲 电报信息 # <-- 修改 PROXY 为 📲 电报信息
+  - DOMAIN-SUFFIX,hf.co,🚀 节点选择
+  - DOMAIN,api.telegram.org,📲 电报信息
   - DOMAIN-KEYWORD,easytier,DIRECT
-  - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择 # <-- 修改 DOWNLOAD 为 🚀 节点选择
-  ### quic
+  - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
   - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
   ### 广告、数据统计
   - RULE-SET,Anti-Ads,REJECT
   ### 以下来自https://github.com/Loyalsoldier/v2ray-rules-dat
   ### 大流量
-  - GEOSITE,category-android-app-download,🚀 节点选择 # <-- 修改 DOWNLOAD 为 🚀 节点选择
-  - GEOSITE,category-entertainment,🚀 节点选择 # <-- 修改 DOWNLOAD 为 🚀 节点选择
-  - GEOSITE,category-porn,🚀 节点选择 # <-- 修改 DOWNLOAD 为 🚀 节点选择
-  - GEOSITE,telegram,📲 电报信息 # <-- 修改 DOWNLOAD 为 📲 电报信息
-  - GEOSITE,onedrive,🚀 节点选择 # <-- 修改 DOWNLOAD 为 🚀 节点选择
+  - GEOSITE,category-android-app-download,🚀 节点选择
+  - GEOSITE,category-entertainment,🚀 节点选择
+  - GEOSITE,category-porn,🚀 节点选择
+  - GEOSITE,telegram,📲 电报信息
+  - GEOSITE,onedrive,🚀 节点选择
   - GEOSITE,category-games@cn,DIRECT
   ### 国外固定IP
-  - GEOSITE,category-ai-chat-!cn,🚀 节点选择 # <-- 修改 PROXY-STATIC 为 🚀 节点选择
-  - GEOSITE,category-cryptocurrency,🚀 节点选择 # <-- 修改 PROXY-STATIC 为 🚀 节点选择
-  - GEOSITE,category-social-media-!cn,🚀 节点选择 # <-- 修改 PROXY-STATIC 为 🚀 节点选择
+  - GEOSITE,category-ai-chat-!cn,🚀 节点选择
+  - GEOSITE,category-cryptocurrency,🚀 节点选择
+  - GEOSITE,category-social-media-!cn,🚀 节点选择
   ### google(保证google play下载规则在cn之前)
-  - GEOSITE,google,🚀 节点选择 # <-- 修改 PROXY 为 🚀 节点选择
+  - GEOSITE,google,🚀 节点选择
   ### 直连
   - GEOSITE,cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
   ### 国外随意
-  - GEOSITE,geolocation-!cn,🚀 节点选择 # <-- 修改 PROXY 为 🚀 节点选择
+  - GEOSITE,geolocation-!cn,🚀 节点选择
 
   ## IP 类规则
   ### quic
   # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOIP,CN))),REJECT # 这条规则可能与上面重复，且容易引起问题，如果上面已拦截可注释
   ### 国外大流量
-  - GEOIP,telegram,📲 电报信息,no-resolve # <-- 修改 DOWNLOAD 为 📲 电报信息
+  - GEOIP,telegram,📲 电报信息,no-resolve
   ### 国外固定IP
-  - GEOIP,facebook,🚀 节点选择,no-resolve # <-- 修改 PROXY-STATIC 为 🚀 节点选择
-  - GEOIP,twitter,🚀 节点选择,no-resolve # <-- 修改 PROXY-STATIC 为 🚀 节点选择
-  - GEOIP,netflix,🚀 节点选择,no-resolve # <-- 修改 PROXY-STATIC 为 🚀 节点选择
+  - GEOIP,facebook,🚀 节点选择,no-resolve
+  - GEOIP,twitter,🚀 节点选择,no-resolve
+  - GEOIP,netflix,🚀 节点选择,no-resolve
   ### google
-  - GEOIP,google,🚀 节点选择,no-resolve # <-- 修改 PROXY 为 🚀 节点选择
+  - GEOIP,google,🚀 节点选择,no-resolve
   ### 直连
   - GEOIP,CN,DIRECT,no-resolve
   ### 绕过局域网地址
@@ -248,4 +243,4 @@ rules:
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
 
   ## 兜底
-  - MATCH,🐟 漏网之鱼 # <-- 修改 PROXY 为 🐟 漏网之鱼
+  - MATCH,🐟 漏网之鱼
