@@ -1,2 +1,2 @@
-vless://cb5dfbc9-c082-4f41-b586-d1b5b00fb4b5@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=ts-cf.jisucf.cloudns.biz&type=ws&host=ts-cf.jisucf.cloudns.biz&path=%2F%3Fed%3D2560#TS-cf
-vless://c946921f-111f-470d-ad4c-dbeffe609fb2@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=ts-git.jisucf.cloudns.biz&type=ws&host=ts-git.jisucf.cloudns.biz&path=%2F%3Fed%3D2560#TS-git
+vless://ab23f618-3f94-4d74-8c8b-d5703403b5be@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git02.jisucf.cloudns.biz&type=ws&host=git02.jisucf.cloudns.biz&path=%2F%3Fed%3D2560#TS-cf
+vless://aa6afb24-210c-4fdc-979e-58f71a6f779f@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git01.jisucf.cloudns.biz&type=ws&host=git01.jisucf.cloudns.biz&path=%2F%3Fed%3D2560#TS-git
