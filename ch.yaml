@@ -27,10 +27,10 @@ dns:
     - 223.5.5.5
   prefer-h3: true
   proxy-server-nameserver:
-    - 223.5.5.5
-    - https://dns.alidns.com/dns-query
-    - 119.29.29.29
-    - https://doh.pub/dns-query
+  - 223.5.5.5
+  - https://dns.alidns.com/dns-query
+  - 119.29.29.29
+  - https://doh.pub/dns-query
   respect-rules: true
   use-hosts: true
 find-process-mode: strict
