@@ -49,9 +49,9 @@ dns:
   # 前两个是我这边电信的运营商dns，可以换成你自己的，也可以全部使用大厂的公共dns
   # 由于只用来解析nameserver，不使用doh或dot
   default-nameserver:
-    - 117.50.11.11
-    - 180.168.255.18
     - 223.5.5.5
+    - 180.168.255.18
+    - 117.50.11.11
   # 在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网，因此使用google和cf的doh
   nameserver:
     - https://dns.google/dns-query
@@ -195,6 +195,10 @@ rule-providers:
 rules:
   ## 非 IP 类规则
   ### 自定义
+  - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-SUFFIX,alibaba.com,DIRECT
+  - DOMAIN-SUFFIX,alipay.com,DIRECT
+  - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,hf.co,🚀 节点选择
   - DOMAIN,api.telegram.org,📲 电报信息
   - DOMAIN-KEYWORD,easytier,DIRECT
