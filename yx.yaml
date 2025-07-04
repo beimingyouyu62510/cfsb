@@ -198,7 +198,9 @@ rules:
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,alibaba.com,DIRECT
   - DOMAIN-SUFFIX,alipay.com,DIRECT
-  - DOMAIN-SUFFIX,tmall.com,DIRECT
+  - DOMAIN-SUFFIX,tmall.com,DIRECT  
+  - DOMAIN,v.ddys.pro,DIRECT
+  - DOMAIN,ddys.pro,DIRECT
   - DOMAIN-SUFFIX,hf.co,🚀 节点选择
   - DOMAIN,api.telegram.org,📲 电报信息
   - DOMAIN-KEYWORD,easytier,DIRECT
