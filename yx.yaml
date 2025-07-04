@@ -196,9 +196,12 @@ rules:
   ## 非 IP 类规则
   ### 自定义
   - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,alibaba.com,DIRECT
   - DOMAIN-SUFFIX,alipay.com,DIRECT
-  - DOMAIN-SUFFIX,tmall.com,DIRECT  
+  - DOMAIN-SUFFIX,aliyun.com,DIRECT
+  - DOMAIN-KEYWORD,taobao,DIRECT
+  - DOMAIN-KEYWORD,tmall,DIRECT
   - DOMAIN,v.ddys.pro,DIRECT
   - DOMAIN,ddys.pro,DIRECT
   - DOMAIN-SUFFIX,hf.co,🚀 节点选择
