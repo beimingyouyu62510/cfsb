@@ -235,7 +235,7 @@ rules:
   ### quic
   # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOIP,CN))),REJECT # 这条规则可能与上面重复，且容易引起问题，如果上面已拦截可注释
   ### 国外大流量
-  - GEOIP,telegram,📲 电报信息,no-resolve
+  - GEOIP,telegram,🚀 节点选择,no-resolve
   ### 国外固定IP
   - GEOIP,facebook,🚀 节点选择,no-resolve
   - GEOIP,twitter,🚀 节点选择,no-resolve
