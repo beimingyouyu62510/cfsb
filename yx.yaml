@@ -16,7 +16,6 @@ sniffer:
       override-destination: true
     TLS:
       ports: [443, 8443]
-      # override-destination: false # 可选：不对 TLS 强制改目标
     QUIC:
       ports: [443, 8443]
   skip-domain:
@@ -229,6 +228,11 @@ rules:
   - GEOSITE,onedrive,🚀 节点选择
   - GEOSITE,category-games@cn,DIRECT
 
+  ## 国外服务名统一走 GeoSite
+  - GEOSITE,twitter,🚀 节点选择
+  - GEOSITE,facebook,🚀 节点选择
+  - GEOSITE,netflix,🚀 节点选择
+
   ## 国外固定IP
   - GEOSITE,category-ai-chat-!cn,🚀 节点选择
   - GEOSITE,category-cryptocurrency,🚀 节点选择
@@ -244,12 +248,6 @@ rules:
 
   ## 国外随意
   - GEOSITE,geolocation-!cn,🚀 节点选择
-
-  ## IP 类规则
-  - GEOIP,facebook,🚀 节点选择,no-resolve
-  - GEOIP,twitter,🚀 节点选择,no-resolve
-  - GEOIP,netflix,🚀 节点选择,no-resolve
-  - GEOIP,google,🚀 节点选择,no-resolve
 
   ## 局域网
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
