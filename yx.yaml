@@ -201,14 +201,18 @@ rule-providers:
     lazy: false
 
 rules:
-  ## 非 IP 类规则
+  ## 🚫 淘宝/天猫/支付宝防拒绝访问增强段
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,alibaba.com,DIRECT
   - DOMAIN-SUFFIX,alipay.com,DIRECT
-  - DOMAIN-SUFFIX,aliyun.com,DIRECT
   - DOMAIN-KEYWORD,taobao,DIRECT
   - DOMAIN-KEYWORD,tmall,DIRECT
+  - DOMAIN-KEYWORD,alipay,DIRECT
+  - DOMAIN-KEYWORD,alicdn,DIRECT
+  - IP-CIDR,140.205.0.0/16,DIRECT,no-resolve
+
+  ## 其它自定义
   - DOMAIN,v.ddys.pro,DIRECT
   - DOMAIN,ddys.pro,DIRECT
   - DOMAIN-SUFFIX,hf.co,🚀 节点选择
@@ -228,7 +232,7 @@ rules:
   - GEOSITE,onedrive,🚀 节点选择
   - GEOSITE,category-games@cn,DIRECT
 
-  ## 国外服务名统一走 GeoSite
+  ## 国外服务
   - GEOSITE,twitter,🚀 节点选择
   - GEOSITE,facebook,🚀 节点选择
   - GEOSITE,netflix,🚀 节点选择
