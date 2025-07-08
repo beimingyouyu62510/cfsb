@@ -1,83 +1,91 @@
-# ======================== 核心配置 ========================
-port: 7890             # HTTP 代理端口
-socks-port: 7891       # SOCKS5 代理端口
-allow-lan: true        # 允许局域网设备连接（如手机连接电脑的热点）
-mode: rule             # 代理模式：根据规则进行分流
-log-level: info        # 日志级别：info 适合日常使用，查看运行状态
+# ==================================
+# Clash Meta 核心配置
+# ==================================
+allow-lan: true
+unified-delay: false
+tcp-concurrent: true
+find-process-mode: off # 严格模式，如果遇到兼容性问题可尝试改为 loose 或 off
+global-client-fingerprint: chrome
 
-# ======================== Profile 相关 ========================
+---
+# ==================================
+# 配置文件和DNS设置
+# ==================================
 profile:
-  store-selected: true # 存储用户选择的代理节点
-  store-fake-ip: true  # 存储 Fake IP 映射，提升 DNS 速度和稳定性
+  store-selected: true
+  store-fake-ip: true
 
-# ======================== TUN 模式 (虚拟网卡) ========================
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - dlg.io.mi.com
+    - "+.push.apple.com"
+
 tun:
-  enable: true         # 开启 TUN 模式，接管设备所有流量
-  stack: system        # 使用系统网络栈，兼容性好
-  device: mihomo       # TUN 设备名称，Clash Meta 默认名称
+  enable: true
+  stack: system
+  device: mihomo
   dns-hijack:
-    - any:53            # 劫持所有 UDP 53 端口的 DNS 请求
-    - tcp://any:53      # 劫持所有 TCP 53 端口的 DNS 请求
-  auto-route: true     # 自动配置路由表
-  auto-detect-interface: true # 自动检测网络接口
+    - any:53
+    - tcp://any:53
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: true
+  endpoint-independent-nat: true
 
-# ======================== DNS 配置 ========================
 dns:
-  enable: true         # 开启 DNS 服务
-  listen: 0.0.0.0:1053   # DNS 监听地址和端口，0.0.0.0 允许所有接口访问
-  ipv6: false          # 关闭 IPv6 DNS 解析
-  prefer-h3: true      # 优先使用 HTTP/3 DNS 查询，提升速度
-  respect-rules: true  # 尊重规则，根据规则决定 DNS 查询方式
-  enhanced-mode: fake-ip # 开启 Fake IP 模式，提升性能和解决 DNS 污染
-  use-hosts: true      # 使用本地 hosts 文件
-
-  # 默认上游 DNS 服务器：用于直连或无法判断规则的域名，建议填国内常用 DNS
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  prefer-h3: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  use-hosts: true
   default-nameserver:
-    - 223.5.5.5         # 阿里公共 DNS
-    - 119.29.29.29      # 腾讯公共 DNS
-
-  # 常规 DNS 服务器：通常用于代理流量，或兜底解析，建议填境外加密 DNS
+    - 223.5.5.5
+    - 180.168.255.18
+    - 117.50.11.11
   nameserver:
-    - https://dns.google/dns-query # Google DoH
-    - https://1.1.1.1/dns-query    # Cloudflare DoH
-    - quic://dns.adguard-dns.com:784 # AdGuard DoQ (Clash Meta 推荐)
-
-  # 代理服务器专用的 DNS 服务器：确保通过代理解析的域名走代理 DNS
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
   proxy-server-nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
-    - quic://dns.adguard-dns.com:784
-
-  # 根据域名策略选择 DNS 服务器（精简为核心场景）
+    - https://doh.pub/dns-query
   nameserver-policy:
-    "geosite:cn":         # 中国大陆域名走国内 DNS
+    "geosite:cn,apple-cn,category-games@cn,private":
+      - 117.50.11.11
+      - 180.168.255.18
       - 223.5.5.5
-      - 119.29.29.29
-    "geosite:apple-cn":   # 苹果中国域名走国内 DNS
-      - 223.5.5.5
-      - 119.29.29.29
-    "geosite:telegram":   # Telegram 域名强制走代理 DNS（即使统一代理组，DNS 解析仍可单独控制）
-      - https://dns.google/dns-query
-      - https://1.1.1.1/dns-query
-      - quic://dns.adguard-dns.com:784
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter:
+    - '*'
+    - '+.lan'
+    - '+.local'
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - +.stun.*.*.*.*.*
+    - +.stun.*.*.*.*.*.*
 
-  fake-ip-range: 198.18.0.1/16 # Fake IP 地址段
-  fake-ip-filter:      # Fake IP 过滤，不为这些域名分配 Fake IP
-    - '*.local'
-    - '*.lan'
-    - 'geosite:cn'       # 中国大陆域名
-    - 'geosite:private'  # 私有网络地址
-    - 'geosite:apple-cn' # 苹果中国域名
-    - 'geosite:telegram' # **避免 Telegram 使用 Fake IP**
-    - 'api.telegram.org' # **补充：Telegram 特殊域名**
-
-# ======================== GeoData 配置 ========================
 geodata-mode: true
 geox-url:
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 
-# ======================== 代理节点 (Proxies) ========================
+---
+# ==================================
+# 代理节点配置
+# ==================================
 proxies:
   - name: 天书cf
     type: vless
@@ -107,7 +115,10 @@ proxies:
       headers:
         Host: git01.jisucf.cloudns.biz
 
-# ======================== 代理组 (Proxy Groups) ========================
+---
+# ==================================
+# 代理组配置
+# ==================================
 proxy-groups:
   - name: 🚀 节点选择
     type: select
@@ -120,9 +131,51 @@ proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 300 # 测试间隔延长，减少资源消耗
-    tolerance: 100 # 容忍度降低，更严格筛选节点
+    interval: 300
+    tolerance: 50
     proxies:
+      - 天书cf
+      - 天书git
+
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - 天书cf
+      - 天书git
+
+  - name: 📲 电报信息
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - 天书cf
+      - 天书git
+
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - 🎯 全球直连
+      - 🚀 节点选择
+      - 天书cf
+      - 天书git
+
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - 天书cf
+      - 天书git
+
+  - name: 📢 谷歌FCM
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
       - 天书cf
       - 天书git
 
@@ -135,53 +188,96 @@ proxy-groups:
     type: select
     proxies:
       - REJECT
+      - DIRECT
+
+  - name: 🍃 应用净化
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
 
   - name: 🐟 漏网之鱼
     type: select
     proxies:
       - 🚀 节点选择
       - 🎯 全球直连
+      - ♻️ 自动选择
+      - 天书cf
+      - 天书git
 
-# ======================== 规则 (Rules) ========================
+---
+# ==================================
+# 规则提供者和规则设置
+# ==================================
+rule-providers:
+  Anti-Ads:
+    type: http
+    behavior: domain
+    format: yaml
+    path: ./rule_provider/Anti-Ads.yaml
+    url: "https://anti-ad.net/clash.yaml"
+    interval: 43200
+    lazy: false
+
 rules:
-  ## 局域网直连
+  ## 🚫 淘宝/天猫/支付宝防拒绝访问增强段
+  - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-SUFFIX,tmall.com,DIRECT
+  - DOMAIN-SUFFIX,alibaba.com,DIRECT
+  - DOMAIN-SUFFIX,alipay.com,DIRECT
+  - DOMAIN-KEYWORD,taobao,DIRECT
+  - DOMAIN-KEYWORD,tmall,DIRECT
+  - DOMAIN-KEYWORD,alipay,DIRECT
+  - DOMAIN-KEYWORD,alicdn,DIRECT
+  - IP-CIDR,140.205.0.0/16,DIRECT,no-resolve
+
+  ## 其它自定义规则
+  - DOMAIN,v.ddys.pro,DIRECT
+  - DOMAIN,ddys.pro,DIRECT
+  - DOMAIN-SUFFIX,hf.co,🚀 节点选择
+  - DOMAIN,api.telegram.org,📲 电报信息
+  - DOMAIN-KEYWORD,easytier,DIRECT
+  - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
+  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
+
+  ## 广告、数据统计规则
+  - RULE-SET,Anti-Ads,REJECT
+
+  ## 大流量应用规则
+  - GEOSITE,category-android-app-download,🚀 节点选择
+  - GEOSITE,category-entertainment,🚀 节点选择
+  - GEOSITE,category-porn,🚀 节点选择
+  - GEOSITE,telegram,📲 电报信息
+  - GEOSITE,onedrive,🚀 节点选择
+  - GEOSITE,category-games@cn,DIRECT
+
+  ## 国外服务规则
+  - GEOSITE,twitter,🚀 节点选择
+  - GEOSITE,facebook,🚀 节点选择
+  - GEOSITE,netflix,🚀 节点选择
+
+  ## 国外固定IP服务规则
+  - GEOSITE,category-ai-chat-!cn,🚀 节点选择
+  - GEOSITE,category-cryptocurrency,🚀 节点选择
+  - GEOSITE,category-social-media-!cn,🚀 节点选择
+
+  ## Google 服务规则
+  - GEOSITE,google,🚀 节点选择
+
+  ## 直连规则
+  - GEOIP,CN,DIRECT,no-resolve
+  - GEOSITE,cn,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+
+  ## 国外随意（兜底走代理）
+  - GEOSITE,geolocation-!cn,🚀 节点选择
+
+  ## 局域网直连规则
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
 
-  ## 中国大陆流量直连
-  - GEOIP,CN,DIRECT,no-resolve
-  - GEOSITE,cn,DIRECT
-  - GEOSITE,apple-cn,DIRECT
-  - GEOSITE,microsoft@cn,DIRECT
-
-  ## 广告和恶意流量拦截（示例，如果你有外部规则集，可以重新添加 RULE-SET）
-  - DOMAIN-KEYWORD,ad,🛑 全球拦截
-  - DOMAIN-SUFFIX,ads.com,🛑 全球拦截
-
-  ## Telegram 流量（直接指向节点选择）
-  - GEOSITE,telegram,🚀 节点选择
-  # 关键：添加 Telegram IP 段，确保流量走代理
-  # ⚠️ 这些 IP 段可能变化，请自行查询最新并更新
-  - IP-CIDR,91.108.4.0/22,🚀 节点选择,no-resolve
-  - IP-CIDR,91.108.8.0/22,🚀 节点选择,no-resolve
-  - IP-CIDR,149.154.160.0/22,🚀 节点选择,no-resolve
-  - IP-CIDR,185.76.0.0/22,🚀 节点选择,no-resolve
-
-  ## 国外常用服务（通过代理节点选择）
-  - GEOSITE,google,🚀 节点选择
-  - GEOSITE,youtube,🚀 节点选择
-  - GEOSITE,twitter,🚀 节点选择
-  - GEOSITE,facebook,🚀 节点选择
-  - GEOSITE,netflix,🚀 节点选择
-  - GEOSITE,disney,🚀 节点选择
-  - GEOSITE,tiktok,🚀 节点选择
-  - GEOSITE,instagram,🚀 节点选择
-
-  ## 国外兜底：所有未匹配到的国外流量都走代理
-  - GEOSITE,geolocation-!cn,🚀 节点选择
-
-  ## 最终兜底：所有未能匹配的流量都走“漏网之鱼”组
+  ## 兜底规则（所有未匹配的流量）
   - MATCH,🐟 漏网之鱼
