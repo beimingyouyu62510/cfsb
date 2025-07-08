@@ -1,72 +1,111 @@
-allow-lan: true
-unified-delay: false
-tcp-concurrent: true
-global-client-fingerprint: chrome
+port: 7890             # HTTP 代理端口，推荐使用通用端口
+socks-port: 7891       # SOCKS5 代理端口，推荐使用通用端口
+allow-lan: true        # 允许局域网设备连接，通常用于路由器或共享代理
+mode: rule             # 代理模式，推荐使用规则模式
+log-level: info        # 日志级别，info 适合日常使用，debug 用于排查问题
+unified-delay: true    # 开启统一延迟测试，有助于更准确地评估节点性能
+tcp-concurrent: true   # TCP 并发连接，提升部分场景下的连接速度
+global-client-fingerprint: chrome # 全局 TLS 指纹，模拟 Chrome 浏览器，降低被识别风险
 
+# Profile 相关
 profile:
-  store-selected: true
-  store-fake-ip: true
+  store-selected: true # 存储用户选择的代理节点
+  store-fake-ip: true  # 存储 Fake IP 映射，提升 DNS 解析速度和稳定性
 
+# 流量嗅探
 sniffer:
-  enable: true
+  enable: true         # 开启流量嗅探
   sniff:
     HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
+      ports: [80, 8080-8880] # 嗅探 HTTP 流量的端口范围
+      override-destination: true # 覆盖目标地址，用于某些特殊应用
     TLS:
-      ports: [443, 8443]
+      ports: [443, 8443] # 嗅探 TLS 流量的端口范围
     QUIC:
-      ports: [443, 8443]
+      ports: [443, 8443] # 嗅探 QUIC 流量的端口范围
+  # 避免嗅探特定域名的流量，提高性能并避免误判
   skip-domain:
     - "Mijia Cloud"
     - dlg.io.mi.com
     - "+.push.apple.com"
+    - "*.local"          # 常见的局域网域名
+    - "*.lan"            # 常见的局域网域名
+    - "connectivity-check.ubuntu.com" # Linux 系统连接性检查
+    - "www.msftconnecttest.com" # Windows 系统连接性检查
+    - "www.qualcomm.cn" # 安卓系统连接性检查
+    - "captive.apple.com" # 苹果系统连接性检查
 
+# TUN 模式（虚拟网卡）
 tun:
-  enable: true
-  stack: system
-  device: mihomo
+  enable: true         # 开启 TUN 模式，接管所有流量
+  stack: system        # 使用系统网络栈，兼容性较好
+  device: mihomo       # TUN 设备名称，可自定义，mihomo 是 Clash Meta 的默认名称
   dns-hijack:
-    - any:53
-    - tcp://any:53
-  auto-route: true
-  auto-detect-interface: true
-  strict-route: true
-  endpoint-independent-nat: true
+    - any:53            # 劫持所有 UDP 53 端口的 DNS 请求
+    - tcp://any:53      # 劫持所有 TCP 53 端口的 DNS 请求
+  auto-route: true     # 自动配置路由表
+  auto-detect-interface: true # 自动检测网络接口
+  strict-route: true   # 严格路由模式，确保流量通过 TUN
+  endpoint-independent-nat: true # 开启端点无关 NAT，有助于 P2P 应用和游戏
 
+# DNS 配置
 dns:
-  enable: true
-  listen: 0.0.0.0:1053
-  ipv6: false
-  prefer-h3: true
-  respect-rules: true
-  enhanced-mode: fake-ip
-  use-hosts: true
+  enable: true         # 开启 DNS 服务
+  listen: 0.0.0.0:1053   # DNS 监听地址和端口，0.0.0.0 允许所有接口访问
+  ipv6: false          # 关闭 IPv6 DNS 解析，避免某些环境下的问题
+  prefer-h3: true      # 优先使用 HTTP/3 DNS 查询，提高速度
+  respect-rules: true  # 尊重规则，根据规则决定 DNS 查询方式
+  enhanced-mode: fake-ip # 开启 Fake IP 模式，提升性能并解决 DNS 污染
+  use-hosts: true      # 使用本地 hosts 文件
+  # 默认上游 DNS 服务器，用于直连或无法判断规则的域名
   default-nameserver:
-    - 223.5.5.5
-    - 180.168.255.18
-    - 117.50.11.11
+    - 223.5.5.5         # 阿里公共 DNS
+    - 180.168.255.18    # 联通公共 DNS (示例，可根据实际网络环境选择)
+    - 117.50.11.11      # 腾讯公共 DNS (示例，可根据实际网络环境选择)
+    - 119.29.29.29      # 腾讯公共 DNS
+  # 常规 DNS 服务器，通常用于代理流量，或兜底解析
   nameserver:
-    - https://dns.google/dns-query
-    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query # Google DoH
+    - https://1.1.1.1/dns-query    # Cloudflare DoH
+    - quic://dns.adguard-dns.com:784  # AdGuard DoQ (推荐，需要 Clash Meta 支持)
+    - tls://dns.google             # Google DoT
+  # 代理服务器专用的 DNS 服务器，确保通过代理解析的域名走代理 DNS
   proxy-server-nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
-    - https://doh.pub/dns-query
+    - https://doh.pub/dns-query    # 腾讯 DoH
+    - quic://dns.adguard-dns.com:784
+  # 根据域名策略选择 DNS 服务器
   nameserver-policy:
-    "geosite:cn,apple-cn,category-games@cn,private":
+    "geosite:cn,apple-cn,category-games@cn,private": # 中国大陆、苹果中国、中国游戏、私人域名
       - 117.50.11.11
       - 180.168.255.18
       - 223.5.5.5
-  fake-ip-range: 28.0.0.1/8
+      - 119.29.29.29
+    "geosite:netflix,disney": # 流媒体域名，强制走代理 DNS
+      - https://dns.google/dns-query
+      - https://1.1.1.1/dns-query
+    # 更多策略可以根据需求添加，例如：
+    # "geosite:geolocation-!cn": # 非中国大陆域名
+    #   - https://dns.google/dns-query
+    #   - https://1.1.1.1/dns-query
+    # "domain-suffix:example.com": # 特定域名后缀
+    #   - 1.1.1.1
+  fake-ip-range: 198.18.0.1/16 # 建议使用 198.18.0.0/16，这是 IANA 为测试和基准设计的私有地址范围，避免冲突
+  # Fake IP 过滤，不为这些域名分配 Fake IP
   fake-ip-filter:
-    - '*'
-    - '+.lan'
-    - '+.local'
-    - +.stun.*.*.*
-    - +.stun.*.*.*.*
-    - +.tiktokcdn.com
-    - +.tiktokv.com
+    - '*'                # 默认所有域名都尝试 Fake IP
+    - '+.lan'            # 局域网地址
+    - '+.local'          # 本地设备
+    - '+.stun.*.*.*'     # STUN 服务器，用于 NAT 穿透，不需要 Fake IP
+    - '+.stun.*.*.*.*'   # 同上
+    - '+.tiktokcdn.com'  # TikTok CDN，可能导致兼容性问题
+    - '+.tiktokv.com'    # TikTok 视频域名
+    - 'geosite:cn'       # 中国大陆域名通常不需要 Fake IP
+    - 'geosite:private'  # 私有网络地址，不需要 Fake IP
+    - 'geosite:category-games@cn' # 中国大陆游戏域名
+    - 'geosite:apple-cn' # 苹果中国域名
+    - 'geosite:microsoft@cn' # 微软中国域名
 
 geodata-mode: true
 geox-url:
