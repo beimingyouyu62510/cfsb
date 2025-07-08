@@ -1,30 +1,30 @@
-port: 7890             # HTTP 代理端口，推荐使用通用端口
-socks-port: 7891       # SOCKS5 代理端口，推荐使用通用端口
-allow-lan: true        # 允许局域网设备连接，通常用于路由器或共享代理
-mode: rule             # 代理模式，推荐使用规则模式
-log-level: info        # 日志级别，info 适合日常使用，debug 用于排查问题（可临时设置为 debug 以获取更多信息）
-unified-delay: true    # 开启统一延迟测试，有助于更准确地评估节点性能
-tcp-concurrent: true   # TCP 并发连接，提升部分场景下的连接速度
+# ======================== 核心配置 ========================
+port: 7890             # HTTP 代理端口，通用且推荐
+socks-port: 7891       # SOCKS5 代理端口，通用且推荐
+allow-lan: true        # 允许局域网设备连接，用于路由器或共享代理
+mode: rule             # 代理模式，推荐规则模式以精细控制流量
+log-level: info        # 日志级别：info 适合日常使用，debug 用于排查问题（可临时调整）
+unified-delay: true    # 开启统一延迟测试，更准确评估节点性能
+tcp-concurrent: true   # TCP 并发连接，提升部分场景（如下载）速度
 global-client-fingerprint: chrome # 全局 TLS 指纹，模拟 Chrome 浏览器，降低被识别风险
 
-# Profile 相关
+# ======================== Profile 配置 ========================
 profile:
-  store-selected: true # 存储用户选择的代理节点
+  store-selected: true # 存储用户选择的代理节点，方便下次启动时恢复
   store-fake-ip: true  # 存储 Fake IP 映射，提升 DNS 解析速度和稳定性
 
-# 流量嗅探
+# ======================== 流量嗅探 (Sniffer) ========================
 sniffer:
-  enable: true         # 开启流量嗅探
+  enable: true         # 开启流量嗅探，用于识别应用类型和流量协议
   sniff:
     HTTP:
-      ports: [80, 8080-8880] # 嗅探 HTTP 流量的端口范围
+      ports: [80, 8080-8880] # 嗅探 HTTP 流量的常见端口范围
       override-destination: true # 覆盖目标地址，用于某些特殊应用
     TLS:
-      ports: [443, 8443] # 嗅探 TLS 流量的端口范围
+      ports: [443, 8443] # 嗅探 TLS (HTTPS) 流量的常见端口范围
     QUIC:
-      ports: [443, 8443] # 嗅探 QUIC 流量的端口范围
-  # 避免嗅探特定域名的流量，提高性能并避免误判
-  skip-domain:
+      ports: [443, 8443] # 嗅探 QUIC 流量的常见端口范围 (Clash Meta 特性)
+  skip-domain:         # 避免嗅探特定域名的流量，提高性能并避免误判
     - "Mijia Cloud"
     - dlg.io.mi.com
     - "+.push.apple.com"
@@ -34,12 +34,14 @@ sniffer:
     - "www.msftconnecttest.com" # Windows 系统连接性检查
     - "www.qualcomm.cn" # 安卓系统连接性检查
     - "captive.apple.com" # 苹果系统连接性检查
+    - "*.msftncsi.com"   # Windows 系统网络连通性检测
+    - "*.cdn.apple.com"  # 苹果 CDN，加速下载
 
-# TUN 模式（虚拟网卡）
+# ======================== TUN 模式 (虚拟网卡) ========================
 tun:
   enable: true         # 开启 TUN 模式，接管所有流量
   stack: system        # 使用系统网络栈，兼容性较好
-  device: mihomo       # TUN 设备名称，可自定义，mihomo 是 Clash Meta 的默认名称
+  device: mihomo       # TUN 设备名称，Clash Meta 的默认名称
   dns-hijack:
     - any:53            # 劫持所有 UDP 53 端口的 DNS 请求
     - tcp://any:53      # 劫持所有 TCP 53 端口的 DNS 请求
@@ -48,33 +50,37 @@ tun:
   strict-route: true   # 严格路由模式，确保流量通过 TUN
   endpoint-independent-nat: true # 开启端点无关 NAT，有助于 P2P 应用和游戏
 
-# DNS 配置
+# ======================== DNS 配置 (核心优化区域) ========================
 dns:
   enable: true         # 开启 DNS 服务
   listen: 0.0.0.0:1053   # DNS 监听地址和端口，0.0.0.0 允许所有接口访问
   ipv6: false          # 关闭 IPv6 DNS 解析，避免某些环境下的问题
-  prefer-h3: true      # 优先使用 HTTP/3 DNS 查询，提高速度
+  prefer-h3: true      # 优先使用 HTTP/3 DNS 查询，提高速度 (Clash Meta 特性)
   respect-rules: true  # 尊重规则，根据规则决定 DNS 查询方式
   enhanced-mode: fake-ip # 开启 Fake IP 模式，提升性能并解决 DNS 污染
   use-hosts: true      # 使用本地 hosts 文件
-  # 默认上游 DNS 服务器，用于直连或无法判断规则的域名
+
+  # 默认上游 DNS 服务器：用于直连或无法判断规则的域名
   default-nameserver:
-    - 223.5.5.5         # 阿里公共 DNS
-    - 180.168.255.18    # 联通公共 DNS (示例，可根据实际网络环境选择)
-    - 117.50.11.11      # 腾讯公共 DNS (示例，可根据实际网络环境选择)
+    - 223.5.5.5         # 阿里公共 DNS，稳定且快速
     - 119.29.29.29      # 腾讯公共 DNS
-  # 常规 DNS 服务器，通常用于代理流量，或兜底解析
+    - 180.168.255.18    # 联通公共 DNS (示例，可根据实际网络环境调整)
+    - 117.50.11.11      # 腾讯公共 DNS (示例)
+
+  # 常规 DNS 服务器：通常用于代理流量，或兜底解析
   nameserver:
-    - https://dns.google/dns-query # Google DoH
-    - https://1.1.1.1/dns-query    # Cloudflare DoH
-    - quic://dns.adguard-dns.com:784  # AdGuard DoQ (推荐，需要 Clash Meta 支持)
-    - tls://dns.google             # Google DoT
-  # 代理服务器专用的 DNS 服务器，确保通过代理解析的域名走代理 DNS
+    - https://dns.google/dns-query # Google DoH，通用
+    - https://1.1.1.1/dns-query    # Cloudflare DoH，通用
+    - quic://dns.adguard-dns.com:784 # AdGuard DoQ，支持 QUIC DNS，更快更安全 (Clash Meta 推荐)
+    - tls://dns.google             # Google DoT，通用
+
+  # 代理服务器专用的 DNS 服务器：确保通过代理解析的域名走代理 DNS
   proxy-server-nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
     - https://doh.pub/dns-query    # 腾讯 DoH
-    - quic://dns.adguard-dns.com:784
+    - quic://dns.adguard-dns.com:784 # 同样推荐 DoQ
+
   # 根据域名策略选择 DNS 服务器
   nameserver-policy:
     "geosite:cn,apple-cn,category-games@cn,private": # 中国大陆、苹果中国、中国游戏、私人域名
@@ -82,38 +88,40 @@ dns:
       - 180.168.255.18
       - 223.5.5.5
       - 119.29.29.29
-    "geosite:netflix,disney": # 流媒体域名，强制走代理 DNS
+    "geosite:netflix,disney": # 流媒体域名，强制走代理 DNS，确保解锁
       - https://dns.google/dns-query
       - https://1.1.1.1/dns-query
-    "geosite:telegram": # **新增或强调：Telegram 域名强制走代理 DNS**
+      - quic://dns.adguard-dns.com:784 # 加入 DoQ
+    "geosite:telegram": # **重点：Telegram 域名强制走代理 DNS**
       - https://dns.google/dns-query
       - https://1.1.1.1/dns-query
-  fake-ip-range: 198.18.0.1/16 # 建议使用 198.18.0.0/16，这是 IANA 为测试和基准设计的私有地址范围，避免冲突
-  # Fake IP 过滤，不为这些域名分配 Fake IP
-  fake-ip-filter:
+      - quic://dns.adguard-dns.com:784 # 加入 DoQ
+
+  # Fake IP 配置
+  fake-ip-range: 198.18.0.1/16 # 建议使用 198.18.0.0/16，这是 IANA 为测试和基准设计的私有地址范围
+  fake-ip-filter:      # Fake IP 过滤，不为这些域名分配 Fake IP，避免兼容性问题
     - '*'                # 默认所有域名都尝试 Fake IP
     - '+.lan'            # 局域网地址
     - '+.local'          # 本地设备
-    - '+.stun.*.*.*'     # STUN 服务器，用于 NAT 穿透，不需要 Fake IP
+    - '+.stun.*.*.*'     # STUN 服务器，用于 NAT 穿透
     - '+.stun.*.*.*.*'   # 同上
-    - '+.tiktokcdn.com'  # TikTok CDN，可能导致兼容性问题
+    - '+.tiktokcdn.com'  # TikTok CDN
     - '+.tiktokv.com'    # TikTok 视频域名
     - 'geosite:cn'       # 中国大陆域名通常不需要 Fake IP
-    - 'geosite:private'  # 私有网络地址，不需要 Fake IP
+    - 'geosite:private'  # 私有网络地址
     - 'geosite:category-games@cn' # 中国大陆游戏域名
     - 'geosite:apple-cn' # 苹果中国域名
     - 'geosite:microsoft@cn' # 微软中国域名
-    - '+.telegram.org'   # **新增：Telegram 域名避免 Fake IP**
-    - '+.tdesktop.com'   # **新增：Telegram 域名避免 Fake IP**
-    - '+.t.me'           # **新增：Telegram 域名避免 Fake IP**
-    - 'api.telegram.org' # **新增：Telegram 域名避免 Fake IP**
+    - 'geosite:telegram' # **重点：Telegram 域名避免 Fake IP**
+    - 'api.telegram.org' # **补充：Telegram 特殊域名避免 Fake IP**
 
-
-geodata-mode: true
+# ======================== GeoData 配置 ========================
+geodata-mode: true # 开启 GeoData 模式，使用外部 geosite/geoip 文件
 geox-url:
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 
+# ======================== 代理节点 (Proxies) ========================
 proxies:
   - name: 天书cf
     type: vless
@@ -122,7 +130,7 @@ proxies:
     uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
     network: ws
     tls: true
-    udp: true  # 确认 UDP 支持已开启
+    udp: true
     servername: git02.jisucf.cloudns.biz
     ws-opts:
       path: "/?ed=2560"
@@ -134,7 +142,7 @@ proxies:
     server: laji.jisucf.cloudns.biz
     port: 443
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
-    udp: true  # 确认 UDP 支持已开启
+    udp: true
     tls: true
     sni: git01.jisucf.cloudns.biz
     network: ws
@@ -143,6 +151,7 @@ proxies:
       headers:
         Host: git01.jisucf.cloudns.biz
 
+# ======================== 代理组 (Proxy Groups) ========================
 proxy-groups:
   - name: 🚀 节点选择
     type: select
@@ -154,9 +163,9 @@ proxy-groups:
 
   - name: ♻️ 自动选择
     type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 180
-    tolerance: 150
+    url: http://www.gstatic.com/generate_204 # 用于测试节点连通性
+    interval: 180                          # 测试间隔，单位秒
+    tolerance: 150                         # 延迟容忍度，超过此值则认为节点不稳定
     proxies:
       - 天书cf
       - 天书git
@@ -171,21 +180,15 @@ proxy-groups:
       - 天书git
 
   - name: 📲 电报信息
-    type: select
+    type: select # 选择型策略，允许手动切换节点或直连
+    # type: fallback # 也可以考虑 fallback，自动切换到下一个可用节点
+    # url: http://www.gstatic.com/generate_204 # fallback 需要 url-test
+    # interval: 300
     proxies:
-      - 🚀 节点选择 # 优先通过节点代理
-      - 🎯 全球直连 # 备选直连
+      - 🚀 节点选择 # 优先使用节点选择组
       - 天书cf
       - 天书git
-    # 考虑添加 fallback 策略，如果主代理失败，尝试其他节点或直连
-    # type: fallback
-    # url: http://www.gstatic.com/generate_204
-    # interval: 300
-    # proxies:
-    #   - 🚀 节点选择
-    #   - 天书cf
-    #   - 天书git
-    #   - DIRECT # 极端情况下尝试直连
+      - DIRECT # 兜底直连，防止完全无法连接
 
   - name: Ⓜ️ 微软服务
     type: select
@@ -238,18 +241,20 @@ proxy-groups:
       - 天书cf
       - 天书git
 
+# ======================== 规则集提供者 (Rule Providers) ========================
 rule-providers:
   Anti-Ads:
     type: http
-    behavior: domain
+    behavior: domain # 行为类型：domain 匹配域名，ipcidr 匹配 IP 段
     format: yaml
-    path: ./rule_provider/Anti-Ads.yaml
-    url: "https://anti-ad.net/clash.yaml"
-    interval: 43200
-    lazy: false
+    path: ./rule_provider/Anti-Ads.yaml # 本地存储路径
+    url: "https://anti-ad.net/clash.yaml" # 远程规则文件地址
+    interval: 43200 # 更新间隔，单位秒 (12小时)
+    lazy: false     # 是否懒加载 (非懒加载会立即下载更新)
 
+# ======================== 规则 (Rules) ========================
 rules:
-  ## 🚫 淘宝/天猫/支付宝防拒绝访问
+  ## 🚫 淘宝/天猫/支付宝防拒绝访问：优先直连，避免被墙
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,alibaba.com,DIRECT
@@ -263,7 +268,7 @@ rules:
   - IP-CIDR,203.119.0.0/16,DIRECT,no-resolve
   - IP-CIDR,58.83.0.0/16,DIRECT,no-resolve
 
-  ## TikTok 专用
+  ## TikTok 专用：强制走代理，确保正常访问
   - DOMAIN-SUFFIX,tiktokcdn.com,🚀 节点选择
   - DOMAIN-SUFFIX,tiktokv.com,🚀 节点选择
   - DOMAIN-SUFFIX,byteoversea.com,🚀 节点选择
@@ -279,59 +284,65 @@ rules:
   # 确保 Telegram 的 IP 段也走代理，这非常重要！
   # 以下 IP CIDR 需要你自己通过工具获取当前 Telegram 服务器的最新 IP 段，例如使用 `nslookup` 或 `dig` 查询 `telegram.org` 和 `t.me`，并查找相关 IP 段。
   # ⚠️ 注意：Telegram IP 段可能变动，请定期更新。
+  # 建议将这些 IP-CIDR 放在 GEOSITE 规则之前，因为 IP 规则优先级更高
   - IP-CIDR,91.108.4.0/22,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
   - IP-CIDR,91.108.8.0/22,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
   - IP-CIDR,149.154.160.0/22,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
   - IP-CIDR,185.76.0.0/22,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
   - IP-CIDR,67.199.248.0/22,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
   - IP-CIDR,109.239.140.0/24,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
+  - GEOSITE,telegram,📲 电报信息 # 使用 geosite 兜底，确保所有相关域名都走代理
 
-  ## 其它自定义
+  ## 其它自定义规则
   - DOMAIN,v.ddys.pro,DIRECT
   - DOMAIN,ddys.pro,DIRECT
   - DOMAIN-SUFFIX,hf.co,🚀 节点选择
   - DOMAIN-KEYWORD,easytier,DIRECT
   - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
-  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT # 这条规则可能拦截 Telegram UDP，需确认意图
+  # 注意：这条规则 `AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT` 可能拦截 Telegram UDP 流量。
+  # 如果仍有问题，请考虑暂时注释掉或移除它，或者更精确地定义拒绝规则。
+  # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT # 考虑这条规则是否对 Telegram 造成影响
 
-  ## 广告
+  ## 广告拦截规则集
   - RULE-SET,Anti-Ads,REJECT
 
-  ## 大流量
+  ## 大流量服务/应用：根据类型分配到代理组
   - GEOSITE,category-android-app-download,🚀 节点选择
   - GEOSITE,category-entertainment,🚀 节点选择
   - GEOSITE,category-porn,🚀 节点选择
-  - GEOSITE,telegram,📲 电报信息 # 确认这条规则在 IP 规则之后，或者将其顺序调整到最上方
   - GEOSITE,onedrive,🚀 节点选择
-  - GEOSITE,category-games@cn,DIRECT
+  - GEOSITE,category-games@cn,DIRECT # 国内游戏直连，避免高延迟
 
-  ## 国外服务
+  ## 国外服务：强制走代理
   - GEOSITE,twitter,🚀 节点选择
   - GEOSITE,facebook,🚀 节点选择
-  - GEOSITE,netflix,🚀 节点选择
+  - GEOSITE,netflix,🌍 国外媒体 # 使用国外媒体组，更精确控制
+  - GEOSITE,disney,🌍 国外媒体 # 新增 Disney，使用国外媒体组
 
-  ## 国外固定IP
+  ## 国外固定IP服务：强制走代理
   - GEOSITE,category-ai-chat-!cn,🚀 节点选择
   - GEOSITE,category-cryptocurrency,🚀 节点选择
   - GEOSITE,category-social-media-!cn,🚀 节点选择
 
-  ## Google
+  ## Google 服务：强制走代理
   - GEOSITE,google,🚀 节点选择
+  - GEOSITE,youtube,🚀 节点选择 # 新增 YouTube
 
-  ## 国内直连
+  ## 国内直连：优先直连，避免不必要代理
   - GEOIP,CN,DIRECT,no-resolve
   - GEOSITE,cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,microsoft@cn,DIRECT # 微软中国服务直连
 
-  ## 国外兜底
+  ## 国外兜底：未匹配到其他规则的国外流量走代理
   - GEOSITE,geolocation-!cn,🚀 节点选择
 
-  ## 局域网
+  ## 局域网：始终直连
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
 
-  ## 兜底
+  ## 兜底规则：捕获所有未匹配流量
   - MATCH,🐟 漏网之鱼
