@@ -1,7 +1,6 @@
 allow-lan: true
 unified-delay: false
 tcp-concurrent: true
-find-process-mode: mixed
 global-client-fingerprint: chrome
 
 profile:
