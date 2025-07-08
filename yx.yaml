@@ -4,6 +4,35 @@ allow-lan: true
 mode: Rule
 log-level: info
 external-controller: 127.0.0.1:9090
+dns:
+  enable: true
+  ipv6: false # 如果你不需要处理IPv6流量，可以设置为false
+  listen: 0.0.0.0:53 # 监听所有接口的53端口
+  enhanced-mode: fake-ip # 推荐使用 fake-ip 模式，可以提高规则匹配的准确性
+  fake-ip-range: 198.18.0.1/16 # fake-ip 地址范围，避免与局域网冲突
+  fake-ip-filter: # 过滤不需要 fake-ip 的域名
+    - "+.Mijia-miot.com"
+    - "+.Mihoyo.com"
+    - "+.baidu.com"
+    - "+.qq.com"
+    - "+.netease.com"
+    - "+.aliyuncs.com"
+    - "+.apple.com" # 苹果国内服务，确保直连
+    - "+.icloud.com" # 苹果国内服务，确保直连
+  nameserver:
+    - 114.114.114.114 # 国内常用DNS
+    - 223.5.5.5 # 阿里云公共DNS
+    - 1.1.1.1 # Cloudflare Public DNS
+    - 8.8.8.8 # Google Public DNS
+  fallback: # 当主DNS解析失败或被污染时，使用备用DNS
+    - 8.8.4.4 # Google Public DNS
+    - 9.9.9.9 # Quad9 DNS
+    - 208.67.222.222 # OpenDNS
+  fallback-filter:
+    geoip: true # 过滤掉非境外IP的解析结果，用于境外服务
+    geoip-code: CN # 过滤掉中国大陆的IP
+    ipcidr:
+      - 240.0.0.0/4 # 保留一些特殊IP段，避免误过滤
 proxies:
   - name: 天书cf
     type: vless
