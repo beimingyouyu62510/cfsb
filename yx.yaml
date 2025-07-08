@@ -1,7 +1,7 @@
 allow-lan: true
 unified-delay: false
 tcp-concurrent: true
-find-process-mode: strict
+find-process-mode: mixed
 global-client-fingerprint: chrome
 
 profile:
@@ -64,11 +64,10 @@ dns:
     - '*'
     - '+.lan'
     - '+.local'
-    - +.stun.*.*
     - +.stun.*.*.*
     - +.stun.*.*.*.*
-    - +.stun.*.*.*.*.*
-    - +.stun.*.*.*.*.*.*
+    - +.tiktokcdn.com
+    - +.tiktokv.com
 
 geodata-mode: true
 geox-url:
@@ -116,8 +115,8 @@ proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 180
+    tolerance: 150
     proxies:
       - 天书cf
       - 天书git
@@ -201,7 +200,7 @@ rule-providers:
     lazy: false
 
 rules:
-  ## 🚫 淘宝/天猫/支付宝防拒绝访问增强段
+  ## 🚫 淘宝/天猫/支付宝防拒绝访问
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,alibaba.com,DIRECT
@@ -211,20 +210,32 @@ rules:
   - DOMAIN-KEYWORD,alipay,DIRECT
   - DOMAIN-KEYWORD,alicdn,DIRECT
   - IP-CIDR,140.205.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,42.120.0.0/16,DIRECT,no-resolve  # 阿里云/淘宝部分IP段
-  - IP-CIDR,203.119.0.0/16,DIRECT,no-resolve # 阿里云/淘宝部分IP段
-  - IP-CIDR,58.83.0.0/16,DIRECT,no-resolve  # 阿里云/淘宝部分IP段
+  - IP-CIDR,42.120.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,203.119.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,58.83.0.0/16,DIRECT,no-resolve
+
+  ## TikTok 专用
+  - DOMAIN-SUFFIX,tiktokcdn.com,🚀 节点选择
+  - DOMAIN-SUFFIX,tiktokv.com,🚀 节点选择
+  - DOMAIN-SUFFIX,byteoversea.com,🚀 节点选择
+  - DOMAIN-SUFFIX,bytecdn.com,🚀 节点选择
+  - DOMAIN-KEYWORD,tiktok,🚀 节点选择
+
+  ## Telegram 补充
+  - DOMAIN-SUFFIX,telegram.org,📲 电报信息
+  - DOMAIN-SUFFIX,tdesktop.com,📲 电报信息
+  - DOMAIN-SUFFIX,t.me,📲 电报信息
+  - DOMAIN,api.telegram.org,📲 电报信息
 
   ## 其它自定义
   - DOMAIN,v.ddys.pro,DIRECT
   - DOMAIN,ddys.pro,DIRECT
   - DOMAIN-SUFFIX,hf.co,🚀 节点选择
-  - DOMAIN,api.telegram.org,📲 电报信息
   - DOMAIN-KEYWORD,easytier,DIRECT
   - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
   - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
 
-  ## 广告、数据统计
+  ## 广告
   - RULE-SET,Anti-Ads,REJECT
 
   ## 大流量
@@ -248,12 +259,12 @@ rules:
   ## Google
   - GEOSITE,google,🚀 节点选择
 
-  ## 直连
+  ## 国内直连
   - GEOIP,CN,DIRECT,no-resolve
   - GEOSITE,cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
 
-  ## 国外随意
+  ## 国外兜底
   - GEOSITE,geolocation-!cn,🚀 节点选择
 
   ## 局域网
