@@ -49,22 +49,33 @@ dns:
   respect-rules: true
   enhanced-mode: fake-ip
   use-hosts: true
-  default-nameserver:
-    - 223.5.5.5
-    - 180.168.255.18
-    - 117.50.11.11
+  # 移除可能导致订阅解析失败的国内公共DNS作为default-nameserver
+  # 优先使用可靠的加密DNS，Clash会自动通过代理进行DNS查询
+  # default-nameserver:
+  #  - 223.5.5.5
+  #  - 180.168.255.18
+  #  - 117.50.11.11
   nameserver:
+    # 优先使用可靠的DoH/DoT服务器，这些服务器在全球范围内通常更稳定
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
+    - tls://dns.google # 增加DoT支持，有时比DoH更稳定
+    - tls://1.1.1.1
   proxy-server-nameserver:
+    # 代理DNS服务器，确保通过代理解析时使用这些可靠的DNS
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
     - https://doh.pub/dns-query
   nameserver-policy:
+    # 对于国内域名，仍然使用国内DNS以获得最佳解析效果和速度
     "geosite:cn,apple-cn,category-games@cn,private,taobao.com,tmall.com,alibaba.com,alipay.com,alicdn.com":
       - 223.5.5.5
       - 180.168.255.18
       - 117.50.11.11
+    # 增加一个通用策略，确保所有未匹配的DNS请求默认通过代理的DNS
+    "DEFAULT":
+      - https://dns.google/dns-query
+      - https://1.1.1.1/dns-query
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - "*.taobao.com"
@@ -81,6 +92,7 @@ dns:
 
 geodata-mode: true
 geox-url:
+  # 保持原有的 geox-url，但请确保您的网络环境可以访问 GitHub
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 
@@ -253,4 +265,3 @@ rules:
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
   - MATCH,🐟 漏网之鱼
-```
