@@ -2,7 +2,7 @@ port: 7890             # HTTP 代理端口，推荐使用通用端口
 socks-port: 7891       # SOCKS5 代理端口，推荐使用通用端口
 allow-lan: true        # 允许局域网设备连接，通常用于路由器或共享代理
 mode: rule             # 代理模式，推荐使用规则模式
-log-level: info        # 日志级别，info 适合日常使用，debug 用于排查问题
+log-level: info        # 日志级别，info 适合日常使用，debug 用于排查问题（可临时设置为 debug 以获取更多信息）
 unified-delay: true    # 开启统一延迟测试，有助于更准确地评估节点性能
 tcp-concurrent: true   # TCP 并发连接，提升部分场景下的连接速度
 global-client-fingerprint: chrome # 全局 TLS 指纹，模拟 Chrome 浏览器，降低被识别风险
@@ -85,12 +85,9 @@ dns:
     "geosite:netflix,disney": # 流媒体域名，强制走代理 DNS
       - https://dns.google/dns-query
       - https://1.1.1.1/dns-query
-    # 更多策略可以根据需求添加，例如：
-    # "geosite:geolocation-!cn": # 非中国大陆域名
-    #   - https://dns.google/dns-query
-    #   - https://1.1.1.1/dns-query
-    # "domain-suffix:example.com": # 特定域名后缀
-    #   - 1.1.1.1
+    "geosite:telegram": # **新增或强调：Telegram 域名强制走代理 DNS**
+      - https://dns.google/dns-query
+      - https://1.1.1.1/dns-query
   fake-ip-range: 198.18.0.1/16 # 建议使用 198.18.0.0/16，这是 IANA 为测试和基准设计的私有地址范围，避免冲突
   # Fake IP 过滤，不为这些域名分配 Fake IP
   fake-ip-filter:
@@ -106,6 +103,11 @@ dns:
     - 'geosite:category-games@cn' # 中国大陆游戏域名
     - 'geosite:apple-cn' # 苹果中国域名
     - 'geosite:microsoft@cn' # 微软中国域名
+    - '+.telegram.org'   # **新增：Telegram 域名避免 Fake IP**
+    - '+.tdesktop.com'   # **新增：Telegram 域名避免 Fake IP**
+    - '+.t.me'           # **新增：Telegram 域名避免 Fake IP**
+    - 'api.telegram.org' # **新增：Telegram 域名避免 Fake IP**
+
 
 geodata-mode: true
 geox-url:
@@ -120,7 +122,7 @@ proxies:
     uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
     network: ws
     tls: true
-    udp: true
+    udp: true  # 确认 UDP 支持已开启
     servername: git02.jisucf.cloudns.biz
     ws-opts:
       path: "/?ed=2560"
@@ -132,7 +134,7 @@ proxies:
     server: laji.jisucf.cloudns.biz
     port: 443
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
-    udp: true
+    udp: true  # 确认 UDP 支持已开启
     tls: true
     sni: git01.jisucf.cloudns.biz
     network: ws
@@ -171,10 +173,19 @@ proxy-groups:
   - name: 📲 电报信息
     type: select
     proxies:
-      - 🚀 节点选择
-      - 🎯 全球直连
+      - 🚀 节点选择 # 优先通过节点代理
+      - 🎯 全球直连 # 备选直连
       - 天书cf
       - 天书git
+    # 考虑添加 fallback 策略，如果主代理失败，尝试其他节点或直连
+    # type: fallback
+    # url: http://www.gstatic.com/generate_204
+    # interval: 300
+    # proxies:
+    #   - 🚀 节点选择
+    #   - 天书cf
+    #   - 天书git
+    #   - DIRECT # 极端情况下尝试直连
 
   - name: Ⓜ️ 微软服务
     type: select
@@ -259,11 +270,21 @@ rules:
   - DOMAIN-SUFFIX,bytecdn.com,🚀 节点选择
   - DOMAIN-KEYWORD,tiktok,🚀 节点选择
 
-  ## Telegram 补充
+  ## Telegram 补充 (重点优化区域)
+  # 优先将 Telegram 的流量全部导向代理
   - DOMAIN-SUFFIX,telegram.org,📲 电报信息
   - DOMAIN-SUFFIX,tdesktop.com,📲 电报信息
   - DOMAIN-SUFFIX,t.me,📲 电报信息
   - DOMAIN,api.telegram.org,📲 电报信息
+  # 确保 Telegram 的 IP 段也走代理，这非常重要！
+  # 以下 IP CIDR 需要你自己通过工具获取当前 Telegram 服务器的最新 IP 段，例如使用 `nslookup` 或 `dig` 查询 `telegram.org` 和 `t.me`，并查找相关 IP 段。
+  # ⚠️ 注意：Telegram IP 段可能变动，请定期更新。
+  - IP-CIDR,91.108.4.0/22,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
+  - IP-CIDR,91.108.8.0/22,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
+  - IP-CIDR,149.154.160.0/22,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
+  - IP-CIDR,185.76.0.0/22,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
+  - IP-CIDR,67.199.248.0/22,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
+  - IP-CIDR,109.239.140.0/24,📲 电报信息,no-resolve # 示例IP段，请自行查询最新
 
   ## 其它自定义
   - DOMAIN,v.ddys.pro,DIRECT
@@ -271,7 +292,7 @@ rules:
   - DOMAIN-SUFFIX,hf.co,🚀 节点选择
   - DOMAIN-KEYWORD,easytier,DIRECT
   - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
-  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
+  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT # 这条规则可能拦截 Telegram UDP，需确认意图
 
   ## 广告
   - RULE-SET,Anti-Ads,REJECT
@@ -280,7 +301,7 @@ rules:
   - GEOSITE,category-android-app-download,🚀 节点选择
   - GEOSITE,category-entertainment,🚀 节点选择
   - GEOSITE,category-porn,🚀 节点选择
-  - GEOSITE,telegram,📲 电报信息
+  - GEOSITE,telegram,📲 电报信息 # 确认这条规则在 IP 规则之后，或者将其顺序调整到最上方
   - GEOSITE,onedrive,🚀 节点选择
   - GEOSITE,category-games@cn,DIRECT
 
