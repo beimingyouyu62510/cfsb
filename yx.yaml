@@ -36,13 +36,12 @@ dns:
 find-process-mode: strict
 geodata-mode: true
 geox-url:
-  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
-  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
-
----
-# ==================================
-# 代理节点配置
-# ==================================
+  geoip: https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+  geosite: https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
+global-client-fingerprint: chrome
+profile:
+  store-fake-ip: true
+  store-selected: true
 proxies:
   - name: 天书cf
     type: vless
@@ -74,7 +73,8 @@ proxies:
 
 ---
 # ==================================
-# 代理组配置
+# 代理组配置 (Proxy Groups)
+# 注意：此部分也是顶级配置项，不应嵌套在 profile 下
 # ==================================
 proxy-groups:
   - name: 🚀 节点选择
@@ -161,80 +161,77 @@ proxy-groups:
       - ♻️ 自动选择
       - 天书cf
       - 天书git
-
----
-# ==================================
-# 规则提供者和规则设置
-# ==================================
 rule-providers:
   Anti-Ads:
-    type: http
     behavior: domain
     format: yaml
-    path: ./rule_provider/Anti-Ads.yaml
-    url: "https://anti-ad.net/clash.yaml"
     interval: 43200
     lazy: false
-
+    path: ./rule_provider/Anti-Ads.yaml
+    type: http
+    url: https://anti-ad.net/clash.yaml
 rules:
-  ## 🚫 淘宝/天猫/支付宝防拒绝访问增强段
-  - DOMAIN-SUFFIX,taobao.com,DIRECT
-  - DOMAIN-SUFFIX,tmall.com,DIRECT
-  - DOMAIN-SUFFIX,alibaba.com,DIRECT
-  - DOMAIN-SUFFIX,alipay.com,DIRECT
-  - DOMAIN-KEYWORD,taobao,DIRECT
-  - DOMAIN-KEYWORD,tmall,DIRECT
-  - DOMAIN-KEYWORD,alipay,DIRECT
-  - DOMAIN-KEYWORD,alicdn,DIRECT
-  - IP-CIDR,140.205.0.0/16,DIRECT,no-resolve
-
-  ## 其它自定义规则
-  - DOMAIN,v.ddys.pro,DIRECT
-  - DOMAIN,ddys.pro,DIRECT
-  - DOMAIN-SUFFIX,hf.co,🚀 节点选择
-  - DOMAIN,api.telegram.org,📲 电报信息
-  - DOMAIN-KEYWORD,easytier,DIRECT
-  - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
-  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
-
-  ## 广告、数据统计规则
-  - RULE-SET,Anti-Ads,REJECT
-
-  ## 大流量应用规则
-  - GEOSITE,category-android-app-download,🚀 节点选择
-  - GEOSITE,category-entertainment,🚀 节点选择
-  - GEOSITE,category-porn,🚀 节点选择
-  - GEOSITE,telegram,📲 电报信息
-  - GEOSITE,onedrive,🚀 节点选择
-  - GEOSITE,category-games@cn,DIRECT
-
-  ## 国外服务规则
-  - GEOSITE,twitter,🚀 节点选择
-  - GEOSITE,facebook,🚀 节点选择
-  - GEOSITE,netflix,🚀 节点选择
-
-  ## 国外固定IP服务规则
-  - GEOSITE,category-ai-chat-!cn,🚀 节点选择
-  - GEOSITE,category-cryptocurrency,🚀 节点选择
-  - GEOSITE,category-social-media-!cn,🚀 节点选择
-
-  ## Google 服务规则
-  - GEOSITE,google,🚀 节点选择
-
-  ## 直连规则
-  - GEOIP,CN,DIRECT,no-resolve
-  - GEOSITE,cn,DIRECT
-  - GEOSITE,apple-cn,DIRECT
-
-  ## 国外随意（兜底走代理）
-  - GEOSITE,geolocation-!cn,🚀 节点选择
-
-  ## 局域网直连规则
-  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
-  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
-  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-
-  ## 兜底规则（所有未匹配的流量）
-  - MATCH,🐟 漏网之鱼
+- DOMAIN-SUFFIX,hf.co,🚀 节点选择
+- DOMAIN,api.telegram.org,📲 电报信息
+- DOMAIN-KEYWORD,easytier,DIRECT
+- DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
+- AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
+- RULE-SET,Anti-Ads,REJECT
+- GEOSITE,category-android-app-download,🚀 节点选择
+- GEOSITE,category-entertainment,🚀 节点选择
+- GEOSITE,category-porn,🚀 节点选择
+- GEOSITE,telegram,📲 电报信息
+- GEOSITE,onedrive,🚀 节点选择
+- GEOSITE,category-games@cn,DIRECT
+- GEOSITE,category-ai-chat-!cn,🚀 节点选择
+- GEOSITE,category-cryptocurrency,🚀 节点选择
+- GEOSITE,category-social-media-!cn,🚀 节点选择
+- GEOSITE,google,🚀 节点选择
+- GEOSITE,cn,DIRECT
+- GEOSITE,apple-cn,DIRECT
+- GEOSITE,geolocation-!cn,🚀 节点选择
+- GEOIP,telegram,📲 电报信息,no-resolve
+- GEOIP,facebook,🚀 节点选择,no-resolve
+- GEOIP,twitter,🚀 节点选择,no-resolve
+- GEOIP,netflix,🚀 节点选择,no-resolve
+- GEOIP,google,🚀 节点选择,no-resolve
+- GEOIP,CN,DIRECT,no-resolve
+- IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+- IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+- IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+- IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+- IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+- MATCH,🐟 漏网之鱼
+sniffer:
+  enable: true
+  skip-domain:
+  - Mijia Cloud
+  - dlg.io.mi.com
+  - +.push.apple.com
+  sniff:
+    HTTP:
+      override-destination: true
+      ports:
+      - 80
+      - 8080-8880
+    QUIC:
+      ports:
+      - 443
+      - 8443
+    TLS:
+      ports:
+      - 443
+      - 8443
+tcp-concurrent: true
+tun:
+  auto-detect-interface: true
+  auto-route: true
+  device: mihomo
+  dns-hijack:
+  - any:53
+  - tcp://any:53
+  enable: true
+  endpoint-independent-nat: true
+  stack: system
+  strict-route: true
+unified-delay: false
