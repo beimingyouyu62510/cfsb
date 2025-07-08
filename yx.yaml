@@ -10,10 +10,134 @@ global-client-fingerprint: chrome
 ---
 # ==================================
 # 配置文件和DNS设置
+# 注意：根据您的错误提示，proxies 和 proxy-groups 已移至 profile 下
 # ==================================
 profile:
   store-selected: true
   store-fake-ip: true
+
+  # ==================================
+  # 代理节点配置 (Proxies)
+  # 此部分已根据错误提示移至 profile 下
+  # ==================================
+  proxies:
+    - name: 天书cf
+      type: vless
+      server: laji.jisucf.cloudns.biz
+      port: 443
+      uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
+      network: ws
+      tls: true
+      udp: true
+      servername: git02.jisucf.cloudns.biz
+      ws-opts:
+        path: "/?ed=2560"
+        headers:
+          Host: git02.jisucf.cloudns.biz
+
+    - name: 天书git
+      type: vless
+      server: laji.jisucf.cloudns.biz
+      port: 443
+      uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
+      udp: true
+      tls: true
+      sni: git01.jisucf.cloudns.biz
+      network: ws
+      ws-opts:
+        path: "/?ed=2560"
+        headers:
+          Host: git01.jisucf.cloudns.biz
+
+  # ==================================
+  # 代理组配置 (Proxy Groups)
+  # 此部分已根据错误提示移至 profile 下
+  # ==================================
+  proxy-groups:
+    - name: 🚀 节点选择
+      type: select
+      proxies:
+        - ♻️ 自动选择
+        - DIRECT
+        - 天书cf
+        - 天书git
+
+    - name: ♻️ 自动选择
+      type: url-test
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+      tolerance: 50
+      proxies:
+        - 天书cf
+        - 天书git
+
+    - name: 🌍 国外媒体
+      type: select
+      proxies:
+        - 🚀 节点选择
+        - ♻️ 自动选择
+        - 🎯 全球直连
+        - 天书cf
+        - 天书git
+
+    - name: 📲 电报信息
+      type: select
+      proxies:
+        - 🚀 节点选择
+        - 🎯 全球直连
+        - 天书cf
+        - 天书git
+
+    - name: Ⓜ️ 微软服务
+      type: select
+      proxies:
+        - 🎯 全球直连
+        - 🚀 节点选择
+        - 天书cf
+        - 天书git
+
+    - name: 🍎 苹果服务
+      type: select
+      proxies:
+        - 🚀 节点选择
+        - 🎯 全球直连
+        - 天书cf
+        - 天书git
+
+    - name: 📢 谷歌FCM
+      type: select
+      proxies:
+        - 🚀 节点选择
+        - 🎯 全球直连
+        - ♻️ 自动选择
+        - 天书cf
+        - 天书git
+
+    - name: 🎯 全球直连
+      type: select
+      proxies:
+        - DIRECT
+
+    - name: 🛑 全球拦截
+      type: select
+      proxies:
+        - REJECT
+        - DIRECT
+
+    - name: 🍃 应用净化
+      type: select
+      proxies:
+        - REJECT
+        - DIRECT
+
+    - name: 🐟 漏网之鱼
+      type: select
+      proxies:
+        - 🚀 节点选择
+        - 🎯 全球直连
+        - ♻️ 自动选择
+        - 天书cf
+        - 天书git
 
 sniffer:
   enable: true
@@ -81,129 +205,6 @@ geodata-mode: true
 geox-url:
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
-
----
-# ==================================
-# 代理节点配置
-# ==================================
-proxies:
-  - name: 天书cf
-    type: vless
-    server: laji.jisucf.cloudns.biz
-    port: 443
-    uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
-    network: ws
-    tls: true
-    udp: true
-    servername: git02.jisucf.cloudns.biz
-    ws-opts:
-      path: "/?ed=2560"
-      headers:
-        Host: git02.jisucf.cloudns.biz
-
-  - name: 天书git
-    type: vless
-    server: laji.jisucf.cloudns.biz
-    port: 443
-    uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
-    udp: true
-    tls: true
-    sni: git01.jisucf.cloudns.biz
-    network: ws
-    ws-opts:
-      path: "/?ed=2560"
-      headers:
-        Host: git01.jisucf.cloudns.biz
-
----
-# ==================================
-# 代理组配置
-# ==================================
-proxy-groups:
-  - name: 🚀 节点选择
-    type: select
-    proxies:
-      - ♻️ 自动选择
-      - DIRECT
-      - 天书cf
-      - 天书git
-
-  - name: ♻️ 自动选择
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
-    proxies:
-      - 天书cf
-      - 天书git
-
-  - name: 🌍 国外媒体
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - ♻️ 自动选择
-      - 🎯 全球直连
-      - 天书cf
-      - 天书git
-
-  - name: 📲 电报信息
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🎯 全球直连
-      - 天书cf
-      - 天书git
-
-  - name: Ⓜ️ 微软服务
-    type: select
-    proxies:
-      - 🎯 全球直连
-      - 🚀 节点选择
-      - 天书cf
-      - 天书git
-
-  - name: 🍎 苹果服务
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🎯 全球直连
-      - 天书cf
-      - 天书git
-
-  - name: 📢 谷歌FCM
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🎯 全球直连
-      - ♻️ 自动选择
-      - 天书cf
-      - 天书git
-
-  - name: 🎯 全球直连
-    type: select
-    proxies:
-      - DIRECT
-
-  - name: 🛑 全球拦截
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-
-  - name: 🍃 应用净化
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-
-  - name: 🐟 漏网之鱼
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🎯 全球直连
-      - ♻️ 自动选择
-      - 天书cf
-      - 天书git
 
 ---
 # ==================================
