@@ -3,13 +3,13 @@ name: Update Nodes
 on:
   schedule:
     - cron: '0 3 * * *'  # 每天凌晨3点运行
-  workflow_dispatch:      # 支持手动触发
+  workflow_dispatch:       # 支持手动触发
 
 jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # 明确声明需要写入仓库内容的权限
 
     steps:
       - name: Log Trigger Event
@@ -30,62 +30,70 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests pyyaml websocket-client
+          pip install -r requirements.txt # 使用 requirements.txt 文件安装依赖
 
       - name: Clean Old Backups
         run: |
+          # 查找并删除超过 7 天的 ch.yaml.bak 文件
           find . -name "ch.yaml.bak" -mtime +7 -delete
-          echo "Cleaned backup files older than 7 days"
+          echo "Cleaned backup files older than 7 days."
 
       - name: Validate ch.yaml Before Update
         run: |
-          python -c "import yaml; yaml.safe_load(open('ch.yaml'))" || echo "Invalid YAML in ch.yaml"
-        continue-on-error: true
+          # 验证 ch.yaml 格式是否正确，如果错误则退出工作流
+          python -c "import yaml; yaml.safe_load(open('ch.yaml'))"
+        # 移除 continue-on-error: true，如果文件无效则立即中止
+
+      - name: Configure Git
+        run: |
+          # 配置 Git 用户信息，避免在每个 Git 操作中重复
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Test Proxy Connectivity
         run: python test_proxies.py
         env:
-          LOG_LEVEL: DEBUG
-        continue-on-error: true  # 防止测试失败中断工作流
+          LOG_LEVEL: DEBUG # 设置日志级别为 DEBUG
+        continue-on-error: true  # 代理测试失败时允许工作流继续
 
       - name: Run update_nodes.py
         run: python update_nodes.py
         env:
-          LOG_LEVEL: DEBUG
+          LOG_LEVEL: DEBUG # 设置日志级别为 DEBUG
 
       - name: Validate ch.yaml After Update
         run: |
+          # 更新后再次验证 ch.yaml 格式，如果错误则退出工作流
           python -c "import yaml; yaml.safe_load(open('ch.yaml'))" || exit 1
 
-      - name: Check for Changes
+      - name: Check for Changes and Commit
+        id: commit_changes # 添加 id 以便在后续步骤中引用
         run: |
-          git add ch.yaml
-          git diff --cached ch.yaml > diff.txt
-          if [ -s diff.txt ]; then
+          git add ch.yaml # 暂存 ch.yaml
+          git diff --cached ch.yaml > diff.txt # 比较暂存区和 HEAD 的差异
+          if [ -s diff.txt ]; then # 如果 diff.txt 不为空（有变化）
             echo "Changes detected in ch.yaml:"
             cat diff.txt
+            git commit -m "🤖 Update proxies and load-balance group" # 提交更改
+            echo "changes_made=true" >> $GITHUB_OUTPUT # 设置输出变量
           else
             echo "No changes detected in ch.yaml"
+            echo "changes_made=false" >> $GITHUB_OUTPUT # 设置输出变量
           fi
 
-      - name: Commit and Push Changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add ch.yaml
-          git commit -m "🤖 Update proxies and load-balance group" --allow-empty || true
-          git push
+      - name: Push ch.yaml Changes
+        if: steps.commit_changes.outputs.changes_made == 'true' # 只有当有变化时才推送
+        run: git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Save Log
-        if: always()
+      - name: Update and Push Log
+        if: always() # 总是运行，无论前面是否失败
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          echo "$(date): Workflow completed, ch.yaml updated: $([ -s diff.txt ] && echo 'yes' || echo 'no')" >> update.log
-          git add update.log
-          git commit -m "Update log" --allow-empty || true
-          git push
+          # 将工作流完成状态和 ch.yaml 是否更新的信息追加到 update.log
+          echo "$(date): Workflow completed, ch.yaml updated: ${{ steps.commit_changes.outputs.changes_made }}" >> update.log
+          git add update.log # 暂存 update.log
+          git commit -m "Update workflow log" --allow-empty || true # 提交日志，允许空提交
+          git push # 推送日志文件
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
