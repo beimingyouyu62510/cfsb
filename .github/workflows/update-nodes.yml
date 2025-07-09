@@ -46,6 +46,7 @@ jobs:
         run: python test_proxies.py
         env:
           LOG_LEVEL: DEBUG
+        continue-on-error: true  # 防止 test_proxies.py 失败导致工作流中止
 
       - name: Run update_nodes.py
         run: python update_nodes.py
@@ -72,7 +73,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add ch.yaml
-          git commit -m "🤖 Update nodes: Keep latest, remove old" --allow-empty
+          git commit -m "🤖 Update nodes: Keep latest, remove old" --allow-empty || true
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -80,7 +81,11 @@ jobs:
       - name: Save Log
         if: always()
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           echo "$(date): Workflow completed, ch.yaml updated: $([ -s diff.txt ] && echo 'yes' || echo 'no')" >> update.log
           git add update.log
-          git commit -m "Update log" --allow-empty
+          git commit -m "Update log" --allow-empty || true
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
