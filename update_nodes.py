@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 REMOTE_URLS = [
-    "https://example.com/nodes.yaml",  # 替换为实际的节点源 URL
+    "https://raw.githubusercontent.com/hebe061103/cfip/refs/heads/master/config_dns_yes.yaml",  # 替换为实际的节点源 URL
 ]
 TARGET_PROXY_GROUPS = ["🚀 节点选择", "♻️ 自动选择", "🌍 国外媒体", "📲 电报信息", "Ⓜ️ 微软服务", "🍎 苹果服务", "📢 谷歌FCM", "🐟 漏网之鱼"]
 
