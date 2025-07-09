@@ -20,7 +20,8 @@ def fetch_remote_yaml(url: str) -> Dict:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
         data = yaml.safe_load(response.text) or {}
-        logger.info(f"Fetched {len(data.get('proxies', []))} proxies from {url}")
+        proxies = data.get('proxies', [])
+        logger.info(f"Fetched {len(proxies)} proxies from {url}: {[p.get('name', 'Unknown') for p in proxies]}")
         return data
     except requests.RequestException as e:
         logger.error(f"Failed to fetch {url}: {e}")
@@ -66,12 +67,12 @@ def filter_proxies(proxies: List[Dict]) -> List[Dict]:
     return filtered
 
 def update_proxy_groups(config: Dict, proxy_names: List[str]):
-    """更新 proxy-groups，确保包含负载均衡组和有效代理节点"""
+    """更新 proxy-groups，确保包含负载均衡组和动态节点"""
     if 'proxy-groups' not in config:
         logger.error("No proxy-groups found in config, initializing")
         config['proxy-groups'] = []
 
-    # 确保负载均衡组存在
+    # 添加或更新负载均衡组
     load_balance_group = {
         'name': '🚀 负载均衡',
         'type': 'load-balance',
@@ -81,7 +82,6 @@ def update_proxy_groups(config: Dict, proxy_names: List[str]):
         'proxies': proxy_names
     }
     
-    # 更新或添加负载均衡组
     found = False
     for group in config['proxy-groups']:
         if group.get('name') == '🚀 负载均衡':
@@ -145,10 +145,11 @@ def main():
         return
     
     # 更新 proxies
-    old_proxy_count = len(config.get('proxies', []))
+    old_proxies = config.get('proxies', [])
+    old_proxy_names = [p.get('name', 'Unknown') for p in old_proxies]
     config['proxies'] = all_proxies
-    proxy_names = [proxy['name'] for proxy in all_proxies]
-    logger.info(f"Updated proxies: {len(proxy_names)} new proxies replaced {old_proxy_count} old proxies")
+    proxy_names = [proxy.get('name', 'Unknown') for proxy in all_proxies]
+    logger.info(f"Updated proxies: {len(proxy_names)} new proxies {proxy_names} replaced {len(old_proxies)} old proxies {old_proxy_names}")
     
     # 更新 proxy-groups
     update_proxy_groups(config, proxy_names)
