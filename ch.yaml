@@ -187,4 +187,3 @@ tun:
   endpoint-independent-nat: true
   strict-route: true
 unified-delay: false
-```
