@@ -72,11 +72,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add ch.yaml
-          if ! git diff --cached --quiet; then
-            git commit -m "🤖 Update nodes: Keep latest, remove old"
-            git push
-          else
-            echo "No changes to commit"
-          fi
+          git commit -m "🤖 Update nodes: Keep latest, remove old" --allow-empty
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Save Log
+        if: always()
+        run: |
+          echo "$(date): Workflow completed, ch.yaml updated: $([ -s diff.txt ] && echo 'yes' || echo 'no')" >> update.log
+          git add update.log
+          git commit -m "Update log" --allow-empty
+          git push
