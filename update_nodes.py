@@ -11,7 +11,6 @@ logger = logging.getLogger(__name__)
 REMOTE_URLS = [
     "https://raw.githubusercontent.com/hebe061103/cfip/refs/heads/master/config_dns_yes.yaml"
 ]
-TARGET_PROXY_GROUPS = ["🚀 节点选择", "♻️ 自动选择", "🌍 国外媒体", "📲 电报信息", "Ⓜ️ 微软服务", "🍎 苹果服务", "📢 谷歌FCM", "🐟 漏网之鱼", "🚀 负载均衡"]
 
 def fetch_remote_yaml(url: str) -> Dict:
     """从远程 URL 获取 YAML 数据"""
@@ -66,13 +65,12 @@ def filter_proxies(proxies: List[Dict]) -> List[Dict]:
             logger.warning(f"Skipping proxy {proxy.get('name', 'Unknown')}: not VLESS+WS")
     return filtered
 
-def update_proxy_groups(config: Dict, proxy_names: List[str]):
-    """更新 proxy-groups，确保包含负载均衡组和动态节点"""
+def update_load_balance_group(config: Dict, proxy_names: List[str]):
+    """仅更新 proxy-groups 中的 🚀 负载均衡 组"""
     if 'proxy-groups' not in config:
         logger.error("No proxy-groups found in config, initializing")
         config['proxy-groups'] = []
 
-    # 添加或更新负载均衡组
     load_balance_group = {
         'name': '🚀 负载均衡',
         'type': 'load-balance',
@@ -93,32 +91,8 @@ def update_proxy_groups(config: Dict, proxy_names: List[str]):
         config['proxy-groups'].append(load_balance_group)
         logger.info(f"Added load-balance group with {len(proxy_names)} proxies: {proxy_names}")
 
-    # 更新其他 proxy-groups
-    for group in config['proxy-groups']:
-        group_name = group.get('name')
-        if group_name in TARGET_PROXY_GROUPS and group_name != '🚀 负载均衡':
-            new_proxies = []
-            if group_name == "🎯 全球直连":
-                new_proxies = ["DIRECT"]
-            elif group_name == "🛑 全球拦截" or group_name == "🍃 应用净化":
-                new_proxies = ["REJECT", "DIRECT"]
-            else:
-                if group_name != "🚀 节点选择":
-                    new_proxies.append("🚀 节点选择")
-                if group_name != "♻️ 自动选择":
-                    new_proxies.append("♻️ 自动选择")
-                new_proxies.append("🚀 负载均衡")
-                if group_name not in ["Ⓜ️ 微软服务", "🍎 苹果服务"]:
-                    new_proxies.append("🎯 全球直连")
-                new_proxies.extend(proxy_names)
-            
-            group['proxies'] = new_proxies
-            logger.info(f"Updated proxy-group {group_name} with {len(new_proxies)} proxies: {new_proxies}")
-        elif group_name != '🚀 负载均衡':
-            logger.warning(f"Skipping unknown proxy-group: {group_name}")
-
 def main():
-    """主函数：更新 ch.yaml 的 proxies 和 proxy-groups"""
+    """主函数：仅更新 ch.yaml 的 proxies 和 proxy-groups 中的 🚀 负载均衡"""
     config_file = Path('ch.yaml')
     backup_file = Path('ch.yaml.bak')
     
@@ -151,8 +125,8 @@ def main():
     proxy_names = [proxy.get('name', 'Unknown') for proxy in all_proxies]
     logger.info(f"Updated proxies: {len(proxy_names)} new proxies {proxy_names} replaced {len(old_proxies)} old proxies {old_proxy_names}")
     
-    # 更新 proxy-groups
-    update_proxy_groups(config, proxy_names)
+    # 仅更新 🚀 负载均衡 组
+    update_load_balance_group(config, proxy_names)
     
     # 保存更新后的配置文件
     save_yaml(config, config_file)
