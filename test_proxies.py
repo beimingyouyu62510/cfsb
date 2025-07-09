@@ -84,7 +84,7 @@ def main():
             logger.warning(f"Failed proxies: {', '.join(failed_proxies)}")
             # 注释掉 exit(1) 以允许工作流继续运行
             # exit(1)
-        else
+        else:
             logger.info("All proxies are reachable")
     
     except Exception as e:
