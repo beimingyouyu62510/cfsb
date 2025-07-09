@@ -4,11 +4,14 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: false
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  fake-ip-range: 198.18.0.1/16  # 使用标准假 IP 范围
   fake-ip-filter:
     - '*.lan'
     - '*.local'
     - 'stun.*.*'
+    - 'stun.*.*.*'
+    - 'stun.*.*.*.*'
+    - 'stun.*.*.*.*.*'
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -21,16 +24,17 @@ dns:
       - 119.29.29.29
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
   prefer-h3: true
   respect-rules: true
   use-hosts: true
 find-process-mode: strict
 geodata-mode: true
 geox-url:
-  geoip: https://github.com/Loyalsoldier/v2ray-rules/releases/latest/download/geoip.json
-  geosite: http://github.com/Loyalsoldier/dns.js
-global:
-  proxy-client-id: chrome
+  geoip: https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+  geosite: https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
+global-client-fingerprint: chrome
+profile:
   store-fake-ip: true
   store-selected: true
 proxies:
@@ -38,7 +42,7 @@ proxies:
     type: vless
     server: 104.16.6.212
     port: 443
-    uuid: cdc1d7d3-fe56-4a3-a724-21308e4393d9
+    uuid: cdc1d7d3-fe56-4a38-a724-21308e4393d9
     network: ws
     tls: true
     ws-opts:
@@ -55,8 +59,8 @@ proxies:
     ws-opts:
       path: /?ed=2048
       headers:
-        Host: gentle-grass.example.com
-  # 其他节点，更新 UUID 和 Host，确保唯一
+        Host: gentle-grass-cf96.hebe061103.workers.dev
+  # 其他节点省略，类似调整为 TLS 和 443 端口，确保 UUID 唯一
 proxy-groups:
   - name: 🚀 节点选择
     type: select
@@ -65,14 +69,14 @@ proxy-groups:
       - DIRECT
       - Seattle-0
       - Seattle-1
-      # 动态添加其他节点
+      # 其他节点
   - name: ♻️ 自动选择
     type: url-test
     proxies:
       - Seattle-0
       - Seattle-1
-      # 动态添加
-    url: https://www.google.com/generate_204
+      # 其他节点
+    url: http://www.gstatic.com/generate_204
     interval: 600
     tolerance: 100
   - name: 🌍 国外媒体
@@ -81,46 +85,46 @@ proxy-groups:
       - 🚀 节点选择
       - ♻️ 自动选择
       - DIRECT
-    - name: 📲 电报信息
-      type: select
-      proxies:
-        - 🚀 节点选择
-        - DIRECT
-      - name: Ⓜ️ 微软服务
-        type: select
-        proxies:
-          - DIRECT
-          - 🚀 节点选择
-        - name: 🍎 苹果服务
-          type: select
-          proxies:
-            - DIRECT
-            - 🚀 节点选择
-          - name: 📢 谷歌FCM
-            type: select
-            proxies:
-              - 🚀 节点选择
-              - DIRECT
-            - name: 🎯 全球直连
-              type: select
-              proxies:
-                - DIRECT
-              name: 🛑 全球拦截
-                type: select
-                proxies:
-                  - REJECT
-                  - DIRECT
-              name: 🍃 应用净化
-                type: select
-                proxies:
-                  - REJECT
-                  - DIRECT
-              - name: 🐟 漏网之鱼
-                type: select
-                proxies:
-                  - 🚀 节点选择
-                  - ♻️ 自动选择
-                  - DIRECT
+  - name: 📲 电报信息
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: 📢 谷歌FCM
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🍃 应用净化
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - ♻️ 自动选择
+      - DIRECT
 rule-providers:
   Anti-Ads:
     type: http
@@ -132,23 +136,44 @@ rule-providers:
 rules:
   - RULE-SET,Anti-Ads,REJECT
   - GEOSITE,telegram,📲 电报信息
+  - GEOSITE,category-android-app-download,🚀 节点选择
+  - GEOSITE,category-entertainment,🚀 节点选择
+  - GEOSITE,category-porn,🚀 节点选择
+  - GEOSITE,onedrive,🚀 节点选择
+  - GEOSITE,category-games@cn,DIRECT
+  - GEOSITE,category-ai-chat-!cn,🚀 节点选择
+  - GEOSITE,category-cryptocurrency,🚀 节点选择
+  - GEOSITE,category-social-media-!cn,🚀 节点选择
+  - GEOSITE,google,🚀 节点选择
   - GEOSITE,cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
   - GEOSITE,geolocation-!cn,🚀 节点选择
+  - GEOIP,telegram,📲 电报信息,no-resolve
+  - GEOIP,facebook,🚀 节点选择,no-resolve
+  - GEOIP,twitter,🚀 节点选择,no-resolve
+  - GEOIP,netflix,🚀 节点选择,no-resolve
+  - GEOIP,google,🚀 节点选择,no-resolve
   - GEOIP,CN,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
   - MATCH,🐟 漏网之鱼
 sniffer:
   enable: true
   skip-domain:
+    - Mijia Cloud
+    - dlg.io.mi.com
     - '*.push.apple.com'
   sniff:
     HTTP:
-      ports: [80, 443]
+      ports: [80, 8080-8880]
+      override-destination: true
     TLS:
-      ports: [443]
+      ports: [443, 8443]
     QUIC:
-      ports: [443]
+      ports: [443, 8443]
 tcp-concurrent: true
 tun:
   enable: true
@@ -158,4 +183,8 @@ tun:
   auto-detect-interface: true
   dns-hijack:
     - any:53
-  unified-delay: false
+    - tcp://any:53
+  endpoint-independent-nat: true
+  strict-route: true
+unified-delay: false
+```
