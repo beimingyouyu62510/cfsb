@@ -8,29 +8,66 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Limit GITHUB_TOKEN scope to repository contents
+      actions: read   # Allow reading workflow logs
 
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.11'  # Use specific Python version
+          cache: 'pip'  # Cache pip dependencies
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install requests pyyaml
+
+      - name: Validate ch.yaml Before Update
+        run: |
+          python -c "import yaml; yaml.safe_load(open('ch.yaml'))"
+        continue-on-error: true  # Log invalid YAML but continue
 
       - name: Run update_nodes.py
         run: python update_nodes.py
+        env:
+          LOG_LEVEL: DEBUG  # Enable debug logging
+
+      - name: Validate ch.yaml After Update
+        run: |
+          python -c "import yaml; yaml.safe_load(open('ch.yaml'))"
+        if: always()  # Run even if previous steps fail
+
+      - name: Test Proxy Nodes
+        run: |
+          python test_proxies.py
+        env:
+          TIMEOUT: 5  # Set timeout for proxy tests
+        if: always()  # Run to ensure nodes are reachable
 
       - name: Commit and Push Changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add ch.yaml
-          git diff --cached --quiet || git commit -m "🤖 节点更新（保留最新，清除旧节点）"
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m "🤖 Update nodes: Keep latest, remove old"
+            git push
+          else
+            echo "No changes to commit"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: success()  # Only commit if all validations pass
+
+      - name: Notify on Failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          channel-id: 'your-channel-id'
+          text: '🚨 Update Nodes workflow failed! Check logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
