@@ -73,16 +73,17 @@ def main():
         
         failed_proxies = []
         for proxy in proxies:
+            name = proxy.get('name', 'Unknown')
             if proxy.get('type') != 'vless' or proxy.get('network') != 'ws':
-                logger.warning(f"Skipping proxy {proxy.get('name', 'Unknown')}: not VLESS+WS")
-                failed_proxies.append(proxy.get('name'))
+                logger.warning(f"Skipping proxy {name}: not VLESS+WS")
+                failed_proxies.append(name)
                 continue
             
             if not test_proxy_tcp(proxy):
-                failed_proxies.append(proxy.get('name'))
+                failed_proxies.append(name)
                 continue
             if not test_proxy_websocket(proxy):
-                failed_proxies.append(proxy.get('name'))
+                failed_proxies.append(name)
         
         if failed_proxies:
             logger.warning(f"Failed proxies: {', '.join(failed_proxies)}")
