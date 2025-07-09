@@ -36,7 +36,7 @@ def load_local_yaml(file_path: Path) -> Dict:
         logger.info(f"Loading local YAML from {file_path}")
         with file_path.open('r', encoding='utf-8') as f:
             config = yaml.safe_load(f) or {}
-        logger.info(f"Loaded config with {len(config.get('proxies', []))} proxies")
+        logger.info(f"Loaded config with {len(config.get('proxies', []))} proxies: {[p.get('name', 'Unknown') for p in config.get('proxies', [])]}")
         return config
     except yaml.YAMLError as e:
         logger.error(f"Invalid YAML in {file_path}: {e}")
