@@ -1,393 +1,161 @@
 allow-lan: true
 dns:
-  default-nameserver:
-  - 117.50.11.11
-  - 180.168.255.18
-  - 223.5.5.5
   enable: true
-  enhanced-mode: fake-ip
-  fake-ip-filter:
-  - '*'
-  - +.lan
-  - +.local
-  - +.stun.*.*
-  - +.stun.*.*.*
-  - +.stun.*.*.*.*
-  - +.stun.*.*.*.*.*
-  fake-ip-range: 28.0.0.1/8
-  ipv6: false
   listen: 0.0.0.0:1053
-  nameserver:
-  - https://dns.google/dns-query
-  - https://1.1.1.1/dns-query
-  nameserver-policy:
-    geosite:cn,apple-cn,category-games@cn,private:
-    - 117.50.11.11
-    - 180.168.255.18
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - 'stun.*.*'
+  default-nameserver:
     - 223.5.5.5
-  prefer-h3: true
+    - 119.29.29.29
+  nameserver:
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+  nameserver-policy:
+    'geosite:cn,apple-cn,category-games@cn,private':
+      - 223.5.5.5
+      - 119.29.29.29
   proxy-server-nameserver:
-  - 223.5.5.5
-  - https://dns.alidns.com/dns-query
-  - 119.29.29.29
-  - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  prefer-h3: true
   respect-rules: true
   use-hosts: true
 find-process-mode: strict
 geodata-mode: true
 geox-url:
-  geoip: https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
-  geosite: https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
-global-client-fingerprint: chrome
-profile:
+  geoip: https://github.com/Loyalsoldier/v2ray-rules/releases/latest/download/geoip.json
+  geosite: http://github.com/Loyalsoldier/dns.js
+global:
+  proxy-client-id: chrome
   store-fake-ip: true
   store-selected: true
 proxies:
-- name: Seattle 0
-  network: ws
-  port: 80
-  server: 104.16.6.212
-  tls: false
-  type: vless
-  uuid: cdc1d7d3-fe56-4a38-a724-21308e4393d9
-  ws-opts:
-    headers:
-      Host: empty-rain-1b4a.hebe061103.workers.dev
-    path: /?ed=2048
-- name: Seattle 1
-  network: ws
-  port: 80
-  server: 104.16.6.65
-  tls: false
-  type: vless
-  uuid: 3d2176d3-89b8-40aa-b004-0ff837bed25c
-  ws-opts:
-    headers:
-      Host: gentle-grass-cf96.hebe061103.workers.dev
-    path: /?ed=2048
-- name: Seattle 2
-  network: ws
-  port: 80
-  server: 104.16.6.222
-  tls: false
-  type: vless
-  uuid: 3962565d-e47d-4dd0-aa19-3286e04d9cb6
-  ws-opts:
-    headers:
-      Host: nameless-resonance-6e4c.hebe061103.workers.dev
-    path: /?ed=2048
-- name: Seattle 3
-  network: ws
-  port: 80
-  server: 104.16.6.19
-  tls: false
-  type: vless
-  uuid: 4239d44c-19c7-4b8b-ae07-16607c95b6fb
-  ws-opts:
-    headers:
-      Host: gentle-night-12e3.hebe061103.workers.dev
-    path: /?ed=2048
-- name: Seattle 4
-  network: ws
-  port: 80
-  server: 104.16.6.206
-  tls: false
-  type: vless
-  uuid: 2e632913-bae0-4855-893c-02c828c835a2
-  ws-opts:
-    headers:
-      Host: 56e5.hebe061103.workers.dev
-    path: /?ed=2048
-- name: Hong Kong 0
-  network: ws
-  port: 80
-  server: 104.17.194.232
-  tls: false
-  type: vless
-  uuid: cdc1d7d3-fe56-4a38-a724-21308e4393d9
-  ws-opts:
-    headers:
-      Host: empty-rain-1b4a.hebe061103.workers.dev
-    path: /?ed=2048
-- name: Hong Kong 1
-  network: ws
-  port: 80
-  server: 104.17.194.119
-  tls: false
-  type: vless
-  uuid: 3d2176d3-89b8-40aa-b004-0ff837bed25c
-  ws-opts:
-    headers:
-      Host: gentle-grass-cf96.hebe061103.workers.dev
-    path: /?ed=2048
-- name: Hong Kong 2
-  network: ws
-  port: 80
-  server: 104.17.194.28
-  tls: false
-  type: vless
-  uuid: 3962565d-e47d-4dd0-aa19-3286e04d9cb6
-  ws-opts:
-    headers:
-      Host: nameless-resonance-6e4c.hebe061103.workers.dev
-    path: /?ed=2048
-- name: Hong Kong 3
-  network: ws
-  port: 80
-  server: 104.16.6.199
-  tls: false
-  type: vless
-  uuid: 4239d44c-19c7-4b8b-ae07-16607c95b6fb
-  ws-opts:
-    headers:
-      Host: gentle-night-12e3.hebe061103.workers.dev
-    path: /?ed=2048
-- name: Hong Kong 4
-  network: ws
-  port: 80
-  server: 104.17.194.74
-  tls: false
-  type: vless
-  uuid: 2e632913-bae0-4855-893c-02c828c835a2
-  ws-opts:
-    headers:
-      Host: 56e5.hebe061103.workers.dev
-    path: /?ed=2048
-- name: San Jose 0
-  network: ws
-  port: 80
-  server: 104.18.143.241
-  tls: false
-  type: vless
-  uuid: cdc1d7d3-fe56-4a38-a724-21308e4393d9
-  ws-opts:
-    headers:
-      Host: empty-rain-1b4a.hebe061103.workers.dev
-    path: /?ed=2048
-- name: San Jose 1
-  network: ws
-  port: 80
-  server: 104.18.143.30
-  tls: false
-  type: vless
-  uuid: 3d2176d3-89b8-40aa-b004-0ff837bed25c
-  ws-opts:
-    headers:
-      Host: gentle-grass-cf96.hebe061103.workers.dev
-    path: /?ed=2048
-- name: San Jose 2
-  network: ws
-  port: 80
-  server: 104.18.143.168
-  tls: false
-  type: vless
-  uuid: 3962565d-e47d-4dd0-aa19-3286e04d9cb6
-  ws-opts:
-    headers:
-      Host: nameless-resonance-6e4c.hebe061103.workers.dev
-    path: /?ed=2048
-- name: San Jose 3
-  network: ws
-  port: 80
-  server: 104.18.143.204
-  tls: false
-  type: vless
-  uuid: 4239d44c-19c7-4b8b-ae07-16607c95b6fb
-  ws-opts:
-    headers:
-      Host: gentle-night-12e3.hebe061103.workers.dev
-    path: /?ed=2048
-- name: San Jose 4
-  network: ws
-  port: 80
-  server: 104.18.143.230
-  tls: false
-  type: vless
-  uuid: 2e632913-bae0-4855-893c-02c828c835a2
-  ws-opts:
-    headers:
-      Host: 56e5.hebe061103.workers.dev
-    path: /?ed=2048
+  - name: Seattle-0
+    type: vless
+    server: 104.16.6.212
+    port: 443
+    uuid: cdc1d7d3-fe56-4a3-a724-21308e4393d9
+    network: ws
+    tls: true
+    ws-opts:
+      path: /?ed=2048
+      headers:
+        Host: empty-rain-1b4a.hebe061103.workers.dev
+  - name: Seattle-1
+    type: vless
+    server: 104.16.6.65
+    port: 443
+    uuid: 3d2176d3-89b8-40aa-b004-0ff837bed25c
+    network: ws
+    tls: true
+    ws-opts:
+      path: /?ed=2048
+      headers:
+        Host: gentle-grass.example.com
+  # 其他节点，更新 UUID 和 Host，确保唯一
 proxy-groups:
-- name: 🚀 节点选择
-  proxies:
-  - ♻️ 自动选择
-  - DIRECT
-  - Seattle 0
-  - Seattle 1
-  - Seattle 2
-  - Seattle 3
-  - Seattle 4
-  type: select
-- interval: 300
-  name: ♻️ 自动选择
-  proxies:
-  - Seattle 0
-  - Seattle 1
-  - Seattle 2
-  - Seattle 3
-  - Seattle 4
-  tolerance: 50
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-- name: 🌍 国外媒体
-  proxies:
-  - 🚀 节点选择
-  - ♻️ 自动选择
-  - 🎯 全球直连
-  - Seattle 0
-  - Seattle 1
-  - Seattle 2
-  - Seattle 3
-  - Seattle 4
-  type: select
-- name: 📲 电报信息
-  proxies:
-  - 🚀 节点选择
-  - 🎯 全球直连
-  - Seattle 0
-  - Seattle 1
-  - Seattle 2
-  - Seattle 3
-  - Seattle 4
-  type: select
-- name: Ⓜ️ 微软服务
-  proxies:
-  - 🎯 全球直连
-  - 🚀 节点选择
-  - Seattle 0
-  - Seattle 1
-  - Seattle 2
-  - Seattle 3
-  - Seattle 4
-  type: select
-- name: 🍎 苹果服务
-  proxies:
-  - 🚀 节点选择
-  - 🎯 全球直连
-  - Seattle 0
-  - Seattle 1
-  - Seattle 2
-  - Seattle 3
-  - Seattle 4
-  type: select
-- name: 📢 谷歌FCM
-  proxies:
-  - 🚀 节点选择
-  - 🎯 全球直连
-  - ♻️ 自动选择
-  - Seattle 0
-  - Seattle 1
-  - Seattle 2
-  - Seattle 3
-  - Seattle 4
-  type: select
-- name: 🎯 全球直连
-  proxies:
-  - DIRECT
-  type: select
-- name: 🛑 全球拦截
-  proxies:
-  - REJECT
-  - DIRECT
-  type: select
-- name: 🍃 应用净化
-  proxies:
-  - REJECT
-  - DIRECT
-  type: select
-- name: 🐟 漏网之鱼
-  proxies:
-  - 🚀 节点选择
-  - ♻️ 自动选择
-  - 🎯 全球直连
-  - Seattle 0
-  - Seattle 1
-  - Seattle 2
-  - Seattle 3
-  - Seattle 4
-  - Hong Kong 0
-  - Hong Kong 1
-  - Hong Kong 2
-  - Hong Kong 3
-  - Hong Kong 4
-  - San Jose 0
-  - San Jose 1
-  - San Jose 2
-  - San Jose 3
-  - San Jose 4
-  type: select
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - DIRECT
+      - Seattle-0
+      - Seattle-1
+      # 动态添加其他节点
+  - name: ♻️ 自动选择
+    type: url-test
+    proxies:
+      - Seattle-0
+      - Seattle-1
+      # 动态添加
+    url: https://www.google.com/generate_204
+    interval: 600
+    tolerance: 100
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - ♻️ 自动选择
+      - DIRECT
+    - name: 📲 电报信息
+      type: select
+      proxies:
+        - 🚀 节点选择
+        - DIRECT
+      - name: Ⓜ️ 微软服务
+        type: select
+        proxies:
+          - DIRECT
+          - 🚀 节点选择
+        - name: 🍎 苹果服务
+          type: select
+          proxies:
+            - DIRECT
+            - 🚀 节点选择
+          - name: 📢 谷歌FCM
+            type: select
+            proxies:
+              - 🚀 节点选择
+              - DIRECT
+            - name: 🎯 全球直连
+              type: select
+              proxies:
+                - DIRECT
+              name: 🛑 全球拦截
+                type: select
+                proxies:
+                  - REJECT
+                  - DIRECT
+              name: 🍃 应用净化
+                type: select
+                proxies:
+                  - REJECT
+                  - DIRECT
+              - name: 🐟 漏网之鱼
+                type: select
+                proxies:
+                  - 🚀 节点选择
+                  - ♻️ 自动选择
+                  - DIRECT
 rule-providers:
   Anti-Ads:
-    behavior: domain
-    format: yaml
-    interval: 43200
-    lazy: false
-    path: ./rule_provider/Anti-Ads.yaml
     type: http
+    behavior: domain
     url: https://anti-ad.net/clash.yaml
+    path: ./rule_provider/Anti-Ads.yaml
+    interval: 86400
+    format: yaml
 rules:
-- DOMAIN-SUFFIX,hf.co,🚀 节点选择
-- DOMAIN,api.telegram.org,📲 电报信息
-- DOMAIN-KEYWORD,easytier,DIRECT
-- DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
-- AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
-- RULE-SET,Anti-Ads,REJECT
-- GEOSITE,category-android-app-download,🚀 节点选择
-- GEOSITE,category-entertainment,🚀 节点选择
-- GEOSITE,category-porn,🚀 节点选择
-- GEOSITE,telegram,📲 电报信息
-- GEOSITE,onedrive,🚀 节点选择
-- GEOSITE,category-games@cn,DIRECT
-- GEOSITE,category-ai-chat-!cn,🚀 节点选择
-- GEOSITE,category-cryptocurrency,🚀 节点选择
-- GEOSITE,category-social-media-!cn,🚀 节点选择
-- GEOSITE,google,🚀 节点选择
-- GEOSITE,cn,DIRECT
-- GEOSITE,apple-cn,DIRECT
-- GEOSITE,geolocation-!cn,🚀 节点选择
-- GEOIP,telegram,📲 电报信息,no-resolve
-- GEOIP,facebook,🚀 节点选择,no-resolve
-- GEOIP,twitter,🚀 节点选择,no-resolve
-- GEOIP,netflix,🚀 节点选择,no-resolve
-- GEOIP,google,🚀 节点选择,no-resolve
-- GEOIP,CN,DIRECT,no-resolve
-- IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-- IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
-- IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
-- IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
-- IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-- MATCH,🐟 漏网之鱼
+  - RULE-SET,Anti-Ads,REJECT
+  - GEOSITE,telegram,📲 电报信息
+  - GEOSITE,cn,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,geolocation-!cn,🚀 节点选择
+  - GEOIP,CN,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - MATCH,🐟 漏网之鱼
 sniffer:
   enable: true
   skip-domain:
-  - Mijia Cloud
-  - dlg.io.mi.com
-  - +.push.apple.com
+    - '*.push.apple.com'
   sniff:
     HTTP:
-      override-destination: true
-      ports:
-      - 80
-      - 8080-8880
-    QUIC:
-      ports:
-      - 443
-      - 8443
+      ports: [80, 443]
     TLS:
-      ports:
-      - 443
-      - 8443
+      ports: [443]
+    QUIC:
+      ports: [443]
 tcp-concurrent: true
 tun:
-  auto-detect-interface: true
-  auto-route: true
-  device: mihomo
-  dns-hijack:
-  - any:53
-  - tcp://any:53
   enable: true
-  endpoint-independent-nat: true
   stack: system
-  strict-route: true
-unified-delay: false
+  device: mihomo
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+  unified-delay: false
