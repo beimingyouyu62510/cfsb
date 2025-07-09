@@ -1,6 +1,5 @@
 import logging
 import socket
-import ssl
 import yaml
 from pathlib import Path
 from typing import Dict
@@ -13,7 +12,7 @@ logger = logging.getLogger(__name__)
 def test_proxy_tcp(proxy: Dict) -> bool:
     """测试代理节点的 TCP 连接"""
     server = proxy.get('server')
-    port = proxy.get('port', 443)
+    port = proxy.get('port', 80)
     name = proxy.get('name', 'Unknown')
     
     try:
@@ -29,18 +28,21 @@ def test_proxy_tcp(proxy: Dict) -> bool:
         return False
 
 def test_proxy_websocket(proxy: Dict) -> bool:
-    """测试 WebSocket 连接（VLESS 使用 ws 协议）"""
+    """测试 WebSocket 连接（支持 TLS 和非 TLS）"""
     server = proxy.get('server')
-    port = proxy.get('port', 443)
+    port = proxy.get('port', 80)
     name = proxy.get('name', 'Unknown')
     ws_path = proxy.get('ws-opts', {}).get('path', '/')
     ws_host = proxy.get('ws-opts', {}).get('headers', {}).get('Host', server)
     
-    ws_url = f"wss://{ws_host}:{port}{ws_path}"
+    protocol = 'wss' if proxy.get('tls', False) else 'ws'
+    ws_url = f"{protocol}://{ws_host}:{port}{ws_path}"
     
     try:
         logger.info(f"Testing WebSocket connection for proxy: {name} ({ws_url})")
-        ws = websocket.WebSocket(sslopt={"cert_reqs": ssl.CERT_NONE})
+        ws = websocket.WebSocket()
+        if proxy.get('tls', False):
+            ws = websocket.WebSocket(sslopt={"cert_reqs": ssl.CERT_NONE})
         ws.connect(ws_url, timeout=5)
         ws.close()
         logger.info(f"WebSocket connection to {name} succeeded")
@@ -71,20 +73,14 @@ def main():
         
         failed_proxies = []
         for proxy in proxies:
-            # 过滤不符合要求的节点
-            if (proxy.get('type') != 'vless' or
-                proxy.get('network') != 'ws' or
-                not proxy.get('tls', False) or
-                proxy.get('port') != 443):
-                logger.warning(f"Skipping proxy {proxy.get('name', 'Unknown')}: not VLESS+WS+TLS or port != 443")
+            if proxy.get('type') != 'vless' or proxy.get('network') != 'ws':
+                logger.warning(f"Skipping proxy {proxy.get('name', 'Unknown')}: not VLESS+WS")
                 failed_proxies.append(proxy.get('name'))
                 continue
             
-            # 测试 TCP 连接
             if not test_proxy_tcp(proxy):
                 failed_proxies.append(proxy.get('name'))
                 continue
-            # 测试 WebSocket 连接
             if not test_proxy_websocket(proxy):
                 failed_proxies.append(proxy.get('name'))
         
