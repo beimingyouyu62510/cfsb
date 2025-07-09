@@ -82,6 +82,8 @@ geox-url:
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 proxies:
+  # 这部分会被 update_nodes.py 动态更新
+  # 初始可以保留一些示例节点，或者留空，脚本会替换它们
   - name: 天书cf
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -95,72 +97,72 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: git02.jisucf.cloudns.biz
-  - name: 天书git
-    type: vless
-    server: laji.jisucf.cloudns.biz
-    port: 443
-    uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
-    udp: true
-    tls: true
-    sni: git01.jisucf.cloudns.biz
-    network: ws
-    ws-opts:
-      path: "/?ed=2560"
-      headers:
-        Host: git01.jisucf.cloudns.biz
 proxy-groups:
+  # 新增或修改这个组，使其成为所有动态更新节点的中心入口
+  # 名字必须是 "🚀 负载均衡"，与 update_nodes.py 和远程源中的名字一致
+  - name: 🚀 负载均衡
+    type: url-test # 推荐使用 url-test 或 load-balance
+    url: http://www.google.com/generate_204
+    interval: 300
+    tolerance: 50 # url-test 类型需要 tolerance
+    proxies:
+      # 初始可以包含一些旧节点，或留空。
+      # update_nodes.py 会将这里的内容替换为所有新获取的 VLESS+WS 节点名称。
+      - 天书cf
+      - 天书git
   - name: 🚀 节点选择
     type: select
     proxies:
       - ♻️ 自动选择
       - DIRECT
-      - 天书cf
-      - 天书git
+      - 🚀 负载均衡 # <-- 引用 🚀 负载均衡
+
   - name: ♻️ 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
     proxies:
-      - 天书cf
-      - 天书git
+      - 🚀 负载均衡 # <-- 引用 🚀 负载均衡
+
   - name: 🌍 国外媒体
     type: select
     proxies:
       - 🚀 节点选择
       - ♻️ 自动选择
       - 🎯 全球直连
-      - 天书cf
-      - 天书git
+      - 🚀 负载均衡 # <-- 引用 🚀 负载均衡
+
   - name: 📲 电报信息
     type: select
     proxies:
       - 🚀 节点选择
       - 🎯 全球直连
-      - 天书cf
-      - 天书git
+      - 🚀 负载均衡 # <-- 引用 🚀 负载均衡
+
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
       - 🎯 全球直连
       - 🚀 节点选择
-      - 天书cf
-      - 天书git
+      - 🚀 负载均衡 # <-- 引用 🚀 负载均衡
+
   - name: 🍎 苹果服务
     type: select
     proxies:
       - 🚀 节点选择
       - 🎯 全球直连
-      - 天书cf
-      - 天书git
+      - 🚀 负载均衡 # <-- 引用 🚀 负载均衡
+
   - name: 📢 谷歌FCM
     type: select
     proxies:
       - 🚀 节点选择
       - 🎯 全球直连
       - ♻️ 自动选择
-      - 天书cf
-      - 天书git
+      - 🚀 负载均衡 # <-- 引用 🚀 负载均衡
+
+  # 这些组通常不变
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -175,14 +177,14 @@ proxy-groups:
     proxies:
       - REJECT
       - DIRECT
+
   - name: 🐟 漏网之鱼
     type: select
     proxies:
       - 🚀 节点选择
       - 🎯 全球直连
       - ♻️ 自动选择
-      - 天书cf
-      - 天书git
+      - 🚀 负载均衡 # <-- 引用 🚀 负载均衡
 rule-providers:
   Anti-Ads:
     type: http
