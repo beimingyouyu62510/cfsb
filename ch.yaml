@@ -11,28 +11,28 @@ sniffer:
   sniff:
     HTTP:
       ports:
-        - 80
-        - 8080-8880
+      - 80
+      - 8080-8880
       override-destination: true
     TLS:
       ports:
-        - 443
-        - 8443
+      - 443
+      - 8443
     QUIC:
       ports:
-        - 443
-        - 8443
+      - 443
+      - 8443
   skip-domain:
-    - Mijia Cloud
-    - dlg.io.mi.com
-    - +.push.apple.com
+  - Mijia Cloud
+  - dlg.io.mi.com
+  - +.push.apple.com
 tun:
   enable: true
   stack: system
   device: mihomo
   dns-hijack:
-    - any:53
-    - tcp://any:53
+  - any:53
+  - tcp://any:53
   auto-route: true
   auto-detect-interface: true
   strict-route: true
@@ -46,199 +46,178 @@ dns:
   enhanced-mode: fake-ip
   use-hosts: true
   default-nameserver:
-    - 223.5.5.5
-    - 180.168.255.18
-    - 117.50.11.11
+  - 223.5.5.5
+  - 180.168.255.18
+  - 117.50.11.11
   nameserver:
-    - https://dns.google/dns-query
-    - https://1.1.1.1/dns-query
+  - https://dns.google/dns-query
+  - https://1.1.1.1/dns-query
   proxy-server-nameserver:
-    - 223.5.5.5
-    - https://dns.alidns.com/dns-query
-    - 119.29.29.29
-    - https://doh.pub/dns-query
+  - 223.5.5.5
+  - https://dns.alidns.com/dns-query
+  - 119.29.29.29
+  - https://doh.pub/dns-query
   nameserver-policy:
-    "geosite:cn,apple-cn,category-games@cn,private":
-      - 117.50.11.11
-      - 180.168.255.18
-      - 223.5.5.5
+    geosite:cn,apple-cn,category-games@cn,private:
+    - 117.50.11.11
+    - 180.168.255.18
+    - 223.5.5.5
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
-    - '*'
-    - +.lan
-    - +.local
-    - +.stun.*.*
-    - +.stun.*.*.*
-    - +.stun.*.*.*.*
-    - +.stun.*.*.*.*.*
+  - '*'
+  - +.lan
+  - +.local
+  - +.stun.*.*
+  - +.stun.*.*.*
+  - +.stun.*.*.*.*
+  - +.stun.*.*.*.*.*
 geodata-mode: true
 geox-url:
   geoip: https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
   geosite: https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
 proxies:
-  # 注意：这部分内容在首次手动创建或克隆仓库时可能为空或包含旧节点。
-  # 每次 GitHub Actions 运行 update_nodes.py 脚本后，
-  # 这里的列表都会被远程订阅源中最新的 VLESS+WS 节点完全替换。
-  - name: Hong Kong 0
-    server: 104.17.194.213
-    port: 80
-    type: vless
-    uuid: cdc1d7d3-fe56-4a38-a724-21308e4393d9
-    tls: false
-    network: ws
-    ws-opts:
-      path: /?ed=2048
-      headers:
-        Host: empty-rain-1b4a.hebe061103.workers.dev
-  - name: Hong Kong 1
-    server: 104.17.194.220
-    port: 80
-    type: vless
-    uuid: 3d2176d3-89b8-40aa-b004-0ff837bed25c
-    tls: false
-    network: ws
-    ws-opts:
-      path: /?ed=2048
-      headers:
-        Host: gentle-grass-cf96.hebe061103.workers.dev
-  - name: Hong Kong 2
-    server: 104.17.194.239
-    port: 80
-    type: vless
-    uuid: 3962565d-e47d-4dd0-aa19-3286e04d9cb6
-    tls: false
-    network: ws
-    ws-opts:
-      path: /?ed=2048
-      headers:
-        Host: nameless-resonance-6e4c.hebe061103.workers.dev
-  - name: Hong Kong 3
-    server: 104.17.194.249
-    port: 80
-    type: vless
-    uuid: 4239d44c-19c7-4b8b-ae07-16607c95b6fb
-    tls: false
-    network: ws
-    ws-opts:
-      path: /?ed=2048
-      headers:
-        Host: gentle-night-12e3.hebe061103.workers.dev
-  - name: Hong Kong 4
-    server: 104.17.194.1
-    port: 80
-    type: vless
-    uuid: 2e632913-bae0-4855-893c-02c828c835a2
-    tls: false
-    network: ws
-    ws-opts:
-      path: /?ed=2048
-      headers:
-        Host: 56e5.hebe061103.workers.dev
+- name: Hong Kong 0
+  server: 104.17.194.213
+  port: 80
+  type: vless
+  uuid: cdc1d7d3-fe56-4a38-a724-21308e4393d9
+  tls: false
+  network: ws
+  ws-opts:
+    path: /?ed=2048
+    headers:
+      Host: empty-rain-1b4a.hebe061103.workers.dev
+- name: Hong Kong 1
+  server: 104.17.194.220
+  port: 80
+  type: vless
+  uuid: 3d2176d3-89b8-40aa-b004-0ff837bed25c
+  tls: false
+  network: ws
+  ws-opts:
+    path: /?ed=2048
+    headers:
+      Host: gentle-grass-cf96.hebe061103.workers.dev
+- name: Hong Kong 2
+  server: 104.17.194.239
+  port: 80
+  type: vless
+  uuid: 3962565d-e47d-4dd0-aa19-3286e04d9cb6
+  tls: false
+  network: ws
+  ws-opts:
+    path: /?ed=2048
+    headers:
+      Host: nameless-resonance-6e4c.hebe061103.workers.dev
+- name: Hong Kong 3
+  server: 104.17.194.249
+  port: 80
+  type: vless
+  uuid: 4239d44c-19c7-4b8b-ae07-16607c95b6fb
+  tls: false
+  network: ws
+  ws-opts:
+    path: /?ed=2048
+    headers:
+      Host: gentle-night-12e3.hebe061103.workers.dev
+- name: Hong Kong 4
+  server: 104.17.194.1
+  port: 80
+  type: vless
+  uuid: 2e632913-bae0-4855-893c-02c828c835a2
+  tls: false
+  network: ws
+  ws-opts:
+    path: /?ed=2048
+    headers:
+      Host: 56e5.hebe061103.workers.dev
 proxy-groups:
-  # 核心动态代理组：所有从远程订阅获取的 VLESS+WS 节点都汇集于此。
-  # 这个组由 update_nodes.py 脚本全自动更新。
-  # 它的作用是作为一个底层的节点池，供其他更高层级的代理组引用和使用。
-  - name: 🚀 节点池
-    type: url-test # 或者 load-balance，取决于你希望默认如何分流和测试
-    url: http://www.google.com/generate_204
-    interval: 300
-    tolerance: 50 # url-test 需要 tolerance
-    proxies:
-      # 脚本会自动更新这里的列表，替换为最新的 Hong Kong X 节点
-      - Hong Kong 0
-      - Hong Kong 1
-      - Hong Kong 2
-      - Hong Kong 3
-      - Hong Kong 4
-
-  # 智能代理组：根据节点延迟自动选择最佳节点。
-  # 用户可以在UI中选择这个组，它会自动在 "🚀 节点池" 中选择最快的可用节点。
-  - name: ♻️ 自动选择
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
-    proxies:
-      - 🚀 节点池 # 引用节点池，测试其中的所有节点
-
-  # 自动故障转移组：提供更高的可靠性，当节点池中的节点不可用时，尝试备用。
-  # 用户或规则可以引用此组，以获得更稳定的代理体验。
-  - name: 🔁 自动故障转移
-    type: fallback
-    url: http://www.google.com/generate_204
-    interval: 300
-    proxies:
-      - ♻️ 自动选择 # 优先使用自动选择的最优节点
-      - 🚀 节点池 # 如果自动选择失败，尝试节点池中的其他节点
-      - DIRECT # 如果所有代理都挂了，退回直连
-
-  # 用户主选择组：供用户在 Clash 客户端界面手动选择。
-  # 它提供了多种灵活的选项：自动故障转移、自动选择、以及所有最新动态节点。
-  # 脚本会动态更新这里的 Hong Kong X 节点，并保留固定的策略引用。
-  - name: 🌍 国际流量
-    type: select
-    proxies:
-      - 🔁 自动故障转移 # 推荐用户选择，提供了很好的稳定性
-      - ♻️ 自动选择 # 备选的自动选择策略
-      - DIRECT # 直连选项，用于不走代理的情况
-      # 以下的 Hong Kong X 节点会由脚本自动插入和更新
-      - Hong Kong 0
-      - Hong Kong 1
-      - Hong Kong 2
-      - Hong Kong 3
-      - Hong Kong 4
-
-  # 功能性代理组：针对特定类型流量（如流媒体、社交媒体等）进行分流。
-  # 这些组都引用 "🌍 国际流量"，使得它们都能享受到动态节点更新的好处。
-
-  - name: 🌐 流媒体
-    type: select
-    proxies:
-      - 🌍 国际流量 # 引用主选择组
-      - DIRECT
-
-  - name: 💬 社交媒体 & 消息
-    type: select
-    proxies:
-      - 🌍 国际流量
-      - DIRECT
-
-  - name: 🖥️ 微软服务
-    type: select
-    proxies:
-      - DIRECT # 微软服务很多建议直连
-      - 🌍 国际流量
-
-  - name: 🍎 苹果服务
-    type: select
-    proxies:
-      - DIRECT # 苹果服务很多建议直连
-      - 🌍 国际流量
-
-  - name: 🔍 谷歌服务
-    type: select
-    proxies:
-      - 🌍 国际流量
-      - DIRECT
-
-  # 直连/拦截组：这些组通常用于规则的最终决策，不引用其他代理组。
-  - name: 🇨🇳 中国直连
-    type: select
-    proxies:
-      - DIRECT
-
-  - name: 🚫 广告拦截
-    type: select
-    proxies:
-      - REJECT
-
-  # 兜底组：用于处理所有未被其他规则匹配的流量。
-  - name: 🚦 剩余流量
-    type: select
-    proxies:
-      - 🌍 国际流量 # 优先走代理
-      - 🇨🇳 中国直连 # 其次尝试中国直连
-
+- name: 🚀 节点池
+  type: url-test
+  url: http://www.google.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies:
+  - Hong Kong 0
+  - Hong Kong 1
+  - Hong Kong 2
+  - Hong Kong 3
+  - Hong Kong 4
+- name: ♻️ 自动选择
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies:
+  - 🚀 节点池
+- name: 🔁 自动故障转移
+  type: fallback
+  url: http://www.google.com/generate_204
+  interval: 300
+  proxies:
+  - ♻️ 自动选择
+  - 🚀 节点池
+  - DIRECT
+- name: 🌍 国际流量
+  type: select
+  proxies:
+  - 🔁 自动故障转移
+  - ♻️ 自动选择
+  - DIRECT
+  - Hong Kong 0
+  - Hong Kong 1
+  - Hong Kong 2
+  - Hong Kong 3
+  - Hong Kong 4
+- name: 🌐 流媒体
+  type: select
+  proxies:
+  - 🌍 国际流量
+  - DIRECT
+- name: 💬 社交媒体 & 消息
+  type: select
+  proxies:
+  - 🌍 国际流量
+  - DIRECT
+- name: 🖥️ 微软服务
+  type: select
+  proxies:
+  - DIRECT
+  - 🌍 国际流量
+- name: 🍎 苹果服务
+  type: select
+  proxies:
+  - DIRECT
+  - 🌍 国际流量
+- name: 🔍 谷歌服务
+  type: select
+  proxies:
+  - 🌍 国际流量
+  - DIRECT
+- name: 🇨🇳 中国直连
+  type: select
+  proxies:
+  - DIRECT
+- name: 🚫 广告拦截
+  type: select
+  proxies:
+  - REJECT
+- name: 🚦 剩余流量
+  type: select
+  proxies:
+  - 🌍 国际流量
+  - 🇨🇳 中国直连
+- name: 🚀 负载均衡
+  type: url-test
+  url: http://www.google.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies:
+  - Hong Kong 0
+  - Hong Kong 1
+  - Hong Kong 2
+  - Hong Kong 3
+  - Hong Kong 4
 rule-providers:
   Anti-Ads:
     type: http
@@ -246,68 +225,49 @@ rule-providers:
     format: yaml
     path: ./rule_provider/Anti-Ads.yaml
     url: https://anti-ad.net/clash.yaml
-    interval: 43200 # 12小时更新一次
+    interval: 43200
     lazy: false
 rules:
-  ## 非 IP 类规则 - 更精确的匹配优先
-  ### 广告和恶意域名拦截 (使用 Rule Provider) - 放在非常靠前的位置以提高拦截效率
-  - RULE-SET,Anti-Ads,🚫 广告拦截
-
-  ### 自定义直连（常用国内服务，确保优先直连）
-  - DOMAIN-SUFFIX,taobao.com,🇨🇳 中国直连
-  - DOMAIN-SUFFIX,tmall.com,🇨🇳 中国直连
-  - DOMAIN-SUFFIX,alibaba.com,🇨🇳 中国直连
-  - DOMAIN-SUFFIX,alipay.com,🇨🇳 中国直连
-  - DOMAIN-SUFFIX,aliyun.com,🇨🇳 中国直连
-  - DOMAIN-KEYWORD,taobao,🇨🇳 中国直连
-  - DOMAIN-KEYWORD,tmall,🇨🇳 中国直连
-  - DOMAIN,v.ddys.pro,🇨🇳 中国直连
-  - DOMAIN,ddys.pro,🇨🇳 中国直连
-  - DOMAIN-KEYWORD,easytier,🇨🇳 中国直连
-
-  ### 特定代理需求（特定域名强制走代理）
-  - DOMAIN-SUFFIX,hf.co,🌍 国际流量
-  - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🌍 国际流量
-
-  ### QUIC/UDP 流量处理 (谨慎调整，如果遇到 QUIC 服务异常，可能需要移除此条)
-  # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT 
-
-  ### GEOSITE 规则 - 按服务类型和流量重要性排序
-  - GEOSITE,category-games@cn,🇨🇳 中国直连 # 国内游戏直连，确保低延迟
-  - GEOSITE,cn,🇨🇳 中国直连 # 所有中国大陆域名直连
-  - GEOSITE,apple-cn,🇨🇳 中国直连 # 苹果中国服务直连
-  - GEOSITE,microsoft,🖥️ 微软服务 # 微软服务 (如Office365, Azure)，优先考虑直连或特定代理
-  - GEOSITE,apple,🍎 苹果服务 # 苹果国际服务
-  - GEOSITE,google,🔍 谷歌服务 # Google 服务统一走谷歌服务组
-  - GEOSITE,telegram,💬 社交媒体 & 消息 # Telegram
-  - GEOSITE,category-entertainment,🌐 流媒体 # 流媒体和娱乐
-  - GEOSITE,category-social-media-!cn,💬 社交媒体 & 消息 # 国外社交媒体
-  - GEOSITE,category-android-app-download,🌍 国际流量 # 安卓应用下载
-  - GEOSITE,category-porn,🌍 国际流量 # 敏感内容
-  - GEOSITE,onedrive,🌍 国际流量 # OneDrive
-  - GEOSITE,category-ai-chat-!cn,🌍 国际流量 # AI聊天
-  - GEOSITE,category-cryptocurrency,🌍 国际流量 # 加密货币
-  - GEOSITE,geolocation-!cn,🌍 国际流量 # 所有非中国地理位置的域名（兜底代理）
-
-  ## IP 类规则 - 精确匹配优先
-  ### 绕过局域网和特殊保留地址 (优先直连)
-  - IP-CIDR,10.0.0.0/8,🇨🇳 中国直连
-  - IP-CIDR,172.16.0.0/12,🇨🇳 中国直连
-  - IP-CIDR,192.168.0.0/16,🇨🇳 中国直连
-  - IP-CIDR,100.64.0.0/10,🇨🇳 中国直连
-  - IP-CIDR,127.0.0.0/8,🇨🇳 中国直连
-  - IP-CIDR,::1/128,🇨🇳 中国直连       # IPv6 localhost
-  - IP-CIDR,fc00::/7,🇨🇳 中国直连      # IPv6 Unique Local Address
-  - IP-CIDR,fe80::/10,🇨🇳 中国直连     # IPv6 Link-Local Address
-
-  ### GEOIP 规则 - 针对纯 IP 流量
-  - GEOIP,CN,🇨🇳 中国直连,no-resolve # 中国大陆 IP 直连
-  - GEOIP,google,🔍 谷歌服务,no-resolve # Google IP
-  - GEOIP,telegram,💬 社交媒体 & 消息,no-resolve # Telegram IP
-  - GEOIP,facebook,🌐 流媒体,no-resolve # Facebook IP
-  - GEOIP,twitter,💬 社交媒体 & 消息,no-resolve # Twitter IP
-  - GEOIP,netflix,🌐 流媒体,no-resolve # Netflix IP
-  # 可以根据需要添加其他常用服务的 GEOIP 规则
-
-  ## 兜底规则 - 最后匹配
-  - MATCH,🚦 剩余流量 # 任何未匹配的流量都交给 "🚦 剩余流量" 处理
+- RULE-SET,Anti-Ads,🚫 广告拦截
+- DOMAIN-SUFFIX,taobao.com,🇨🇳 中国直连
+- DOMAIN-SUFFIX,tmall.com,🇨🇳 中国直连
+- DOMAIN-SUFFIX,alibaba.com,🇨🇳 中国直连
+- DOMAIN-SUFFIX,alipay.com,🇨🇳 中国直连
+- DOMAIN-SUFFIX,aliyun.com,🇨🇳 中国直连
+- DOMAIN-KEYWORD,taobao,🇨🇳 中国直连
+- DOMAIN-KEYWORD,tmall,🇨🇳 中国直连
+- DOMAIN,v.ddys.pro,🇨🇳 中国直连
+- DOMAIN,ddys.pro,🇨🇳 中国直连
+- DOMAIN-KEYWORD,easytier,🇨🇳 中国直连
+- DOMAIN-SUFFIX,hf.co,🌍 国际流量
+- DOMAIN-SUFFIX,r2.cloudflarestorage.com,🌍 国际流量
+- GEOSITE,category-games@cn,🇨🇳 中国直连
+- GEOSITE,cn,🇨🇳 中国直连
+- GEOSITE,apple-cn,🇨🇳 中国直连
+- GEOSITE,microsoft,🖥️ 微软服务
+- GEOSITE,apple,🍎 苹果服务
+- GEOSITE,google,🔍 谷歌服务
+- GEOSITE,telegram,💬 社交媒体 & 消息
+- GEOSITE,category-entertainment,🌐 流媒体
+- GEOSITE,category-social-media-!cn,💬 社交媒体 & 消息
+- GEOSITE,category-android-app-download,🌍 国际流量
+- GEOSITE,category-porn,🌍 国际流量
+- GEOSITE,onedrive,🌍 国际流量
+- GEOSITE,category-ai-chat-!cn,🌍 国际流量
+- GEOSITE,category-cryptocurrency,🌍 国际流量
+- GEOSITE,geolocation-!cn,🌍 国际流量
+- IP-CIDR,10.0.0.0/8,🇨🇳 中国直连
+- IP-CIDR,172.16.0.0/12,🇨🇳 中国直连
+- IP-CIDR,192.168.0.0/16,🇨🇳 中国直连
+- IP-CIDR,100.64.0.0/10,🇨🇳 中国直连
+- IP-CIDR,127.0.0.0/8,🇨🇳 中国直连
+- IP-CIDR,::1/128,🇨🇳 中国直连
+- IP-CIDR,fc00::/7,🇨🇳 中国直连
+- IP-CIDR,fe80::/10,🇨🇳 中国直连
+- GEOIP,CN,🇨🇳 中国直连,no-resolve
+- GEOIP,google,🔍 谷歌服务,no-resolve
+- GEOIP,telegram,💬 社交媒体 & 消息,no-resolve
+- GEOIP,facebook,🌐 流媒体,no-resolve
+- GEOIP,twitter,💬 社交媒体 & 消息,no-resolve
+- GEOIP,netflix,🌐 流媒体,no-resolve
+- MATCH,🚦 剩余流量
