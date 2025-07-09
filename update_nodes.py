@@ -81,9 +81,9 @@ def update_load_balance_group(config: Dict, proxy_names: List[str]):
     }
     
     found = False
-    for group in config['proxy-groups']:
+    for i, group in enumerate(config['proxy-groups']):
         if group.get('name') == '🚀 负载均衡':
-            group.update(load_balance_group)
+            config['proxy-groups'][i] = load_balance_group
             found = True
             logger.info(f"Updated load-balance group with {len(proxy_names)} proxies: {proxy_names}")
             break
@@ -103,6 +103,11 @@ def main():
     
     # 加载当前配置文件
     config = load_local_yaml(config_file)
+    if not config:
+        logger.error("Failed to load ch.yaml, restoring backup if available")
+        if backup_file.exists():
+            backup_file.replace(config_file)
+        return
     
     # 获取远程节点
     all_proxies = []
