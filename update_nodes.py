@@ -2,131 +2,149 @@ import logging
 import requests
 import yaml
 from pathlib import Path
-from typing import List, Dict, Set
-import socket
-import time
+from typing import List, Dict
 
-# Configure logging
+# 配置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Configuration
 REMOTE_URLS = [
-    'https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/ch.yaml',
-    'https://raw.githubusercontent.com/hebe061103/cfip/refs/heads/master/config_dns_yes.yaml'
+    "https://example.com/nodes.yaml",  # 替换为实际的节点源 URL
 ]
-LOCAL_CONFIG_FILE = Path('ch.yaml')
-BACKUP_CONFIG_FILE = Path('ch.yaml.bak')
-TARGET_PROXY_GROUPS = [
-    '🚀 节点选择', '♻️ 自动选择', '🌍 国外媒体', '📲 电报信息', 'Ⓜ️ 微软服务',
-    '🍎 苹果服务', '📢 谷歌FCM', '🎯 全球直连', '🛑 全球拦截', '🍃 应用净化', '🐟 漏网之鱼'
-]
-FIXED_PROXIES = ['🚀 节点选择', '♻️ 自动选择', '🎯 全球直连']
+TARGET_PROXY_GROUPS = ["🚀 节点选择", "♻️ 自动选择", "🌍 国外媒体", "📲 电报信息", "Ⓜ️ 微软服务", "🍎 苹果服务", "📢 谷歌FCM", "🐟 漏网之鱼"]
 
-def fetch_yaml(url: str) -> Dict:
-    """Fetch and parse YAML from a URL."""
+def fetch_remote_yaml(url: str) -> Dict:
+    """从远程 URL 获取 YAML 数据"""
     try:
         logger.info(f"Fetching YAML from {url}")
-        resp = requests.get(url, timeout=10)
-        resp.raise_for_status()
-        data = yaml.safe_load(resp.text)
-        if not isinstance(data, dict):
-            raise ValueError(f"Invalid YAML structure from {url}")
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = yaml.safe_load(response.text) or {}
+        logger.info(f"Fetched {len(data.get('proxies', []))} proxies from {url}")
         return data
-    except (requests.RequestException, yaml.YAMLError, ValueError) as e:
-        logger.error(f"Failed to fetch or parse {url}: {e}")
-        raise
+    except requests.RequestException as e:
+        logger.error(f"Failed to fetch {url}: {e}")
+        return {}
+    except yaml.YAMLError as e:
+        logger.error(f"Invalid YAML from {url}: {e}")
+        return {}
 
-def load_local_config(file_path: Path) -> Dict:
-    """Load and validate local YAML configuration."""
+def load_local_yaml(file_path: Path) -> Dict:
+    """加载本地 YAML 文件"""
     try:
-        if not file_path.exists():
-            raise FileNotFoundError(f"{file_path} not found")
+        logger.info(f"Loading local YAML from {file_path}")
         with file_path.open('r', encoding='utf-8') as f:
-            config = yaml.safe_load(f)
-        if not isinstance(config, dict):
-            raise ValueError(f"Invalid YAML in {file_path}")
+            config = yaml.safe_load(f) or {}
+        logger.info(f"Loaded config with {len(config.get('proxies', []))} proxies")
         return config
-    except (IOError, yaml.YAMLError, ValueError) as e:
-        logger.error(f"Failed to load {file_path}: {e}")
-        raise
+    except yaml.YAMLError as e:
+        logger.error(f"Invalid YAML in {file_path}: {e}")
+        return {}
+    except FileNotFoundError:
+        logger.warning(f"{file_path} not found, starting with empty config")
+        return {}
 
-def save_config(file_path: Path, config: Dict) -> None:
-    """Save configuration to YAML file with backup."""
+def save_yaml(data: Dict, file_path: Path):
+    """保存 YAML 数据到文件"""
     try:
-        if file_path.exists():
-            file_path.replace(BACKUP_CONFIG_FILE)
-            logger.info(f"Backed up {file_path} to {BACKUP_CONFIG_FILE}")
+        logger.info(f"Saving YAML to {file_path}")
         with file_path.open('w', encoding='utf-8') as f:
-            yaml.safe_dump(config, f, allow_unicode=True, sort_keys=False)
-        logger.info(f"Saved updated config to {file_path}")
-    except (IOError, yaml.YAMLError) as e:
+            yaml.safe_dump(data, f, allow_unicode=True, sort_keys=False)
+    except Exception as e:
         logger.error(f"Failed to save {file_path}: {e}")
         raise
 
-def validate_proxy(proxy: Dict) -> bool:
-    """Validate proxy configuration."""
-    required_fields = ['name', 'server', 'port', 'type', 'uuid']
-    if not all(field in proxy for field in required_fields):
-        logger.warning(f"Invalid proxy: missing required fields {proxy.get('name', 'unknown')}")
-        return False
-    if not isinstance(proxy['name'], str) or not proxy['name'].strip():
-        logger.warning(f"Invalid proxy name: {proxy.get('name')}")
-        return False
-    try:
-        socket.inet_aton(proxy['server'])  # Basic IP validation
-    except (socket.error, TypeError):
-        logger.warning(f"Invalid server IP: {proxy['server']} for {proxy['name']}")
-        return False
-    return True
+def filter_proxies(proxies: List[Dict]) -> List[Dict]:
+    """过滤代理节点，仅保留 VLESS+WebSocket+TLS 节点"""
+    filtered = []
+    for proxy in proxies:
+        if (proxy.get('type') == 'vless' and
+            proxy.get('network') == 'ws' and
+            proxy.get('tls', False) and
+            proxy.get('port') == 443):
+            filtered.append(proxy)
+            logger.info(f"Kept proxy {proxy.get('name', 'Unknown')}")
+        else:
+            logger.warning(f"Skipping proxy {proxy.get('name', 'Unknown')}: not VLESS+WS+TLS or port != 443")
+    return filtered
+
+def update_proxy_groups(config: Dict, proxy_names: List[str]):
+    """更新 proxy-groups，确保仅包含有效的代理节点"""
+    if 'proxy-groups' not in config:
+        logger.error("No proxy-groups found in config")
+        return
+    
+    for group in config['proxy-groups']:
+        group_name = group.get('name')
+        if group_name in TARGET_PROXY_GROUPS:
+            new_proxies = []
+            if group_name == "🎯 全球直连":
+                new_proxies = ["DIRECT"]
+            elif group_name == "🛑 全球拦截" or group_name == "🍃 应用净化":
+                new_proxies = ["REJECT", "DIRECT"]
+            else:
+                if group_name != "🚀 节点选择":
+                    new_proxies.append("🚀 节点选择")
+                if group_name != "♻️ 自动选择":
+                    new_proxies.append("♻️ 自动选择")
+                if group_name not in ["Ⓜ️ 微软服务", "🍎 苹果服务"]:
+                    new_proxies.append("🎯 全球直连")
+                new_proxies.extend(proxy_names)
+            
+            group['proxies'] = new_proxies
+            logger.info(f"Updated proxy-group {group_name} with {len(new_proxies)} proxies: {new_proxies}")
+        else:
+            logger.warning(f"Skipping unknown proxy-group: {group_name}")
 
 def main():
-    """Update local YAML configuration with remote proxy nodes."""
+    """主函数：更新 ch.yaml 的 proxies 和 proxy-groups"""
+    config_file = Path('ch.yaml')
+    backup_file = Path('ch.yaml.bak')
+    
+    # 备份当前配置文件
+    if config_file.exists():
+        logger.info(f"Backing up {config_file} to {backup_file}")
+        config_file.replace(backup_file)
+    
+    # 加载当前配置文件
+    config = load_local_yaml(config_file)
+    
+    # 获取远程节点
+    all_proxies = []
+    for url in REMOTE_URLS:
+        remote_data = fetch_remote_yaml(url)
+        remote_proxies = remote_data.get('proxies', [])
+        all_proxies.extend(filter_proxies(remote_proxies))
+    
+    if not all_proxies:
+        logger.error("No valid proxies found from remote sources")
+        if backup_file.exists():
+            logger.info(f"Restoring backup from {backup_file}")
+            backup_file.replace(config_file)
+        return
+    
+    # 更新 proxies
+    old_proxy_count = len(config.get('proxies', []))
+    config['proxies'] = all_proxies
+    proxy_names = [proxy['name'] for proxy in all_proxies]
+    logger.info(f"Updated proxies: {len(proxy_names)} new proxies replaced {old_proxy_count} old proxies")
+    
+    # 更新 proxy-groups
+    update_proxy_groups(config, proxy_names)
+    
+    # 保存更新后的配置文件
+    save_yaml(config, config_file)
+    
+    # 验证更新后的 YAML
     try:
-        # Fetch and merge unique proxies
-        all_proxies = []
-        node_names = []
-        seen = set()
-        for url in REMOTE_URLS:
-            conf = fetch_yaml(url)
-            proxies = conf.get('proxies', [])
-            if not proxies:
-                logger.warning(f"No proxies found in {url}")
-            for proxy in proxies:
-                if not validate_proxy(proxy):
-                    continue
-                name = proxy['name']
-                if name in seen:
-                    continue
-                seen.add(name)
-                all_proxies.append(proxy)
-                node_names.append(name)
-        if not all_proxies:
-            raise ValueError("No valid proxies collected")
-        logger.info(f"Collected {len(all_proxies)} unique proxies")
-
-        # Load local configuration
-        local_conf = load_local_config(LOCAL_CONFIG_FILE)
-
-        # Update proxies section
-        local_conf['proxies'] = all_proxies
-        logger.info(f"Updated proxies section with {len(all_proxies)} entries")
-
-        # Update target proxy groups
-        updated = False
-        for group in local_conf.get('proxy-groups', []):
-            if group.get('name') in TARGET_PROXY_GROUPS:
-                group['proxies'] = FIXED_PROXIES + [n for n in node_names if n not in FIXED_PROXIES]
-                logger.info(f"Updated proxy group: {group['name']}")
-                updated = True
-        if not updated:
-            logger.warning("No target proxy groups updated")
-
-        # Save updated configuration
-        save_config(LOCAL_CONFIG_FILE, local_conf)
-
-    except Exception as e:
-        logger.error(f"Script failed: {e}")
+        with config_file.open('r', encoding='utf-8') as f:
+            yaml.safe_load(f)
+        logger.info(f"Successfully updated and validated {config_file}")
+    except yaml.YAMLError as e:
+        logger.error(f"Invalid YAML after update: {e}")
+        if backup_file.exists():
+            logger.info(f"Restoring backup from {backup_file}")
+            backup_file.replace(config_file)
         raise
 
 if __name__ == '__main__':
