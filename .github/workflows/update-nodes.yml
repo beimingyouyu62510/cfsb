@@ -27,9 +27,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests pyyaml
 
-      - name: Validate chස
-
-System: ch.yaml Before Update
+      - name: Validate ch.yaml Before Update
         run: |
           python -c "import yaml; yaml.safe_load(open('ch.yaml'))" || echo "Invalid YAML in ch.yaml"
         continue-on-error: true
@@ -61,12 +59,4 @@ System: ch.yaml Before Update
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Notify on Failure
-        if: failure()
-        uses: slackapi/slack-github-action@v1.26.0
-        with:
-          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
-          channel-id: 'your-channel-id'
-          text: '🚨 Update Nodes workflow failed! Check logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
 ```
