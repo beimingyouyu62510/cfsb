@@ -1,68 +1,255 @@
+# hosts:
+#   # 此处填写自定义hosts
+allow-lan: true
+# 不使用统一延迟检测，有些节点前戏太慢了
+unified-delay: false
+tcp-concurrent: true
+find-process-mode: strict
+global-client-fingerprint: chrome
+profile:
+  store-selected: true
+  store-fake-ip: true
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - dlg.io.mi.com
+    - "+.push.apple.com"
+tun:
+  enable: true
+  stack: system
+  device: mihomo
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: true
+  # 如果有使用zerotier或者headscale等，需要自己配置排除自己的网段
+  # route-exclude-address: ["10.144.144.0/24"]
+  # 打开nat1，官方文档说可能会损失一些性能，如果没有nat1需求，可以关闭
+  endpoint-independent-nat: true
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  prefer-h3: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  use-hosts: true
+  # 用于解析nameserver中的域名dns服务器，理论上如果nameserver中的dns服务器都是ip类的，这里也可以不填
+  # 前两个是我这边电信的运营商dns，可以换成你自己的，也可以全部使用大厂的公共dns
+  # 由于只用来解析nameserver，不使用doh或dot
+  default-nameserver:
+    - 223.5.5.5
+    - 180.168.255.18
+    - 117.50.11.11
+  # 在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网，因此使用google和cf的doh
+  nameserver:
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+  # 用于解析代理节点的域名
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - https://dns.alidns.com/dns-query
+    - 119.29.29.29
+    - https://doh.pub/dns-query
+  # 国内访问的规则使用国内的dns，不考虑dns泄露，不使用doh或dot
+  nameserver-policy:
+    "geosite:cn,apple-cn,category-games@cn,private":
+      - 117.50.11.11
+      - 180.168.255.18
+      - 223.5.5.5
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter:
+    - '*'
+    - '+.lan'
+    - '+.local'
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - +.stun.*.*.*.*.*
+geodata-mode: true
+geox-url:
+  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 proxies:
-- name: Hong Kong 0
-  server: 104.17.194.213
-  port: 80
-  type: vless
-  uuid: cdc1d7d3-fe56-4a38-a724-21308e4393d9
-  tls: false
-  network: ws
-  ws-opts:
-    path: /?ed=2048
-    headers:
-      Host: empty-rain-1b4a.hebe061103.workers.dev
-- name: Hong Kong 1
-  server: 104.17.194.220
-  port: 80
-  type: vless
-  uuid: 3d2176d3-89b8-40aa-b004-0ff837bed25c
-  tls: false
-  network: ws
-  ws-opts:
-    path: /?ed=2048
-    headers:
-      Host: gentle-grass-cf96.hebe061103.workers.dev
-- name: Hong Kong 2
-  server: 104.17.194.239
-  port: 80
-  type: vless
-  uuid: 3962565d-e47d-4dd0-aa19-3286e04d9cb6
-  tls: false
-  network: ws
-  ws-opts:
-    path: /?ed=2048
-    headers:
-      Host: nameless-resonance-6e4c.hebe061103.workers.dev
-- name: Hong Kong 3
-  server: 104.17.194.249
-  port: 80
-  type: vless
-  uuid: 4239d44c-19c7-4b8b-ae07-16607c95b6fb
-  tls: false
-  network: ws
-  ws-opts:
-    path: /?ed=2048
-    headers:
-      Host: gentle-night-12e3.hebe061103.workers.dev
-- name: Hong Kong 4
-  server: 104.17.194.1
-  port: 80
-  type: vless
-  uuid: 2e632913-bae0-4855-893c-02c828c835a2
-  tls: false
-  network: ws
-  ws-opts:
-    path: /?ed=2048
-    headers:
-      Host: 56e5.hebe061103.workers.dev
+  - name: 天书cf
+    type: vless
+    server: laji.jisucf.cloudns.biz
+    port: 443
+    uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
+    network: ws
+    tls: true
+    udp: true
+    servername: git02.jisucf.cloudns.biz
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: git02.jisucf.cloudns.biz
+  - name: 天书git
+    type: vless
+    server: laji.jisucf.cloudns.biz
+    port: 443
+    uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
+    udp: true
+    tls: true
+    sni: git01.jisucf.cloudns.biz
+    network: ws
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: git01.jisucf.cloudns.biz
 proxy-groups:
-- name: 🚀 负载均衡
-  type: load-balance
-  url: http://www.google.com/generate_204
-  interval: 300
-  strategy: consistent-hashing
-  proxies:
-  - Hong Kong 0
-  - Hong Kong 1
-  - Hong Kong 2
-  - Hong Kong 3
-  - Hong Kong 4
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - DIRECT
+      - 天书cf
+      - 天书git
+  - name: ♻️ 自动选择
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    proxies:
+      - 天书cf
+      - 天书git
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - 天书cf
+      - 天书git
+  - name: 📲 电报信息
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - 天书cf
+      - 天书git
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - 🎯 全球直连
+      - 🚀 节点选择
+      - 天书cf
+      - 天书git
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - 天书cf
+      - 天书git
+  - name: 📢 谷歌FCM
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - 天书cf
+      - 天书git
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🍃 应用净化
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - 天书cf
+      - 天书git
+rule-providers:
+  Anti-Ads:
+    type: http
+    behavior: domain
+    format: yaml
+    path: ./rule_provider/Anti-Ads.yaml
+    url: "https://anti-ad.net/clash.yaml"
+    interval: 43200
+    lazy: false
+rules:
+  ## 非 IP 类规则
+  ### 自定义
+  - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-SUFFIX,tmall.com,DIRECT
+  - DOMAIN-SUFFIX,alibaba.com,DIRECT
+  - DOMAIN-SUFFIX,alipay.com,DIRECT
+  - DOMAIN-SUFFIX,aliyun.com,DIRECT
+  - DOMAIN-KEYWORD,taobao,DIRECT
+  - DOMAIN-KEYWORD,tmall,DIRECT
+  - DOMAIN,v.ddys.pro,DIRECT
+  - DOMAIN,ddys.pro,DIRECT
+  - DOMAIN-SUFFIX,hf.co,🚀 节点选择
+  - DOMAIN,api.telegram.org,📲 电报信息
+  - DOMAIN-KEYWORD,easytier,DIRECT
+  - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
+  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
+  ### 广告、数据统计
+  - RULE-SET,Anti-Ads,REJECT
+  ### 以下来自https://github.com/Loyalsoldier/v2ray-rules-dat
+  ### 大流量
+  - GEOSITE,category-android-app-download,🚀 节点选择
+  - GEOSITE,category-entertainment,🚀 节点选择
+  - GEOSITE,category-porn,🚀 节点选择
+  - GEOSITE,telegram,📲 电报信息
+  - GEOSITE,onedrive,🚀 节点选择
+  - GEOSITE,category-games@cn,DIRECT
+  ### 国外固定IP
+  - GEOSITE,category-ai-chat-!cn,🚀 节点选择
+  - GEOSITE,category-cryptocurrency,🚀 节点选择
+  - GEOSITE,category-social-media-!cn,🚀 节点选择
+  ### google(保证google play下载规则在cn之前)
+  - GEOSITE,google,🚀 节点选择
+  ### 直连
+  - GEOSITE,cn,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  ### 国外随意
+  - GEOSITE,geolocation-!cn,🚀 节点选择
+
+  ## IP 类规则
+  ### quic
+  # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOIP,CN))),REJECT # 这条规则可能与上面重复，且容易引起问题，如果上面已拦截可注释
+  ### 国外大流量
+  - GEOIP,telegram,🚀 节点选择,no-resolve
+  ### 国外固定IP
+  - GEOIP,facebook,🚀 节点选择,no-resolve
+  - GEOIP,twitter,🚀 节点选择,no-resolve
+  - GEOIP,netflix,🚀 节点选择,no-resolve
+  ### google
+  - GEOIP,google,🚀 节点选择,no-resolve
+  ### 直连
+  - GEOIP,CN,DIRECT,no-resolve
+  ### 绕过局域网地址
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+
+  ## 兜底
+  - MATCH,🐟 漏网之鱼
