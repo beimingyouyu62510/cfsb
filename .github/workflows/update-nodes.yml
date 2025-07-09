@@ -56,6 +56,17 @@ jobs:
         run: |
           python -c "import yaml; yaml.safe_load(open('ch.yaml'))" || exit 1
 
+      - name: Check for Changes
+        run: |
+          git add ch.yaml
+          git diff --cached ch.yaml > diff.txt
+          if [ -s diff.txt ]; then
+            echo "Changes detected in ch.yaml:"
+            cat diff.txt
+          else
+            echo "No changes detected in ch.yaml"
+          fi
+
       - name: Commit and Push Changes
         run: |
           git config user.name "github-actions[bot]"
