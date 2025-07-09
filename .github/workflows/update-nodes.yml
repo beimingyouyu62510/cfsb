@@ -2,15 +2,14 @@ name: Update Nodes
 
 on:
   schedule:
-    - cron: '0 3 * * *'
-  workflow_dispatch:
+    - cron: '0 3 * * *'  # 每天凌晨3点运行
+  workflow_dispatch:      # 支持手动触发
 
 jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Limit GITHUB_TOKEN scope to repository contents
-      actions: read   # Allow reading workflow logs
+      contents: write  # 限制 GITHUB_TOKEN 权限为写内容
 
     steps:
       - name: Checkout Repository
@@ -19,35 +18,35 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'  # Use specific Python version
-          cache: 'pip'  # Cache pip dependencies
+          python-version: '3.11'  # 使用明确的 Python 版本
+          cache: 'pip'
+          cache-dependency-path: requirements.txt
 
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests pyyaml
 
-      - name: Validate ch.yaml Before Update
+      - name: Validate chස
+
+System: ch.yaml Before Update
         run: |
-          python -c "import yaml; yaml.safe_load(open('ch.yaml'))"
-        continue-on-error: true  # Log invalid YAML but continue
+          python -c "import yaml; yaml.safe_load(open('ch.yaml'))" || echo "Invalid YAML in ch.yaml"
+        continue-on-error: true
+
+      - name: Test Proxy Connectivity
+        run: python test_proxies.py
+        env:
+          LOG_LEVEL: DEBUG
 
       - name: Run update_nodes.py
         run: python update_nodes.py
         env:
-          LOG_LEVEL: DEBUG  # Enable debug logging
+          LOG_LEVEL: DEBUG
 
       - name: Validate ch.yaml After Update
         run: |
-          python -c "import yaml; yaml.safe_load(open('ch.yaml'))"
-        if: always()  # Run even if previous steps fail
-
-      - name: Test Proxy Nodes
-        run: |
-          python test_proxies.py
-        env:
-          TIMEOUT: 5  # Set timeout for proxy tests
-        if: always()  # Run to ensure nodes are reachable
+          python -c "import yaml; yaml.safe_load(open('ch.yaml'))" || exit 1
 
       - name: Commit and Push Changes
         run: |
@@ -62,7 +61,6 @@ jobs:
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: success()  # Only commit if all validations pass
 
       - name: Notify on Failure
         if: failure()
@@ -71,3 +69,4 @@ jobs:
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           channel-id: 'your-channel-id'
           text: '🚨 Update Nodes workflow failed! Check logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+```
