@@ -4,7 +4,7 @@ import ssl
 import yaml
 from pathlib import Path
 from typing import Dict
-import websocket  # 需安装 python-websocket-client
+import websocket
 
 # 配置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -71,19 +71,25 @@ def main():
         
         failed_proxies = []
         for proxy in proxies:
-            # 先测试 TCP 连接
+            # 过滤不符合要求的节点
+            if (proxy.get('type') != 'vless' or
+                proxy.get('network') != 'ws' or
+                not proxy.get('tls', False) or
+                proxy.get('port') != 443):
+                logger.warning(f"Skipping proxy {proxy.get('name', 'Unknown')}: not VLESS+WS+TLS or port != 443")
+                failed_proxies.append(proxy.get('name'))
+                continue
+            
+            # 测试 TCP 连接
             if not test_proxy_tcp(proxy):
                 failed_proxies.append(proxy.get('name'))
                 continue
-            # 如果 TCP 连接成功，测试 WebSocket
-            if proxy.get('network') == 'ws' and proxy.get('tls', False):
-                if not test_proxy_websocket(proxy):
-                    failed_proxies.append(proxy.get('name'))
+            # 测试 WebSocket 连接
+            if not test_proxy_websocket(proxy):
+                failed_proxies.append(proxy.get('name'))
         
         if failed_proxies:
             logger.warning(f"Failed proxies: {', '.join(failed_proxies)}")
-            # 注释掉 exit(1) 以允许工作流继续运行
-            # exit(1)
         else:
             logger.info("All proxies are reachable")
     
