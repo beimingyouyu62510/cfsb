@@ -3,10 +3,10 @@ import requests
 import yaml
 from pathlib import Path
 from typing import List, Dict
-import shutil # 引入 shutil 模块
-import os # 引入 os 模块
+import shutil
+import os
 
-# 配置日志
+# 配置日志 (保持不变)
 log_level = os.getenv('LOG_LEVEL', 'INFO').upper()
 numeric_log_level = getattr(logging, log_level, logging.INFO)
 logging.basicConfig(level=numeric_log_level, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -15,6 +15,8 @@ logger = logging.getLogger(__name__)
 REMOTE_URLS = [
     "https://raw.githubusercontent.com/hebe061103/cfip/refs/heads/master/config_dns_yes.yaml"
 ]
+
+# fetch_remote_yaml, load_local_yaml, save_yaml, filter_proxies 函数保持不变
 
 def fetch_remote_yaml(url: str) -> Dict:
     """从远程 URL 获取 YAML 数据"""
@@ -72,32 +74,32 @@ def filter_proxies(proxies: List[Dict]) -> List[Dict]:
     logger.info(f"Finished filtering. Kept {len(filtered)} VLESS+WS proxies.")
     return filtered
 
-def update_main_proxy_group(config: Dict, proxy_names: List[str]):
-    """更新 proxy-groups 中名为 '🚀 负载均衡' 的组"""
+
+def update_load_balance_group(config: Dict, proxy_names: List[str]):
+    """
+    更新 proxy-groups 中名为 '🚀 负载均衡' 的组。
+    这个组将包含所有从远程源获取的最新代理节点。
+    """
     if 'proxy-groups' not in config:
         logger.info("No 'proxy-groups' found in config, initializing an empty list.")
         config['proxy-groups'] = []
 
-    # 目标更新的代理组名称，与源订阅和 ch.yaml 中保持一致
-    target_group_name = '🚀 负载均衡' 
-    # 该组的默认模板，类型为 url-test (因为源订阅和你的ch.yaml中最可能被所有组引用的类型)
+    target_group_name = '🚀 负载均衡'
     target_group_template = {
         'name': target_group_name,
-        'type': 'url-test', # 默认设置为 url-test，如果 ch.yaml 中是 load-balance 也会被覆盖
+        'type': 'url-test', # 默认设置为 url-test
         'url': 'http://www.google.com/generate_204',
         'interval': 300,
-        'tolerance': 50, # url-test 需要 tolerance
+        'tolerance': 50,
         'proxies': proxy_names
     }
     
     found = False
     for i, group in enumerate(config['proxy-groups']):
         if group.get('name') == target_group_name:
-            # 保留原有组的 type, url, interval, tolerance 等，只更新 proxies 列表
-            # 这样可以兼容 ch.yaml 中该组是 load-balance 或 select 的情况
-            # 如果 ch.yaml 中没有这些字段，会使用模板中的默认值
+            # 保留原有组的类型和 URL 等属性，只更新代理列表
             group['proxies'] = proxy_names
-            # 更新其他可能变动的字段，但优先保留 ch.yaml 中的
+            # 确保类型、URL、间隔等字段的存在性
             group['type'] = group.get('type', target_group_template['type'])
             group['url'] = group.get('url', target_group_template['url'])
             group['interval'] = group.get('interval', target_group_template['interval'])
@@ -109,13 +111,63 @@ def update_main_proxy_group(config: Dict, proxy_names: List[str]):
             logger.info(f"Updated '{target_group_name}' group with {len(proxy_names)} proxies.")
             break
     if not found:
-        # 如果不存在，则添加新组
         config['proxy-groups'].append(target_group_template)
         logger.info(f"Added '{target_group_name}' group with {len(proxy_names)} proxies.")
 
+def update_node_select_group(config: Dict, proxy_names: List[str]):
+    """
+    更新 proxy-groups 中名为 '🚀 节点选择' 的组。
+    该组将动态列出所有新节点，并保留其他固定选项。
+    """
+    target_group_name = '🚀 节点选择'
+    
+    # 查找 '🚀 节点选择' 组
+    node_select_group = None
+    for group in config.get('proxy-groups', []):
+        if group.get('name') == target_group_name:
+            node_select_group = group
+            break
+
+    if not node_select_group:
+        logger.warning(f"Proxy group '{target_group_name}' not found. Skipping update for this group.")
+        return
+
+    original_proxies = node_select_group.get('proxies', [])
+    updated_proxies = []
+
+    # 优先添加固定选项（例如：自动故障转移，直连）
+    # 这里我们定义哪些是你想保留的“固定”代理组或策略，
+    # 确保它们不会被新节点列表覆盖。
+    # 根据你提供的ch.yaml，这里应该有 '♻️ 自动选择', 'DIRECT', '🔁 自动故障转移'
+    # 注意：'♻️ 自动选择' 现在引用的是 '🚀 负载均衡'，如果不需要直接列出，也可以不加。
+    # 我这里会把所有不是 Hong Kong X 类型的都保留
+    
+    # 首先，添加你希望保留的非动态节点，例如 '🔁 自动故障转移' 和 'DIRECT'
+    # 为了避免重复添加新节点本身，我们只保留非 Hong Kong 开头的以及 'DIRECT'
+    for p in original_proxies:
+        if not p.startswith('Hong Kong') and p not in updated_proxies:
+            updated_proxies.append(p)
+            logger.debug(f"Retained fixed option: {p}")
+
+    # 然后，添加所有新的动态代理节点
+    for name in proxy_names:
+        if name not in updated_proxies: # 避免重复添加 (尽管通常不会)
+            updated_proxies.append(name)
+            logger.debug(f"Added new proxy to '{target_group_name}': {name}")
+
+    # 最后，确保 'DIRECT' 和 'REJECT' (如果需要) 仍在列表末尾，
+    # 防止它们被动态节点意外覆盖，如果它们不在前面保留的列表里。
+    # 这样做可以确保DIRECT总是存在，且在动态节点之后，如果它不是作为其他组的引用出现的话。
+    if 'DIRECT' not in updated_proxies:
+        updated_proxies.append('DIRECT')
+        logger.debug(f"Ensured 'DIRECT' is in '{target_group_name}'.")
+
+    node_select_group['proxies'] = updated_proxies
+    logger.info(f"Updated '{target_group_name}' group with {len(updated_proxies)} total entries.")
+
 
 def main():
-    """主函数：更新 ch.yaml 的 proxies 和 proxy-groups 中的 🚀 负载均衡"""
+    """主函数：更新 ch.yaml 的 proxies 和 proxy-groups"""
     config_file = Path('ch.yaml')
     backup_file = Path('ch.yaml.bak')
     original_config = {} # 用于保存原始配置，以便回滚
@@ -146,17 +198,21 @@ def main():
         
         if not all_proxies:
             logger.error("No valid VLESS+WS proxies found from remote sources. Exiting without update.")
-            # 如果没有有效节点，不进行任何写入操作，直接返回
             return 1 # 返回非零状态码表示非成功
         
-        # 更新 proxies
+        # 获取新代理的名称列表
+        proxy_names = [proxy.get('name', 'Unknown') for proxy in all_proxies]
+
+        # 更新 proxies 部分
         old_proxies_count = len(updated_config.get('proxies', []))
         updated_config['proxies'] = all_proxies
-        proxy_names = [proxy.get('name', 'Unknown') for proxy in all_proxies]
-        logger.info(f"Updated proxies: {len(proxy_names)} new proxies replacing {old_proxies_count} old proxies.")
+        logger.info(f"Updated proxies section: {len(proxy_names)} new proxies replacing {old_proxies_count} old proxies.")
         
-        # 更新 🚀 负载均衡 组
-        update_main_proxy_group(updated_config, proxy_names)
+        # 更新 '🚀 负载均衡' 组
+        update_load_balance_group(updated_config, proxy_names)
+
+        # 更新 '🚀 节点选择' 组
+        update_node_select_group(updated_config, proxy_names) # 新增调用
         
         # 保存更新后的配置文件
         save_yaml(updated_config, config_file)
