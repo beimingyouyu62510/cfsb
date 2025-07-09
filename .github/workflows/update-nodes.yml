@@ -46,7 +46,7 @@ jobs:
         run: python test_proxies.py
         env:
           LOG_LEVEL: DEBUG
-        continue-on-error: true  # 防止 test_proxies.py 失败导致工作流中止
+        continue-on-error: true  # 防止测试失败中断工作流
 
       - name: Run update_nodes.py
         run: python update_nodes.py
@@ -73,7 +73,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add ch.yaml
-          git commit -m "🤖 Update nodes: Keep latest, remove old" --allow-empty || true
+          git commit -m "🤖 Update proxies and load-balance group" --allow-empty || true
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
