@@ -9,9 +9,9 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 REMOTE_URLS = [
-    "https://raw.githubusercontent.com/hebe061103/cfip/refs/heads/master/config_dns_yes.yaml",  # 替换为实际的节点源 URL
+    "https://raw.githubusercontent.com/hebe061103/cfip/refs/heads/master/config_dns_yes.yaml"
 ]
-TARGET_PROXY_GROUPS = ["🚀 节点选择", "♻️ 自动选择", "🌍 国外媒体", "📲 电报信息", "Ⓜ️ 微软服务", "🍎 苹果服务", "📢 谷歌FCM", "🐟 漏网之鱼"]
+TARGET_PROXY_GROUPS = ["🚀 节点选择", "♻️ 自动选择", "🌍 国外媒体", "📲 电报信息", "Ⓜ️ 微软服务", "🍎 苹果服务", "📢 谷歌FCM", "🐟 漏网之鱼", "🚀 负载均衡"]
 
 def fetch_remote_yaml(url: str) -> Dict:
     """从远程 URL 获取 YAML 数据"""
@@ -55,28 +55,48 @@ def save_yaml(data: Dict, file_path: Path):
         raise
 
 def filter_proxies(proxies: List[Dict]) -> List[Dict]:
-    """过滤代理节点，仅保留 VLESS+WebSocket+TLS 节点"""
+    """过滤代理节点，仅保留 VLESS+WebSocket 节点"""
     filtered = []
     for proxy in proxies:
-        if (proxy.get('type') == 'vless' and
-            proxy.get('network') == 'ws' and
-            proxy.get('tls', False) and
-            proxy.get('port') == 443):
+        if proxy.get('type') == 'vless' and proxy.get('network') == 'ws':
             filtered.append(proxy)
             logger.info(f"Kept proxy {proxy.get('name', 'Unknown')}")
         else:
-            logger.warning(f"Skipping proxy {proxy.get('name', 'Unknown')}: not VLESS+WS+TLS or port != 443")
+            logger.warning(f"Skipping proxy {proxy.get('name', 'Unknown')}: not VLESS+WS")
     return filtered
 
 def update_proxy_groups(config: Dict, proxy_names: List[str]):
-    """更新 proxy-groups，确保仅包含有效的代理节点"""
+    """更新 proxy-groups，确保包含负载均衡组和有效代理节点"""
     if 'proxy-groups' not in config:
-        logger.error("No proxy-groups found in config")
-        return
+        logger.error("No proxy-groups found in config, initializing")
+        config['proxy-groups'] = []
+
+    # 确保负载均衡组存在
+    load_balance_group = {
+        'name': '🚀 负载均衡',
+        'type': 'load-balance',
+        'url': 'http://www.google.com/generate_204',
+        'interval': 300,
+        'strategy': 'consistent-hashing',
+        'proxies': proxy_names
+    }
     
+    # 更新或添加负载均衡组
+    found = False
+    for group in config['proxy-groups']:
+        if group.get('name') == '🚀 负载均衡':
+            group.update(load_balance_group)
+            found = True
+            logger.info(f"Updated load-balance group with {len(proxy_names)} proxies: {proxy_names}")
+            break
+    if not found:
+        config['proxy-groups'].append(load_balance_group)
+        logger.info(f"Added load-balance group with {len(proxy_names)} proxies: {proxy_names}")
+
+    # 更新其他 proxy-groups
     for group in config['proxy-groups']:
         group_name = group.get('name')
-        if group_name in TARGET_PROXY_GROUPS:
+        if group_name in TARGET_PROXY_GROUPS and group_name != '🚀 负载均衡':
             new_proxies = []
             if group_name == "🎯 全球直连":
                 new_proxies = ["DIRECT"]
@@ -87,13 +107,14 @@ def update_proxy_groups(config: Dict, proxy_names: List[str]):
                     new_proxies.append("🚀 节点选择")
                 if group_name != "♻️ 自动选择":
                     new_proxies.append("♻️ 自动选择")
+                new_proxies.append("🚀 负载均衡")
                 if group_name not in ["Ⓜ️ 微软服务", "🍎 苹果服务"]:
                     new_proxies.append("🎯 全球直连")
                 new_proxies.extend(proxy_names)
             
             group['proxies'] = new_proxies
             logger.info(f"Updated proxy-group {group_name} with {len(new_proxies)} proxies: {new_proxies}")
-        else:
+        elif group_name != '🚀 负载均衡':
             logger.warning(f"Skipping unknown proxy-group: {group_name}")
 
 def main():
