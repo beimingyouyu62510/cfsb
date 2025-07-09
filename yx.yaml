@@ -193,63 +193,64 @@ rule-providers:
     interval: 43200
     lazy: false
 rules:
-  ## 非 IP 类规则
-  ### 自定义
+  ## === 自定义优先 ===
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,alibaba.com,DIRECT
   - DOMAIN-SUFFIX,alipay.com,DIRECT
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
-  - DOMAIN-KEYWORD,taobao,DIRECT
-  - DOMAIN-KEYWORD,tmall,DIRECT
   - DOMAIN,v.ddys.pro,DIRECT
   - DOMAIN,ddys.pro,DIRECT
   - DOMAIN-SUFFIX,hf.co,🚀 节点选择
   - DOMAIN,api.telegram.org,📲 电报信息
-  - DOMAIN-KEYWORD,easytier,DIRECT
   - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
+  - DOMAIN-KEYWORD,easytier,DIRECT
+
+  ## === 拦截特定 QUIC ===
   - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
-  ### 广告、数据统计
+
+  ## === 广告拦截 ===
   - RULE-SET,Anti-Ads,REJECT
-  ### 以下来自https://github.com/Loyalsoldier/v2ray-rules-dat
-  ### 大流量
+
+  ## === 高带宽/大流量分类 ===
   - GEOSITE,category-android-app-download,🚀 节点选择
   - GEOSITE,category-entertainment,🚀 节点选择
   - GEOSITE,category-porn,🚀 节点选择
+
+  ## === 特定服务分流 ===
   - GEOSITE,telegram,📲 电报信息
   - GEOSITE,onedrive,🚀 节点选择
-  - GEOSITE,category-games@cn,DIRECT
-  ### 国外固定IP
   - GEOSITE,category-ai-chat-!cn,🚀 节点选择
   - GEOSITE,category-cryptocurrency,🚀 节点选择
   - GEOSITE,category-social-media-!cn,🚀 节点选择
-  ### google(保证google play下载规则在cn之前)
+
+  ## === Google 全家桶 ===
   - GEOSITE,google,🚀 节点选择
-  ### 直连
+
+  ## === 国内域名 ===
   - GEOSITE,cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
-  ### 国外随意
+  - GEOSITE,category-games@cn,DIRECT
+
+  ## === 国外其他域名 ===
   - GEOSITE,geolocation-!cn,🚀 节点选择
 
-  ## IP 类规则
-  ### quic
-  # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOIP,CN))),REJECT # 这条规则可能与上面重复，且容易引起问题，如果上面已拦截可注释
-  ### 国外大流量
-  - GEOIP,telegram,🚀 节点选择,no-resolve
-  ### 国外固定IP
+  ## === 国外固定 IP 分类 ===
+  - GEOIP,telegram,📲 电报信息,no-resolve
   - GEOIP,facebook,🚀 节点选择,no-resolve
   - GEOIP,twitter,🚀 节点选择,no-resolve
   - GEOIP,netflix,🚀 节点选择,no-resolve
-  ### google
   - GEOIP,google,🚀 节点选择,no-resolve
-  ### 直连
+
+  ## === 国内 IP ===
   - GEOIP,CN,DIRECT,no-resolve
-  ### 绕过局域网地址
+
+  ## === 局域网保留直连 ===
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
 
-  ## 兜底
+  ## === 漏网之鱼 ===
   - MATCH,🐟 漏网之鱼
