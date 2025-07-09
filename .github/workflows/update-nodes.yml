@@ -1,149 +1,71 @@
-import logging
-import requests
-import yaml
-from pathlib import Path
-from typing import List, Dict
+name: Update Nodes
 
-# 配置日志
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+on:
+  schedule:
+    - cron: '0 3 * * *'  # 每天凌晨3点运行
+  workflow_dispatch:      # 支持手动触发
 
-REMOTE_URLS = [
-    "https://example.com/nodes.yaml",  # 替换为实际的节点源 URL
-]
-TARGET_PROXY_GROUPS = ["🚀 节点选择", "♻️ 自动选择", "🌍 国外媒体", "📲 电报信息", "Ⓜ️ 微软服务", "🍎 苹果服务", "📢 谷歌FCM", "🐟 漏网之鱼"]
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 限制 GITHUB_TOKEN 权限为写内容
 
-def fetch_remote_yaml(url: str) -> Dict:
-    """从远程 URL 获取 YAML 数据"""
-    try:
-        logger.info(f"Fetching YAML from {url}")
-        response = requests.get(url, timeout=10)
-        response.raise_for_status()
-        return yaml.safe_load(response.text) or {}
-    except requests.RequestException as e:
-        logger.error(f"Failed to fetch {url}: {e}")
-        return {}
-    except yaml.YAMLError as e:
-        logger.error(f"Invalid YAML from {url}: {e}")
-        return {}
+    steps:
+      - name: Log Trigger Event
+        run: |
+          echo "Workflow triggered by: ${{ github.event_name }}"
+          echo "Running on branch: ${{ github.ref }}"
 
-def load_local_yaml(file_path: Path) -> Dict:
-    """加载本地 YAML 文件"""
-    try:
-        logger.info(f"Loading local YAML from {file_path}")
-        with file_path.open('r', encoding='utf-8') as f:
-            return yaml.safe_load(f) or {}
-    except yaml.YAMLError as e:
-        logger.error(f"Invalid YAML in {file_path}: {e}")
-        return {}
-    except FileNotFoundError:
-        logger.warning(f"{file_path} not found, starting with empty config")
-        return {}
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-def save_yaml(data: Dict, file_path: Path):
-    """保存 YAML 数据到文件"""
-    try:
-        logger.info(f"Saving YAML to {file_path}")
-        with file_path.open('w', encoding='utf-8') as f:
-            yaml.safe_dump(data, f, allow_unicode=True, sort_keys=False)
-    except Exception as e:
-        logger.error(f"Failed to save {file_path}: {e}")
-        raise
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'  # 使用明确的 Python 版本
+          cache: 'pip'
+          cache-dependency-path: requirements.txt
 
-def filter_proxies(proxies: List[Dict]) -> List[Dict]:
-    """过滤代理节点，仅保留 VLESS+WebSocket+TLS 节点"""
-    filtered = []
-    for proxy in proxies:
-        if (proxy.get('type') == 'vless' and
-            proxy.get('network') == 'ws' and
-            proxy.get('tls', False) and
-            proxy.get('port') == 443):
-            filtered.append(proxy)
-        else:
-            logger.warning(f"Skipping proxy {proxy.get('name', 'Unknown')}: not VLESS+WS+TLS or port != 443")
-    return filtered
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pyyaml websocket-client
 
-def update_proxy_groups(config: Dict, proxy_names: List[str]):
-    """更新 proxy-groups，确保仅包含有效的代理节点"""
-    if 'proxy-groups' not in config:
-        logger.error("No proxy-groups found in config")
-        return
-    
-    for group in config['proxy-groups']:
-        group_name = group.get('name')
-        if group_name in TARGET_PROXY_GROUPS:
-            # 构建新的 proxies 列表
-            new_proxies = []
-            if group_name == "🎯 全球直连":
-                new_proxies = ["DIRECT"]
-            elif group_name == "🛑 全球拦截":
-                new_proxies = ["REJECT", "DIRECT"]
-            elif group_name == "🍃 应用净化":
-                new_proxies = ["REJECT", "DIRECT"]
-            else:
-                # 添加标准选项和有效代理
-                if group_name != "🚀 节点选择":
-                    new_proxies.append("🚀 节点选择")
-                if group_name != "♻️ 自动选择":
-                    new_proxies.append("♻️ 自动选择")
-                if group_name not in ["Ⓜ️ 微软服务", "🍎 苹果服务"]:
-                    new_proxies.append("🎯 全球直连")
-                new_proxies.extend(proxy_names)
-            
-            group['proxies'] = new_proxies
-            logger.info(f"Updated proxy-group {group_name} with {len(new_proxies)} proxies")
-        else:
-            logger.warning(f"Skipping unknown proxy-group: {group_name}")
+      - name: Clean Old Backups
+        run: |
+          find . -name "ch.yaml.bak" -mtime +7 -delete
+          echo "Cleaned backup files older than 7 days"
 
-def main():
-    """主函数：更新 ch.yaml 的 proxies 和 proxy-groups"""
-    config_file = Path('ch.yaml')
-    backup_file = Path('ch.yaml.bak')
-    
-    # 备份当前配置文件
-    if config_file.exists():
-        logger.info(f"Backing up {config_file} to {backup_file}")
-        config_file.replace(backup_file)
-    
-    # 加载当前配置文件
-    config = load_local_yaml(config_file)
-    
-    # 获取远程节点
-    all_proxies = []
-    for url in REMOTE_URLS:
-        remote_data = fetch_remote_yaml(url)
-        remote_proxies = remote_data.get('proxies', [])
-        all_proxies.extend(filter_proxies(remote_proxies))
-    
-    if not all_proxies:
-        logger.error("No valid proxies found from remote sources")
-        if backup_file.exists():
-            logger.info(f"Restoring backup from {backup_file}")
-            backup_file.replace(config_file)
-        return
-    
-    # 更新 proxies
-    config['proxies'] = all_proxies
-    proxy_names = [proxy['name'] for proxy in all_proxies]
-    logger.info(f"Updated proxies: {', '.join(proxy_names)}")
-    
-    # 更新 proxy-groups
-    update_proxy_groups(config, proxy_names)
-    
-    # 保存更新后的配置文件
-    save_yaml(config, config_file)
-    
-    # 验证更新后的 YAML
-    try:
-        with config_file.open('r', encoding='utf-8') as f:
-            yaml.safe_load(f)
-        logger.info(f"Successfully updated and validated {config_file}")
-    except yaml.YAMLError as e:
-        logger.error(f"Invalid YAML after update: {e}")
-        if backup_file.exists():
-            logger.info(f"Restoring backup from {backup_file}")
-            backup_file.replace(config_file)
-        raise
+      - name: Validate ch.yaml Before Update
+        run: |
+          python -c "import yaml; yaml.safe_load(open('ch.yaml'))" || echo "Invalid YAML in ch.yaml"
+        continue-on-error: true
 
-if __name__ == '__main__':
-    main()
+      - name: Test Proxy Connectivity
+        run: python test_proxies.py
+        env:
+          LOG_LEVEL: DEBUG
+
+      - name: Run update_nodes.py
+        run: python update_nodes.py
+        env:
+          LOG_LEVEL: DEBUG
+
+      - name: Validate ch.yaml After Update
+        run: |
+          python -c "import yaml; yaml.safe_load(open('ch.yaml'))" || exit 1
+
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ch.yaml
+          if ! git diff --cached --quiet; then
+            git commit -m "🤖 Update nodes: Keep latest, remove old"
+            git push
+          else
+            echo "No changes to commit"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
