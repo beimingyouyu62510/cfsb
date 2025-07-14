@@ -183,17 +183,18 @@ proxy-groups:
       - ♻️ 自动选择
       - 天书cf
       - 天书git
-rule-providers:
-  Anti-Ads:
+rule-providers:  
+  秋风广告规则:
     type: http
     behavior: domain
     format: yaml
-    path: ./rule_provider/Anti-Ads.yaml
-    url: "https://anti-ad.net/clash.yaml"
-    interval: 43200
-    lazy: false
+    path: ./rule_providers/AWAvenue-Ads-Rule-Clash.yaml
+    #此处“/rule_providers”自行参考
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    interval: 86400
 rules:
   ## === 自定义优先 ===
+  - RULE-SET,秋风广告规则,REJECT
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,alibaba.com,DIRECT
@@ -205,52 +206,39 @@ rules:
   - DOMAIN,api.telegram.org,📲 电报信息
   - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
   - DOMAIN-KEYWORD,easytier,DIRECT
-
   ## === 拦截特定 QUIC ===
   - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
-
-  ## === 广告拦截 ===
-  - RULE-SET,Anti-Ads,REJECT
-
   ## === 高带宽/大流量分类 ===
   - GEOSITE,category-android-app-download,🚀 节点选择
   - GEOSITE,category-entertainment,🚀 节点选择
   - GEOSITE,category-porn,🚀 节点选择
-
   ## === 特定服务分流 ===
   - GEOSITE,telegram,📲 电报信息
   - GEOSITE,onedrive,🚀 节点选择
   - GEOSITE,category-ai-chat-!cn,🚀 节点选择
   - GEOSITE,category-cryptocurrency,🚀 节点选择
   - GEOSITE,category-social-media-!cn,🚀 节点选择
-
   ## === Google 全家桶 ===
   - GEOSITE,google,🚀 节点选择
-
   ## === 国内域名 ===
   - GEOSITE,cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
   - GEOSITE,category-games@cn,DIRECT
-
   ## === 国外其他域名 ===
   - GEOSITE,geolocation-!cn,🚀 节点选择
-
   ## === 国外固定 IP 分类 ===
   - GEOIP,telegram,📲 电报信息,no-resolve
   - GEOIP,facebook,🚀 节点选择,no-resolve
   - GEOIP,twitter,🚀 节点选择,no-resolve
   - GEOIP,netflix,🚀 节点选择,no-resolve
   - GEOIP,google,🚀 节点选择,no-resolve
-
   ## === 国内 IP ===
   - GEOIP,CN,DIRECT,no-resolve
-
   ## === 局域网保留直连 ===
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-
   ## === 漏网之鱼 ===
   - MATCH,🐟 漏网之鱼
