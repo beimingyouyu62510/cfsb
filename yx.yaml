@@ -103,20 +103,6 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: git01.jisucf.cloudns.biz
-  - name: 备用节点
-    type: vless
-    server: backup.jisucf.cloudns.biz
-    port: 443
-    uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
-    udp: true
-    tls: true
-    sni: backup.jisucf.cloudns.biz
-    network: ws
-    ws-opts:
-      path: "/?ed=2560"
-      headers:
-        Host: backup.jisucf.cloudns.biz
-
 # 代理组，优化Mihomo负载均衡
 proxy-groups:
   - name: 🚀 节点选择
@@ -124,7 +110,6 @@ proxy-groups:
     proxies:
       - ♻️ 自动选择
       - DIRECT
-      - 备用节点
       - 天书cf
       - 天书git
   - name: ♻️ 自动选择
@@ -135,7 +120,6 @@ proxy-groups:
     proxies:
       - 天书cf
       - 天书git
-      - 备用节点
   - name: ⚖️ 负载均衡
     type: load-balance
     strategy: round-robin
@@ -146,7 +130,6 @@ proxy-groups:
     proxies:
       - 天书cf
       - 天书git
-      - 备用节点
   - name: 🌍 国外媒体
     type: select
     proxies:
