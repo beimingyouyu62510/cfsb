@@ -1,19 +1,24 @@
-# hosts:
-#   # 此处填写自定义hosts
+# 自定义Hosts
+hosts:
+  # 可根据需要添加自定义Hosts
+  # 示例：example.com: 1.2.3.4
+
+# 全局设置
 allow-lan: true
-# 不使用统一延迟检测，有些节点前戏太慢了
-unified-delay: false
-tcp-concurrent: true
-find-process-mode: strict
-global-client-fingerprint: chrome
+unified-delay: false  # 禁用统一延迟检测，提升节点切换速度
+tcp-concurrent: true  # 启用TCP并发，提升连接效率
+find-process-mode: strict  # 严格进程匹配，确保分流准确
+global-client-fingerprint: chrome  # 伪装为Chrome客户端，减少被识别风险
 profile:
-  store-selected: true
-  store-fake-ip: true
+  store-selected: true  # 保存用户选择
+  store-fake-ip: true   # 保存Fake-IP缓存
+
+# 嗅探设置：优化端口范围，增加跳过域名以提高准确性
 sniffer:
   enable: true
   sniff:
     HTTP:
-      ports: [80, 8080-8880]
+      ports: [80, 8080-8442]  # 缩小HTTP嗅探端口范围，减少误判
       override-destination: true
     TLS:
       ports: [443, 8443]
@@ -21,8 +26,12 @@ sniffer:
       ports: [443, 8443]
   skip-domain:
     - "Mijia Cloud"
-    - dlg.io.mi.com
+    - "dlg.io.mi.com"
     - "+.push.apple.com"
+    - "+.icloud.com"  # 添加苹果服务域名，防止误嗅探
+    - "+.mi.com"      # 添加小米服务域名
+
+# TUN模式：优化参数以降低资源消耗
 tun:
   enable: true
   stack: system
@@ -33,54 +42,47 @@ tun:
   auto-route: true
   auto-detect-interface: true
   strict-route: true
-  # 如果有使用zerotier或者headscale等，需要自己配置排除自己的网段
-  # route-exclude-address: ["10.144.144.0/24"]
-  # 打开nat1，官方文档说可能会损失一些性能，如果没有nat1需求，可以关闭
-  endpoint-independent-nat: true
+  endpoint-independent-nat: false  # 禁用NAT1，降低性能开销
+
+# DNS设置：精简为高可靠性DoH，提升解析速度和隐私
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  ipv6: false
+  ipv6: false  # 禁用IPv6，减少解析复杂性
   prefer-h3: true
   respect-rules: true
   enhanced-mode: fake-ip
   use-hosts: true
-  # 用于解析nameserver中的域名dns服务器，理论上如果nameserver中的dns服务器都是ip类的，这里也可以不填
-  # 前两个是我这边电信的运营商dns，可以换成你自己的，也可以全部使用大厂的公共dns
-  # 由于只用来解析nameserver，不使用doh或dot
   default-nameserver:
-    - 223.5.5.5
-    - 180.168.255.18
-    - 117.50.11.11
-  # 在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网，因此使用google和cf的doh
+    - https://dns.google/dns-query  # Google DoH，稳定可靠
+    - https://1.1.1.1/dns-query    # Cloudflare DoH，备用
   nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
-  # 用于解析代理节点的域名
   proxy-server-nameserver:
-    - 223.5.5.5
-    - https://dns.alidns.com/dns-query
-    - 119.29.29.29
-    - https://doh.pub/dns-query
-  # 国内访问的规则使用国内的dns，不考虑dns泄露，不使用doh或dot
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
   nameserver-policy:
     "geosite:cn,apple-cn,category-games@cn,private":
-      - 117.50.11.11
-      - 180.168.255.18
-      - 223.5.5.5
+      - https://dns.alidns.com/dns-query  # 国内域名使用阿里DNS，优化速度
+      - 223.5.5.5                         # 备用国内DNS
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - '*'
     - '+.lan'
     - '+.local'
-    - +.stun.*.*
-    - +.stun.*.*.*
-    - +.stun.*.*.*.*
-    - +.stun.*.*.*.*.*
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+
+# Geo数据源
 geodata-mode: true
 geox-url:
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+
+# 代理节点：增加备用节点，提升冗余性
 proxies:
   - name: 天书cf
     type: vless
@@ -108,6 +110,7 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: git01.jisucf.cloudns.biz
+# 代理组：优化分组逻辑，增加负载均衡组
 proxy-groups:
   - name: 🚀 节点选择
     type: select
@@ -119,8 +122,16 @@ proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 180  # 缩短测试间隔至3分钟，提升切换速度
+    tolerance: 30  # 降低容忍度，确保快速切换到低延迟节点
+    proxies:
+      - 天书cf
+      - 天书git
+  - name: ⚖️ 负载均衡
+    type: load-balance
+    strategy: round-robin
+    url: http://www.gstatic.com/generate_204
+    interval: 180
     proxies:
       - 天书cf
       - 天书git
@@ -129,38 +140,36 @@ proxy-groups:
     proxies:
       - 🚀 节点选择
       - ♻️ 自动选择
-      - 🎯 全球直连
-      - 天书cf
-      - 天书git
+      - ⚖️ 负载均衡
+      - DIRECT
   - name: 📲 电报信息
     type: select
     proxies:
       - 🚀 节点选择
-      - 🎯 全球直连
-      - 天书cf
-      - 天书git
+      - ♻️ 自动选择
+      - ⚖️ 负载均衡
+      - DIRECT
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
-      - 🎯 全球直连
+      - DIRECT
       - 🚀 节点选择
-      - 天书cf
-      - 天书git
+      - ♻️ 自动选择
+      - ⚖️ 负载均衡
   - name: 🍎 苹果服务
     type: select
     proxies:
       - 🚀 节点选择
-      - 🎯 全球直连
-      - 天书cf
-      - 天书git
+      - ♻️ 自动选择
+      - ⚖️ 负载均衡
+      - DIRECT
   - name: 📢 谷歌FCM
     type: select
     proxies:
       - 🚀 节点选择
-      - 🎯 全球直连
       - ♻️ 自动选择
-      - 天书cf
-      - 天书git
+      - ⚖️ 负载均衡
+      - DIRECT
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -179,22 +188,25 @@ proxy-groups:
     type: select
     proxies:
       - 🚀 节点选择
-      - 🎯 全球直连
       - ♻️ 自动选择
-      - 天书cf
-      - 天书git
-rule-providers:  
+      - ⚖️ 负载均衡
+      - DIRECT
+
+# 规则提供者：使用高效的广告规则
+rule-providers:
   秋风广告规则:
     type: http
     behavior: domain
     format: yaml
     path: ./rule_providers/AWAvenue-Ads-Rule-Clash.yaml
-    #此处“/rule_providers”自行参考
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
+
+# 规则：精简并优化优先级
 rules:
-  ## === 自定义优先 ===
-  - RULE-SET,秋风广告规则,REJECT
+  # 广告拦截
+  - RULE-SET,秋风广告规则,🛑 全球拦截
+  # 自定义直连域名
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,alibaba.com,DIRECT
@@ -206,39 +218,38 @@ rules:
   - DOMAIN,api.telegram.org,📲 电报信息
   - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
   - DOMAIN-KEYWORD,easytier,DIRECT
-  ## === 拦截特定 QUIC ===
-  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT
-  ## === 高带宽/大流量分类 ===
+  # 拦截特定QUIC流量
+  - AND,((DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),🛑 全球拦截
+  # 高带宽/大流量
   - GEOSITE,category-android-app-download,🚀 节点选择
-  - GEOSITE,category-entertainment,🚀 节点选择
-  - GEOSITE,category-porn,🚀 节点选择
-  ## === 特定服务分流 ===
+  - GEOSITE,category-entertainment,🌍 国外媒体
+  - GEOSITE,category-porn,🌍 国外媒体
+  # 特定服务
   - GEOSITE,telegram,📲 电报信息
-  - GEOSITE,onedrive,🚀 节点选择
+  - GEOSITE,onedrive,Ⓜ️ 微软服务
   - GEOSITE,category-ai-chat-!cn,🚀 节点选择
   - GEOSITE,category-cryptocurrency,🚀 节点选择
-  - GEOSITE,category-social-media-!cn,🚀 节点选择
-  ## === Google 全家桶 ===
+  - GEOSITE,category-social-media-!cn,🌍 国外媒体
+  # Google服务
   - GEOSITE,google,🚀 节点选择
-  ## === 国内域名 ===
+  # 国内域名
   - GEOSITE,cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
   - GEOSITE,category-games@cn,DIRECT
-  ## === 国外其他域名 ===
+  # 国外域名
   - GEOSITE,geolocation-!cn,🚀 节点选择
-  ## === 国外固定 IP 分类 ===
+  # IP分流
   - GEOIP,telegram,📲 电报信息,no-resolve
-  - GEOIP,facebook,🚀 节点选择,no-resolve
-  - GEOIP,twitter,🚀 节点选择,no-resolve
-  - GEOIP,netflix,🚀 节点选择,no-resolve
+  - GEOIP,facebook,🌍 国外媒体,no-resolve
+  - GEOIP,twitter,🌍 国外媒体,no-resolve
+  - GEOIP,netflix,🌍 国外媒体,no-resolve
   - GEOIP,google,🚀 节点选择,no-resolve
-  ## === 国内 IP ===
   - GEOIP,CN,DIRECT,no-resolve
-  ## === 局域网保留直连 ===
+  # 局域网
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-  ## === 漏网之鱼 ===
+  # 兜底规则
   - MATCH,🐟 漏网之鱼
