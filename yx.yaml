@@ -216,9 +216,8 @@ rules:
   - DOMAIN,api.telegram.org,📲 电报信息
   - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
   - DOMAIN-KEYWORD,easytier,DIRECT
-  - GEOSITE,category-android-app-download,🚀 节点选择
-  - GEOSITE,category-entertainment,🌍 国外媒体
-  - GEOSITE,category-porn,🌍 国外媒体
+  - GEOSITE,category-dev,🚀 节点选择
+  - GEOSITE,category-media,🌍 国外媒体
   - GEOSITE,telegram,📲 电报信息
   - GEOSITE,onedrive,Ⓜ️ 微软服务
   - GEOSITE,category-ai-chat-!cn,🚀 节点选择
