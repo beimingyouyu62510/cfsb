@@ -5,6 +5,7 @@ hosts:
 
 # 全局设置
 allow-lan: true
+# 不使用统一延迟检测，有些节点前戏太慢了
 unified-delay: false
 tcp-concurrent: true
 find-process-mode: strict
@@ -18,12 +19,13 @@ sniffer:
   enable: true
   sniff:
     HTTP:
-      ports: [80, 8080, 8443]  # 替换范围为具体端口
+      # 恢复为更宽泛的端口范围，避免漏掉流量
+      ports: [80, 8080-8880]
       override-destination: true
     TLS:
-      ports: [443]
+      ports: [443, 8443]
     QUIC:
-      ports: [8443]
+      ports: [443, 8443]
   skip-domain:
     - "Mijia Cloud"
     - "dlg.io.mi.com"
@@ -36,14 +38,17 @@ tun:
   enable: true
   stack: system
   device: mihomo
+  # 恢复为更全面的DNS劫持，确保所有DNS请求都由Clash处理
   dns-hijack:
-    - 0.0.0.0:1053  # 单一劫持目标，减少冲突
+    - any:53
+    - tcp://any:53
   auto-route: true
   auto-detect-interface: true
   strict-route: true
-  endpoint-independent-nat: false
+  # 恢复为true以获得更好的NAT兼容性
+  endpoint-independent-nat: true
 
-# DNS设置，优化Mihomo解析
+# DNS设置，使用更稳定可靠的配置
 dns:
   enable: true
   listen: 0.0.0.0:1053
@@ -52,30 +57,45 @@ dns:
   respect-rules: true
   enhanced-mode: fake-ip
   use-hosts: true
+  # 用于解析nameserver中的域名dns服务器
+  default-nameserver:
+    - 223.5.5.5
+    - 180.168.255.18
+    - 117.50.11.11
+  # 在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网
   nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
+  # 用于解析代理节点的域名，加入更多备选
   proxy-server-nameserver:
-    - https://dns.google/dns-query
-    - https://1.1.1.1/dns-query
+    - 223.5.5.5
+    - https://dns.alidns.com/dns-query
+    - 119.29.29.29
+    - https://doh.pub/dns-query
+  # 国内访问的规则使用国内的dns
   nameserver-policy:
     "geosite:cn,apple-cn,category-games@cn,private":
-      - https://dns.alidns.com/dns-query
+      - 117.50.11.11
+      - 180.168.255.18
       - 223.5.5.5
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
-    - "+.stun.*.*"
-    - "+.stun.*.*.*"
-    - "+.stun.*.*.*.*"
-    - "+.stun.*.*.*.*.*"
+    - '*'
+    - '+.lan'
+    - '+.local'
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - +.stun.*.*.*.*.*
 
 # Geo数据源，适配Mihomo
 geodata-mode: true
 geox-url:
+  # 使用ghproxy镜像源加速下载
   geoip: "https://mirror.ghproxy.com/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
   geosite: "https://mirror.ghproxy.com/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 
-# 代理节点，增加冗余
+# 代理节点
 proxies:
   - name: 天书cf
     type: vless
@@ -103,7 +123,8 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: git01.jisucf.cloudns.biz
-# 代理组，优化Mihomo负载均衡
+        
+# 代理组，保留第二个配置的结构
 proxy-groups:
   - name: 🚀 节点选择
     type: select
@@ -187,7 +208,7 @@ proxy-groups:
       - ♻️ 自动选择
       - ⚖️ 负载均衡
 
-# 规则提供者，适配Mihomo
+# 规则提供者
 rule-providers:
   秋风广告规则:
     type: http
@@ -197,7 +218,7 @@ rule-providers:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
 
-# 规则，优化Mihomo兼容性
+# 规则
 rules:
   - RULE-SET,秋风广告规则,🛑 全球拦截
   - DOMAIN-SUFFIX,taobao.com,DIRECT
