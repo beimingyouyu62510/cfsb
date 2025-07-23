@@ -1,6 +1,7 @@
 # 自定义Hosts
 hosts:
   # 可根据需要添加自定义Hosts
+  # example.com: 1.2.3.4
 
 # 全局设置
 allow-lan: true
@@ -12,17 +13,17 @@ profile:
   store-selected: true
   store-fake-ip: true
 
-# 嗅探设置
+# 嗅探设置，适配Mihomo
 sniffer:
   enable: true
   sniff:
     HTTP:
-      ports: [80, 8080-8442]
+      ports: [80, 8080, 8443]  # 替换范围为具体端口
       override-destination: true
     TLS:
-      ports: [443, 8443]
+      ports: [443]
     QUIC:
-      ports: [443, 8443]
+      ports: [8443]
   skip-domain:
     - "Mijia Cloud"
     - "dlg.io.mi.com"
@@ -30,20 +31,19 @@ sniffer:
     - "+.icloud.com"
     - "+.mi.com"
 
-# TUN模式
+# TUN模式，优化Mihomo兼容性
 tun:
   enable: true
   stack: system
   device: mihomo
   dns-hijack:
-    - any:53
-    - tcp://any:53
+    - 0.0.0.0:1053  # 单一劫持目标，减少冲突
   auto-route: true
   auto-detect-interface: true
   strict-route: true
   endpoint-independent-nat: false
 
-# DNS设置
+# DNS设置，优化Mihomo解析
 dns:
   enable: true
   listen: 0.0.0.0:1053
@@ -52,9 +52,6 @@ dns:
   respect-rules: true
   enhanced-mode: fake-ip
   use-hosts: true
-  default-nameserver:
-    - https://dns.google/dns-query
-    - https://1.1.1.1/dns-query
   nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
@@ -67,21 +64,18 @@ dns:
       - 223.5.5.5
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
-    - '*'
-    - '+.lan'
-    - '+.local'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*.*.*"
+    - "+.stun.*.*.*.*.*"
 
-# Geo数据源
+# Geo数据源，适配Mihomo
 geodata-mode: true
 geox-url:
-  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
-  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+  geoip: "https://mirror.ghproxy.com/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+  geosite: "https://mirror.ghproxy.com/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 
-# 代理节点
+# 代理节点，增加冗余
 proxies:
   - name: 天书cf
     type: vless
@@ -109,14 +103,28 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: git01.jisucf.cloudns.biz
+  - name: 备用节点
+    type: vless
+    server: backup.jisucf.cloudns.biz
+    port: 443
+    uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
+    udp: true
+    tls: true
+    sni: backup.jisucf.cloudns.biz
+    network: ws
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: backup.jisucf.cloudns.biz
 
-# 代理组
+# 代理组，优化Mihomo负载均衡
 proxy-groups:
   - name: 🚀 节点选择
     type: select
     proxies:
       - ♻️ 自动选择
       - DIRECT
+      - 备用节点
       - 天书cf
       - 天书git
   - name: ♻️ 自动选择
@@ -127,14 +135,18 @@ proxy-groups:
     proxies:
       - 天书cf
       - 天书git
+      - 备用节点
   - name: ⚖️ 负载均衡
     type: load-balance
     strategy: round-robin
     url: http://www.gstatic.com/generate_204
     interval: 180
+    lazy: true
+    health-check: true
     proxies:
       - 天书cf
       - 天书git
+      - 备用节点
   - name: 🌍 国外媒体
     type: select
     proxies:
@@ -187,22 +199,22 @@ proxy-groups:
   - name: 🐟 漏网之鱼
     type: select
     proxies:
+      - DIRECT
       - 🚀 节点选择
       - ♻️ 自动选择
       - ⚖️ 负载均衡
-      - DIRECT
 
-# 规则提供者
+# 规则提供者，适配Mihomo
 rule-providers:
   秋风广告规则:
     type: http
     behavior: domain
     format: yaml
     path: ./rule_providers/AWAvenue-Ads-Rule-Clash.yaml
-    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
 
-# 规则
+# 规则，优化Mihomo兼容性
 rules:
   - RULE-SET,秋风广告规则,🛑 全球拦截
   - DOMAIN-SUFFIX,taobao.com,DIRECT
@@ -224,6 +236,8 @@ rules:
   - GEOSITE,category-cryptocurrency,🚀 节点选择
   - GEOSITE,category-social-media-!cn,🌍 国外媒体
   - GEOSITE,google,🚀 节点选择
+  - GEOSITE,netflix,🌍 国外媒体
+  - GEOSITE,youtube,🌍 国外媒体
   - GEOSITE,cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
   - GEOSITE,category-games@cn,DIRECT
