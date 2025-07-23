@@ -1,24 +1,23 @@
 # 自定义Hosts
 hosts:
   # 可根据需要添加自定义Hosts
-  # 示例：example.com: 1.2.3.4
 
 # 全局设置
 allow-lan: true
-unified-delay: false  # 禁用统一延迟检测，提升节点切换速度
-tcp-concurrent: true  # 启用TCP并发，提升连接效率
-find-process-mode: strict  # 严格进程匹配，确保分流准确
-global-client-fingerprint: chrome  # 伪装为Chrome客户端，减少被识别风险
+unified-delay: false
+tcp-concurrent: true
+find-process-mode: strict
+global-client-fingerprint: chrome
 profile:
-  store-selected: true  # 保存用户选择
-  store-fake-ip: true   # 保存Fake-IP缓存
+  store-selected: true
+  store-fake-ip: true
 
-# 嗅探设置：优化端口范围，增加跳过域名以提高准确性
+# 嗅探设置
 sniffer:
   enable: true
   sniff:
     HTTP:
-      ports: [80, 8080-8442]  # 缩小HTTP嗅探端口范围，减少误判
+      ports: [80, 8080-8442]
       override-destination: true
     TLS:
       ports: [443, 8443]
@@ -28,10 +27,10 @@ sniffer:
     - "Mijia Cloud"
     - "dlg.io.mi.com"
     - "+.push.apple.com"
-    - "+.icloud.com"  # 添加苹果服务域名，防止误嗅探
-    - "+.mi.com"      # 添加小米服务域名
+    - "+.icloud.com"
+    - "+.mi.com"
 
-# TUN模式：优化参数以降低资源消耗
+# TUN模式
 tun:
   enable: true
   stack: system
@@ -42,20 +41,20 @@ tun:
   auto-route: true
   auto-detect-interface: true
   strict-route: true
-  endpoint-independent-nat: false  # 禁用NAT1，降低性能开销
+  endpoint-independent-nat: false
 
-# DNS设置：精简为高可靠性DoH，提升解析速度和隐私
+# DNS设置
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  ipv6: false  # 禁用IPv6，减少解析复杂性
+  ipv6: false
   prefer-h3: true
   respect-rules: true
   enhanced-mode: fake-ip
   use-hosts: true
   default-nameserver:
-    - https://dns.google/dns-query  # Google DoH，稳定可靠
-    - https://1.1.1.1/dns-query    # Cloudflare DoH，备用
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
   nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
@@ -64,8 +63,8 @@ dns:
     - https://1.1.1.1/dns-query
   nameserver-policy:
     "geosite:cn,apple-cn,category-games@cn,private":
-      - https://dns.alidns.com/dns-query  # 国内域名使用阿里DNS，优化速度
-      - 223.5.5.5                         # 备用国内DNS
+      - https://dns.alidns.com/dns-query
+      - 223.5.5.5
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - '*'
@@ -82,7 +81,7 @@ geox-url:
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 
-# 代理节点：增加备用节点，提升冗余性
+# 代理节点
 proxies:
   - name: 天书cf
     type: vless
@@ -110,7 +109,8 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: git01.jisucf.cloudns.biz
-# 代理组：优化分组逻辑，增加负载均衡组
+
+# 代理组
 proxy-groups:
   - name: 🚀 节点选择
     type: select
@@ -122,8 +122,8 @@ proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 180  # 缩短测试间隔至3分钟，提升切换速度
-    tolerance: 30  # 降低容忍度，确保快速切换到低延迟节点
+    interval: 180
+    tolerance: 30
     proxies:
       - 天书cf
       - 天书git
@@ -192,7 +192,7 @@ proxy-groups:
       - ⚖️ 负载均衡
       - DIRECT
 
-# 规则提供者：使用高效的广告规则
+# 规则提供者
 rule-providers:
   秋风广告规则:
     type: http
@@ -202,11 +202,9 @@ rule-providers:
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
 
-# 规则：精简并优化优先级
+# 规则
 rules:
-  # 广告拦截
   - RULE-SET,秋风广告规则,🛑 全球拦截
-  # 自定义直连域名
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,alibaba.com,DIRECT
@@ -218,38 +216,28 @@ rules:
   - DOMAIN,api.telegram.org,📲 电报信息
   - DOMAIN-SUFFIX,r2.cloudflarestorage.com,🚀 节点选择
   - DOMAIN-KEYWORD,easytier,DIRECT
-  # 拦截特定QUIC流量
-  - AND,((DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),🛑 全球拦截
-  # 高带宽/大流量
   - GEOSITE,category-android-app-download,🚀 节点选择
   - GEOSITE,category-entertainment,🌍 国外媒体
   - GEOSITE,category-porn,🌍 国外媒体
-  # 特定服务
   - GEOSITE,telegram,📲 电报信息
   - GEOSITE,onedrive,Ⓜ️ 微软服务
   - GEOSITE,category-ai-chat-!cn,🚀 节点选择
   - GEOSITE,category-cryptocurrency,🚀 节点选择
   - GEOSITE,category-social-media-!cn,🌍 国外媒体
-  # Google服务
   - GEOSITE,google,🚀 节点选择
-  # 国内域名
   - GEOSITE,cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
   - GEOSITE,category-games@cn,DIRECT
-  # 国外域名
   - GEOSITE,geolocation-!cn,🚀 节点选择
-  # IP分流
   - GEOIP,telegram,📲 电报信息,no-resolve
   - GEOIP,facebook,🌍 国外媒体,no-resolve
   - GEOIP,twitter,🌍 国外媒体,no-resolve
   - GEOIP,netflix,🌍 国外媒体,no-resolve
   - GEOIP,google,🚀 节点选择,no-resolve
   - GEOIP,CN,DIRECT,no-resolve
-  # 局域网
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-  # 兜底规则
   - MATCH,🐟 漏网之鱼
