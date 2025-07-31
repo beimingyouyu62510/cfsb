@@ -417,7 +417,7 @@ rule-providers:
     interval: 86400
     format: text
     type: http
-  下载:
+  Download:
     url: >-
       https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list
     path: ./ruleset/Download.list
