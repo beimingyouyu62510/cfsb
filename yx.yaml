@@ -422,7 +422,7 @@ rule-providers:
       https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list
     path: ./ruleset/Download.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
 
