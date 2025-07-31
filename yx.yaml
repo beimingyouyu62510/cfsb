@@ -7,7 +7,7 @@ global-client-fingerprint: chrome
 profile:
   store-selected: true
   store-fake-ip: true
-log-level: info
+log-level: debug  # 临时设为 debug 以调试
 
 # 嗅探设置，适配Mihomo
 sniffer:
@@ -203,91 +203,91 @@ rule-providers:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/LocalAreaNetwork.list
     path: ./ruleset/LocalAreaNetwork.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   广告拦截:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/Adblack.txt
     path: ./ruleset/Adblack.txt
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   谷歌服务:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/Google.list
     path: ./ruleset/Google.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   AI｜奈飞:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/OpenaiNetflix.list
     path: ./ruleset/OpenaiNetflix.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   国外媒体:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/ProxyMedia.list
     path: ./ruleset/ProxyMedia.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   微软服务:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/Microsoft.list
     path: ./ruleset/Microsoft.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   苹果服务:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/Apple.list
     path: ./ruleset/Apple.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   国内媒体:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/ChinaMedia.list
     path: ./ruleset/ChinaMedia.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   游戏平台:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/GamesPlatform.list
     path: ./ruleset/GamesPlatform.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   IP｜测速:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/IpinfoSpeedtest.list
     path: ./ruleset/IpinfoSpeedtest.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   电报消息:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/Telegram.list
     path: ./ruleset/Telegram.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   国外常规:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/ProxyGFWlist.list
     path: ./ruleset/ProxyGFWlist.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
   全球直连:
     url: https://raw.githubusercontent.com/mphin/proxy_tools/main/rules/GlobalDirect.list
     path: ./ruleset/GlobalDirect.list
     behavior: classical
-    interval: 86400
+    interval: 300
     format: text
     type: http
 
