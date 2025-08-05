@@ -86,8 +86,8 @@ dns:
 proxies:
   - name: 天书cf
     type: vless
-    server: 127.0.0.1
-    port: 1234
+    server: laji.jisucf.cloudns.biz
+    port: 443
     uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
     network: ws
     tls: true
