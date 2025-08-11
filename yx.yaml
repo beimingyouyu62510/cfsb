@@ -445,11 +445,11 @@ rules:
   - DOMAIN-SUFFIX,cloudfront.net,🚀 节点选择
   - DOMAIN-SUFFIX,akamaihd.net,🚀 节点选择
   - DOMAIN-KEYWORD,kodi,🚀 节点选择
-
   - PROCESS-NAME,subs-check*,🎯 全球直连
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
   - RULE-SET,UnBan,🎯 全球直连
   - RULE-SET,BanAD,🛑 全球拦截
+  - RULE-SET,秋风广告规则,🍃 应用净化
   - RULE-SET,BanProgramAD,🍃 应用净化
   - RULE-SET,GoogleFCM,📢 谷歌FCM
   - RULE-SET,GoogleCN,🎯 全球直连
