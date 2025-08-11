@@ -203,6 +203,13 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+  秋风广告规则:
+    type: http
+    behavior: domain
+    format: yaml
+    path: ./rule_provide/AWAvenue-Ads-Rule-Clash.yaml
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    interval: 86400
   BanProgramAD:
     url: >-
       https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list
