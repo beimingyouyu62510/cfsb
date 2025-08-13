@@ -435,6 +435,9 @@ rule-providers:
 
 rules:
   # Kodi 插件相关流量强制走代理
+  - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
+  - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
+  - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化  # 如果确认是广告
   - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
   - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
   - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
