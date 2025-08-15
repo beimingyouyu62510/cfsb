@@ -1,6 +1,5 @@
 # 全局设置
 allow-lan: true
-# 不使用统一延迟检测，有些节点前戏太慢了
 unified-delay: false
 tcp-concurrent: true
 find-process-mode: strict
@@ -9,12 +8,11 @@ profile:
   store-selected: true
   store-fake-ip: true
 
-# 嗅探设置，适配Mihomo
+# 嗅探设置
 sniffer:
   enable: true
   sniff:
     HTTP:
-      # 恢复为更宽泛的端口范围，避免漏掉流量
       ports: [80, 8080-8880]
       override-destination: true
     TLS:
@@ -27,20 +25,20 @@ sniffer:
     - "+.push.apple.com"
     - "+.icloud.com"
     - "+.mi.com"
+    - "+.lan"
+    - "+.local"
 
-# TUN模式，优化Mihomo兼容性
+# TUN模式
 tun:
   enable: true
   stack: system
   device: mihomo
-  # 恢复为更全面的DNS劫持，确保所有DNS请求都由Clash处理
   dns-hijack:
     - any:53
     - tcp://any:53
   auto-route: true
   auto-detect-interface: true
   strict-route: true
-  # 恢复为true以获得更好的NAT兼容性
   endpoint-independent-nat: true
 
 dns:
@@ -51,48 +49,39 @@ dns:
   respect-rules: true
   enhanced-mode: fake-ip
   use-hosts: true
-  # 用于解析nameserver中的域名dns服务器
   default-nameserver:
     - 223.5.5.5
     - 180.168.255.18
     - 117.50.11.11
-  # 默认使用国外DNS，主要用于代理流量
   nameserver:
     - https://dns.google/dns-query#🚀 节点选择
     - https://1.1.1.1/dns-query#🚀 节点选择
     - https://dns.cloudflare.com/dns-query#🚀 节点选择
-  # 用于解析代理节点的域名
   proxy-server-nameserver:
     - 223.5.5.5
     - https://dns.alidns.com/dns-query
     - 119.29.29.29
     - https://doh.pub/dns-query
   nameserver-policy:
-    # 国内域名和服务使用国内DNS
     "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
       - 117.50.11.11
       - 180.168.255.18
       - 223.5.5.5
       - https://dns.alidns.com/dns-query
-    # 美国服务使用美国DNS（通过美国节点）
     "geosite:google,youtube,netflix,github,openai,microsoft@!cn":
       - https://dns.google/dns-query#🚀 节点选择
       - https://8.8.8.8/dns-query#🚀 节点选择
       - https://dns.quad9.net/dns-query#🚀 节点选择
-    # 欧洲服务使用欧洲DNS（如果有英国节点可以指定）
     "geosite:telegram,discord":
       - https://1.1.1.1/dns-query#🚀 节点选择
       - https://dns.cloudflare.com/dns-query#🚀 节点选择
-    # 直连流量使用国内DNS
     "rule-set:ChinaDomain,ChinaCompanyIp,ChinaMedia":
       - 223.5.5.5
       - 117.50.11.11
       - https://dns.alidns.com/dns-query
-    # 苹果服务根据地区智能选择
     "geosite:apple@!cn":
       - https://dns.google/dns-query#🍎 苹果服务
       - https://1.1.1.1/dns-query#🍎 苹果服务
-    # 微软服务
     "geosite:microsoft@!cn":
       - https://dns.google/dns-query#Ⓜ️ 微软服务
       - https://8.8.8.8/dns-query#Ⓜ️ 微软服务
@@ -145,42 +134,36 @@ proxy-groups:
       - 天书git
   - name: ♻️ 自动选择
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     interval: 180
     tolerance: 30
     proxies:
       - 天书cf
       - 天书git
-
   - name: 🌍 国外媒体
     type: select
     proxies:
       - 🚀 节点选择
-      - ♻️ 自动选择
       - DIRECT
   - name: 📲 电报信息
     type: select
     proxies:
       - 🚀 节点选择
-      - ♻️ 自动选择
       - DIRECT
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
       - DIRECT
       - 🚀 节点选择
-      - ♻️ 自动选择
   - name: 🍎 苹果服务
     type: select
     proxies:
       - 🚀 节点选择
-      - ♻️ 自动选择
       - DIRECT
   - name: 📢 谷歌FCM
     type: select
     proxies:
       - 🚀 节点选择
-      - ♻️ 自动选择
       - DIRECT
   - name: 🎯 全球直连
     type: select
@@ -201,8 +184,6 @@ proxy-groups:
     proxies:
       - DIRECT
       - 🚀 节点选择
-      - ♻️ 自动选择
-
 
 rule-providers:
   LocalAreaNetwork:
@@ -458,10 +439,9 @@ rule-providers:
     type: http
 
 rules:
-  # Kodi 插件相关流量强制走代理
   - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
   - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
-  - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化  # 如果确认是广告
+  - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
   - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
   - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
   - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
