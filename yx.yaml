@@ -1,4 +1,4 @@
-帮我修改这个配置文件，主要功能智能分流dns，比如美国节点用美国dns，英国节点用英国dns，国内直连用国内dns。规则配套修改# 全局设置
+# 全局设置
 allow-lan: true
 # 不使用统一延迟检测，有些节点前戏太慢了
 unified-delay: false
@@ -43,7 +43,6 @@ tun:
   # 恢复为true以获得更好的NAT兼容性
   endpoint-independent-nat: true
 
-# DNS设置，使用更稳定可靠的配置
 dns:
   enable: true
   listen: 0.0.0.0:53
@@ -57,22 +56,46 @@ dns:
     - 223.5.5.5
     - 180.168.255.18
     - 117.50.11.11
-  # 在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网
+  # 默认使用国外DNS，主要用于代理流量
   nameserver:
-    - https://dns.google/dns-query#PROXY
-    - https://1.1.1.1/dns-query#PROXY
-  # 用于解析代理节点的域名，加入更多备选
+    - https://dns.google/dns-query#🚀 节点选择
+    - https://1.1.1.1/dns-query#🚀 节点选择
+    - https://dns.cloudflare.com/dns-query#🚀 节点选择
+  # 用于解析代理节点的域名
   proxy-server-nameserver:
     - 223.5.5.5
     - https://dns.alidns.com/dns-query
     - 119.29.29.29
     - https://doh.pub/dns-query
-  # 国内访问的规则使用国内的dns
   nameserver-policy:
+    # 国内域名和服务使用国内DNS
     "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
       - 117.50.11.11
       - 180.168.255.18
       - 223.5.5.5
+      - https://dns.alidns.com/dns-query
+    # 美国服务使用美国DNS（通过美国节点）
+    "geosite:google,youtube,netflix,github,openai,microsoft@!cn":
+      - https://dns.google/dns-query#🚀 节点选择
+      - https://8.8.8.8/dns-query#🚀 节点选择
+      - https://dns.quad9.net/dns-query#🚀 节点选择
+    # 欧洲服务使用欧洲DNS（如果有英国节点可以指定）
+    "geosite:telegram,discord":
+      - https://1.1.1.1/dns-query#🚀 节点选择
+      - https://dns.cloudflare.com/dns-query#🚀 节点选择
+    # 直连流量使用国内DNS
+    "rule-set:ChinaDomain,ChinaCompanyIp,ChinaMedia":
+      - 223.5.5.5
+      - 117.50.11.11
+      - https://dns.alidns.com/dns-query
+    # 苹果服务根据地区智能选择
+    "geosite:apple@!cn":
+      - https://dns.google/dns-query#🍎 苹果服务
+      - https://1.1.1.1/dns-query#🍎 苹果服务
+    # 微软服务
+    "geosite:microsoft@!cn":
+      - https://dns.google/dns-query#Ⓜ️ 微软服务
+      - https://8.8.8.8/dns-query#Ⓜ️ 微软服务
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - '*'
@@ -82,6 +105,7 @@ dns:
     - +.stun.*.*.*
     - +.stun.*.*.*.*
     - +.stun.*.*.*.*.*
+
 # 代理节点
 proxies:
   - name: 天书cf
@@ -111,7 +135,6 @@ proxies:
       headers:
         Host: git01.jisucf.cloudns.biz
         
-# 代理组，保留第二个配置的结构
 proxy-groups:
   - name: 🚀 节点选择
     type: select
@@ -179,6 +202,7 @@ proxy-groups:
       - DIRECT
       - 🚀 节点选择
       - ♻️ 自动选择
+
 
 rule-providers:
   LocalAreaNetwork:
