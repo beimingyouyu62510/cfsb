@@ -1,4 +1,4 @@
-# 全局设置
+帮我修改这个配置文件，主要功能智能分流dns，比如美国节点用美国dns，英国节点用英国dns，国内直连用国内dns。规则配套修改# 全局设置
 allow-lan: true
 # 不使用统一延迟检测，有些节点前戏太慢了
 unified-delay: false
@@ -43,7 +43,7 @@ tun:
   # 恢复为true以获得更好的NAT兼容性
   endpoint-independent-nat: true
 
-# DNS设置，使用更稳定可靠的配置，并实现智能分流
+# DNS设置，使用更稳定可靠的配置
 dns:
   enable: true
   listen: 0.0.0.0:53
@@ -67,16 +67,12 @@ dns:
     - https://dns.alidns.com/dns-query
     - 119.29.29.29
     - https://doh.pub/dns-query
-  # 智能分流DNS：国内/直连用国内DNS，美国相关域名用美国DNS，英国相关域名用英国DNS，其他外网用默认
+  # 国内访问的规则使用国内的dns
   nameserver-policy:
     "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
       - 117.50.11.11
       - 180.168.255.18
       - 223.5.5.5
-    "geosite:us":
-      - https://dns.google/dns-query
-    "geosite:gb":
-      - https://dns.privacyetc.com/dns-query
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - '*'
@@ -108,7 +104,7 @@ proxies:
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
     udp: true
     tls: true
-    sni: git01.jisucf.cloudns.biz
+    servername: git01.jisucf.cloudns.biz
     network: ws
     ws-opts:
       path: "/?ed=2560"
@@ -481,9 +477,6 @@ rules:
   - RULE-SET,Bilibili,🎯 全球直连
   - RULE-SET,ChinaMedia,🎯 全球直连
   - RULE-SET,ProxyMedia,🌍 国外媒体
-  # 配套规则：美国和英国域名路由到国外媒体组，与DNS分流配套
-  - GEOSITE,us,🌍 国外媒体
-  - GEOSITE,gb,🌍 国外媒体
   - RULE-SET,ProxyGFWlist,🚀 节点选择
   - RULE-SET,ChinaDomain,🎯 全球直连
   - RULE-SET,ChinaCompanyIp,🎯 全球直连
