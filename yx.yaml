@@ -1,88 +1,60 @@
-# 全局设置
+mixed-port: 7890
 allow-lan: true
-# 不使用统一延迟检测，有些节点前戏太慢了
-unified-delay: false
-tcp-concurrent: true
-find-process-mode: strict
-global-client-fingerprint: chrome
-profile:
-  store-selected: true
-  store-fake-ip: true
+bind-address: '*'
+mode: rule
+log-level: info
 
-# 嗅探设置，适配Mihomo
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '*.msftconnecttest.com'
+    - '*.msftncsi.com'
+    - '*.services.mozilla.com'
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver-policy:
+    "geosite:cn,private":
+      - 223.5.5.5
+      - 119.29.29.29
+    "geosite:us,gb":
+      - 1.1.1.1
+      - 8.8.8.8
+  proxy-server-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - 198.18.0.2:53
+  auto-route: true
+  auto-detect-interface: true
+
 sniffer:
   enable: true
   sniff:
     HTTP:
-      # 恢复为更宽泛的端口范围，避免漏掉流量
       ports: [80, 8080-8880]
-      override-destination: true
+      override-destination: false
     TLS:
       ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
   skip-domain:
-    - "Mijia Cloud"
-    - "dlg.io.mi.com"
-    - "+.push.apple.com"
-    - "+.icloud.com"
-    - "+.mi.com"
+    - 'microsoft.com'
+    - 'apple.com'
+    - 'localhost'
 
-# TUN模式，优化Mihomo兼容性
-tun:
-  enable: true
-  stack: system
-  device: mihomo
-  # 恢复为更全面的DNS劫持，确保所有DNS请求都由Clash处理
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  auto-route: true
-  auto-detect-interface: true
-  strict-route: true
-  # 恢复为true以获得更好的NAT兼容性
-  endpoint-independent-nat: true
-
-# DNS设置，使用更稳定可靠的配置
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  ipv6: false
-  prefer-h3: true
-  respect-rules: true
-  enhanced-mode: fake-ip
-  use-hosts: true
-  # 用于解析nameserver中的域名dns服务器
-  default-nameserver:
-    - 223.5.5.5
-    - 180.168.255.18
-    - 117.50.11.11
-  # 在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网
-  nameserver:
-    - https://dns.google/dns-query#PROXY
-    - https://1.1.1.1/dns-query#PROXY
-  # 用于解析代理节点的域名，加入更多备选
-  proxy-server-nameserver:
-    - 223.5.5.5
-    - https://dns.alidns.com/dns-query
-    - 119.29.29.29
-    - https://doh.pub/dns-query
-  # 国内访问的规则使用国内的dns
-  nameserver-policy:
-    "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
-      - 117.50.11.11
-      - 180.168.255.18
-      - 223.5.5.5
-  fake-ip-range: 28.0.0.1/8
-  fake-ip-filter:
-    - '*'
-    - '+.lan'
-    - '+.local'
-    - +.stun.*.*
-    - +.stun.*.*.*
-    - +.stun.*.*.*.*
-    - +.stun.*.*.*.*.*
-# 代理节点
 proxies:
   - name: 天书cf
     type: vless
@@ -104,27 +76,15 @@ proxies:
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
     udp: true
     tls: true
-    sni: git01.jisucf.cloudns.biz
+    servername: git01.jisucf.cloudns.biz
     network: ws
     ws-opts:
       path: "/?ed=2560"
       headers:
         Host: git01.jisucf.cloudns.biz
-        
-# 代理组，保留第二个配置的结构
 proxy-groups:
   - name: 🚀 节点选择
     type: select
-    proxies:
-      - ♻️ 自动选择
-      - DIRECT
-      - 天书cf
-      - 天书git
-  - name: ♻️ 自动选择
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 180
-    tolerance: 30
     proxies:
       - 天书cf
       - 天书git
@@ -133,354 +93,88 @@ proxy-groups:
     type: select
     proxies:
       - 🚀 节点选择
-      - ♻️ 自动选择
       - DIRECT
+
   - name: 📲 电报信息
     type: select
     proxies:
       - 🚀 节点选择
-      - ♻️ 自动选择
       - DIRECT
-  - name: Ⓜ️ 微软服务
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - ♻️ 自动选择
-  - name: 🍎 苹果服务
+
+  - name: 🎮 游戏平台
     type: select
     proxies:
       - 🚀 节点选择
-      - ♻️ 自动选择
       - DIRECT
-  - name: 📢 谷歌FCM
+
+  - name: 📺 Kodi专用
     type: select
     proxies:
       - 🚀 节点选择
-      - ♻️ 自动选择
       - DIRECT
-  - name: 🎯 全球直连
-    type: select
-    proxies:
-      - DIRECT
-  - name: 🛑 全球拦截
+
+  - name: 🛑 广告拦截
     type: select
     proxies:
       - REJECT
       - DIRECT
+
   - name: 🍃 应用净化
     type: select
     proxies:
       - REJECT
       - DIRECT
+
   - name: 🐟 漏网之鱼
     type: select
     proxies:
-      - DIRECT
       - 🚀 节点选择
-      - ♻️ 自动选择
+      - DIRECT
 
 rule-providers:
-  LocalAreaNetwork:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
-    path: ./ruleset/LocalAreaNetwork.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  UnBan:
-    url: 'https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list'
-    path: ./ruleset/UnBan.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  BanAD:
-    url: 'https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanAD.list'
-    path: ./ruleset/BanAD.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  秋风广告规则:
+  秋风广告:
     type: http
     behavior: domain
-    format: yaml
-    path: ./rule_provide/AWAvenue-Ads-Rule-Clash.yaml
-    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    url: https://raw.githubusercontent.com/privacy-protection-tools/anti-ad/master/anti-ad-clash.yaml
+    path: ./ruleset/qiufeng-ad.yaml
     interval: 86400
-  BanProgramAD:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list
-    path: ./ruleset/BanProgramAD.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  GoogleFCM:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/GoogleFCM.list
-    path: ./ruleset/GoogleFCM.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  GoogleCN:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleCN.list
-    path: ./ruleset/GoogleCN.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  SteamCN:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/SteamCN.list
-    path: ./ruleset/SteamCN.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Bing:
-    url: 'https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bing.list'
-    path: ./ruleset/Bing.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  OneDrive:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OneDrive.list
-    path: ./ruleset/OneDrive.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Microsoft:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Microsoft.list
-    path: ./ruleset/Microsoft.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Apple:
-    url: 'https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Apple.list'
-    path: ./ruleset/Apple.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
+
   Telegram:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Telegram.list
-    path: ./ruleset/Telegram.list
-    behavior: classical
-    interval: 86400
-    format: text
     type: http
-  AI:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/AI.list
-    path: ./ruleset/AI.list
-    behavior: classical
+    behavior: domain
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt
+    path: ./ruleset/telegram.txt
     interval: 86400
-    format: text
-    type: http
-  OpenAi:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/OpenAi.list
-    path: ./ruleset/OpenAi.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  NetEaseMusic:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/NetEaseMusic.list
-    path: ./ruleset/NetEaseMusic.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Epic:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Epic.list
-    path: ./ruleset/Epic.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Origin:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Origin.list
-    path: ./ruleset/Origin.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Sony:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Sony.list
-    path: ./ruleset/Sony.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Steam:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Steam.list
-    path: ./ruleset/Steam.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Nintendo:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Nintendo.list
-    path: ./ruleset/Nintendo.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  YouTube:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/YouTube.list
-    path: ./ruleset/YouTube.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Netflix:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Netflix.list
-    path: ./ruleset/Netflix.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Bahamut:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Bahamut.list
-    path: ./ruleset/Bahamut.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  BilibiliHMT:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/BilibiliHMT.list
-    path: ./ruleset/BilibiliHMT.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Bilibili:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Bilibili.list
-    path: ./ruleset/Bilibili.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  ChinaMedia:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list
-    path: ./ruleset/ChinaMedia.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  ProxyMedia:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyMedia.list
-    path: ./ruleset/ProxyMedia.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  ProxyGFWlist:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list
-    path: ./ruleset/ProxyGFWlist.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  ChinaDomain:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaDomain.list
-    path: ./ruleset/ChinaDomain.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  ChinaCompanyIp:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaCompanyIp.list
-    path: ./ruleset/ChinaCompanyIp.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
+
   Download:
-    url: >-
-      https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list
-    path: ./ruleset/Download.list
-    behavior: classical
-    interval: 86400
-    format: text
     type: http
+    behavior: domain
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/download.txt
+    path: ./ruleset/download.txt
+    interval: 86400
+
+  ChinaDomain:
+    type: http
+    behavior: domain
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt
+    path: ./ruleset/chinadomain.txt
+    interval: 86400
+
+  ChinaIP:
+    type: http
+    behavior: ipcidr
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt
+    path: ./ruleset/chinaip.txt
+    interval: 86400
 
 rules:
-  # Kodi 插件相关流量强制走代理
+  - RULE-SET,秋风广告,🛑 广告拦截
+  - RULE-SET,Telegram,📲 电报信息
+  - RULE-SET,Download,🚀 节点选择
   - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
   - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
-  - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化  # 如果确认是广告
-  - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
-  - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,addons.kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,github.com,🚀 节点选择
-  - DOMAIN-SUFFIX,githubusercontent.com,🚀 节点选择
-  - DOMAIN-SUFFIX,raw.githubusercontent.com,🚀 节点选择
-  - DOMAIN-SUFFIX,cloudfront.net,🚀 节点选择
-  - DOMAIN-SUFFIX,akamaihd.net,🚀 节点选择
-  - DOMAIN-KEYWORD,kodi,🚀 节点选择
-  - PROCESS-NAME,subs-check*,🎯 全球直连
-  - RULE-SET,LocalAreaNetwork,🎯 全球直连
-  - RULE-SET,UnBan,🎯 全球直连
-  - RULE-SET,BanAD,🛑 全球拦截
-  - RULE-SET,秋风广告规则,🍃 应用净化
-  - RULE-SET,BanProgramAD,🍃 应用净化
-  - RULE-SET,GoogleFCM,📢 谷歌FCM
-  - RULE-SET,GoogleCN,🎯 全球直连
-  - RULE-SET,SteamCN,🎯 全球直连
-  - RULE-SET,Bing,Ⓜ️ 微软服务
-  - RULE-SET,OneDrive,Ⓜ️ 微软服务
-  - RULE-SET,Microsoft,Ⓜ️ 微软服务
-  - RULE-SET,Apple,🍎 苹果服务
-  - RULE-SET,Telegram,📲 电报信息
-  - RULE-SET,AI,🚀 节点选择
-  - RULE-SET,OpenAi,🚀 节点选择
-  - RULE-SET,NetEaseMusic,🎯 全球直连
-  - RULE-SET,Epic,🚀 节点选择
-  - RULE-SET,Origin,🚀 节点选择
-  - RULE-SET,Sony,🚀 节点选择
-  - RULE-SET,Steam,🚀 节点选择
-  - RULE-SET,Nintendo,🚀 节点选择
-  - RULE-SET,YouTube,🌍 国外媒体
-  - RULE-SET,Netflix,🌍 国外媒体
-  - RULE-SET,Bahamut,🌍 国外媒体
-  - RULE-SET,BilibiliHMT,🎯 全球直连
-  - RULE-SET,Bilibili,🎯 全球直连
-  - RULE-SET,ChinaMedia,🎯 全球直连
-  - RULE-SET,ProxyMedia,🌍 国外媒体
-  - RULE-SET,ProxyGFWlist,🚀 节点选择
-  - RULE-SET,ChinaDomain,🎯 全球直连
-  - RULE-SET,ChinaCompanyIp,🎯 全球直连
-  - RULE-SET,Download,🎯 全球直连
-  - GEOIP,CN,🎯 全球直连
+  - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
+  - RULE-SET,ChinaDomain,DIRECT
+  - RULE-SET,ChinaIP,DIRECT
+  - GEOIP,CN,DIRECT
   - MATCH,🐟 漏网之鱼
-
