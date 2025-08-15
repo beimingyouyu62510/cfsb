@@ -46,7 +46,7 @@ tun:
 # DNS设置，使用更稳定可靠的配置
 dns:
   enable: true
-  listen: 0.0.0.0:1053
+  listen: 0.0.0.0:53
   ipv6: false
   prefer-h3: true
   respect-rules: true
@@ -59,8 +59,8 @@ dns:
     - 117.50.11.11
   # 在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网
   nameserver:
-    - https://dns.google/dns-query
-    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query#PROXY
+    - https://1.1.1.1/dns-query#PROXY
   # 用于解析代理节点的域名，加入更多备选
   proxy-server-nameserver:
     - 223.5.5.5
@@ -69,7 +69,7 @@ dns:
     - https://doh.pub/dns-query
   # 国内访问的规则使用国内的dns
   nameserver-policy:
-    "geosite:cn,apple-cn,category-games@cn,private":
+    "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
       - 117.50.11.11
       - 180.168.255.18
       - 223.5.5.5
