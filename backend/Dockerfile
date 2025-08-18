@@ -22,7 +22,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py .
 
 # 定义环境变量（可选）
-ENV CLASH_API_SECRET="your-api-secret"
+ENV CLASH_API_SECRET="511622"
 
 # 启动服务
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
