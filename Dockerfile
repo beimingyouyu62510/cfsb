@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
     rm -rf /var/lib/apt/lists/*
 
 # 下载 Mihomo 内核
-# 请自行替换为最新版本的下载链接
 RUN curl -L "https://github.com/MetaCubeX/mihomo/releases/download/v1.18.2/mihomo-linux-amd64-v1.18.2.gz" -o mihomo.gz && \
     gzip -d mihomo.gz && \
     mv mihomo-linux-amd64-v1.18.2 mihomo && \
