@@ -1,6 +1,8 @@
 import requests
 import yaml
 import os
+import base64
+import json
 from hashlib import md5
 
 # ========== 配置：多个订阅源 ==========
@@ -20,21 +22,105 @@ SUBSCRIPTION_URLS = [
 OUTPUT_FILE = "providers/all.yaml"
 
 
-def download_yaml(url):
+def download(url):
     try:
         resp = requests.get(url, timeout=15)
         resp.raise_for_status()
-        return yaml.safe_load(resp.text)
+        return resp.text
     except Exception as e:
         print(f"[❌] 下载失败: {url} 错误: {e}")
         return None
+
+
+def parse_clash_yaml(text):
+    try:
+        data = yaml.safe_load(text)
+        if isinstance(data, dict) and "proxies" in data:
+            return data["proxies"]
+    except Exception:
+        return None
+    return None
+
+
+def parse_base64(text):
+    try:
+        decoded = base64.b64decode(text.strip() + "===")  # 修正填充
+        decoded_text = decoded.decode("utf-8", errors="ignore")
+    except Exception:
+        return None
+
+    proxies = []
+    for line in decoded_text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+
+        # vmess://
+        if line.startswith("vmess://"):
+            try:
+                node_str = base64.b64decode(line[8:]).decode("utf-8")
+                node_json = json.loads(node_str)
+                proxies.append({
+                    "name": node_json.get("ps", "vmess"),
+                    "type": "vmess",
+                    "server": node_json["add"],
+                    "port": int(node_json["port"]),
+                    "uuid": node_json["id"],
+                    "alterId": int(node_json.get("aid", 0)),
+                    "cipher": node_json.get("scy", "auto"),
+                    "tls": True if node_json.get("tls") == "tls" else False,
+                    "network": node_json.get("net", "tcp"),
+                })
+            except Exception as e:
+                print(f"[⚠️] 解析 vmess 节点失败: {e}")
+
+        # ss://
+        elif line.startswith("ss://"):
+            try:
+                info = line[5:]
+                if "#" in info:
+                    info, name = info.split("#", 1)
+                else:
+                    name = "ss"
+
+                userinfo, server_port = base64.b64decode(info.split("@")[0]).decode().split(":", 1)
+                cipher, password = userinfo.split(":", 1)
+                server, port = info.split("@")[1].split(":")
+                proxies.append({
+                    "name": name,
+                    "type": "ss",
+                    "server": server,
+                    "port": int(port),
+                    "cipher": cipher,
+                    "password": password,
+                })
+            except Exception as e:
+                print(f"[⚠️] 解析 ss 节点失败: {e}")
+
+        # trojan://
+        elif line.startswith("trojan://"):
+            try:
+                info = line[9:]
+                if "@" in info:
+                    password, rest = info.split("@", 1)
+                    server, port = rest.split(":", 1)
+                    proxies.append({
+                        "name": "trojan",
+                        "type": "trojan",
+                        "server": server,
+                        "port": int(port),
+                        "password": password,
+                    })
+            except Exception as e:
+                print(f"[⚠️] 解析 trojan 节点失败: {e}")
+
+    return proxies if proxies else None
 
 
 def deduplicate(proxies):
     seen = set()
     result = []
     for p in proxies:
-        # 用 server+port+type 做唯一标识
         key = md5(f"{p.get('server')}:{p.get('port')}:{p.get('type')}".encode()).hexdigest()
         if key not in seen:
             seen.add(key)
@@ -47,16 +133,27 @@ def main():
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
     for url in SUBSCRIPTION_URLS:
-        data = download_yaml(url)
-        if data and "proxies" in data:
-            all_proxies.extend(data["proxies"])
-            print(f"[✅] 成功加载 {url}，节点数: {len(data['proxies'])}")
+        text = download(url)
+        if not text:
+            continue
 
-    # 去重
+        proxies = parse_clash_yaml(text)
+        if proxies:
+            print(f"[✅] Clash YAML 订阅: {url} → {len(proxies)} 节点")
+            all_proxies.extend(proxies)
+            continue
+
+        proxies = parse_base64(text)
+        if proxies:
+            print(f"[✅] Base64 订阅: {url} → {len(proxies)} 节点")
+            all_proxies.extend(proxies)
+            continue
+
+        print(f"[⚠️] 未能识别订阅格式: {url}")
+
     merged = deduplicate(all_proxies)
     print(f"[📦] 合并后节点总数: {len(merged)}")
 
-    # 写入文件
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         yaml.safe_dump({"proxies": merged}, f, allow_unicode=True)
 
