@@ -10,7 +10,7 @@ from pydantic import BaseModel
 from typing import List
 
 # 配置
-CLASH_CORE_NAME = "clash-linux-amd64"  # 确保这个文件名和你的 Clash 核心可执行文件一致
+CLASH_CORE_NAME = "mihomo"  # 确保这个文件名和你的 Clash 核心可执行文件一致
 CLASH_CONFIG_PATH = "clash-config.yaml"
 CLASH_API_URL = "http://127.0.0.1:9090"
 CLASH_API_SECRET = "511622" # 记得修改为你的密钥
