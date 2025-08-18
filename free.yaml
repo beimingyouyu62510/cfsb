@@ -49,19 +49,18 @@ dns:
   respect-rules: true
   enhanced-mode: fake-ip
   use-hosts: true
-  default-nameserver:
-    - 223.5.5.5
-    - 180.168.255.18
-    - 117.50.11.11
+  # 主要 DNS 解析器
   nameserver:
-    - https://dns.google/dns-query#🚀 节点选择
-    - https://1.1.1.1/dns-query#🚀 节点选择
-    - https://dns.cloudflare.com/dns-query#🚀 节点选择
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+    - https://dns.cloudflare.com/dns-query
+  # 针对代理流量的 DNS 解析器
   proxy-server-nameserver:
     - 223.5.5.5
     - https://dns.alidns.com/dns-query
     - 119.29.29.29
     - https://doh.pub/dns-query
+  # 针对不同规则的 DNS 策略
   nameserver-policy:
     "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
       - 117.50.11.11
@@ -69,47 +68,36 @@ dns:
       - 223.5.5.5
       - https://dns.alidns.com/dns-query
     "geosite:google,youtube,netflix,github,openai,microsoft@!cn":
-      - https://dns.google/dns-query#🚀 节点选择
-      - https://8.8.8.8/dns-query#🚀 节点选择
-      - https://dns.quad9.net/dns-query#🚀 节点选择
+      - https://dns.google/dns-query
+      - https://8.8.8.8/dns-query
+      - https://dns.quad9.net/dns-query
     "geosite:telegram,discord":
-      - https://1.1.1.1/dns-query#🚀 节点选择
-      - https://dns.cloudflare.com/dns-query#🚀 节点选择
+      - https://1.1.1.1/dns-query
+      - https://dns.cloudflare.com/dns-query
     "rule-set:ChinaDomain,ChinaCompanyIp,ChinaMedia":
       - 223.5.5.5
       - 117.50.11.11
       - https://dns.alidns.com/dns-query
     "geosite:apple@!cn":
-      - https://dns.google/dns-query#🍎 苹果服务
-      - https://1.1.1.1/dns-query#🍎 苹果服务
+      - https://dns.google/dns-query
+      - https://1.1.1.1/dns-query
     "geosite:microsoft@!cn":
-      - https://dns.google/dns-query#Ⓜ️ 微软服务
-      - https://8.8.8.8/dns-query#Ⓜ️ 微软服务
+      - https://dns.google/dns-query
+      - https://8.8.8.8/dns-query
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
-    - '*'
-    - '+.lan'
-    - '+.local'
-    - +.stun.*.*
-    - +.stun.*.*.*
-    - +.stun.*.*.*.*
-    - +.stun.*.*.*.*.*
+    - '*.lan'
+    - '*.local'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
 
 # 从 GitHub 仓库订阅节点
 proxy-providers:
-  all:
-    type: http
-    url: "https://raw.githubusercontent.com/<你的用户名>/<仓库名>/main/providers/all.yaml"
-    interval: 3600
-    path: ./providers/all.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 600
-
   us:
     type: http
-    url: "https://raw.githubusercontent.com/<你的用户名>/<仓库名>/main/providers/us.yaml"
+    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/us.yaml"
     interval: 3600
     path: ./providers/us.yaml
     health-check:
@@ -119,35 +107,32 @@ proxy-providers:
 
 # 代理分组
 proxy-groups:
-  - name: 🚀 节点选择
-    type: select
-    use:
-      - all
-    proxies:
-      - ♻️ 自动选择
-      - DIRECT
-      - 天书cf
-      - 天书git
-
+  # 自动测试并选择延迟最低的节点
   - name: ♻️ 自动选择
     type: url-test
     url: http://cp.cloudflare.com/generate_204
     interval: 180
     tolerance: 30
     use:
-      - all
-    proxies:
-      - 天书cf
-      - 天书git
+      - us
 
+  # 用户主要选择，包含自动选择、直连和特定节点
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - DIRECT
+      - us
+  
+  # 专门的美国节点组
   - name: 🇺🇸 美国节点
     type: select
     use:
       - us
     proxies:
-      - 🚀 节点选择
       - DIRECT
-
+      
+  # 规则对应的代理组，引用“🚀 节点选择”
   - name: 🌍 国外媒体
     type: select
     proxies:
@@ -207,8 +192,8 @@ proxy-groups:
       - 🚀 节点选择
       - 🇺🇸 美国节点
 
-
 rule-providers:
+  # ... (规则集部分没有问题，保持原样)
   LocalAreaNetwork:
     url: >-
       https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
@@ -462,9 +447,44 @@ rule-providers:
     type: http
 
 rules:
+  # 优先匹配国内直连规则，提高效率
+  - RULE-SET,LocalAreaNetwork,🎯 全球直连
+  - RULE-SET,UnBan,🎯 全球直连
+  - RULE-SET,GoogleCN,🎯 全球直连
+  - RULE-SET,SteamCN,🎯 全球直连
+  - RULE-SET,NetEaseMusic,🎯 全球直连
+  - RULE-SET,BilibiliHMT,🎯 全球直连
+  - RULE-SET,Bilibili,🎯 全球直连
+  - RULE-SET,ChinaMedia,🎯 全球直连
+  - RULE-SET,ChinaDomain,🎯 全球直连
+  - RULE-SET,ChinaCompanyIp,🎯 全球直连
+  - RULE-SET,Download,🎯 全球直连
+  - GEOIP,CN,🎯 全球直连
+  - PROCESS-NAME,subs-check*,🎯 全球直连
   - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
   - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
   - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
+  - RULE-SET,BanAD,🛑 全球拦截
+  - RULE-SET,秋风广告规则,🍃 应用净化
+  - RULE-SET,BanProgramAD,🍃 应用净化
+  - RULE-SET,GoogleFCM,📢 谷歌FCM
+  - RULE-SET,Bing,Ⓜ️ 微软服务
+  - RULE-SET,OneDrive,Ⓜ️ 微软服务
+  - RULE-SET,Microsoft,Ⓜ️ 微软服务
+  - RULE-SET,Apple,🍎 苹果服务
+  - RULE-SET,Telegram,📲 电报信息
+  - RULE-SET,AI,🚀 节点选择
+  - RULE-SET,OpenAi,🚀 节点选择
+  - RULE-SET,Epic,🚀 节点选择
+  - RULE-SET,Origin,🚀 节点选择
+  - RULE-SET,Sony,🚀 节点选择
+  - RULE-SET,Steam,🚀 节点选择
+  - RULE-SET,Nintendo,🚀 节点选择
+  - RULE-SET,YouTube,🌍 国外媒体
+  - RULE-SET,Netflix,🌍 国外媒体
+  - RULE-SET,Bahamut,🌍 国外媒体
+  - RULE-SET,ProxyMedia,🌍 国外媒体
+  - RULE-SET,ProxyGFWlist,🚀 节点选择
   - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
   - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
   - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
@@ -475,38 +495,4 @@ rules:
   - DOMAIN-SUFFIX,cloudfront.net,🚀 节点选择
   - DOMAIN-SUFFIX,akamaihd.net,🚀 节点选择
   - DOMAIN-KEYWORD,kodi,🚀 节点选择
-  - PROCESS-NAME,subs-check*,🎯 全球直连
-  - RULE-SET,LocalAreaNetwork,🎯 全球直连
-  - RULE-SET,UnBan,🎯 全球直连
-  - RULE-SET,BanAD,🛑 全球拦截
-  - RULE-SET,秋风广告规则,🍃 应用净化
-  - RULE-SET,BanProgramAD,🍃 应用净化
-  - RULE-SET,GoogleFCM,📢 谷歌FCM
-  - RULE-SET,GoogleCN,🎯 全球直连
-  - RULE-SET,SteamCN,🎯 全球直连
-  - RULE-SET,Bing,Ⓜ️ 微软服务
-  - RULE-SET,OneDrive,Ⓜ️ 微软服务
-  - RULE-SET,Microsoft,Ⓜ️ 微软服务
-  - RULE-SET,Apple,🍎 苹果服务
-  - RULE-SET,Telegram,📲 电报信息
-  - RULE-SET,AI,🚀 节点选择
-  - RULE-SET,OpenAi,🚀 节点选择
-  - RULE-SET,NetEaseMusic,🎯 全球直连
-  - RULE-SET,Epic,🚀 节点选择
-  - RULE-SET,Origin,🚀 节点选择
-  - RULE-SET,Sony,🚀 节点选择
-  - RULE-SET,Steam,🚀 节点选择
-  - RULE-SET,Nintendo,🚀 节点选择
-  - RULE-SET,YouTube,🌍 国外媒体
-  - RULE-SET,Netflix,🌍 国外媒体
-  - RULE-SET,Bahamut,🌍 国外媒体
-  - RULE-SET,BilibiliHMT,🎯 全球直连
-  - RULE-SET,Bilibili,🎯 全球直连
-  - RULE-SET,ChinaMedia,🎯 全球直连
-  - RULE-SET,ProxyMedia,🌍 国外媒体
-  - RULE-SET,ProxyGFWlist,🚀 节点选择
-  - RULE-SET,ChinaDomain,🎯 全球直连
-  - RULE-SET,ChinaCompanyIp,🎯 全球直连
-  - RULE-SET,Download,🎯 全球直连
-  - GEOIP,CN,🎯 全球直连
   - MATCH,🐟 漏网之鱼
