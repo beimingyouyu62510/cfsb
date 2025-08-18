@@ -1,0 +1,33 @@
+name: Auto Merge Subscriptions
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # 每6小时运行一次
+  workflow_dispatch:        # 支持手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: pip install requests pyyaml
+
+      - name: Run Merge Script
+        run: python merge.py
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add providers/all.yaml
+          git commit -m "Auto update providers/all.yaml [skip ci]" || echo "No changes to commit"
+          git push
