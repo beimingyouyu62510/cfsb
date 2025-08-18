@@ -122,8 +122,9 @@ proxy-groups:
     proxies:
       - ♻️ 自动选择
       - DIRECT
+    use:
       - us
-  
+
   # 专门的美国节点组
   - name: 🇺🇸 美国节点
     type: select
@@ -193,7 +194,6 @@ proxy-groups:
       - 🇺🇸 美国节点
 
 rule-providers:
-  # ... (规则集部分没有问题，保持原样)
   LocalAreaNetwork:
     url: >-
       https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
