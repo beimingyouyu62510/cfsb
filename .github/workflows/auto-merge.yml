@@ -1,35 +1,80 @@
-name: Merge Subscriptions
+name: Update US Nodes with Speed Test
 
 on:
+  workflow_dispatch: # 手动触发
   schedule:
-    - cron: "0 */6 * * *"   # 每 6 小时自动运行一次
-  workflow_dispatch:         # 手动触发
+    - cron: '0 */6 * * *' # 每6小时运行一次
 
 jobs:
-  build:
+  update-nodes:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.x"
+          node-version: 18
 
-      - name: Install dependencies
+      - name: Run Python Script to Get All URLs
+        id: get-urls
         run: |
-          pip install pyyaml requests
+          # 假设你有一个 scripts/get_urls.py 文件来获取所有订阅链接
+          # 这里为了简单，直接硬编码 URL 列表
+          echo '{"urls": ["https://nodesfree.github.io/clashnode/subscribe/clash.yml", "https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml"]}' > request_body.json
 
-      - name: Run merge.py
+      - name: Call Railway API for speed test
+        id: test-nodes
         run: |
-          python merge.py
+          # 向你的 Railway 后端服务发送请求
+          # 替换 <YOUR_RAILWAY_URL> 为你部署在 Railway 上的服务 URL
+          API_URL="https://your-railway-app.railway.app/test-nodes"
+          response=$(curl -s -X POST -H "Content-Type: application/json" -d @request_body.json $API_URL)
+          echo "API Response: $response"
+          echo "nodes_json=$response" >> $GITHUB_OUTPUT
 
-      - name: Commit and push changes
+      - name: Process response and create us.yaml
+        run: |
+          echo "Processing response..."
+          
+          # 从上一步的输出中提取JSON
+          nodes_json='${{ fromJson(steps.test-nodes.outputs.nodes_json) }}'
+          nodes_array=$(echo "$nodes_json" | jq '.nodes')
+
+          if [ "$(echo "$nodes_array" | jq length)" -eq 0 ]; then
+            echo "没有可用节点返回，跳过更新。"
+            exit 0
+          fi
+          
+          # 构建最终的YAML文件
+          echo "proxies:" > providers/us.yaml
+          echo "$nodes_array" | jq -c '.[]' | while read -r line; do
+            # jq --raw-output 转换JSON为YAML格式
+            # 这是一个简化的转换，可能需要更复杂的脚本来正确处理YAML
+            # 推荐使用 Python 脚本来完成
+            
+            # 以下是一个简单的 Python 脚本，用它来处理JSON到YAML
+            python -c "
+import json
+import yaml
+import sys
+data = json.loads(sys.stdin.read())
+with open('providers/us.yaml', 'a', encoding='utf-8') as f:
+    yaml.dump(data, f, allow_unicode=True, sort_keys=False)
+" <<< "$line"
+          done
+          
+          echo "Successfully created providers/us.yaml"
+
+      - name: Commit and push if there are changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add providers/all.yaml providers/us.yaml
-          git commit -m "Auto update subscriptions" || echo "No changes"
-          git push
+          if [[ -n $(git status -s) ]]; then
+            git add providers/us.yaml
+            git commit -m "chore: 🚀 Update US nodes with speed test results"
+            git push
+          else
+            echo "No changes to commit."
+          fi
