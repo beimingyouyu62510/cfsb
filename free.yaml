@@ -156,92 +156,75 @@ proxy-providers:
       enable: true
       url: https://www.google.com/
       interval: 3600
-#  lailai159:
-#    type: http
-#    url: https://lailai159.serv00.net/uploads/2025/05/20250513.yaml
-#    interval: 3600
-#    health-check:
-#      enable: true
-#      url: https://www.google.com/
-#      interval: 3600
-#  wp-content:
-#    type: http
-#    url: https://clashgithub.com/wp-content/uploads/rss/20250513.yml
-#    interval: 3600
-#    health-check:
-#      enable: true
-#      url: https://www.google.com/
-#      interval: 3600
 
 proxy-groups:
-  - name: select
-    type: select
-    proxies:
-      - autoselect
-      - loadbalance
-      - 美国-优选 # 新增代理组，方便切换
+  - name: select
+    type: select
+    proxies:
+      - autoselect
+      - loadbalance
+      - 美国-优选 # 新增代理组，方便切换
 
-  # 自动选择最快节点组 (保留原有配置)
-  - name: autoselect
-    type: url-test
-    url: https://www.google.com
-    interval: 10
-    use:
-      - nodesfree
-      - clash-provider
-      - shaoyouvip
-      - NoMoreWalls
-      - passcro
-      - xyfqzy
-      - v2rayshare
-      - go4sharing
-      - freenode
-      - ermaozi
-      
-  # 负载均衡组 (保留原有配置)
-  - name: loadbalance
-    type: load-balance
-    url: https://www.google.com
-    interval: 10
-    strategy: round-robin
-    use:
-      - nodesfree
-      - clash-provider
-      - shaoyouvip
-      - NoMoreWalls
-      - passcro
-      - xyfqzy
-      - v2rayshare
-      - freenode
-      - go4sharing
-      - ermaozi
+  # 自动选择最快节点组 (保留原有配置)
+  - name: autoselect
+    type: url-test
+    url: http://www.gstatic.com/generate_204 # 统一为更稳定地址
+    interval: 10
+    timeout: 5000 # 新增
+    use:
+      - nodesfree
+      - clash-provider
+      - shaoyouvip
+      - NoMoreWalls
+      - passcro
+      - xyfqzy
+      - v2rayshare
+      - go4sharing
+      - freenode
+      - ermaozi
+   
+  # 负载均衡组 (保留原有配置)
+  - name: loadbalance
+    type: load-balance
+    url: http://www.gstatic.com/generate_204 # 统一为更稳定地址
+    interval: 10
+    timeout: 5000 # 新增
+    strategy: round-robin
+    use:
+      - nodesfree
+      - clash-provider
+      - shaoyouvip
+      - NoMoreWalls
+      - passcro
+      - xyfqzy
+      - v2rayshare
+      - freenode
+      - go4sharing
+      - ermaozi
 
-  # 新增的代理组：筛选速度最快的10个美国节点
-  - name: "美国-优选"
-    type: url-test
-    url: "https://www.google.com/generate_204"
-    interval: 300 # 5分钟检测一次，减少资源消耗
-    lazy: true # 延迟加载，按需测试
-    use:
-      - nodesfree
-      - clash-provider
-      - shaoyouvip
-      - NoMoreWalls
-      - passcro
-      - xyfqzy
-      - v2rayshare
-      - go4sharing
-      - freenode
-      - ermaozi
-    filters:
-      # 筛选节点名称中包含“美国”、“US”、“United States”、“USA”的节点
-      - "美国|US|United States|USA"
-    # 排序规则
-    rule:
-      # 先按延迟从低到高排序
-      - "sort:latency"
-      # 然后只保留前10个节点
-      - "top:10"
+  # 新增的代理组：筛选速度最快的10个美国节点
+  - name: "美国-优选"
+    type: url-test
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300 # 5分钟检测一次，减少资源消耗
+    timeout: 5000 # 新增
+    lazy: true
+    use:
+      - nodesfree
+      - clash-provider
+      - shaoyouvip
+      - NoMoreWalls
+      - passcro
+      - xyfqzy
+      - v2rayshare
+      - go4sharing
+      - freenode
+      - ermaozi
+    filters:
+      - "美国|US|United States|USA" # 筛选节点名称中包含“美国”、“US”、“United States”、“USA”的节点
+    rule:
+      - "sort:latency" # 按延迟从低到高排序
+      - "top:10" # 只保留前10个节点
 
 rule-providers:
   Apple:
@@ -441,4 +424,35 @@ rules:
   - DOMAIN-SUFFIX,python.org,DIRECT
   - DOMAIN-SUFFIX,mvnrepository.com,DIRECT
   - DOMAIN-SUFFIX,todesk.com,DIRECT
-  - DOMAIN-SUFFIX,githubrow
+  - DOMAIN-SUFFIX,githubrowcontent.com,select
+  - DOMAIN-SUFFIX,github.io,select
+  - DOMAIN-SUFFIX,cnki.net,DIRECT
+  - DOMAIN-SUFFIX,jetbrains.com,DIRECT
+
+  - RULE-SET,greatfire,DIRECT
+  - RULE-SET,SteamCN,DIRECT
+  - RULE-SET,private,DIRECT
+  - RULE-SET,icloud,DIRECT
+  - RULE-SET,apple,DIRECT
+  - RULE-SET,applications,DIRECT
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,lancidr,DIRECT
+  - RULE-SET,cncidr,DIRECT
+  - RULE-SET,Apple,DIRECT
+  - RULE-SET,ChinaDomain,DIRECT
+  - RULE-SET,ChinaCompanyIp,DIRECT
+  - RULE-SET,LocalAreaNetwork,DIRECT
+  - RULE-SET,Microsoft,DIRECT
+
+  - RULE-SET,gfw,select
+  - RULE-SET,tld-not-cn,select
+  - RULE-SET,Telegram,select
+  - RULE-SET,ProxyLite,select
+  - RULE-SET,ProxyMedia,select
+  - RULE-SET,GoogleCN,select
+  - RULE-SET,google,select
+  - RULE-SET,proxy,select
+  - RULE-SET,telegramcidr,select
+
+  - GEOIP,CN,DIRECT
+  - MATCH,select
