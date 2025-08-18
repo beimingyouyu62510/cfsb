@@ -96,10 +96,11 @@ dns:
 # 从 GitHub 仓库订阅节点
 proxy-providers:
   us:
+    # type 必须是 http
     type: http
+    # url 指向 GitHub 仓库中的文件
     url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/us.yaml"
     interval: 3600
-    path: ./providers/us.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
@@ -116,22 +117,26 @@ proxy-groups:
     use:
       - us
 
-  # 用户主要选择，包含自动选择、直连和特定节点
+  # 用户主要选择，包含自动选择、直连和所有 US 节点
+  # 这个分组会显示 us.yaml 中的所有节点
   - name: 🚀 节点选择
     type: select
     proxies:
       - ♻️ 自动选择
       - DIRECT
+    # 使用 use 字段来引用 us provider，它的所有节点都会被自动加载到这个分组中
     use:
       - us
-
-  # 专门的美国节点组
+      
+  # 专门的美国节点组，同样会显示 us.yaml 中的所有节点
   - name: 🇺🇸 美国节点
     type: select
-    use:
-      - us
+    # proxies 字段用来放置手动配置的代理，这里只放一个 DIRECT
     proxies:
       - DIRECT
+    # use 字段用来引用 us provider，将所有 us 节点加载到这里
+    use:
+      - us
       
   # 规则对应的代理组，引用“🚀 节点选择”
   - name: 🌍 国外媒体
