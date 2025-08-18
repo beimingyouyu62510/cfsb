@@ -25,8 +25,11 @@ OUTPUT_US = "providers/us.yaml"
 
 def download(url):
     """下载订阅内容，设置超时和状态码检查"""
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36'
+    }
     try:
-        resp = requests.get(url, timeout=15)
+        resp = requests.get(url, timeout=15, headers=headers)
         resp.raise_for_status()
         return resp.text
     except requests.exceptions.RequestException as e:
@@ -39,21 +42,24 @@ def parse_clash_yaml(text):
         data = yaml.safe_load(text)
         if isinstance(data, dict) and "proxies" in data:
             return data["proxies"]
-    except Exception:
+    except Exception as e:
+        print(f"[⚠️] 解析 Clash YAML 失败: {e}", file=sys.stderr)
         return None
     return None
 
 def parse_base64(text):
     """解析 Base64 编码的订阅链接"""
     proxies = []
-    # 尝试解码为 Base64
+    
+    # 尝试解码 Base64 编码的文本
     try:
-        # 修复 URL-safe Base64 和填充问题
+        # 修正 URL-safe Base64 和填充问题
         text_corrected = text.strip().replace('-', '+').replace('_', '/')
         decoded_text = base64.b64decode(text_corrected + "===").decode("utf-8", errors="ignore")
     except Exception as e:
         print(f"[⚠️] Base64 解码失败，可能不是 Base64 格式: {e}", file=sys.stderr)
-        return None
+        # 如果不是 Base64，尝试按行解析
+        decoded_text = text
 
     for line in decoded_text.splitlines():
         line = line.strip()
@@ -110,31 +116,116 @@ def parse_base64(text):
                 info = line[9:]
                 if "@" in info:
                     password, rest = info.split("@", 1)
-                    server_port, *params = rest.split("?", 1)
-                else: # 兼容不带密码的链接
-                    password, server_port = "", info
-                
-                server, port = server_port.split(":", 1)
-                
-                # 尝试获取节点名称，通常在 URL 参数中
-                name = "trojan"
-                if params:
-                    query_params = {k: v for k, v in [p.split("=") for p in params[0].split("&")]}
-                    if "peer" in query_params:
-                        name = query_params["peer"]
+                    server_port_raw, *params_raw = rest.split("?", 1)
+                else:
+                    password, server_port_raw = "", info.split("?", 1)[0]
+                    params_raw = info.split("?", 1)[1:]
 
-                proxies.append({
-                    "name": name,
+                server, port = server_port_raw.split(":", 1)
+                
+                params = {}
+                if params_raw:
+                    for p in params_raw[0].split("&"):
+                        if "=" in p:
+                            k, v = p.split("=", 1)
+                            params[k] = requests.utils.unquote(v)
+
+                node_config = {
+                    "name": params.get("peer", "trojan"),
                     "type": "trojan",
                     "server": server,
                     "port": int(port),
                     "password": password,
-                })
+                }
+                
+                if params.get("security") == "tls":
+                    node_config["tls"] = True
+                    if "sni" in params:
+                        node_config["servername"] = params["sni"]
+                
+                proxies.append(node_config)
             except Exception as e:
                 print(f"[⚠️] 解析 trojan 节点失败: {e}", file=sys.stderr)
         
-        else:
-            print(f"[⚠️] 未知协议: {line.split(':', 1)[0]}", file=sys.stderr)
+        # vless://
+        elif line.startswith("vless://"):
+            try:
+                info = line[8:]
+                uuid_and_server = info.split("@", 1)
+                uuid = uuid_and_server[0]
+                server_info = uuid_and_server[1].split("?", 1)
+                server_port = server_info[0].split(":", 1)
+                server = server_port[0]
+                port = int(server_port[1])
+                
+                params = {}
+                if len(server_info) > 1:
+                    params_str = server_info[1]
+                    for p in params_str.split("&"):
+                        if "=" in p:
+                            k, v = p.split("=", 1)
+                            params[k] = requests.utils.unquote(v)
+
+                node_config = {
+                    "name": params.get("peer", "vless"),
+                    "type": "vless",
+                    "server": server,
+                    "port": port,
+                    "uuid": uuid,
+                    "network": params.get("type", "tcp"),
+                }
+
+                if node_config["network"] == "ws":
+                    ws_opts = {}
+                    if "path" in params:
+                        # 关键优化：只取路径部分，去除后面的参数和空格
+                        path_cleaned = params["path"].split("?")[0].strip()
+                        path_cleaned = path_cleaned.split(" ")[0].strip()
+                        ws_opts["path"] = path_cleaned
+                    if "host" in params:
+                        ws_opts["headers"] = {"Host": params["host"]}
+                    node_config["ws-opts"] = ws_opts
+                    
+                if params.get("security") == "tls":
+                    node_config["tls"] = True
+                    if "sni" in params:
+                        node_config["servername"] = params["sni"]
+                        
+                if "udp" in params:
+                    node_config["udp"] = (params["udp"].lower() == "true")
+                if "xudp" in params:
+                    node_config["xudp"] = (params["xudp"].lower() == "true")
+                    
+                proxies.append(node_config)
+            except Exception as e:
+                print(f"[⚠️] 解析 vless 节点失败: {e}", file=sys.stderr)
+        
+        # ssr://
+        elif line.startswith("ssr://"):
+            try:
+                base64_info = line[6:]
+                info = base64.b64decode(base64_info + "===").decode('utf-8')
+                
+                server, port, protocol, cipher, obfs, password_base64 = info.split(':')
+                password = base64.b64decode(password_base64.split("/")[0] + "===").decode('utf-8')
+                
+                params_str = info.split('?')[-1]
+                params = {k: requests.utils.unquote(v) for k, v in (p.split('=') for p in params_str.split('&'))}
+                
+                proxies.append({
+                    'name': params.get('remarks', 'ssr'),
+                    'type': 'ssr',
+                    'server': server,
+                    'port': int(port),
+                    'password': password,
+                    'cipher': cipher,
+                    'protocol': protocol,
+                    'obfs': obfs,
+                    'obfs-param': params.get('obfsparam', ''),
+                    'protocol-param': params.get('protoparam', '')
+                })
+            except Exception as e:
+                print(f"[⚠️] 解析 ssr 节点失败: {e}", file=sys.stderr)
 
     return proxies if proxies else None
 
@@ -143,15 +234,13 @@ def deduplicate(proxies):
     seen = set()
     result = []
     for p in proxies:
-        # 为每个节点生成唯一指纹
+        # 为每个节点生成唯一指纹，考虑关键凭据
         key_parts = [p.get('server'), str(p.get('port')), p.get('type')]
         if p.get('type') == 'vmess':
             key_parts.append(p.get('uuid'))
-        elif p.get('type') == 'ss':
+        elif p.get('type') in ['ss', 'trojan']:
             key_parts.append(p.get('password'))
-        elif p.get('type') == 'trojan':
-            key_parts.append(p.get('password'))
-            
+        
         key = md5(':'.join(key_parts).encode()).hexdigest()
         if key not in seen:
             seen.add(key)
@@ -165,14 +254,15 @@ def filter_us(proxies, limit=10):
 
 def save_yaml(path, proxies):
     """将代理列表保存为 YAML 文件"""
+    # 确保 providers 目录存在
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         yaml.safe_dump({"proxies": proxies}, f, allow_unicode=True)
 
 def main():
     """主函数"""
     all_proxies = []
-    os.makedirs("providers", exist_ok=True)
-
+    
     print("--- 开始下载并合并订阅 ---")
     for url in SUBSCRIPTION_URLS:
         text = download(url)
