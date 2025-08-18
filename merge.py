@@ -19,7 +19,8 @@ SUBSCRIPTION_URLS = [
     "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
 ]
 
-OUTPUT_FILE = "providers/all.yaml"
+OUTPUT_ALL = "providers/all.yaml"
+OUTPUT_US = "providers/us.yaml"
 
 
 def download(url):
@@ -44,7 +45,7 @@ def parse_clash_yaml(text):
 
 def parse_base64(text):
     try:
-        decoded = base64.b64decode(text.strip() + "===")  # 修正填充
+        decoded = base64.b64decode(text.strip() + "===")  # 修正 padding
         decoded_text = decoded.decode("utf-8", errors="ignore")
     except Exception:
         return None
@@ -83,9 +84,10 @@ def parse_base64(text):
                 else:
                     name = "ss"
 
-                userinfo, server_port = base64.b64decode(info.split("@")[0]).decode().split(":", 1)
+                userinfo_enc, server_port = info.split("@", 1)
+                userinfo = base64.b64decode(userinfo_enc).decode(errors="ignore")
                 cipher, password = userinfo.split(":", 1)
-                server, port = info.split("@")[1].split(":")
+                server, port = server_port.split(":")
                 proxies.append({
                     "name": name,
                     "type": "ss",
@@ -128,9 +130,19 @@ def deduplicate(proxies):
     return result
 
 
+def filter_us(proxies, limit=10):
+    us_nodes = [p for p in proxies if "US" in p.get("name", "").upper() or "美国" in p.get("name", "")]
+    return us_nodes[:limit]
+
+
+def save_yaml(path, proxies):
+    with open(path, "w", encoding="utf-8") as f:
+        yaml.safe_dump({"proxies": proxies}, f, allow_unicode=True)
+
+
 def main():
     all_proxies = []
-    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+    os.makedirs("providers", exist_ok=True)
 
     for url in SUBSCRIPTION_URLS:
         text = download(url)
@@ -154,10 +166,14 @@ def main():
     merged = deduplicate(all_proxies)
     print(f"[📦] 合并后节点总数: {len(merged)}")
 
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        yaml.safe_dump({"proxies": merged}, f, allow_unicode=True)
+    # 保存 all.yaml
+    save_yaml(OUTPUT_ALL, merged)
+    print(f"[💾] 已保存到 {OUTPUT_ALL}")
 
-    print(f"[💾] 已保存到 {OUTPUT_FILE}")
+    # 生成 us.yaml
+    us_nodes = filter_us(merged, limit=10)
+    save_yaml(OUTPUT_US, us_nodes)
+    print(f"[💾] 已保存到 {OUTPUT_US} (US 节点 {len(us_nodes)} 个)")
 
 
 if __name__ == "__main__":
