@@ -105,7 +105,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/good.yaml"
     interval: 3600
     health-check:
-      enable: true
+      enable: false
       url: http://cp.cloudflare.com/generate_204
       interval: 600
 
