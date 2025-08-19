@@ -102,7 +102,7 @@ dns:
 proxy-providers:
   us:
     type: http
-    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/good.yaml"
+    url: "https://github.com/beimingyouyu62510/cfsb/blob/main/providers/good.yaml"
     interval: 3600
     health-check:
       enable: true
