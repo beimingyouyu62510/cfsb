@@ -1,3 +1,4 @@
+proxies:
 - delay: 1670
   latency: 1.0554790496826172
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 908
