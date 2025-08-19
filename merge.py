@@ -9,6 +9,8 @@ import time
 import urllib.parse
 import asyncio
 import aiohttp
+import socket
+import concurrent.futures # Needed for direct_socket_test if not using async socket
 from aiohttp import client_exceptions
 
 # ========== 配置：多个订阅源 ==========
@@ -199,33 +201,79 @@ def save_yaml(path, proxies):
     with open(path, "w", encoding="utf-8") as f:
         yaml.safe_dump({"proxies": proxies}, f, allow_unicode=True)
 
-# ========== 异步节点连通性测试 ==========
+# ========== 异步节点连通性测试 (包含 Socket 和 Proxy 测试) ==========
+
+def direct_socket_test(server, port, timeout=TEST_TIMEOUT):
+    """直接使用socket测试TCP连接，返回延迟(ms)或None"""
+    try:
+        # 使用 IPv4 和 TCP 协议
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(timeout) # 设置超时
+        start_time = time.time()
+        # 尝试连接，connect_ex 返回0表示成功，否则是错误码
+        result = sock.connect_ex((server, port))
+        end_time = time.time()
+        sock.close()
+
+        if result == 0:
+            return (end_time - start_time) * 1000  # 转换为毫秒
+        else:
+            return None
+    except Exception:
+        # 捕获所有异常，返回None表示失败
+        return None
 
 async def test_connection_async(session, proxy_config, semaphore):
-    """异步测试单个节点的连接性"""
+    """异步测试单个节点的连接性，先进行Socket测试，再进行协议测试"""
     async with semaphore:
+        node_name = proxy_config.get('name', '未知节点')
         proxy_type = proxy_config.get("type")
-        
-        # 仅支持 ss, trojan 协议测试，因为 aiohttp 代理只支持 http/https
-        if proxy_type not in ["ss", "trojan"]:
-            print(f"[❌] {proxy_config.get('name', '未知节点')} | 协议 {proxy_type} 暂不支持测试", file=sys.stderr)
-            return None, None
+        server = proxy_config.get('server')
+        port = int(proxy_config.get('port', 0))
 
-        proxy_url = f"{proxy_type}://{proxy_config.get('password')}@{proxy_config.get('server')}:{proxy_config.get('port')}"
+        if not server or not port:
+            print(f"[❌] {node_name} | 缺少服务器或端口信息", file=sys.stderr)
+            return None, None # 返回None表示测试失败
+
+        # 第一步：进行 Socket 连接测试 (基础可达性)
+        # 注意: direct_socket_test 是同步函数，需要通过 loop.run_in_executor 异步调用
+        loop = asyncio.get_running_loop()
+        socket_latency = await loop.run_in_executor(
+            concurrent.futures.ThreadPoolExecutor(), # 使用线程池执行同步IO
+            direct_socket_test, server, port
+        )
+
+        if socket_latency is None:
+            print(f"[❌] {node_name} | Socket连接失败", file=sys.stderr)
+            return None, None # Socket连接失败，直接判定节点不可用
+
+        # 第二步：如果 Socket 连接成功，根据协议类型进行下一步测试
+        final_latency = socket_latency # 默认使用socket延迟
+
+        if proxy_type in ["ss", "trojan"]:
+            # 对于 SS 和 Trojan，尝试进行完整的代理功能测试
+            proxy_url = f"{proxy_type}://{proxy_config.get('password')}@{server}:{port}"
+            try:
+                start_time_proxy = time.time()
+                async with session.get(TEST_URL, proxy=proxy_url, timeout=TEST_TIMEOUT, verify_ssl=False) as resp:
+                    if resp.status == 204:
+                        proxy_latency = int((time.time() - start_time_proxy) * 1000)
+                        final_latency = proxy_latency # 使用更精确的代理延迟
+                        print(f"[✅] {node_name} | 代理 {proxy_type} 通过, 延迟: {final_latency}ms")
+                    else:
+                        print(f"[⚠️] {node_name} | 代理 {proxy_type} 状态码 {resp.status}, 仍按Socket延迟 ({socket_latency}ms) 计入", file=sys.stderr)
+                
+            except Exception as e:
+                print(f"[⚠️] {node_name} | 代理 {proxy_type} 功能测试失败: {e}, 仍按Socket延迟 ({socket_latency}ms) 计入", file=sys.stderr)
+        elif proxy_type in ["vmess", "vless", "ssr"]:
+            # 对于这些协议，只使用 Socket 测试结果，并注明无法进行完整代理功能测试
+            print(f"[🔵] {node_name} | 协议 {proxy_type} (仅Socket测试通过), 延迟: {socket_latency}ms")
+        else:
+            # 未知协议或不支持测试的协议
+            print(f"[❓] {node_name} | 未知或不支持测试的协议 {proxy_type}, 仅Socket测试通过, 延迟: {socket_latency}ms", file=sys.stderr)
         
-        start_time = time.time()
-        try:
-            async with session.get(TEST_URL, proxy=proxy_url, timeout=TEST_TIMEOUT, verify_ssl=False) as resp:
-                if resp.status == 204:
-                    latency = int((time.time() - start_time) * 1000)
-                    print(f"[✅] {proxy_config.get('name', '未知节点')} | 延迟: {latency}ms")
-                    return proxy_config, latency
-                else:
-                    print(f"[❌] {proxy_config.get('name', '未知节点')} | 状态码: {resp.status}")
-                    return None, None
-        except Exception as e:
-            print(f"[❌] {proxy_config.get('name', '未知节点')} | 失败: {e}")
-            return None, None
+        # 返回节点配置和最终确定的延迟
+        return proxy_config, final_latency
 
 # ========== 主运行逻辑 ==========
 
@@ -270,6 +318,10 @@ async def main():
         if node_result:
             node_result['latency'] = latency
             available_us_nodes.append(node_result)
+        else:
+            # 打印被过滤掉的节点（例如Socket测试失败的节点）
+            # 注意: results 中对应的原始节点可能需要更复杂的查找，此处简化为只打印失败类型
+            pass 
 
     available_us_nodes.sort(key=lambda x: x['latency'])
     
