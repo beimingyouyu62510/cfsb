@@ -330,8 +330,8 @@ async def main():
     save_yaml(OUTPUT_ALL, merged)
     print(f"[💾] 已保存所有去重节点到 {OUTPUT_ALL}")
 
-    save_yaml(OUTPUT_US, available_us_nodes[:10])
-    print(f"[💾] 已保存 {len(available_us_nodes[:10])} 个可用美国节点到 {OUTPUT_US}")
+    save_yaml(OUTPUT_US, available_us_nodes[:50])
+    print(f"[💾] 已保存 {len(available_us_nodes[:50])} 个可用美国节点到 {OUTPUT_US}")
 
 if __name__ == "__main__":
     try:
