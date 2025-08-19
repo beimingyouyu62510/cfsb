@@ -1,95 +1,46 @@
-name: 更新美国节点 # 工作流名称已更新
+name: Update Free Proxies
 
 on:
-  workflow_dispatch: # 手动触发
+  # 自动运行：每12小时运行一次
   schedule:
-    - cron: '0 */6 * * *' # 每6小时运行一次
+    - cron: '0 */12 * * *'
+
+  # 手动运行：在 GitHub 仓库 Actions 页面中手动触发
+  workflow_dispatch:
 
 jobs:
-  update-nodes:
+  build:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout repository # 检出仓库
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python # 设置 Python 环境
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x' # 使用最新的 Python 3 版本
+          python-version: '3.10'
 
-      - name: Install dependencies # 安装依赖
-        run: pip install requests pyyaml
-
-      - name: Generate US Nodes YAML # 生成美国节点 YAML 文件
+      - name: Install dependencies
         run: |
-          # 以下 Python 脚本将执行以下操作：
-          # 1. 定义订阅链接列表。
-          # 2. 遍历每个链接，下载其内容。
-          # 3. 解析 YAML 内容，提取 'proxies' 列表中的节点。
-          # 4. 将所有节点合并到一个列表中。
-          # 5. 将合并后的节点写入 'providers/us.yaml' 文件。
-          # 如果没有找到代理，脚本将友好地退出，不会导致工作流失败。
-          python -c "
-import requests
-import yaml
-import os
-import sys
-
-# 订阅链接列表
-urls = [
-    'https://nodesfree.github.io/clashnode/subscribe/clash.yml',
-    'https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml'
-]
-
-all_proxies = []
-
-for url in urls:
-    try:
-        print(f'Fetching {url}...')
-        response = requests.get(url, timeout=15) # 设置请求超时为 15 秒
-        response.raise_for_status() # 如果响应状态码是 4xx 或 5xx，则抛出 HTTPError
-        content = response.text
-
-        data = yaml.safe_load(content)
-
-        if 'proxies' in data and isinstance(data['proxies'], list):
-            # 假设 YAML 中有一个名为 'proxies' 的列表，包含代理配置
-            all_proxies.extend(data['proxies'])
-            print(f'Found {len(data['proxies'])} proxies from {url}')
-        else:
-            print(f'Warning: No \'proxies\' key or non-list \'proxies\' found in {url}. Skipping.')
-
-    except requests.exceptions.RequestException as e:
-        print(f'Error fetching {url}: {e}', file=sys.stderr) # 打印到标准错误输出
-    except yaml.YAMLError as e:
-        print(f'Error parsing YAML from {url}: {e}', file=sys.stderr) # 打印到标准错误输出
-    except Exception as e:
-        print(f'An unexpected error occurred for {url}: {e}', file=sys.stderr) # 打印到标准错误输出
-
-if not all_proxies:
-    print('No proxies found after checking all URLs. Exiting without creating us.yaml.')
-    sys.exit(0) # 如果没有找到代理，则以成功状态退出，不创建文件
-
-# 创建 providers 目录（如果不存在）
-output_dir = 'providers'
-os.makedirs(output_dir, exist_ok=True)
-
-# 写入 us.yaml 文件
-output_file = os.path.join(output_dir, 'us.yaml')
-with open(output_file, 'w', encoding='utf-8') as f:
-    yaml.dump({'proxies': all_proxies}, f, allow_unicode=True, sort_keys=False)
-
-print(f'Successfully created {output_file} with {len(all_proxies)} proxies.')
-"
-
-      - name: Commit and push if there are changes # 如果有更改，提交并推送
+          python -m pip install --upgrade pip
+          pip install requests pyyaml aiohttp
+      
+      - name: Run merge script
+        run: python merge.py
+        
+      - name: Commit files
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          if [[ -n $(git status -s) ]]; then
-            git add providers/us.yaml
-            git commit -m "chore: 🚀 Update US nodes" # 提交信息已更新，不再提及测速
-            git push
-          else
-            echo "No changes to commit." # 没有需要提交的更改
-          fi
+          # 配置 Git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # 添加并提交更改
+          git add providers/
+          git commit -m "Update proxy lists" || echo "No changes to commit"
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
