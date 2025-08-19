@@ -113,7 +113,7 @@ proxies:
   - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
-    port: 443
+    port: 43516
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
     udp: true
     tls: true
