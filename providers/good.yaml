@@ -115,7 +115,7 @@ proxies:
     headers:
       Host: yg.bantony199.top
     path: /TelegramU0001F1E8U0001F1F3 @WangCai2
-  - delay: 2031
+- delay: 2031
   latency: 1.3806819915771484
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 246
   network: ws
