@@ -25,9 +25,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 复制应用文件
 COPY backend/app.py .
 
-# 复制其他必要文件（如果需要）
-# COPY merge.py .
-# COPY providers/ ./providers/
+# 复制其他必要文件 (已取消注释)
+COPY backend/merge.py .
+COPY backend/providers/ ./providers/
 
 # 创建工作目录
 RUN mkdir -p /app/logs /app/configs
@@ -37,7 +37,7 @@ ENV CLASH_API_SECRET="511622"
 ENV PYTHONUNBUFFERED=1
 
 # 暴露端口
-EXPOSE $PORT
+EXPOSE 8000
 
 # 启动命令
-CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
