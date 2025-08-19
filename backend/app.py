@@ -293,9 +293,7 @@ async def test_nodes(request: TestNodesRequest):
         raise HTTPException(status_code=500, detail=f"创建配置文件失败: {e}")
     
     # 3. 启动 Clash 核心进程
-    if not os.path.exists(CLASH_CORE_NAME):
-        raise HTTPException(status_code=500, detail=f"Mihomo 核心文件不存在: {CLASH_CORE_NAME}")
-    
+    # Dockerfile 确保了文件存在，这里无需再次检查
     try:
         # 先清理之前的进程
         cleanup_clash_process()
