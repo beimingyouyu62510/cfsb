@@ -1,7 +1,7 @@
 # 使用 Python 官方镜像
 FROM python:3.9-slim
 
-# 设置工作目录
+# 设置工作目录为项目的根目录
 WORKDIR /app
 
 # 安装系统依赖
@@ -19,14 +19,12 @@ RUN dpkg -i /tmp/mihomo.deb || \
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 复制应用文件和新模块
-COPY backend/app.py backend/
-COPY backend/config.py backend/
-COPY backend/utils.py backend/
+# 复制整个 backend 目录到容器中
+COPY backend/ ./backend/
 
-# 复制其他必要文件
-COPY merge.py .
+# 复制其他必要文件到容器根目录
 COPY providers/ ./providers/
+COPY merge.py .
 
 # 创建工作目录
 RUN mkdir -p /app/logs /app/configs
@@ -39,4 +37,6 @@ ENV PYTHONUNBUFFERED=1
 EXPOSE 8000
 
 # 启动命令
-CMD ["uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port", "8000"]
+# 更改工作目录到 backend，然后运行 app.py
+WORKDIR /app/backend
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
