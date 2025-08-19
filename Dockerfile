@@ -25,9 +25,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 复制应用文件
 COPY backend/app.py .
 
-# 复制其他必要文件 (已取消注释)
-COPY backend/merge.py .
-COPY backend/providers/ ./providers/
+# 复制其他必要文件 (已根据您的目录结构进行修复)
+COPY merge.py .
+COPY providers/ ./providers/
 
 # 创建工作目录
 RUN mkdir -p /app/logs /app/configs
