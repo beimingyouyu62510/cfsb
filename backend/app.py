@@ -13,9 +13,13 @@ from pydantic import BaseModel
 from typing import List
 import signal
 import sys
+import logging
+
+# 配置日志
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # 配置
-CLASH_CORE_NAME = "/usr/bin/mihomo"  # 使用系统安装的 mihomo
+CLASH_CORE_NAME = "/usr/bin/mihomo"
 CLASH_CONFIG_PATH = "clash-config.yaml"
 CLASH_API_URL = "http://127.0.0.1:9090"
 CLASH_API_SECRET = os.environ.get("CLASH_API_SECRET", "511622")
@@ -37,9 +41,10 @@ def download(url):
     try:
         resp = requests.get(url, timeout=15, headers=headers)
         resp.raise_for_status()
+        logging.info(f"成功下载 {url}")
         return resp.text
     except requests.exceptions.RequestException as e:
-        print(f"[❌] 下载失败: {url} 错误: {e}")
+        logging.error(f"[❌] 下载失败: {url} 错误: {e}")
         return None
 
 def parse_clash_yaml(text):
@@ -49,7 +54,7 @@ def parse_clash_yaml(text):
         if isinstance(data, dict) and "proxies" in data:
             return data["proxies"]
     except Exception as e:
-        print(f"[⚠️] 解析 Clash YAML 失败: {e}")
+        logging.warning(f"[⚠️] 解析 Clash YAML 失败: {e}")
         return None
     return None
 
@@ -60,7 +65,7 @@ def parse_base64(text):
         text_corrected = text.strip().replace('-', '+').replace('_', '/')
         decoded_text = base64.b64decode(text_corrected + "===").decode("utf-8", errors="ignore")
     except Exception as e:
-        print(f"[⚠️] Base64 解码失败，可能不是 Base64 格式: {e}")
+        logging.warning(f"[⚠️] Base64 解码失败，可能不是 Base64 格式: {e}")
         decoded_text = text
 
     for line in decoded_text.splitlines():
@@ -85,7 +90,7 @@ def parse_base64(text):
                     "network": node_json.get("net", "tcp"),
                 })
             except Exception as e:
-                print(f"[⚠️] 解析 vmess 节点失败: {e}")
+                logging.warning(f"[⚠️] 解析 vmess 节点失败: {e}")
 
         # ss://
         elif line.startswith("ss://"):
@@ -105,7 +110,7 @@ def parse_base64(text):
                     "port": int(port), "cipher": cipher, "password": password,
                 })
             except Exception as e:
-                print(f"[⚠️] 解析 ss 节点失败: {e}")
+                logging.warning(f"[⚠️] 解析 ss 节点失败: {e}")
 
         # trojan://
         elif line.startswith("trojan://"):
@@ -137,7 +142,7 @@ def parse_base64(text):
                 }
                 proxies.append(node_config)
             except Exception as e:
-                print(f"[⚠️] 解析 trojan 节点失败: {e}")
+                logging.warning(f"[⚠️] 解析 trojan 节点失败: {e}")
         
         # vless://
         elif line.startswith("vless://"):
@@ -189,7 +194,7 @@ def parse_base64(text):
                     
                 proxies.append(node_config)
             except Exception as e:
-                print(f"[⚠️] 解析 vless 节点失败: {e}")
+                logging.warning(f"[⚠️] 解析 vless 节点失败: {e}")
 
     return proxies if proxies else None
 
@@ -214,25 +219,29 @@ def cleanup_clash_process():
     """清理 Clash 进程"""
     global clash_process
     if clash_process:
+        logging.info("正在终止 Clash 进程...")
         try:
             clash_process.terminate()
             clash_process.wait(timeout=5)
+            logging.info("Clash 进程已终止。")
         except subprocess.TimeoutExpired:
             clash_process.kill()
+            logging.warning("强制杀死 Clash 进程。")
         except Exception as e:
-            print(f"清理进程时出错: {e}")
+            logging.error(f"清理进程时出错: {e}")
         clash_process = None
     
     # 清理配置文件
     if os.path.exists(CLASH_CONFIG_PATH):
         try:
             os.remove(CLASH_CONFIG_PATH)
+            logging.info("配置文件已删除。")
         except Exception as e:
-            print(f"清理配置文件时出错: {e}")
+            logging.error(f"清理配置文件时出错: {e}")
 
 # 注册信号处理器
 def signal_handler(signum, frame):
-    print(f"收到信号 {signum}，正在清理...")
+    logging.info(f"收到信号 {signum}，正在清理...")
     cleanup_clash_process()
     sys.exit(0)
 
@@ -246,7 +255,7 @@ async def test_nodes(request: TestNodesRequest):
     """
     global clash_process
     
-    print("接收到测速请求...")
+    logging.info("接收到测速请求...")
     all_proxies = []
 
     # 1. 下载并合并所有节点
@@ -256,21 +265,21 @@ async def test_nodes(request: TestNodesRequest):
             continue
         proxies = parse_clash_yaml(text) or parse_base64(text)
         if proxies:
-            print(f"成功下载并解析 {len(proxies)} 个节点 from {url}")
+            logging.info(f"成功下载并解析 {len(proxies)} 个节点 from {url}")
             all_proxies.extend(proxies)
     
     if not all_proxies:
         raise HTTPException(status_code=400, detail="无法从提供的URL获取任何节点")
 
     merged_proxies = deduplicate(all_proxies)
-    print(f"合并并去重后节点总数: {len(merged_proxies)}")
+    logging.info(f"合并并去重后节点总数: {len(merged_proxies)}")
     
     # 2. 准备 Clash 配置
     clash_config = {
         "proxies": merged_proxies,
         "mode": "rule",
         "log-level": "info",
-        "external-controller": "127.0.0.1:9090",  # 改为本地监听，提高安全性
+        "external-controller": "127.0.0.1:9090",
         "secret": CLASH_API_SECRET,
         "rules": [
             "MATCH,DIRECT"
@@ -284,60 +293,48 @@ async def test_nodes(request: TestNodesRequest):
         raise HTTPException(status_code=500, detail=f"创建配置文件失败: {e}")
     
     # 3. 启动 Clash 核心进程
-    if not os.path.exists("/usr/bin/mihomo"):
-        raise HTTPException(status_code=500, detail="Mihomo 核心文件不存在")
+    if not os.path.exists(CLASH_CORE_NAME):
+        raise HTTPException(status_code=500, detail=f"Mihomo 核心文件不存在: {CLASH_CORE_NAME}")
     
     try:
         # 先清理之前的进程
         cleanup_clash_process()
         
         clash_process = subprocess.Popen(
-            ["/usr/bin/mihomo", '-f', CLASH_CONFIG_PATH],
+            [CLASH_CORE_NAME, '-f', CLASH_CONFIG_PATH],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
-        print(f"Clash 核心进程已启动，PID: {clash_process.pid}")
+        logging.info(f"Clash 核心进程已启动，PID: {clash_process.pid}")
         
-        # 等待 Clash 核心启动
-        time.sleep(8)
-        
-        # 检查进程是否正常运行
-        if clash_process.poll() is not None:
-            stdout, stderr = clash_process.communicate()
-            raise HTTPException(
-                status_code=500, 
-                detail=f"Clash 进程启动失败。stdout: {stdout.decode()}, stderr: {stderr.decode()}"
-            )
-        
-        # 4. 获取所有节点名称并进行测速
-        proxies_url = f"{CLASH_API_URL}/proxies"
+        # 4. 轮询等待 Clash 核心启动
+        max_retries = 15
         headers = {"Authorization": f"Bearer {CLASH_API_SECRET}"}
-        
-        # 测试 API 连接
-        max_retries = 3
         for i in range(max_retries):
             try:
-                response = requests.get(proxies_url, headers=headers, timeout=10)
+                response = requests.get(f"{CLASH_API_URL}/proxies", headers=headers, timeout=5)
                 response.raise_for_status()
+                logging.info("Clash API 连接成功。")
                 break
-            except requests.RequestException as e:
-                if i == max_retries - 1:
-                    raise HTTPException(status_code=500, detail=f"无法连接到 Clash API: {e}")
-                time.sleep(2)
+            except requests.exceptions.RequestException as e:
+                logging.warning(f"等待 Clash API 启动... ({i+1}/{max_retries})")
+                time.sleep(1)
+        else:
+            raise HTTPException(status_code=500, detail="Clash API 在指定时间内未能启动，请检查日志。")
         
+        # 5. 获取所有节点名称并进行测速
         proxies_info = response.json().get("proxies", {})
         
-        # 筛选美国节点进行测速
         us_proxies_names = [
-            name for name, info in proxies_info.items() 
-            if ("US" in name.upper() or "美国" in name or "United States" in name) 
-            and info.get("type") != "Selector"  # 排除选择器
+            name for name, info in proxies_info.items()
+            if ("US" in name.upper() or "美国" in name or "United States" in name)
+            and info.get("type") != "Selector"
         ]
         
-        print(f"找到 {len(us_proxies_names)} 个美国节点进行测速")
+        logging.info(f"找到 {len(us_proxies_names)} 个美国节点进行测速")
         
         test_results = []
-        for name in us_proxies_names[:30]:  # 限制测试数量
+        for name in us_proxies_names[:30]:
             test_url = f"{CLASH_API_URL}/proxies/{urllib.parse.quote(name)}/delay"
             params = {
                 "url": API_TEST_URL,
@@ -352,31 +349,30 @@ async def test_nodes(request: TestNodesRequest):
                 
                 if latency is not None and latency > 0:
                     test_results.append({"name": name, "delay": latency})
-                    print(f"节点 {name} 测速完成，延迟 {latency}ms")
+                    logging.info(f"节点 {name} 测速完成，延迟 {latency}ms")
                 else:
-                    print(f"节点 {name} 测速失败，无延迟数据")
-                    
+                    logging.warning(f"节点 {name} 测速失败，无延迟数据")
             except Exception as e:
-                print(f"节点 {name} 测速失败: {e}")
+                logging.error(f"节点 {name} 测速失败: {e}")
 
-        # 5. 按延迟排序并返回
+        # 6. 按延迟排序并返回
         test_results.sort(key=lambda x: x["delay"])
         
-        # 从原始 merged_proxies 中找到对应的节点配置
         final_nodes = []
-        for result in test_results[:10]:  # 只返回最快的前10个
+        for result in test_results[:10]:
             for node in merged_proxies:
                 if node.get("name") == result["name"]:
-                    node["delay"] = result["delay"]  # 添加延迟信息
+                    node["delay"] = result["delay"]
                     final_nodes.append(node)
                     break
         
-        print(f"返回 {len(final_nodes)} 个测试通过的节点")
+        logging.info(f"返回 {len(final_nodes)} 个测试通过的节点")
         return {"nodes": final_nodes, "total_tested": len(test_results)}
 
     except HTTPException:
         raise
     except Exception as e:
+        logging.critical(f"测速过程出错: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"测速过程出错: {str(e)}")
     finally:
         # 清理进程和配置文件
@@ -385,7 +381,7 @@ async def test_nodes(request: TestNodesRequest):
 @app.get("/health")
 async def health_check():
     """健康检查接口"""
-    return {"status": "ok", "mihomo_exists": os.path.exists("/usr/bin/mihomo")}
+    return {"status": "ok", "mihomo_exists": os.path.exists(CLASH_CORE_NAME)}
 
 @app.on_event("shutdown")
 async def shutdown_event():
