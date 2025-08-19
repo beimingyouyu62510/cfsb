@@ -15,9 +15,6 @@ RUN dpkg -i /tmp/mihomo.deb || \
     (apt-get update && apt-get install -f -y) && \
     rm /tmp/mihomo.deb
 
-# 验证 mihomo 安装
-RUN mihomo version || echo "Mihomo ready"
-
 # 复制 requirements 并安装 Python 依赖
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
