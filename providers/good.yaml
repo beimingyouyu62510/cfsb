@@ -1,1 +1,17 @@
-
+- delay: 1670
+  latency: 1.0554790496826172
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 908
+  network: ws
+  port: 8880
+  server: 170.114.45.3
+  servername: Telegram-channel-WangCai2
+  type: vless
+  udp: true
+  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
+  ws-opts:
+    headers:
+      Host: bitget1.asdasd.click
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/64.0.3282.186 Safari/537.36
+    path: /Telegram🇨🇳
+  xudp: true
