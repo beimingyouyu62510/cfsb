@@ -10,6 +10,7 @@ from typing import List, Optional
 import signal
 import sys
 import logging
+import urllib.parse
 
 from .config import settings
 from .utils import download, deduplicate, parse_clash_yaml, parse_base64
@@ -153,7 +154,7 @@ async def test_nodes(request: TestNodesRequest):
         
         test_results = []
         for name in proxies_to_test[:request.count]:
-            test_url = f"{settings.CLASH_API_URL}/proxies/{requests.utils.quote(name)}/delay"
+            test_url = f"{settings.CLASH_API_URL}/proxies/{urllib.parse.quote(name)}/delay"
             params = {
                 "url": test_url_to_use,
                 "timeout": str(settings.API_TEST_TIMEOUT)
