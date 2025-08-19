@@ -208,6 +208,7 @@ async def test_connection_async(session, proxy_config, semaphore):
         
         # 仅支持 ss, trojan 协议测试，因为 aiohttp 代理只支持 http/https
         if proxy_type not in ["ss", "trojan"]:
+            print(f"[❌] {proxy_config.get('name', '未知节点')} | 协议 {proxy_type} 暂不支持测试", file=sys.stderr)
             return None, None
 
         proxy_url = f"{proxy_type}://{proxy_config.get('password')}@{proxy_config.get('server')}:{proxy_config.get('port')}"
@@ -217,10 +218,13 @@ async def test_connection_async(session, proxy_config, semaphore):
             async with session.get(TEST_URL, proxy=proxy_url, timeout=TEST_TIMEOUT, verify_ssl=False) as resp:
                 if resp.status == 204:
                     latency = int((time.time() - start_time) * 1000)
+                    print(f"[✅] {proxy_config.get('name', '未知节点')} | 延迟: {latency}ms")
                     return proxy_config, latency
                 else:
+                    print(f"[❌] {proxy_config.get('name', '未知节点')} | 状态码: {resp.status}")
                     return None, None
-        except Exception:
+        except Exception as e:
+            print(f"[❌] {proxy_config.get('name', '未知节点')} | 失败: {e}")
             return None, None
 
 # ========== 主运行逻辑 ==========
@@ -251,6 +255,9 @@ async def main():
     # 筛选出所有 US 节点进行测试
     us_nodes_to_test = filter_us(merged)
     print(f"[🔎] 已筛选出 {len(us_nodes_to_test)} 个 US 节点进行并发测试...")
+
+    if not us_nodes_to_test:
+        print("[⚠️] 未找到任何名称包含 'US' 或 '美国' 的节点，us.yaml 文件将为空。")
 
     available_us_nodes = []
     semaphore = asyncio.Semaphore(MAX_CONCURRENCY)
