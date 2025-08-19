@@ -241,9 +241,6 @@ rule-providers:
 rules:
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
   - RULE-SET,UnBan,🎯 全球直连
-  - RULE-SET,GoogleCN,🎯 全球直连
-  - RULE-SET,SteamCN,🎯 全球直连
-  - RULE-SET,NetEaseMusic,🎯 全球直连
   - RULE-SET,BilibiliHMT,🎯 全球直连
   - RULE-SET,Bilibili,🎯 全球直连
   - RULE-SET,ChinaMedia,🎯 全球直连
