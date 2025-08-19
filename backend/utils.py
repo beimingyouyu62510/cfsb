@@ -130,7 +130,7 @@ def parse_base64(text: str) -> list:
                     "port": int(port),
                     "password": password,
                     "tls": True if params.get("security") == "tls" else False,
-                }
+                })
                 proxies.append(node_config)
             except Exception as e:
                 logging.warning(f"[⚠️] 解析 trojan 节点失败: {e}")
