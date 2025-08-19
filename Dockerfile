@@ -26,6 +26,10 @@ COPY backend/ ./backend/
 COPY providers/ ./providers/
 COPY merge.py .
 
+# 复制启动脚本并添加执行权限
+COPY start.sh .
+RUN chmod +x ./start.sh
+
 # 创建工作目录
 RUN mkdir -p /app/logs /app/configs
 
@@ -37,6 +41,4 @@ ENV PYTHONUNBUFFERED=1
 EXPOSE 8000
 
 # 启动命令
-# 更改工作目录到 backend，然后运行 app.py
-WORKDIR /app/backend
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["./start.sh"]
