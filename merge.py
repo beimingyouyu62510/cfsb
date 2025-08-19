@@ -7,6 +7,8 @@ from hashlib import md5
 import sys
 import time
 import urllib.parse
+import asyncio
+import aiohttp
 
 # ========== 配置：多个订阅源 ==========
 SUBSCRIPTION_URLS = [
@@ -25,10 +27,10 @@ SUBSCRIPTION_URLS = [
 OUTPUT_ALL = "providers/all.yaml"
 OUTPUT_US = "providers/us.yaml"
 
-# 测速配置
+# 测试配置
 TEST_URL = "http://cp.cloudflare.com/generate_204"
-TEST_TIMEOUT = 5 # 单次测速超时时间
-MAX_RETRIES = 2 # 最大重试次数
+TEST_TIMEOUT = 5  # 单次测速超时时间
+MAX_CONCURRENCY = 50  # 最大并发测试数
 
 def download(url):
     """下载订阅内容，设置超时和状态码检查"""
@@ -51,173 +53,160 @@ def parse_clash_yaml(text):
             return data["proxies"]
     except Exception as e:
         print(f"[⚠️] 解析 Clash YAML 失败: {e}", file=sys.stderr)
-        return None
     return None
 
 def parse_base64(text):
-    """解析 Base64 编码的订阅链接"""
+    """解析 Base64 编码的订阅链接，增加了更健壮的容错处理"""
     proxies = []
     try:
         text_corrected = text.strip().replace('-', '+').replace('_', '/')
-        decoded_text = base64.b64decode(text_corrected + "===").decode("utf-8", errors="ignore")
-    except Exception as e:
-        print(f"[⚠️] Base64 解码失败，可能不是 Base64 格式: {e}", file=sys.stderr)
-        decoded_text = text
-
-    for line in decoded_text.splitlines():
-        line = line.strip()
-        if not line:
-            continue
-
-        # vmess://
-        if line.startswith("vmess://"):
-            try:
-                node_str = base64.b64decode(line[8:] + "===").decode("utf-8")
-                node_json = json.loads(node_str)
-                proxies.append({
-                    "name": node_json.get("ps", "vmess"),
-                    "type": "vmess",
-                    "server": node_json["add"],
-                    "port": int(node_json["port"]),
-                    "uuid": node_json["id"],
-                    "alterId": int(node_json.get("aid", 0)),
-                    "cipher": node_json.get("scy", "auto"),
-                    "tls": True if node_json.get("tls") == "tls" else False,
-                    "network": node_json.get("net", "tcp"),
-                })
-            except Exception as e:
-                print(f"[⚠️] 解析 vmess 节点失败: {e}", file=sys.stderr)
-
-        # ss://
-        elif line.startswith("ss://"):
-            try:
-                info = line[5:]
-                if "#" in info:
-                    info, name = info.split("#", 1)
-                    name = requests.utils.unquote(name)
-                else:
-                    name = "ss"
-                userinfo_enc, server_port = info.split("@", 1)
-                userinfo = base64.b64decode(userinfo_enc + "===").decode(errors="ignore")
-                cipher, password = userinfo.split(":", 1)
-                server, port = server_port.split(":")
-                proxies.append({
-                    "name": name, "type": "ss", "server": server,
-                    "port": int(port), "cipher": cipher, "password": password,
-                })
-            except Exception as e:
-                print(f"[⚠️] 解析 ss 节点失败: {e}", file=sys.stderr)
-
-        # trojan://
-        elif line.startswith("trojan://"):
-            try:
-                info = line[9:]
-                if "@" in info:
-                    password, rest = info.split("@", 1)
-                    server_port_raw, *params_raw = rest.split("?", 1)
-                else:
-                    password, server_port_raw = "", info.split("?", 1)[0]
-                    params_raw = info.split("?", 1)[1:]
-
-                server, port = server_port_raw.split(":", 1)
-                
-                params = {}
-                if params_raw:
-                    for p in params_raw[0].split("&"):
-                        if "=" in p:
-                            k, v = p.split("=", 1)
-                            params[k] = requests.utils.unquote(v)
-                
-                node_config = {
-                    "name": params.get("peer", "trojan"),
-                    "type": "trojan",
-                    "server": server,
-                    "port": int(port),
-                    "password": password,
-                    "tls": True if params.get("security") == "tls" else False,
-                }
-                proxies.append(node_config)
-            except Exception as e:
-                print(f"[⚠️] 解析 trojan 节点失败: {e}", file=sys.stderr)
+        # 尝试解码为 Base64，如果失败则按行处理原始文本
+        try:
+            decoded_text = base64.b64decode(text_corrected + "===").decode("utf-8", errors="ignore")
+        except Exception:
+            decoded_text = text_corrected
         
-        # vless://
-        elif line.startswith("vless://"):
-            try:
-                info = line[8:]
-                uuid_and_server = info.split("@", 1)
-                uuid = uuid_and_server[0]
-                server_info = uuid_and_server[1].split("?", 1)
-                server_port = server_info[0].split(":", 1)
-                server = server_port[0]
-                port = int(server_port[1])
-                
-                params = {}
-                if len(server_info) > 1:
-                    params_str = server_info[1]
-                    for p in params_str.split("&"):
-                        if "=" in p:
-                            k, v = p.split("=", 1)
-                            params[k] = requests.utils.unquote(v)
+        for line in decoded_text.splitlines():
+            line = line.strip()
+            if not line:
+                continue
 
-                node_config = {
-                    "name": params.get("peer", "vless"),
-                    "type": "vless",
-                    "server": server,
-                    "port": port,
-                    "uuid": uuid,
-                    "network": params.get("type", "tcp"),
-                }
+            # vmess://
+            if line.startswith("vmess://"):
+                try:
+                    node_str = base64.b64decode(line[8:] + "===").decode("utf-8")
+                    node_json = json.loads(node_str)
+                    proxies.append({
+                        "name": node_json.get("ps", "vmess"), "type": "vmess", "server": node_json["add"],
+                        "port": int(node_json["port"]), "uuid": node_json["id"], "alterId": int(node_json.get("aid", 0)),
+                        "cipher": node_json.get("scy", "auto"), "tls": True if node_json.get("tls") == "tls" else False,
+                        "network": node_json.get("net", "tcp"),
+                    })
+                except Exception as e:
+                    print(f"[⚠️] 解析 vmess 节点失败: {e}", file=sys.stderr)
 
-                if node_config["network"] == "ws":
-                    ws_opts = {}
-                    if "path" in params:
-                        path_cleaned = params["path"].split("?")[0].strip()
-                        path_cleaned = path_cleaned.split(" ")[0].strip()
-                        ws_opts["path"] = path_cleaned
-                    if "host" in params:
-                        ws_opts["headers"] = {"Host": params["host"]}
-                    node_config["ws-opts"] = ws_opts
+            # ss://
+            elif line.startswith("ss://"):
+                try:
+                    info = line[5:]
+                    if "#" in info:
+                        info, name = info.split("#", 1)
+                        name = requests.utils.unquote(name)
+                    else:
+                        name = "ss"
+                    userinfo_enc, server_port = info.split("@", 1)
+                    userinfo = base64.b64decode(userinfo_enc + "===").decode(errors="ignore")
+                    cipher, password = userinfo.split(":", 1)
+                    server, port = server_port.split(":")
+                    proxies.append({
+                        "name": name, "type": "ss", "server": server,
+                        "port": int(port), "cipher": cipher, "password": password,
+                    })
+                except Exception as e:
+                    print(f"[⚠️] 解析 ss 节点失败: {e}", file=sys.stderr)
+
+            # trojan://
+            elif line.startswith("trojan://"):
+                try:
+                    info = line[9:]
+                    if "@" in info:
+                        password, rest = info.split("@", 1)
+                        server_port_raw, *params_raw = rest.split("?", 1)
+                    else:
+                        password, server_port_raw = "", info.split("?", 1)[0]
+                        params_raw = info.split("?", 1)[1:]
+
+                    server, port = server_port_raw.split(":", 1)
                     
-                if params.get("security") == "tls":
-                    node_config["tls"] = True
-                    if "sni" in params:
-                        node_config["servername"] = params["sni"]
+                    params = {}
+                    if params_raw:
+                        for p in params_raw[0].split("&"):
+                            if "=" in p:
+                                k, v = p.split("=", 1)
+                                params[k] = urllib.parse.unquote(v)
+                    
+                    node_config = {
+                        "name": params.get("peer", "trojan"),
+                        "type": "trojan",
+                        "server": server,
+                        "port": int(port),
+                        "password": password,
+                        "tls": True if params.get("security") == "tls" else False,
+                    }
+                    proxies.append(node_config)
+                except Exception as e:
+                    print(f"[⚠️] 解析 trojan 节点失败: {e}", file=sys.stderr)
+            
+            # vless://
+            elif line.startswith("vless://"):
+                try:
+                    info = line[8:]
+                    uuid_and_server = info.split("@", 1)
+                    uuid = uuid_and_server[0]
+                    server_info = uuid_and_server[1].split("?", 1)
+                    server_port = server_info[0].split(":", 1)
+                    server = server_port[0]
+                    port = int(server_port[1])
+                    
+                    params = {}
+                    if len(server_info) > 1:
+                        params_str = server_info[1]
+                        for p in params_str.split("&"):
+                            if "=" in p:
+                                k, v = p.split("=", 1)
+                                params[k] = urllib.parse.unquote(v)
+
+                    node_config = {
+                        "name": params.get("peer", "vless"),
+                        "type": "vless",
+                        "server": server,
+                        "port": port,
+                        "uuid": uuid,
+                        "network": params.get("type", "tcp"),
+                    }
+
+                    if node_config["network"] == "ws":
+                        ws_opts = {}
+                        if "path" in params:
+                            path_cleaned = params["path"].split("?")[0].strip().split(" ")[0].strip()
+                            ws_opts["path"] = path_cleaned
+                        if "host" in params:
+                            ws_opts["headers"] = {"Host": params["host"]}
+                        node_config["ws-opts"] = ws_opts
                         
-                if "udp" in params:
-                    node_config["udp"] = (params["udp"].lower() == "true")
-                if "xudp" in params:
-                    node_config["xudp"] = (params["xudp"].lower() == "true")
+                    if params.get("security") == "tls":
+                        node_config["tls"] = True
+                        if "sni" in params:
+                            node_config["servername"] = params["sni"]
+                            
+                    if "udp" in params:
+                        node_config["udp"] = (params["udp"].lower() == "true")
+                    if "xudp" in params:
+                        node_config["xudp"] = (params["xudp"].lower() == "true")
+                        
+                    proxies.append(node_config)
+                except Exception as e:
+                    print(f"[⚠️] 解析 vless 节点失败: {e}", file=sys.stderr)
+
+            # ssr://
+            elif line.startswith("ssr://"):
+                try:
+                    base64_info = line[6:]
+                    info = base64.b64decode(base64_info + "===").decode('utf-8')
                     
-                proxies.append(node_config)
-            except Exception as e:
-                print(f"[⚠️] 解析 vless 节点失败: {e}", file=sys.stderr)
-        
-        # ssr://
-        elif line.startswith("ssr://"):
-            try:
-                base64_info = line[6:]
-                info = base64.b64decode(base64_info + "===").decode('utf-8')
-                
-                server, port, protocol, cipher, obfs, password_base64 = info.split(':')
-                password = base64.b64decode(password_base64.split("/")[0] + "===").decode('utf-8')
-                
-                params_str = info.split('?')[-1]
-                params = {k: requests.utils.unquote(v) for k, v in (p.split('=') for p in params_str.split('&'))}
-                
-                proxies.append({
-                    'name': params.get('remarks', 'ssr'),
-                    'type': 'ssr',
-                    'server': server,
-                    'port': int(port),
-                    'password': password,
-                    'cipher': cipher,
-                    'protocol': protocol,
-                    'obfs': obfs,
-                    'obfs-param': params.get('obfsparam', ''),
-                    'protocol-param': params.get('protoparam', '')
-                })
-            except Exception as e:
-                print(f"[⚠️] 解析 ssr 节点失败: {e}", file=sys.stderr)
+                    server, port, protocol, cipher, obfs, password_base64 = info.split(':')
+                    password = base64.b64decode(password_base64.split("/")[0] + "===").decode('utf-8')
+                    
+                    params_str = info.split('?')[-1]
+                    params = {k: urllib.parse.unquote(v) for k, v in (p.split('=') for p in params_str.split('&'))}
+                    
+                    proxies.append({
+                        'name': params.get('remarks', 'ssr'), 'type': 'ssr', 'server': server,
+                        'port': int(port), 'password': password, 'cipher': cipher, 'protocol': protocol,
+                        'obfs': obfs, 'obfs-param': params.get('obfsparam', ''), 'protocol-param': params.get('protoparam', '')
+                    })
+                except Exception as e:
+                    print(f"[⚠️] 解析 ssr 节点失败: {e}", file=sys.stderr)
 
     return proxies if proxies else None
 
@@ -249,38 +238,36 @@ def save_yaml(path, proxies):
     with open(path, "w", encoding="utf-8") as f:
         yaml.safe_dump({"proxies": proxies}, f, allow_unicode=True)
 
-# ========== 简单的节点连接测试 ==========
+# ========== 异步节点连通性测试 ==========
 
-def test_connection(proxy_config):
-    """同步测试单个节点的连接性，并进行重试"""
-    proxy_type = proxy_config.get("type")
-    
-    if proxy_type not in ["ss", "trojan"]:
-        print(f"[⚠️] 暂不支持测试节点类型: {proxy_type}", file=sys.stderr)
-        return None, None
+async def test_connection_async(session, proxy_config, semaphore):
+    """异步测试单个节点的连接性"""
+    async with semaphore:
+        proxy_type = proxy_config.get("type")
+        
+        # 仅支持 ss, trojan 协议测试
+        if proxy_type not in ["ss", "trojan"]:
+            # print(f"[⚠️] 暂不支持测试节点类型: {proxy_type}", file=sys.stderr)
+            return None, None
 
-    # 构建 requests 代理字典
-    proxy_url = f"{proxy_type}://{proxy_config.get('password')}@{proxy_config.get('server')}:{proxy_config.get('port')}"
-    proxies = {
-        "http": proxy_url,
-        "https": proxy_url,
-    }
-
-    for i in range(MAX_RETRIES):
+        proxy_url = f"{proxy_type}://{proxy_config.get('password')}@{proxy_config.get('server')}:{proxy_config.get('port')}"
+        
         start_time = time.time()
         try:
-            resp = requests.get(TEST_URL, proxies=proxies, timeout=TEST_TIMEOUT, verify=False)
-            if resp.status_code == 204:
-                latency = int((time.time() - start_time) * 1000)
-                return proxy_config, latency
-            else:
-                print(f"[❌] {proxy_config['name']} | 状态码: {resp.status_code} (重试 {i+1}/{MAX_RETRIES})", file=sys.stderr)
+            # aiohttp 请求
+            async with session.get(TEST_URL, proxy=proxy_url, timeout=TEST_TIMEOUT, verify_ssl=False) as resp:
+                if resp.status == 204:
+                    latency = int((time.time() - start_time) * 1000)
+                    print(f"[✅] {proxy_config['name']} | 延迟: {latency}ms")
+                    return proxy_config, latency
+                else:
+                    print(f"[❌] {proxy_config['name']} | 状态码: {resp.status}", file=sys.stderr)
+                    return None, None
         except Exception as e:
-            print(f"[❌] {proxy_config['name']} | 失败: {e} (重试 {i+1}/{MAX_RETRIES})", file=sys.stderr)
-    
-    return None, None
+            # print(f"[❌] {proxy_config['name']} | 失败: {e}", file=sys.stderr)
+            return None, None
 
-def main():
+async def main_async():
     """主函数"""
     all_proxies = []
     
@@ -301,12 +288,17 @@ def main():
     
     # 筛选出潜在的美国节点
     us_nodes_to_test = filter_us(merged)
-    print(f"[🔎] 已筛选出 {len(us_nodes_to_test)} 个 US 节点进行连接测试...")
+    print(f"[🔎] 已筛选出 {len(us_nodes_to_test)} 个 US 节点进行并发测试...")
 
     available_us_nodes = []
-    for i, node in enumerate(us_nodes_to_test[:50]): # 只测试前50个，以节省时间
-        print(f"[{i+1}/{len(us_nodes_to_test[:50])}] 正在测试: {node.get('name')}")
-        node_result, latency = test_connection(node)
+    semaphore = asyncio.Semaphore(MAX_CONCURRENCY)
+    
+    # 异步并发测试
+    async with aiohttp.ClientSession() as session:
+        tasks = [test_connection_async(session, node, semaphore) for node in us_nodes_to_test]
+        results = await asyncio.gather(*tasks)
+
+    for node_result, latency in results:
         if node_result:
             node_result['latency'] = latency
             available_us_nodes.append(node_result)
@@ -320,15 +312,13 @@ def main():
     print(f"[💾] 已保存所有去重节点到 {OUTPUT_ALL}")
 
     # 保存 us.yaml (所有可用的美国节点)
-    save_yaml(OUTPUT_US, available_us_nodes[:10]) # 只保存前10个
+    save_yaml(OUTPUT_US, available_us_nodes[:10])  # 只保存前10个
     print(f"[💾] 已保存 {len(available_us_nodes[:10])} 个可用美国节点到 {OUTPUT_US}")
 
 if __name__ == "__main__":
-    # 在 GitHub Actions 中，需要确保 requests 库已安装
+    # 在 GitHub Actions 中，需要确保 aiohttp 库已安装
     # 在你的工作流中添加：
-    # - name: Install requests
-    #   run: pip install requests
+    # - name: Install dependencies
+    #   run: pip install requests pyyaml aiohttp
     
-    # 因为此测试方法仅支持 SS 和 Trojan，其他协议的节点将无法通过测试
-    # 这是一个权衡，在GitHub Actions简单实现和全面协议支持之间
-    main()
+    asyncio.run(main_async())
