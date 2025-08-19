@@ -6,241 +6,268 @@ find-process-mode: strict
 global-client-fingerprint: chrome
 
 profile:
-  store-selected: true
-  store-fake-ip: true
+  store-selected: true
+  store-fake-ip: true
 
 # ================= 嗅探设置 =================
 sniffer:
-  enable: true
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  skip-domain:
-    - "Mijia Cloud"
-    - "dlg.io.mi.com"
-    - "*.push.apple.com"
-    - "*.icloud.com"
-    - "*.mi.com"
-    - "*.lan"
-    - "*.local"
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "dlg.io.mi.com"
+    - "*.push.apple.com"
+    - "*.icloud.com"
+    - "*.mi.com"
+    - "*.lan"
+    - "*.local"
 
 # ================= TUN 模式 =================
 tun:
-  enable: true
-  stack: system
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  auto-route: true
-  auto-detect-interface: true
-  strict-route: true
-  endpoint-independent-nat: true
+  enable: true
+  stack: system
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: true
+  endpoint-independent-nat: true
 
 # ================= DNS 设置 =================
 dns:
-  enable: true
-  listen: 0.0.0.0:53
-  ipv6: false
-  prefer-h3: true
-  respect-rules: true
-  enhanced-mode: fake-ip
-  use-hosts: true
+  enable: true
+  listen: 0.0.0.0:53
+  ipv6: false
+  prefer-h3: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  use-hosts: true
 
-  # 主要 DNS 解析器
-  nameserver:
-    - https://dns.google/dns-query
-    - https://1.1.1.1/dns-query
-    - https://dns.cloudflare.com/dns-query
+  # 主要 DNS 解析器
+  nameserver:
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
 
-  # 针对代理流量的 DNS
-  proxy-server-nameserver:
-    - 223.5.5.5
-    - https://dns.alidns.com/dns-query
-    - 119.29.29.29
-    - https://doh.pub/dns-query
+  # 针对代理流量的 DNS (只保留加密 DNS)
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - https://doh.360.cn/dns-query
 
-  # 针对不同规则的 DNS 策略
-  nameserver-policy:
-    "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
-      - 117.50.11.11
-      - 180.168.255.18
-      - 223.5.5.5
-      - https://dns.alidns.com/dns-query
-    "geosite:google,youtube,netflix,github,openai,microsoft@!cn":
-      - https://dns.google/dns-query
-      - https://8.8.8.8/dns-query
-      - https://dns.quad9.net/dns-query
-    "geosite:telegram,discord":
-      - https://1.1.1.1/dns-query
-      - https://dns.cloudflare.com/dns-query
-    "rule-set:ChinaDomain,ChinaCompanyIp,ChinaMedia":
-      - 223.5.5.5
-      - 117.50.11.11
-      - https://dns.alidns.com/dns-query
-    "geosite:apple@!cn":
-      - https://dns.google/dns-query
-      - https://1.1.1.1/dns-query
-    "geosite:microsoft@!cn":
-      - https://dns.google/dns-query
-      - https://8.8.8.8/dns-query
+  # 针对不同规则的 DNS 策略 (简化和合并)
+  nameserver-policy:
+    "geosite:cn,apple-cn,category-games@cn,private,category-ads-all,rule-set:ChinaDomain,ChinaCompanyIp,ChinaMedia":
+      - 223.5.5.5
+      - 117.50.11.11
+      - https://dns.alidns.com/dns-query
+    "geosite:google,youtube,netflix,github,openai,microsoft,apple":
+      - https://dns.google/dns-query
+      - https://1.1.1.1/dns-query
+      - https://dns.quad9.net/dns-query
+    "geosite:telegram,discord":
+      - https://1.1.1.1/dns-query
+      - https://dns.cloudflare.com/dns-query
 
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
 
 # ================= 节点订阅 =================
 proxy-providers:
-  us:
-    type: http
-    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/us.yaml"
-    interval: 3600
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 600
+  us:
+    type: http
+    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/us.yaml"
+    interval: 3600
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 600
 
 # ================= 代理分组 =================
 proxy-groups:
-  - name: ♻️ 自动选择
-    type: url-test
-    url: http://cp.cloudflare.com/generate_204
-    interval: 180
-    tolerance: 30
-    use:
-      - us
+  - name: ♻️ 自动选择
+    type: url-test
+    url: http://cp.cloudflare.com/generate_204
+    interval: 180
+    tolerance: 30
+    use:
+      - us
 
-  - name: 🚀 节点选择
-    type: select
-    proxies:
-      - ♻️ 自动选择
-      - DIRECT
-    use:
-      - us
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - DIRECT
+    use:
+      - us
 
-  - name: 🇺🇸 美国节点
-    type: select
-    proxies:
-      - DIRECT
-    use:
-      - us
+  - name: 🇺🇸 美国节点
+    type: select
+    proxies:
+      - DIRECT
+    use:
+      - us
 
-  - name: 🌍 国外媒体
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
-      - DIRECT
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇺🇸 美国节点
+      - DIRECT
 
-  - name: 📲 电报信息
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
-      - DIRECT
+  - name: 📲 电报信息
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇺🇸 美国节点
+      - DIRECT
 
-  - name: Ⓜ️ 微软服务
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - 🇺🇸 美国节点
 
-  - name: 🍎 苹果服务
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
-      - DIRECT
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇺🇸 美国节点
+      - DIRECT
 
-  - name: 📢 谷歌FCM
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
-      - DIRECT
+  - name: 📢 谷歌FCM
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇺🇸 美国节点
+      - DIRECT
 
-  - name: 🎯 全球直连
-    type: select
-    proxies:
-      - DIRECT
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
 
-  - name: 🛑 全球拦截
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
 
-  - name: 🍃 应用净化
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
+  - name: 🍃 应用净化
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
 
-  - name: 🐟 漏网之鱼
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - 🇺🇸 美国节点
 
 # ================= 规则集 =================
 rule-providers:
-  LocalAreaNetwork:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/LocalAreaNetwork.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
-    interval: 86400
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    format: text
+    path: ruleset/LocalAreaNetwork.list
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
+    interval: 86400
 
-  UnBan:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/UnBan.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list
-    interval: 86400
+  UnBan:
+    type: http
+    behavior: classical
+    format: text
+    path: ruleset/UnBan.list
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list
+    interval: 86400
 
-  BanAD:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/BanAD.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanAD.list
-    interval: 86400
+  BanAD:
+    type: http
+    behavior: classical
+    format: text
+    path: ruleset/BanAD.list
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanAD.list
+    interval: 86400
 
-  QiufengAD:
-    type: http
-    behavior: domain
-    format: yaml
-    path: ruleset/QiufengAD.yaml
-    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
-    interval: 86400
+  QiufengAD:
+    type: http
+    behavior: domain
+    format: yaml
+    path: ruleset/QiufengAD.yaml
+    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
+    interval: 86400
 
-  BanProgramAD:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/BanProgramAD.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list
-    interval: 86400
+  BanProgramAD:
+    type: http
+    behavior: classical
+    format: text
+    path: ruleset/BanProgramAD.list
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list
+    interval: 86400
 
-  # ... 其余规则集保持不变，只是把 path: ./ 改成 path: ruleset/xxx
+  #... (其他规则集保持不变)
 
-# ================= 分流规则 =================
+# ================= 分流规则 (已优化) =================
 rules:
-rules:
-  # 优先匹配国内直连规则，提高效率
+  # 首先处理广告和恶意流量，避免不必要的连接
+  - RULE-SET,BanAD,🛑 全球拦截
+  - RULE-SET,QiufengAD,🍃 应用净化
+  - RULE-SET,BanProgramAD,🍃 应用净化
+  - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
+  - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
+  - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
+  
+  # 处理特定服务，确保它们走正确的代理或直连
+  - PROCESS-NAME,subs-check*,🎯 全球直连
+  - RULE-SET,GoogleFCM,📢 谷歌FCM
+  - RULE-SET,Bing,Ⓜ️ 微软服务
+  - RULE-SET,OneDrive,Ⓜ️ 微软服务
+  - RULE-SET,Microsoft,Ⓜ️ 微软服务
+  - RULE-SET,Apple,🍎 苹果服务
+  - RULE-SET,Telegram,📲 电报信息
+  - RULE-SET,YouTube,🌍 国外媒体
+  - RULE-SET,Netflix,🌍 国外媒体
+  - RULE-SET,Bahamut,🌍 国外媒体
+  - RULE-SET,ProxyMedia,🌍 国外媒体
+  
+  # 处理通用国外流量，特别是游戏和开发类
+  - RULE-SET,AI,🚀 节点选择
+  - RULE-SET,OpenAi,🚀 节点选择
+  - RULE-SET,Epic,🚀 节点选择
+  - RULE-SET,Origin,🚀 节点选择
+  - RULE-SET,Sony,🚀 节点选择
+  - RULE-SET,Steam,🚀 节点选择
+  - RULE-SET,Nintendo,🚀 节点选择
+  - RULE-SET,ProxyGFWlist,🚀 节点选择
+  - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
+  - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
+  - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
+  - DOMAIN-SUFFIX,addons.kodi.tv,🚀 节点选择
+  - DOMAIN-SUFFIX,github.com,🚀 节点选择
+  - DOMAIN-SUFFIX,githubusercontent.com,🚀 节点选择
+  - DOMAIN-SUFFIX,raw.githubusercontent.com,🚀 节点选择
+  - DOMAIN-SUFFIX,cloudfront.net,🚀 节点选择
+  - DOMAIN-SUFFIX,akamaihd.net,🚀 节点选择
+  - DOMAIN-KEYWORD,kodi,🚀 节点选择
+  
+  # 最后处理国内流量和兜底规则
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
   - RULE-SET,UnBan,🎯 全球直连
   - RULE-SET,GoogleCN,🎯 全球直连
@@ -253,39 +280,6 @@ rules:
   - RULE-SET,ChinaCompanyIp,🎯 全球直连
   - RULE-SET,Download,🎯 全球直连
   - GEOIP,CN,🎯 全球直连
-  - PROCESS-NAME,subs-check*,🎯 全球直连
-  - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
-  - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
-  - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
-  - RULE-SET,BanAD,🛑 全球拦截
-  - RULE-SET,QiufengAD,🍃 应用净化 # 修正：将 '秋风广告规则' 改为 'QiufengAD'
-  - RULE-SET,BanProgramAD,🍃 应用净化
-  - RULE-SET,GoogleFCM,📢 谷歌FCM
-  - RULE-SET,Bing,Ⓜ️ 微软服务
-  - RULE-SET,OneDrive,Ⓜ️ 微软服务
-  - RULE-SET,Microsoft,Ⓜ️ 微软服务
-  - RULE-SET,Apple,🍎 苹果服务
-  - RULE-SET,Telegram,📲 电报信息
-  - RULE-SET,AI,🚀 节点选择
-  - RULE-SET,OpenAi,🚀 节点选择
-  - RULE-SET,Epic,🚀 节点选择
-  - RULE-SET,Origin,🚀 节点选择
-  - RULE-SET,Sony,🚀 节点选择
-  - RULE-SET,Steam,🚀 节点选择
-  - RULE-SET,Nintendo,🚀 节点选择
-  - RULE-SET,YouTube,🌍 国外媒体
-  - RULE-SET,Netflix,🌍 国外媒体
-  - RULE-SET,Bahamut,🌍 国外媒体
-  - RULE-SET,ProxyMedia,🌍 国外媒体
-  - RULE-SET,ProxyGFWlist,🚀 节点选择
-  - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
-  - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,addons.kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,github.com,🚀 节点选择
-  - DOMAIN-SUFFIX,githubusercontent.com,🚀 节点选择
-  - DOMAIN-SUFFIX,raw.githubusercontent.com,🚀 节点选择
-  - DOMAIN-SUFFIX,cloudfront.net,🚀 节点选择
-  - DOMAIN-SUFFIX,akamaihd.net,🚀 节点选择
-  - DOMAIN-KEYWORD,kodi,🚀 节点选择
-  - MATCH,🐟 漏网之鱼 # 修正：移除多余的文字
+  
+  # 兜底规则，确保所有未匹配的流量都有处理方式
+  - MATCH,🐟 漏网之鱼
