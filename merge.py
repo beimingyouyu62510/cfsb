@@ -248,6 +248,7 @@ async def main():
     merged = deduplicate(all_proxies)
     print(f"[📦] 合并并去重后节点总数: {len(merged)}")
     
+    # 筛选出所有 US 节点进行测试
     us_nodes_to_test = filter_us(merged)
     print(f"[🔎] 已筛选出 {len(us_nodes_to_test)} 个 US 节点进行并发测试...")
 
