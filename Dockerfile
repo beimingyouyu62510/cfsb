@@ -19,10 +19,12 @@ RUN dpkg -i /tmp/mihomo.deb || \
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 复制应用文件
+# 复制应用文件和新模块
 COPY backend/app.py .
+COPY backend/config.py .
+COPY backend/utils.py .
 
-# 复制其他必要文件 (已根据您的目录结构进行修复)
+# 复制其他必要文件
 COPY merge.py .
 COPY providers/ ./providers/
 
