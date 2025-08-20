@@ -137,7 +137,7 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: git01.jisucf.cloudns.biz
-        
+
 proxy-groups:
   - name: 🚀 节点选择
     type: select
