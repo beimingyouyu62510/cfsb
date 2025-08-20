@@ -45,10 +45,9 @@ tun:
     - tcp://any:53
   auto-route: true
   auto-detect-interface: true
-  strict-route: false
+  strict-route: true
   endpoint-independent-nat: true
   mtu: 1500
-  include-all-devices: false
 
 dns:
   enable: true
@@ -75,39 +74,16 @@ dns:
   fallback:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
-  nameserver-policy:
-    "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
-      - 117.50.11.11
-      - 180.168.255.18
-      - 223.5.5.5
-      - https://dns.alidns.com/dns-query
-    "geosite:google,youtube,netflix,github,openai,microsoft@!cn":
-      - https://dns.google/dns-query
-      - https://8.8.8.8/dns-query
-      - https://dns.quad9.net/dns-query
-    "geosite:telegram,discord":
-      - https://1.1.1.1/dns-query
-      - https://dns.cloudflare.com/dns-query
-    "rule-set:ChinaDomain,ChinaCompanyIp,ChinaMedia":
-      - 223.5.5.5
-      - 117.50.11.11
-      - https://dns.alidns.com/dns-query
-    "geosite:apple@!cn":
-      - https://dns.google/dns-query
-      - https://1.1.1.1/dns-query
-    "geosite:microsoft@!cn":
-      - https://dns.google/dns-query
-      - https://8.8.8.8/dns-query
-  fake-ip-range: 28.0.0.1/8
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - '+.lan'
     - '+.local'
-    - +.stun.*.*
-    - +.stun.*.*.*
-    - +.stun.*.*.*.*
-    - +.stun.*.*.*.*.*
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
 
-# 代理节点
+# 代理节点 (请替换为你自己的节点信息)
 proxies:
   - name: 天书cf
     type: vless
@@ -139,66 +115,76 @@ proxies:
         Host: git01.jisucf.cloudns.biz
 
 proxy-groups:
-  - name: 🚀 节点选择
+  - name: "🚀 节点选择"
     type: select
     proxies:
-      - ♻️ 自动选择
+      - "♻️ 自动选择"
       - DIRECT
       - 天书cf
       - 天书git
-  - name: ♻️ 自动选择
+  
+  - name: "♻️ 自动选择"
     type: url-test
-    url: http://cp.cloudflare.com/generate_204
-    interval: 120
+    url: http://www.gstatic.com/generate_204
+    interval: 300
     tolerance: 50
     lazy: true
     proxies:
       - 天书cf
       - 天书git
-  - name: 🌍 国外媒体
+  
+  - name: "🌍 国外媒体"
     type: select
     proxies:
-      - 🚀 节点选择
+      - "🚀 节点选择"
       - DIRECT
-  - name: 📲 电报信息
+  
+  - name: "📲 电报信息"
     type: select
     proxies:
-      - 🚀 节点选择
+      - "🚀 节点选择"
       - DIRECT
-  - name: Ⓜ️ 微软服务
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-  - name: 🍎 苹果服务
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-  - name: 📢 谷歌FCM
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-  - name: 🎯 全球直连
+  
+  - name: "Ⓜ️ 微软服务"
     type: select
     proxies:
       - DIRECT
-  - name: 🛑 全球拦截
+      - "🚀 节点选择"
+  
+  - name: "🍎 苹果服务"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - DIRECT
+  
+  - name: "📢 谷歌FCM"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - DIRECT
+  
+  - name: "🎯 全球直连"
+    type: select
+    proxies:
+      - DIRECT
+  
+  - name: "🛑 全球拦截"
     type: select
     proxies:
       - REJECT
       - DIRECT
-  - name: 🍃 应用净化
+  
+  - name: "🍃 应用净化"
     type: select
     proxies:
       - REJECT
       - DIRECT
-  - name: 🐟 漏网之鱼
+  
+  - name: "🐟 漏网之鱼"
     type: select
     proxies:
       - DIRECT
-      - 🚀 节点选择
+      - "🚀 节点选择"
 
 rule-providers:
   LocalAreaNetwork:
@@ -208,6 +194,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
     path: ./ruleset/LocalAreaNetwork.txt
     interval: 86400
+  
   Private:
     type: http
     behavior: domain
@@ -215,6 +202,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
     path: ./ruleset/Private.txt
     interval: 86400
+  
   Reject:
     type: http
     behavior: domain
@@ -222,13 +210,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
     path: ./ruleset/Reject.txt
     interval: 86400
-  秋风广告规则:
-    type: http
-    behavior: domain
-    format: yaml
-    path: ./rule_provide/AWAvenue-Ads-Rule-Clash.yaml
-    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
-    interval: 86400
+  
   Google:
     type: http
     behavior: domain
@@ -236,6 +218,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/google.txt"
     path: ./ruleset/Google.txt
     interval: 86400
+  
   Apple:
     type: http
     behavior: domain
@@ -243,6 +226,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt"
     path: ./ruleset/Apple.txt
     interval: 86400
+  
   Telegram:
     type: http
     behavior: ipcidr
@@ -250,6 +234,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt"
     path: ./ruleset/Telegram.txt
     interval: 86400
+  
   Proxy:
     type: http
     behavior: domain
@@ -257,13 +242,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
     path: ./ruleset/Proxy.txt
     interval: 86400
-  GFW:
-    type: http
-    behavior: domain
-    format: text
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt"
-    path: ./ruleset/GFW.txt
-    interval: 86400
+  
   Direct:
     type: http
     behavior: domain
@@ -271,6 +250,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
     path: ./ruleset/Direct.txt
     interval: 86400
+  
   ChinaIp:
     type: http
     behavior: ipcidr
@@ -278,51 +258,32 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
     path: ./ruleset/ChinaIp.txt
     interval: 86400
-  Applications:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt"
-    path: ./ruleset/Applications.txt
-    interval: 86400
 
 rules:
-  # 优先处理广告和恶意域名
+  # 广告和恶意域名拦截
   - RULE-SET,Reject,🛑 全球拦截
-  - RULE-SET,秋风广告规则,🍃 应用净化
 
   # 本地网络直连
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
   - RULE-SET,Private,🎯 全球直连
 
   # 特定应用和域名分流
-  - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
-  - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
-  - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
   - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
   - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
-  - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,addons.kodi.tv,🚀 节点选择
   - DOMAIN-SUFFIX,github.com,🚀 节点选择
   - DOMAIN-SUFFIX,githubusercontent.com,🚀 节点选择
-  - DOMAIN-SUFFIX,raw.githubusercontent.com,🚀 节点选择
-  - DOMAIN-SUFFIX,cloudfront.net,🚀 节点选择
-  - DOMAIN-SUFFIX,akamaihd.net,🚀 节点选择
   - DOMAIN-KEYWORD,kodi,🚀 节点选择
-  - PROCESS-NAME,subs-check*,🎯 全球直连
 
-  # 使用规则集分流，海外服务优先
+  # 使用规则集分流
   - RULE-SET,Apple,🍎 苹果服务
   - RULE-SET,Google,📢 谷歌FCM
   - RULE-SET,Telegram,📲 电报信息
   - RULE-SET,Proxy,🚀 节点选择
-  - RULE-SET,GFW,🚀 节点选择
-  - RULE-SET,Applications,🎯 全球直连
 
   # 中国大陆IP和域名直连
   - RULE-SET,Direct,🎯 全球直连
   - RULE-SET,ChinaIp,🎯 全球直连
   - GEOIP,CN,🎯 全球直连
 
-  # 兜底规则，处理所有未匹配的流量
+  # 兜底规则
   - MATCH,🐟 漏网之鱼
