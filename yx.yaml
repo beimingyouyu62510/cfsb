@@ -287,6 +287,15 @@ rule-providers:
     interval: 86400
 
 rules:
+  # 优先处理广告和恶意域名
+  - RULE-SET,Reject,🛑 全球拦截
+  - RULE-SET,秋风广告规则,🍃 应用净化
+
+  # 本地网络直连
+  - RULE-SET,LocalAreaNetwork,🎯 全球直连
+  - RULE-SET,Private,🎯 全球直连
+
+  # 特定应用和域名分流
   - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
   - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
   - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
@@ -301,17 +310,19 @@ rules:
   - DOMAIN-SUFFIX,akamaihd.net,🚀 节点选择
   - DOMAIN-KEYWORD,kodi,🚀 节点选择
   - PROCESS-NAME,subs-check*,🎯 全球直连
-  - RULE-SET,LocalAreaNetwork,🎯 全球直连
-  - RULE-SET,Private,🎯 全球直连
-  - RULE-SET,Reject,🛑 全球拦截
-  - RULE-SET,秋风广告规则,🍃 应用净化
-  - RULE-SET,Google,📢 谷歌FCM
+
+  # 使用规则集分流，海外服务优先
   - RULE-SET,Apple,🍎 苹果服务
+  - RULE-SET,Google,📢 谷歌FCM
   - RULE-SET,Telegram,📲 电报信息
   - RULE-SET,Proxy,🚀 节点选择
   - RULE-SET,GFW,🚀 节点选择
+  - RULE-SET,Applications,🎯 全球直连
+
+  # 中国大陆IP和域名直连
   - RULE-SET,Direct,🎯 全球直连
   - RULE-SET,ChinaIp,🎯 全球直连
-  - RULE-SET,Applications,🎯 全球直连
   - GEOIP,CN,🎯 全球直连
+
+  # 兜底规则，处理所有未匹配的流量
   - MATCH,🐟 漏网之鱼
