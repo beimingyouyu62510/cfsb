@@ -47,7 +47,7 @@ tun:
   auto-detect-interface: true
   strict-route: false
   endpoint-independent-nat: true
-  mtu: 9000
+  mtu: 1500
   include-all-devices: false
 
 dns:
