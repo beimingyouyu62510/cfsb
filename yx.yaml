@@ -7,6 +7,7 @@ global-client-fingerprint: chrome
 profile:
   store-selected: true
   store-fake-ip: true
+
 # ================ 嗅探设置 =================
 sniffer:
   enable: true
@@ -19,13 +20,14 @@ sniffer:
     QUIC:
       ports: [443, 8443]
   skip-domain:
-    - "Mijia Cloud"
+    - "mijia.cloud"
     - "dlg.io.mi.com"
     - "*.push.apple.com"
     - "*.icloud.com"
     - "*.mi.com"
     - "*.lan"
     - "*.local"
+
 # ================= TUN 模式 =================
 tun:
   enable: true
@@ -37,6 +39,7 @@ tun:
   auto-detect-interface: true
   strict-route: true
   endpoint-independent-nat: true
+
 # ================= DNS 设置 =================
 dns:
   enable: true
@@ -59,28 +62,14 @@ dns:
     - https://doh.pub/dns-query
   # 针对不同规则的 DNS 策略
   nameserver-policy:
-    "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
-      - 117.50.11.11
-      - 180.168.255.18
+    "geosite:cn,apple-cn,category-games@cn,private,ChinaDomain,ChinaCompanyIp,ChinaMedia":
       - 223.5.5.5
+      - 117.50.11.11
       - https://dns.alidns.com/dns-query
-    "geosite:google,youtube,netflix,github,openai,microsoft@!cn":
+    "geosite:google,youtube,netflix,github,openai,microsoft@!cn,apple@!cn,telegram,discord":
       - https://dns.google/dns-query
-      - https://8.8.8.8/dns-query
-      - https://dns.quad9.net/dns-query
-    "geosite:telegram,discord":
       - https://1.1.1.1/dns-query
       - https://dns.cloudflare.com/dns-query
-    "rule-set:ChinaDomain,ChinaCompanyIp,ChinaMedia":
-      - 223.5.5.5
-      - 117.50.11.11
-      - https://dns.alidns.com/dns-query
-    "geosite:apple@!cn":
-      - https://dns.google/dns-query
-      - https://1.1.1.1/dns-query
-    "geosite:microsoft@!cn":
-      - https://dns.google/dns-query
-      - https://8.8.8.8/dns-query
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - '*.lan'
@@ -89,6 +78,7 @@ dns:
     - '+.stun.*.*.*'
     - '+.stun.*.*.*.*'
     - '+.stun.*.*.*.*.*'
+
 # 代理节点
 proxies:
   - name: 天书cf
@@ -196,26 +186,12 @@ rule-providers:
     path: ruleset/UnBan.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list
     interval: 86400
-  BanAD:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/BanAD.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanAD.list
-    interval: 86400
   QiufengAD:
     type: http
     behavior: domain
     format: yaml
     path: ruleset/QiufengAD.yaml
     url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
-    interval: 86400
-  BanProgramAD:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/BanProgramAD.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list
     interval: 86400
   GoogleCN:
     type: http
@@ -406,6 +382,7 @@ rule-providers:
     path: ruleset/ProxyGFWlist.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list
     interval: 86400
+
 # ================= 分流规则 =================
 rules:
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
@@ -424,9 +401,7 @@ rules:
   - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
   - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
   - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
-  - RULE-SET,BanAD,🛑 全球拦截
   - RULE-SET,QiufengAD,🍃 应用净化
-  - RULE-SET,BanProgramAD,🍃 应用净化
   - RULE-SET,GoogleFCM,📢 谷歌FCM
   - RULE-SET,Bing,Ⓜ️ 微软服务
   - RULE-SET,OneDrive,Ⓜ️ 微软服务
