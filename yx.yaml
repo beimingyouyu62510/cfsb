@@ -62,11 +62,11 @@ dns:
     - https://doh.pub/dns-query
   # 针对不同规则的 DNS 策略
   nameserver-policy:
-    "geosite:cn,apple-cn,category-games@cn,private,ChinaDomain,ChinaCompanyIp,ChinaMedia":
+    "geosite:cn,geosite:apple-cn,geosite:category-games,private,ChinaDomain,ChinaCompanyIp,ChinaMedia":
       - 223.5.5.5
       - 117.50.11.11
       - https://dns.alidns.com/dns-query
-    "geosite:google,youtube,netflix,github,openai,microsoft@!cn,apple@!cn,telegram,discord":
+    "geosite:google,geosite:youtube,geosite:netflix,geosite:github,geosite:openai,geosite:microsoft,geosite:apple,geosite:telegram,geosite:discord":
       - https://dns.google/dns-query
       - https://1.1.1.1/dns-query
       - https://dns.cloudflare.com/dns-query
@@ -193,48 +193,6 @@ rule-providers:
     path: ruleset/QiufengAD.yaml
     url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
     interval: 86400
-  GoogleCN:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/GoogleCN.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleCN.list
-    interval: 86400
-  SteamCN:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/SteamCN.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/SteamCN.list
-    interval: 86400
-  NetEaseMusic:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/NetEaseMusic.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/NetEaseMusic.list
-    interval: 86400
-  BilibiliHMT:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/BilibiliHMT.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BilibiliHMT.list
-    interval: 86400
-  Bilibili:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Bilibili.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bilibili.list
-    interval: 86400
-  ChinaMedia:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/ChinaMedia.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list
-    interval: 86400
   ChinaDomain:
     type: http
     behavior: classical
@@ -249,12 +207,12 @@ rule-providers:
     path: ruleset/ChinaCompanyIp.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaCompanyIp.list
     interval: 86400
-  Download:
+  ChinaMedia:
     type: http
     behavior: classical
     format: text
-    path: ruleset/Download.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list
+    path: ruleset/ChinaMedia.list
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list
     interval: 86400
   GoogleFCM:
     type: http
@@ -387,15 +345,9 @@ rule-providers:
 rules:
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
   - RULE-SET,UnBan,🎯 全球直连
-  - RULE-SET,GoogleCN,🎯 全球直连
-  - RULE-SET,SteamCN,🎯 全球直连
-  - RULE-SET,NetEaseMusic,🎯 全球直连
-  - RULE-SET,BilibiliHMT,🎯 全球直连
-  - RULE-SET,Bilibili,🎯 全球直连
-  - RULE-SET,ChinaMedia,🎯 全球直连
   - RULE-SET,ChinaDomain,🎯 全球直连
   - RULE-SET,ChinaCompanyIp,🎯 全球直连
-  - RULE-SET,Download,🎯 全球直连
+  - RULE-SET,ChinaMedia,🎯 全球直连
   - GEOIP,CN,🎯 全球直连
   - PROCESS-NAME,subs-check*,🎯 全球直连
   - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
