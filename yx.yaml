@@ -64,9 +64,9 @@ dns:
     - 117.50.11.11
     - 114.114.114.114
   nameserver:
-    - https://dns.google/dns-query#🚀 节点选择
-    - https://1.1.1.1/dns-query#🚀 节点选择
-    - https://dns.cloudflare.com/dns-query#🚀 节点选择
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+    - https://dns.cloudflare.com/dns-query
   proxy-server-nameserver:
     - 223.5.5.5
     - https://dns.alidns.com/dns-query
@@ -82,22 +82,22 @@ dns:
       - 223.5.5.5
       - https://dns.alidns.com/dns-query
     "geosite:google,youtube,netflix,github,openai,microsoft@!cn":
-      - https://dns.google/dns-query#🚀 节点选择
-      - https://8.8.8.8/dns-query#🚀 节点选择
-      - https://dns.quad9.net/dns-query#🚀 节点选择
+      - https://dns.google/dns-query
+      - https://8.8.8.8/dns-query
+      - https://dns.quad9.net/dns-query
     "geosite:telegram,discord":
-      - https://1.1.1.1/dns-query#🚀 节点选择
-      - https://dns.cloudflare.com/dns-query#🚀 节点选择
+      - https://1.1.1.1/dns-query
+      - https://dns.cloudflare.com/dns-query
     "rule-set:ChinaDomain,ChinaCompanyIp,ChinaMedia":
       - 223.5.5.5
       - 117.50.11.11
       - https://dns.alidns.com/dns-query
     "geosite:apple@!cn":
-      - https://dns.google/dns-query#🍎 苹果服务
-      - https://1.1.1.1/dns-query#🍎 苹果服务
+      - https://dns.google/dns-query
+      - https://1.1.1.1/dns-query
     "geosite:microsoft@!cn":
-      - https://dns.google/dns-query#Ⓜ️ 微软服务
-      - https://8.8.8.8/dns-query#Ⓜ️ 微软服务
+      - https://dns.google/dns-query
+      - https://8.8.8.8/dns-query
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - '+.lan'
@@ -245,7 +245,7 @@ rule-providers:
     interval: 86400
   Telegram:
     type: http
-    behavior: domain
+    behavior: ipcidr
     format: text
     url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt"
     path: ./ruleset/Telegram.txt
