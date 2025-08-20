@@ -88,8 +88,8 @@ dns:
     - '+.stun.*.*'
     - '+.stun.*.*.*'
     - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*
-# 代理节点 (请替换为你自己的节点信息)
+    - '+.stun.*.*.*.*.*'
+# 代理节点
 proxies:
   - name: 天书cf
     type: vless
@@ -119,9 +119,14 @@ proxies:
       path: "/?ed=2560"
       headers:
         Host: git01.jisucf.cloudns.biz
+
+# 代理组
 proxy-groups:
   - name: ♻️ 自动选择
-    type: select
+    type: url-test
+    url: http://cp.cloudflare.com/generate_204
+    interval: 180
+    tolerance: 30
     proxies:
       - 天书cf
       - 天书git
@@ -174,6 +179,7 @@ proxy-groups:
     proxies:
       - DIRECT
       - 🚀 节点选择
+
 # ================= 规则集 =================
 rule-providers:
   LocalAreaNetwork:
@@ -183,7 +189,6 @@ rule-providers:
     path: ruleset/LocalAreaNetwork.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
     interval: 86400
-
   UnBan:
     type: http
     behavior: classical
@@ -191,7 +196,6 @@ rule-providers:
     path: ruleset/UnBan.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list
     interval: 86400
-
   BanAD:
     type: http
     behavior: classical
@@ -199,7 +203,6 @@ rule-providers:
     path: ruleset/BanAD.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanAD.list
     interval: 86400
-
   QiufengAD:
     type: http
     behavior: domain
@@ -207,7 +210,6 @@ rule-providers:
     path: ruleset/QiufengAD.yaml
     url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
     interval: 86400
-
   BanProgramAD:
     type: http
     behavior: classical
@@ -215,7 +217,6 @@ rule-providers:
     path: ruleset/BanProgramAD.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list
     interval: 86400
-  # --- 错误修正：你提供的规则集配置中缺少了其他规则，请确保它们被正确添加
   GoogleCN:
     type: http
     behavior: classical
