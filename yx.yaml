@@ -62,11 +62,11 @@ dns:
     - https://doh.pub/dns-query
   # 针对不同规则的 DNS 策略
   nameserver-policy:
-    "geosite:cn,geosite:apple-cn,geosite:category-games,private,ChinaDomain,ChinaCompanyIp,ChinaMedia":
+    "cn,apple-cn,category-games,private,ChinaDomain,ChinaCompanyIp,ChinaMedia":
       - 223.5.5.5
       - 117.50.11.11
       - https://dns.alidns.com/dns-query
-    "geosite:google,geosite:youtube,geosite:netflix,geosite:github,geosite:openai,geosite:microsoft,geosite:apple,geosite:telegram,geosite:discord":
+    "google,youtube,netflix,github,openai,microsoft,apple,telegram,discord":
       - https://dns.google/dns-query
       - https://1.1.1.1/dns-query
       - https://dns.cloudflare.com/dns-query
