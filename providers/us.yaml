@@ -1,79 +1,63 @@
 proxies:
-- delay: 2158
-  latency: 5.134820938110352
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 370
+- delay: 1041
+  latency: 13.46135139465332
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 646
   network: ws
   port: 8880
-  server: 89.116.250.254
+  server: 135.84.74.247
+  servername: ex.sue.x10.mx
   type: vless
   udp: true
-  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
+  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
   ws-opts:
     headers:
-      Host: yg.bantony199.top
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/67.0.3396.87 Safari/537.36
+      Host: ex.sue.x10.mx
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/70.0.3538.67 Safari/537.36
     path: /Telegram🇨🇳
   xudp: true
-- delay: 554
-  latency: 5.137920379638672
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 650
+- client-fingerprint: chrome
+  delay: 1800
+  latency: 13.469219207763672
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 494
   network: ws
-  port: 8880
-  server: 108.162.198.177
-  servername: Telegram-channel-WangCai2
+  port: 443
+  server: 104.18.205.33
+  servername: rayan-fg-2.hasan-kachal.filegear-sg.me
+  tls: true
   type: vless
   udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
+  uuid: a1650c69-531c-441f-bc6a-bd43565000a4
   ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
     headers:
-      Host: ip.langmanshanxi.top
-      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko)
-        Chrome/70.0.3538.77 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳 @WangCai2 /
-  xudp: true
-- delay: 396
-  latency: 5.142688751220703
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 299
-  network: ws
-  port: 8880
-  server: 212.183.88.251
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: cf.d3z.net
+      Host: rayan-fg-2.hasan-kachal.filegear-sg.me
       User-Agent: Mozilla/5.0 (Windows NT 5.1; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/55.0.2883.87 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳 @WangCai2 /
+        like Gecko) Chrome/57.0.2987.133 Safari/537.36
+    path: /
   xudp: true
-- delay: 2141
-  latency: 5.146980285644531
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 987
+- delay: 765
+  latency: 13.486623764038086
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1037
   network: ws
   port: 8880
-  server: 25.25.25.213
+  server: 45.192.224.63
+  servername: jp.laoyoutiao.link
   type: vless
   udp: true
   uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
   ws-opts:
     headers:
       Host: jp.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko)
-        Chrome/57.0.2987.133 Safari/537.36
-    path: /
+      User-Agent: Mozilla/5.0 (Unknown; Linux) AppleWebKit/538.1 (KHTML, like Gecko)
+        Chrome/v1.0.0 Safari/538.1
+    path: /Telegram🇨🇳
   xudp: true
-- delay: 2436
-  latency: 5.148649215698242
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1133
+- delay: 1238
+  latency: 13.49782943725586
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 571
   network: ws
   port: 8880
-  server: 91.193.58.241
+  server: 91.193.58.35
   servername: Telegram-channel-WangCai2
   type: vless
   udp: true
@@ -82,148 +66,15 @@ proxies:
     headers:
       Host: kjgx.laoyoutiao.link
       User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/68.0.3440.106 Safari/537.36
+        like Gecko) Chrome/70.0.3538.77 Safari/537.36
     path: /Telegram🇨🇳 @WangCai2 /?ed=2560fp=chrome
   xudp: true
-- delay: 715
-  latency: 5.149364471435547
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 481
+- delay: 2399
+  latency: 13.518333435058594
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 589
   network: ws
   port: 8880
-  server: 91.193.58.207
-  servername: us.laoyoutiao.link
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: us.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko)
-        Chrome/56.0.2924.87 Safari/537.36
-    path: /
-  xudp: true
-- delay: 1535
-  latency: 5.160093307495117
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 812
-  network: ws
-  port: 8880
-  server: 159.112.235.254
-  type: vless
-  udp: true
-  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
-  ws-opts:
-    headers:
-      Host: yg.bantony199.top
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/62.0.3202.94 Safari/537.36
-    path: /
-  xudp: true
-- delay: 933
-  latency: 5.16057014465332
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 928
-  network: ws
-  port: 8880
-  server: 194.53.53.177
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: ip.langmanshanxi.top
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/70.0.3538.110 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳@WangCai2/
-  xudp: true
-- delay: 2214
-  latency: 5.168676376342773
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 258
-  network: ws
-  port: 8880
-  server: 192.65.217.29
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: hk.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/54.0.2840.99 Safari/537.36
-    path: /
-  xudp: true
-- delay: 1019
-  latency: 5.16963005065918
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 664
-  network: ws
-  port: 8880
-  server: 103.133.1.254
-  type: vless
-  udp: true
-  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
-  ws-opts:
-    headers:
-      Host: yg.bantony199.top
-      User-Agent: Mozilla/5.0 (Linux; Android 5.1; A1601 Build/LMY47I) AppleWebKit/537.36
-        (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36
-    path: /Telegram🇨🇳
-  xudp: true
-- delay: 1233
-  latency: 5.170106887817383
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 892
-  network: ws
-  port: 8880
-  server: 181.214.1.254
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
-  ws-opts:
-    headers:
-      Host: yg.bantony199.top
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/56.0.2924.87 Safari/537.36
-    path: /Telegram🇨🇳
-  xudp: true
-- delay: 956
-  latency: 5.1708221435546875
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 674
-  network: ws
-  port: 80
-  server: 141.193.213.154
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: us.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/51.0.2704.103 Safari/537.36
-    path: /TelegramрЯЗ®рЯЗ≥
-  xudp: true
-- delay: 1278
-  latency: 5.171775817871094
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 688
-  network: ws
-  port: 80
-  server: 141.193.213.223
-  servername: cs.laoyoutiao.link
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: cs.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/70.0.3538.102 Safari/537.36
-    path: /TelegramU0001F1E8U0001F1F3
-  xudp: true
-- delay: 1282
-  latency: 5.172014236450195
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 291
-  network: ws
-  port: 8880
-  server: 216.205.52.3
+  server: 45.159.218.3
   servername: Telegram-channel-WangCai2
   type: vless
   udp: true
@@ -231,233 +82,12 @@ proxies:
   ws-opts:
     headers:
       Host: bitget1.asdasd.click
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/60.0.3112.101 Safari/537.36
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/47.0.2526.106 Safari/537.36
     path: /Telegram
   xudp: true
-- delay: 1919
-  latency: 5.172014236450195
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 584
-  network: ws
-  port: 8880
-  server: 108.162.198.156
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: kjgx.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/41.0.2272.76 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳 @WangCai2 /
-  xudp: true
-- delay: 945
-  latency: 5.1746368408203125
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 592
-  network: ws
-  port: 8880
-  server: 102.177.176.87
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: ip.langmanshanxi.top
-      User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/62.0.3202.89 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳 @WangCai2 /
-  xudp: true
-- delay: 551
-  latency: 5.174875259399414
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 731
-  network: ws
-  port: 8880
-  server: 156.238.18.10
-  servername: kjgx.laoyoutiao.link
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: kjgx.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/45.0.2454.85 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳 @WangCai2 /
-  xudp: true
-- delay: 917
-  latency: 5.176305770874023
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 756
-  network: ws
-  port: 8880
-  server: 156.238.18.48
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: kjgx.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/55.0.2883.87 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳@WangCai2/
-  xudp: true
-- delay: 707
-  latency: 5.179643630981445
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 977
-  network: ws
-  port: 8880
-  server: 216.24.57.186
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: ip.langmanshanxi.top
-      User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/63.0.3239.132 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram @WangCai2 /
-  xudp: true
-- delay: 1686
-  latency: 5.1822662353515625
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1235
-  network: ws
-  port: 8880
-  server: 140.99.233.7
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: ip.langmanshanxi.top
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/66.0.3359.139 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳 @WangCai2 /
-  xudp: true
-- delay: 761
-  latency: 5.183935165405273
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 798
-  network: ws
-  port: 8880
-  server: 166.62.112.87
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: ip.langmanshanxi.top
-      User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; FIG-LX3) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳 @WangCai2 /
-  xudp: true
-- delay: 846
-  latency: 5.1860809326171875
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 724
-  network: ws
-  port: 8880
-  server: 155.46.167.87
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: ip.langmanshanxi.top
-      User-Agent: Mozilla/5.0 (Windows NT 6.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/55.0.2883.87 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳 @WangCai2 /
-  xudp: true
-- delay: 1201
-  latency: 5.186796188354492
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1206
-  network: ws
-  port: 8880
-  server: 185.18.184.29
-  servername: hk.laoyoutiao.link
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: hk.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/69.0.3497.100 Safari/537.36
-    path: /TelegramU0001F1E8U0001F1F3
-  xudp: true
-- delay: 1483
-  latency: 5.187273025512695
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1041
-  network: ws
-  port: 8880
-  server: 213.182.199.3
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
-  ws-opts:
-    headers:
-      Host: bitget1.asdasd.click
-      User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36
-        (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
-    path: /Telegram🇨🇳
-  xudp: true
-- delay: 1384
-  latency: 5.187511444091797
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 757
-  network: ws
-  port: 8880
-  server: 156.238.18.254
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: sg.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/59.0.3071.115 Safari/537.36
-    max-early-data: 2048
-    path: /Telegram@WangCai2/
-  xudp: true
-- delay: 2180
-  latency: 5.188941955566406
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 752
-  network: ws
-  port: 8880
-  server: 156.238.18.184
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: sg.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko)
-        Chrome/67.0.3396.99 Safari/537.36
-    max-early-data: 2048
-    path: /Telegram@WangCai2/
-  xudp: true
 - delay: 408
-  latency: 5.192041397094727
+  latency: 13.531684875488281
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 754
   network: ws
   port: 8880
@@ -475,30 +105,28 @@ proxies:
     max-early-data: 2560
     path: /Telegram@WangCai2/
   xudp: true
-- delay: 1437
-  latency: 5.192756652832031
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 931
+- client-fingerprint: chrome
+  delay: 2142
+  latency: 13.533592224121094
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 410
   network: ws
-  port: 8880
-  server: 194.76.18.247
-  servername: ex.sue.x10.mx
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
+  password: ttfang
+  port: 2096
+  server: 14.102.228.216
+  skip-cert-verify: true
+  sni: ttfang.fange.me
+  type: trojan
   ws-opts:
     headers:
-      Host: ex.sue.x10.mx
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/35.0.1916.153 Safari/537.36
-    path: /Telegram
-  xudp: true
+      Host: ttfang.fange.me
+    path: /Telegram🇨🇳
 - client-fingerprint: random
-  delay: 705
-  latency: 5.195379257202148
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 588
+  delay: 1073
+  latency: 13.545751571655273
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1216
   network: ws
   port: 443
-  server: 172.64.158.52
+  server: 104.19.39.38
   servername: 007.xingfu.qzz.io
   skip-cert-verify: true
   tfo: false
@@ -511,24 +139,234 @@ proxies:
       Host: 007.xingfu.qzz.io
     max-early-data: 2560
     path: /
-- delay: 781
-  latency: 5.19561767578125
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 60
+- delay: 1802
+  latency: 13.550758361816406
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 834
   network: ws
   port: 8880
-  server: 185.148.106.3
+  server: 185.148.105.247
+  servername: ex.sue.x10.mx
   type: vless
   udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
+  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
   ws-opts:
     headers:
-      Host: bitget1.asdasd.click
-      User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
-        (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+      Host: ex.sue.x10.mx
+      User-Agent: Mozilla/5.0 (Linux; Android 5.1.1; A37fw Build/LMY47V) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36
     path: /Telegram🇨🇳
   xudp: true
+- delay: 2399
+  latency: 13.552427291870117
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 805
+  network: ws
+  port: 8880
+  server: 170.114.46.20
+  servername: us.laoyoutiao.link
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: us.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/46.0.2490.80 Safari/537.36
+    path: /TelegramU0001F1E8U0001F1F3
+  xudp: true
+- client-fingerprint: random
+  delay: 874
+  latency: 13.553380966186523
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1192
+  network: ws
+  port: 443
+  server: 104.18.223.253
+  servername: 007.xingfu.qzz.io
+  skip-cert-verify: true
+  tfo: false
+  tls: true
+  type: vless
+  uuid: d88937d0-ce43-4bf8-9df6-d632810ba9ff
+  ws-opts:
+    early-data-header-name: Sec-WebSocket-Protocol
+    headers:
+      Host: 007.xingfu.qzz.io
+    max-early-data: 2560
+    path: /
+- delay: 1329
+  latency: 13.554096221923828
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 630
+  network: ws
+  port: 8880
+  server: 104.239.72.247
+  servername: ex.sue.x10.mx
+  type: vless
+  udp: true
+  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
+  ws-opts:
+    headers:
+      Host: ex.sue.x10.mx
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/39.0.2171.95 Safari/537.36
+    path: /Telegram
+  xudp: true
+- delay: 1760
+  latency: 13.564825057983398
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 113
+  network: ws
+  port: 8880
+  server: 141.101.123.156
+  servername: Telegram-channel-WangCai2
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    early-data-header-name: Sec-WebSocket-Protocol
+    headers:
+      Host: kjgx.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/31.0.1650.57 Safari/537.36
+    max-early-data: 2560
+    path: /Telegram🇨🇳 @WangCai2 /
+  xudp: true
+- delay: 943
+  latency: 13.569355010986328
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 182
+  network: ws
+  port: 8880
+  server: 168.100.6.213
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/58.0.3029.110 Safari/537.36
+    path: /
+  xudp: true
+- delay: 1655
+  latency: 13.569831848144531
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 357
+  network: ws
+  port: 8880
+  server: 77.105.163.63
+  servername: jp.laoyoutiao.link
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; CPH1607 Build/MMB29M; wv) AppleWebKit/537.36
+        (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.111 Mobile Safari/537.36
+    path: /Telegram
+  xudp: true
+- delay: 1367
+  latency: 13.573646545410156
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 315
+  network: ws
+  port: 8880
+  server: 45.159.219.213
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/67.0.3396.99 Safari/537.36
+    path: /
+  xudp: true
+- delay: 1922
+  latency: 13.575315475463867
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 99
+  network: ws
+  port: 8880
+  server: 109.176.239.156
+  servername: Telegram-channel-WangCai2
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    early-data-header-name: Sec-WebSocket-Protocol
+    headers:
+      Host: kjgx.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/46.0.2490.80 Safari/537.36
+    max-early-data: 2560
+    path: /Telegram🇨🇳 @WangCai2 /
+  xudp: true
+- delay: 1292
+  latency: 13.576507568359375
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 229
+  network: ws
+  port: 8880
+  server: 185.251.81.213
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/51.0.2704.103 Safari/537.36
+    path: /
+  xudp: true
+- delay: 1277
+  latency: 13.577699661254883
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 281
+  network: ws
+  port: 8880
+  server: 199.181.197.63
+  servername: jp.laoyoutiao.link
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/56.0.2924.87 Safari/537.36
+    path: /Telegram🇨🇳
+  xudp: true
+- delay: 1117
+  latency: 13.58652114868164
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 959
+  network: ws
+  port: 8880
+  server: 199.34.228.247
+  servername: ex.sue.x10.mx
+  type: vless
+  udp: true
+  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
+  ws-opts:
+    headers:
+      Host: ex.sue.x10.mx
+      User-Agent: Mozilla/5.0 (Linux; Android 7.0; BLL-L22 Build/HUAWEIBLL-L22) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36
+    path: /Telegram
+  xudp: true
+- delay: 404
+  latency: 13.586759567260742
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 212
+  network: ws
+  port: 8880
+  server: 185.170.166.63
+  servername: jp.laoyoutiao.link
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    early-data-header-name: Sec-WebSocket-Protocol
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/41.0.2272.118 Safari/537.36
+    max-early-data: 2560
+    path: /Telegram🇨🇳 @WangCai2 /
+  xudp: true
 - delay: 1313
-  latency: 5.196571350097656
+  latency: 13.58938217163086
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 842
   network: ws
   port: 8880
@@ -546,120 +384,13 @@ proxies:
     max-early-data: 2560
     path: /Telegram @WangCai2 /
   xudp: true
-- delay: 1273
-  latency: 5.197286605834961
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 772
-  network: ws
-  port: 8880
-  server: 141.11.203.251
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      Host: cf.d3z.net
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/66.0.3359.181 Safari/537.36
-    path: /Telegram🇨🇳
-  xudp: true
-- delay: 1258
-  latency: 5.199432373046875
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1132
-  network: ws
-  port: 8880
-  server: 91.193.58.234
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: kjgx.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/70.0.3538.102 Safari/537.36
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560fp=chrome
-  xudp: true
-- delay: 813
-  latency: 5.20014762878418
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 80
-  network: ws
-  port: 8880
-  server: 103.133.1.247
-  servername: ex.sue.x10.mx
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      Host: ex.sue.x10.mx
-      User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/41.0.2272.101 Safari/537.36
-    path: /Telegram🇨🇳
-  xudp: true
-- delay: 620
-  latency: 5.2013397216796875
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 623
-  network: ws
-  port: 8880
-  server: 104.234.239.87
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: ip.langmanshanxi.top
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/35.0.1916.153 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳 @WangCai2 /
-  xudp: true
-- client-fingerprint: chrome
-  delay: 1176
-  latency: 5.201816558837891
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 453
-  network: ws
-  port: 8880
-  server: 162.120.94.177
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: false
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: ip.langmanshanxi.top
-    max-early-data: 2560
-    path: /TelegramU0001F1E8U0001F1F3 @WangCai2 /
-- delay: 483
-  latency: 5.202770233154297
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 991
-  network: ws
-  port: 8880
-  server: 25.26.27.186
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: ip.langmanshanxi.top
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/67.0.3396.87 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram @WangCai2 /
-  xudp: true
 - client-fingerprint: random
-  delay: 914
-  latency: 5.2032470703125
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1220
+  delay: 2531
+  latency: 13.591766357421875
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 122
   network: ws
   port: 443
-  server: 104.19.67.171
+  server: 162.159.4.157
   servername: 007.xingfu.qzz.io
   skip-cert-verify: true
   tfo: false
@@ -672,12 +403,388 @@ proxies:
       Host: 007.xingfu.qzz.io
     max-early-data: 2560
     path: /
-- delay: 897
-  latency: 5.203485488891602
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 536
+- delay: 838
+  latency: 13.592004776000977
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 131
   network: ws
   port: 8880
-  server: 103.116.7.156
+  server: 154.194.0.186
+  servername: Telegram-channel-WangCai2
+  type: vless
+  udp: true
+  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
+  ws-opts:
+    headers:
+      Host: ip.langmanshanxi.top
+      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/65.0.3325.181 Safari/537.36
+    path: /Telegram
+  xudp: true
+- delay: 1251
+  latency: 13.601064682006836
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 350
+  network: ws
+  port: 8880
+  server: 66.235.200.213
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/44.0.2403.157 Safari/537.36
+    path: /
+  xudp: true
+- delay: 2543
+  latency: 13.602018356323242
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 768
+  network: ws
+  port: 8880
+  server: 156.238.19.213
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/47.0.2526.106 Safari/537.36
+    path: /
+  xudp: true
+- delay: 652
+  latency: 13.607263565063477
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 766
+  network: ws
+  port: 8880
+  server: 156.238.18.217
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    early-data-header-name: Sec-WebSocket-Protocol
+    headers:
+      Host: sg.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/55.0.2883.87 Safari/537.36
+    max-early-data: 2048
+    path: /Telegram@WangCai2/
+  xudp: true
+- latency: 13.622522354125977
+  name: 🇺🇸US_47 | ⬇️ 1.2MB/s
+  network: ws
+  port: 8880
+  server: 91.193.58.137
+  servername: sk.laoyoutiao.link
+  skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      host: sk.laoyoutiao.link
+    path: /TelegramU0001F1E8U0001F1F3
+- delay: 969
+  latency: 13.623952865600586
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 655
+  network: ws
+  port: 8880
+  server: 141.101.114.247
+  servername: ex.sue.x10.mx
+  type: vless
+  udp: true
+  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
+  ws-opts:
+    headers:
+      Host: ex.sue.x10.mx
+      User-Agent: Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/70.0.3538.102 Safari/537.36
+    path: /Telegram🇨🇳
+  xudp: true
+- delay: 1413
+  latency: 13.627290725708008
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 849
+  network: ws
+  port: 8880
+  server: 185.18.184.63
+  servername: jp.laoyoutiao.link
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Linux; Android 5.1; A1601 Build/LMY47I) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36
+    path: /Telegram🇨🇳
+  xudp: true
+- delay: 398
+  latency: 13.62752914428711
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 763
+  network: ws
+  port: 8880
+  server: 156.238.18.221
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    early-data-header-name: Sec-WebSocket-Protocol
+    headers:
+      Host: sg.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/66.0.3359.139 Safari/537.36
+    max-early-data: 2048
+    path: /Telegram@WangCai2/
+  xudp: true
+- delay: 416
+  latency: 13.630390167236328
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1218
+  network: ws
+  port: 8880
+  server: 199.34.230.143
+  servername: Telegram-channel-WangCai2
+  type: vless
+  udp: true
+  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
+  ws-opts:
+    early-data-header-name: Sec-WebSocket-Protocol
+    headers:
+      Host: yg.bantony199.top
+      User-Agent: Mozilla/5.0 (Linux; Android 4.4.2; SM-G7102 Build/KOT49H) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36
+    max-early-data: 2560
+    path: /Telegram🇨🇳 @WangCai2 /
+  xudp: true
+- delay: 2027
+  latency: 13.636350631713867
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 199
+  network: ws
+  port: 8880
+  server: 185.148.106.213
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Linux; Android 6.0; CAM-L21 Build/HUAWEICAM-L21; wv)
+        AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile
+        Safari/537.36
+    path: /
+  xudp: true
+- client-fingerprint: chrome
+  delay: 2321
+  latency: 13.63992691040039
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 427
+  network: ws
+  password: ttfang
+  port: 2096
+  server: 46.254.92.216
+  skip-cert-verify: false
+  sni: ttfang.fange.me
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/45.0.2454.93 Safari/537.36
+    path: /Telegram🇨🇳
+- delay: 2617
+  latency: 13.641834259033203
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 658
+  network: ws
+  port: 8880
+  server: 141.101.114.63
+  servername: sg.laoyoutiao.link
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: sg.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Linux; Android 7.0; TRT-LX3 Build/HUAWEITRT-LX3) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36
+    path: /Telegram🇨🇳
+  xudp: true
+- delay: 1367
+  latency: 13.654470443725586
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1073
+  network: ws
+  port: 8880
+  server: 46.254.92.247
+  servername: ex.sue.x10.mx
+  type: vless
+  udp: true
+  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
+  ws-opts:
+    headers:
+      Host: ex.sue.x10.mx
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/60.0.3112.113 Safari/537.36
+    path: /Telegram
+  xudp: true
+- delay: 1464
+  latency: 13.657331466674805
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1081
+  network: ws
+  port: 8880
+  server: 5.10.246.247
+  servername: ex.sue.x10.mx
+  type: vless
+  udp: true
+  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
+  ws-opts:
+    headers:
+      Host: ex.sue.x10.mx
+      User-Agent: Mozilla/5.0 (Linux; Android 6.0; CAM-L21 Build/HUAWEICAM-L21; wv)
+        AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile
+        Safari/537.36
+    path: /Telegram🇨🇳
+  xudp: true
+- delay: 1209
+  latency: 13.662099838256836
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 554
+  network: ws
+  port: 8880
+  server: 45.131.7.213
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.7
+        (KHTML, like Gecko) Chrome/7.0.517.44 Safari/534.7
+    path: /
+  xudp: true
+- delay: 1294
+  latency: 13.66281509399414
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 279
+  network: ws
+  port: 8880
+  server: 195.13.54.254
+  type: vless
+  udp: true
+  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
+  ws-opts:
+    headers:
+      Host: yg.bantony199.top
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/36.0.1985.125 Safari/537.36
+    path: /
+  xudp: true
+- delay: 613
+  latency: 13.664007186889648
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 530
+  network: ws
+  port: 8880
+  server: 160.79.105.63
+  servername: jp.laoyoutiao.link
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; CPH1607 Build/MMB29M; wv) AppleWebKit/537.36
+        (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.111 Mobile Safari/537.36
+    path: /Telegram🇨🇳
+  xudp: true
+- delay: 510
+  latency: 13.666629791259766
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 631
+  network: ws
+  port: 8880
+  server: 104.31.16.156
+  servername: Telegram-channel-WangCai2
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    early-data-header-name: Sec-WebSocket-Protocol
+    headers:
+      Host: kjgx.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/51.0.2704.103 Safari/537.36
+    max-early-data: 2560
+    path: /Telegram🇨🇳 @WangCai2 /
+  xudp: true
+- delay: 891
+  latency: 13.672828674316406
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 542
+  network: ws
+  port: 8880
+  server: 147.78.140.168
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    early-data-header-name: Sec-WebSocket-Protocol
+    headers:
+      Host: kjgx.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/67.0.3396.87 Safari/537.36
+    max-early-data: 2560
+    path: /Telegram@WangCai2/
+  xudp: true
+- delay: 1335
+  latency: 13.67640495300293
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 887
+  network: ws
+  port: 8880
+  server: 170.114.46.251
+  type: vless
+  udp: true
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
+  ws-opts:
+    headers:
+      Host: cf.d3z.net
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/40.0.2214.115 Safari/537.36
+    path: /Telegram%20@WangCai2%20/
+  xudp: true
+- alpn:
+  - http/1.1
+  client-fingerprint: chrome
+  delay: 937
+  latency: 13.676643371582031
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 521
+  network: ws
+  password: 13253e6e-a1f7-4090-801f-a8dc2b083bef
+  port: 8443
+  server: 104.17.148.22
+  skip-cert-verify: false
+  sni: inVinciBLe.fafa20.sHop
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      User-Agent: Mozilla/5.0 (Linux; Android 7.0; SM-G610M Build/NRD90M) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36
+    path: /trwidp0ENHXMUNX4bA/c2hpcmVuLnlhZW1pa28uZ2dmZi5uZXQ
+- delay: 1536
+  latency: 13.677358627319336
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 155
+  network: ws
+  port: 8880
+  server: 156.238.18.246
+  servername: yd.laoyoutiao.link
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: yd.laoyoutiao.link
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/44.0.2403.157 Safari/537.36
+    path: /TelegramU0001F1E8U0001F1F3
+  xudp: true
+- delay: 533
+  latency: 13.679265975952148
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 556
+  network: ws
+  port: 8880
+  server: 185.193.31.156
   servername: Telegram-channel-WangCai2
   type: vless
   udp: true
@@ -687,54 +794,33 @@ proxies:
     headers:
       Host: kjgx.laoyoutiao.link
       User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/67.0.3396.87 Safari/537.36
+        like Gecko) Chrome/60.0.3112.113 Safari/537.36
     max-early-data: 2560
     path: /Telegram🇨🇳 @WangCai2 /
   xudp: true
-- delay: 1859
-  latency: 5.203485488891602
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 709
+- delay: 1803
+  latency: 13.686656951904297
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1083
   network: ws
   port: 8880
-  server: 154.197.121.87
-  servername: Telegram-channel-WangCai2
+  server: 5.175.141.247
+  servername: ex.sue.x10.mx
   type: vless
   udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
+  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
   ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
     headers:
-      Host: ip.langmanshanxi.top
-      User-Agent: Mozilla/5.0 (Linux; Android 7.0; SM-J730GM Build/NRD90M) AppleWebKit/537.36
-        (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳 @WangCai2 /
+      Host: ex.sue.x10.mx
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/61.0.3163.100 Safari/537.36
+    path: /Telegram🇨🇳
   xudp: true
-- delay: 399
-  latency: 5.203723907470703
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 737
-  network: ws
-  port: 8880
-  server: 156.238.18.136
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: sg.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Linux; Android 7.0; TRT-LX2 Build/HUAWEITRT-LX2; wv)
-        AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/59.0.3071.125 Mobile
-        Safari/537.36
-    max-early-data: 2048
-    path: /Telegram@WangCai2/
-  xudp: true
-- delay: 1276
-  latency: 5.204916000366211
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 681
+- delay: 1179
+  latency: 13.689041137695312
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 695
   network: ws
   port: 80
-  server: 141.193.213.184
+  server: 141.193.213.64
   servername: cs.laoyoutiao.link
   type: vless
   udp: true
@@ -742,143 +828,42 @@ proxies:
   ws-opts:
     headers:
       Host: cs.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/70.0.3538.102 Safari/537.36
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/59.0.3071.115 Safari/537.36
     path: /TelegramU0001F1E8U0001F1F3
   xudp: true
-- delay: 1118
-  latency: 5.2051544189453125
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 88
+- delay: 1941
+  latency: 13.689994812011719
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 1138
   network: ws
   port: 8880
-  server: 104.129.165.213
-  servername: jp.laoyoutiao.link
+  server: 91.193.58.38
+  servername: Telegram-channel-WangCai2
   type: vless
   udp: true
   uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
   ws-opts:
-    headers:
-      Host: jp.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/70.0.3538.67 Safari/537.36
-    path: /
-  xudp: true
-- delay: 590
-  latency: 5.205392837524414
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 785
-  network: ws
-  port: 8880
-  server: 156.238.18.80
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: yd.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/46.0.2490.80 Safari/537.36
-    path: /
-  xudp: true
-- delay: 1037
-  latency: 5.205869674682617
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 431
-  network: ws
-  port: 8880
-  server: 147.78.140.254
-  servername: yg.bantony199.top
-  skip-cert-verify: false
-  tls: false
-  type: vless
-  udp: true
-  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
-  ws-opts:
-    headers:
-      Host: yg.bantony199.top
-    path: /Telegram
-- delay: 2784
-  latency: 5.20634651184082
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 141
-  network: ws
-  port: 8880
-  server: 156.238.18.202
-  servername: kjgx.laoyoutiao.link
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
     headers:
       Host: kjgx.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/55.0.2883.87 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram@WangCai2/
+      User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; vivo 1603 Build/MMB29M) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/58.0.3029.83 Mobile Safari/537.36
+    path: /Telegram🇨🇳 @WangCai2 /?ed=2560fp=chrome
   xudp: true
-- delay: 572
-  latency: 5.20634651184082
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 749
+- alpn:
+  - http/1.1
+  client-fingerprint: chrome
+  latency: 13.690948486328125
+  name: 🇺🇸US_24 | ⬇️ 1.2MB/s
   network: ws
-  port: 8880
-  server: 108.162.195.143
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: yg.bantony199.top
-      User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko)
-        Chrome/49.0.2623.112 Safari/537.36
-    max-early-data: 2560
-    path: /Telegram🇨🇳 @WangCai2 /
-  xudp: true
-- client-fingerprint: chrome
-  delay: 2184
-  latency: 5.20777702331543
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 422
-  network: ws
-  password: ttfang
-  port: 2096
-  server: 45.131.211.216
+  port: 443
+  server: 104.21.21.72
+  servername: 4W.003330333.XYZ
   skip-cert-verify: true
-  sni: ttfang.fange.me
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ttfang.fange.me
-    path: /Telegram🇨🇳
-- delay: 2311
-  latency: 5.20777702331543
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 894
-  network: ws
-  port: 8880
-  server: 188.164.159.63
-  servername: jp.laoyoutiao.link
+  tls: true
   type: vless
   udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  uuid: 6e5925c0-f39e-4449-93e9-2e2e9772b17b
   ws-opts:
     headers:
-      Host: jp.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/58.0.3029.81 Safari/537.36
-    path: /Telegram
-  xudp: true
-- delay: 2191
-  latency: 5.208492279052734
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 490
-  network: ws
-  port: 8880
-  server: 89.116.250.3
-  servername: Telegram-channel-WangCai2
-  type: vless
-  udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
-  ws-opts:
-    headers:
-      Host: bitget1.asdasd.click
-      User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36
-        (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36
-    path: /Telegram🇨🇳
-  xudp: true
+      host: 4w.003330333.xyz
+    path: /XKkmZUl83R8RsRHVp4fx59ry
