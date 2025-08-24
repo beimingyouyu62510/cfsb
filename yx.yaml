@@ -1,4 +1,3 @@
----
 allow-lan: true
 unified-delay: false
 tcp-concurrent: true
