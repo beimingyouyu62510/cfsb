@@ -1,4 +1,4 @@
-# ================= 全局设置 =================
+---
 allow-lan: true
 unified-delay: false
 tcp-concurrent: true
@@ -7,28 +7,30 @@ global-client-fingerprint: chrome
 profile:
   store-selected: true
   store-fake-ip: true
-
-# ================ 嗅探设置 =================
 sniffer:
   enable: true
   sniff:
     HTTP:
-      ports: [80, 8080-8880]
+      ports:
+        - 80
+        - 8080-8880
       override-destination: true
     TLS:
-      ports: [443, 8443]
+      ports:
+        - 443
+        - 8443
     QUIC:
-      ports: [443, 8443]
+      ports:
+        - 443
+        - 8443
   skip-domain:
-    - "mijia.cloud"
-    - "dlg.io.mi.com"
+    - mijia.cloud
+    - dlg.io.mi.com
     - "*.push.apple.com"
     - "*.icloud.com"
     - "*.mi.com"
     - "*.lan"
     - "*.local"
-
-# ================= TUN 模式 =================
 tun:
   enable: true
   stack: system
@@ -39,8 +41,6 @@ tun:
   auto-detect-interface: true
   strict-route: true
   endpoint-independent-nat: true
-
-# ================= DNS 设置 =================
 dns:
   enable: true
   listen: 0.0.0.0:53
@@ -49,18 +49,15 @@ dns:
   respect-rules: true
   enhanced-mode: fake-ip
   use-hosts: true
-  # 主要 DNS 解析器
   nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
     - https://dns.cloudflare.com/dns-query
-  # 针对代理流量的 DNS
   proxy-server-nameserver:
     - 223.5.5.5
     - https://dns.alidns.com/dns-query
     - 119.29.29.29
     - https://doh.pub/dns-query
-  # 针对不同规则的 DNS 策略
   nameserver-policy:
     "cn,apple-cn,category-games,private,ChinaDomain,ChinaCompanyIp,ChinaMedia":
       - 223.5.5.5
@@ -72,14 +69,12 @@ dns:
       - https://dns.cloudflare.com/dns-query
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
-
-# 代理节点
+    - "*.lan"
+    - "*.local"
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - +.stun.*.*.*.*.*
 proxies:
   - name: 天书cf
     type: vless
@@ -92,7 +87,7 @@ proxies:
     skip-cert-verify: false
     servername: git02.jisucf.cloudns.biz
     ws-opts:
-      path: "/?ed=2560"
+      path: /?ed=2560
       headers:
         Host: git02.jisucf.cloudns.biz
   - name: 天书git
@@ -106,11 +101,9 @@ proxies:
     servername: git01.jisucf.cloudns.biz
     network: ws
     ws-opts:
-      path: "/?ed=2560"
+      path: /?ed=2560
       headers:
         Host: git01.jisucf.cloudns.biz
-
-# 代理组
 proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
@@ -169,8 +162,6 @@ proxy-groups:
     proxies:
       - DIRECT
       - 🚀 节点选择
-
-# ================= 规则集 =================
 rule-providers:
   LocalAreaNetwork:
     type: http
@@ -340,8 +331,6 @@ rule-providers:
     path: ruleset/ProxyGFWlist.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list
     interval: 86400
-
-# ================= 分流规则 =================
 rules:
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
   - RULE-SET,UnBan,🎯 全球直连
