@@ -1,10 +1,152 @@
 proxies:
-- delay: 2925
-  latency: 1.5745162963867188
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 173
+- delay: 1365
+  latency: 1.4812946319580078
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 407
+  network: ws
+  password: ttfang
+  port: 2096
+  server: 45.131.6.194
+  sni: ttfang.fange.me
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ttfang.fange.me
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 1623
+  latency: 1.5048980712890625
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 157
   network: ws
   port: 8880
-  server: 192.65.217.213
+  server: 156.238.18.166
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: sg.laoyoutiao.link
+    path: /Telegram@WangCai2/
+- delay: 943
+  latency: 1.5091896057128906
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 491
+  network: ws
+  port: 8880
+  server: 5.10.214.177
+  servername: ip.langmanshanxi.top
+  tls: false
+  type: vless
+  udp: true
+  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
+  ws-opts:
+    headers:
+      Host: ip.langmanshanxi.top
+    path: /Telegram🇨🇳 @WangCai2 /?ed
+- delay: 642
+  latency: 1.5137195587158203
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 286
+  network: ws
+  port: 8880
+  server: 167.68.4.3
+  tls: false
+  type: vless
+  udp: true
+  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
+  ws-opts:
+    headers:
+      Host: bitget1.asdasd.click
+    path: /Telegram🇨🇳
+- delay: 932
+  latency: 1.5234947204589844
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 304
+  network: ws
+  port: 8880
+  server: 185.18.184.251
+  tls: false
+  type: vless
+  udp: true
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
+  ws-opts:
+    headers:
+      Host: cf.d3z.net
+    path: /Telegram🇨🇳 @WangCai2 /?ed=2560fp=chrome
+- delay: 945
+  latency: 1.5246868133544922
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 250
+  network: ws
+  port: 8880
+  server: 162.251.82.63
+  servername: jp.laoyoutiao.link
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+    path: /Telegram🇨🇳 @WangCai2 /?ed=2560fp=chrome
+- delay: 1265
+  latency: 1.5385150909423828
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 265
+  network: ws
+  port: 8880
+  server: 185.18.184.156
+  servername: Telegram-channel-WangCai2
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: kjgx.laoyoutiao.link
+    path: /Telegram🇨🇳 @WangCai2 /
+- delay: 609
+  latency: 1.5397071838378906
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 242
+  network: ws
+  port: 8880
+  server: 156.238.18.6
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: us.laoyoutiao.link
+    path: /TelegramрЯЗ®рЯЗ≥
+- delay: 685
+  latency: 1.5442371368408203
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 138
+  network: ws
+  port: 8880
+  server: 46.254.93.247
+  servername: ex.sue.x10.mx
+  tls: false
+  type: vless
+  udp: true
+  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
+  ws-opts:
+    headers:
+      Host: ex.sue.x10.mx
+    path: /Telegram🇨🇳
+- delay: 1060
+  latency: 1.546621322631836
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 425
+  network: ws
+  password: ttfang
+  port: 2096
+  server: 63.141.128.194
+  sni: ttfang.fange.me
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ttfang.fange.me
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 646
+  latency: 1.5537738800048828
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 270
+  network: ws
+  port: 8880
+  server: 185.193.30.213
   tls: false
   type: vless
   udp: true
@@ -13,12 +155,128 @@ proxies:
     headers:
       Host: jp.laoyoutiao.link
     path: /
-- delay: 1550
-  latency: 1.6973018646240234
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 362
+- delay: 718
+  latency: 1.5568733215332031
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 122
   network: ws
   port: 8880
-  server: 185.135.9.87
+  server: 195.245.221.63
+  servername: jp.laoyoutiao.link
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+    path: /Telegram🇨🇳
+- delay: 781
+  latency: 1.5571117401123047
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 73
+  network: ws
+  port: 8880
+  server: 156.238.18.24
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: us.laoyoutiao.link
+    path: /TelegramрЯЗ®рЯЗ≥
+- delay: 613
+  latency: 1.5659332275390625
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 217
+  network: ws
+  port: 80
+  server: 141.193.213.201
+  servername: cs.laoyoutiao.link
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: cs.laoyoutiao.link
+    path: /TelegramU0001F1E8U0001F1F3
+- delay: 1265
+  latency: 1.5676021575927734
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 426
+  network: ws
+  password: ttfang
+  port: 2096
+  server: 66.225.252.194
+  sni: ttfang.fange.me
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ttfang.fange.me
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 615
+  latency: 1.5888214111328125
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 340
+  network: ws
+  port: 8880
+  server: 5.182.84.29
+  servername: hk.laoyoutiao.link
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: hk.laoyoutiao.link
+    path: /TelegramU0001F1E8U0001F1F3
+- client-fingerprint: randomized
+  latency: 1.5950202941894531
+  name: 🇺🇸US_81 | ⬇️ 1.3MB/s
+  network: ws
+  port: 8443
+  server: 45.131.210.218
+  servername: gGHDFa.pAgeS.Dev
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: true
+  uuid: a396b860-11b7-4af3-9950-146caf79735e
+  ws-opts:
+    headers:
+      host: gghdfa.pages.dev
+    path: /Tel-@V2ray_Alpha/?ed=2560
+- delay: 615
+  latency: 1.6047954559326172
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 200
+  network: ws
+  port: 8880
+  server: 104.129.167.63
+  servername: jp.laoyoutiao.link
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+    path: /Telegram🇨🇳
+- delay: 1968
+  latency: 1.6210079193115234
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 393
+  network: ws
+  password: ttfang
+  port: 2096
+  server: 45.8.211.194
+  sni: ttfang.fange.me
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ttfang.fange.me
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 1765
+  latency: 1.623392105102539
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 363
+  network: ws
+  port: 8880
+  server: 185.174.138.7
   servername: Telegram-channel-WangCai2
   tls: false
   type: vless
@@ -28,72 +286,13 @@ proxies:
     headers:
       Host: ip.langmanshanxi.top
     path: /Telegram🇨🇳 @WangCai2 /
-- latency: 1.7249584197998047
-  name: US_speednode_0089
+- delay: 638
+  latency: 1.6317367553710938
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 260
   network: ws
   port: 8880
-  server: 170.114.46.251
-  servername: cf.d3z.net
-  skip-cert-verify: false
-  tls: false
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      Host: cf.d3z.net
-    path: /Join---i10VPN---Join---i10VPN---Join---i10VPN---Join---i10VPN
-- latency: 1.7778873443603516
-  name: 🇺🇸US_6|7.7MB/s|GPT|NF|D+
-  network: ws
-  port: 8880
-  server: 46.254.92.9
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      Host: cf.d3z.net
-      User-Agent: Mozilla/5.0 (Linux; Android 7.0; SM-G610M) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36
-    path: Telegram🇨🇳 @WangCai2 /?ed=2560
-  xudp: true
-- delay: 1717
-  latency: 1.7809867858886719
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 229
-  network: ws
-  port: 8880
-  server: 45.8.211.213
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: jp.laoyoutiao.link
-    path: /
-- delay: 2145
-  latency: 1.7902851104736328
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 255
-  network: ws
-  port: 8880
-  server: 89.116.250.3
+  server: 185.16.110.186
   servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
-  ws-opts:
-    headers:
-      Host: bitget1.asdasd.click
-    path: /Telegram🇨🇳
-- delay: 820
-  latency: 1.814126968383789
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 212
-  network: ws
-  port: 8880
-  server: 5.10.214.20
-  servername: ip.langmanshanxi.top
   tls: false
   type: vless
   udp: true
@@ -101,10 +300,151 @@ proxies:
   ws-opts:
     headers:
       Host: ip.langmanshanxi.top
-    path: /
-- delay: 2083
-  latency: 1.8410682678222656
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 223
+    path: /Telegram🇨🇳 @WangCai2 /
+- delay: 814
+  latency: 1.6319751739501953
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 284
+  network: ws
+  port: 8880
+  server: 92.53.190.251
+  tls: false
+  type: vless
+  udp: true
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
+  ws-opts:
+    headers:
+      Host: cf.d3z.net
+    path: /Telegram🇨🇳 @WangCai2 /
+- delay: 1786
+  latency: 1.6350746154785156
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 331
+  network: ws
+  password: ttfang
+  port: 2096
+  server: 77.75.199.216
+  sni: ttfang.fange.me
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ttfang.fange.me
+    path: Telegram%252525F0%2525259F%25252587%252525A8%252525F0%2525259F%25252587%252525B3
+- delay: 670
+  latency: 1.641988754272461
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 139
+  network: ws
+  port: 8880
+  server: 5.10.214.156
+  servername: Telegram-channel-WangCai2
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: kjgx.laoyoutiao.link
+    path: /Telegram🇨🇳 @WangCai2 /
+- delay: 2671
+  latency: 1.642465591430664
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 95
+  network: ws
+  port: 8880
+  server: 170.114.46.254
+  tls: false
+  type: vless
+  udp: true
+  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
+  ws-opts:
+    headers:
+      Host: yg.bantony199.top
+    path: /Telegram🇨🇳
+- delay: 641
+  latency: 1.64794921875
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 315
+  network: ws
+  port: 8880
+  server: 199.181.197.29
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: hk.laoyoutiao.link
+    path: /Telegram🇨🇳 @MxlShare @WangCai2 /
+- delay: 942
+  latency: 1.6489028930664062
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 74
+  network: ws
+  port: 8880
+  server: 156.238.18.28
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: us.laoyoutiao.link
+    path: /TelegramрЯЗ
+- delay: 644
+  latency: 1.6524791717529297
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 264
+  network: ws
+  port: 8880
+  server: 92.53.188.63
+  servername: sg.laoyoutiao.link
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: sg.laoyoutiao.link
+    path: /Telegram🇨🇳
+- delay: 597
+  latency: 1.6529560089111328
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 196
+  network: ws
+  port: 8880
+  server: 45.159.219.251
+  tls: false
+  type: vless
+  udp: true
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
+  ws-opts:
+    headers:
+      Host: cf.d3z.net
+    path: /Telegram🇨🇳 @WangCai2 /
+- delay: 932
+  latency: 1.653909683227539
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 65
+  network: ws
+  port: 8880
+  server: 167.68.5.143
+  servername: Telegram-channel-WangCai2
+  tls: false
+  type: vless
+  udp: true
+  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
+  ws-opts:
+    headers:
+      Host: yg.bantony199.top
+    path: /Telegram🇨🇳 @WangCai2 /
+- delay: 1141
+  latency: 1.6582012176513672
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 390
+  network: ws
+  password: ttfang
+  port: 2096
+  server: 31.12.75.194
+  sni: ttfang.fange.me
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ttfang.fange.me
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 1315
+  latency: 1.6641616821289062
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 148
   network: ws
   port: 8880
   server: 195.26.229.156
@@ -117,12 +457,67 @@ proxies:
     headers:
       Host: kjgx.laoyoutiao.link
     path: /TelegramU0001F1E8U0001F1F3 @WangCai2 /
-- delay: 1122
-  latency: 1.8432140350341797
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 71
+- delay: 1178
+  latency: 1.6646385192871094
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 235
   network: ws
   port: 8880
-  server: 185.170.166.7
+  server: 156.238.18.142
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+    path: /Telegram@WangCai2/
+- delay: 2891
+  latency: 1.6663074493408203
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 445
+  network: ws
+  password: ttfang
+  port: 2096
+  server: 91.206.71.194
+  sni: ttfang.fange.me
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ttfang.fange.me
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 2635
+  latency: 1.6682147979736328
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 398
+  network: ws
+  password: ttfang
+  port: 2096
+  server: 45.40.152.194
+  sni: ttfang.fange.me
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ttfang.fange.me
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 1155
+  latency: 1.668691635131836
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 173
+  network: ws
+  port: 8880
+  server: 185.148.106.63
+  servername: jp.laoyoutiao.link
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+    path: /Telegram🇨🇳
+- delay: 1349
+  latency: 1.6722679138183594
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 145
+  network: ws
+  port: 8880
+  server: 5.10.214.186
   servername: Telegram-channel-WangCai2
   tls: false
   type: vless
@@ -132,41 +527,114 @@ proxies:
     headers:
       Host: ip.langmanshanxi.top
     path: /Telegram🇨🇳 @WangCai2 /
-- delay: 1465
-  latency: 1.8868446350097656
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 215
+- delay: 1120
+  latency: 1.6736984252929688
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 444
+  network: ws
+  password: ttfang
+  port: 2096
+  server: 91.124.127.194
+  sni: ttfang.fange.me
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: ttfang.fange.me
+    path: /Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 637
+  latency: 1.6756057739257812
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 192
   network: ws
   port: 8880
-  server: 62.72.166.168
+  server: 103.160.204.213
   tls: false
   type: vless
   udp: true
   uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
   ws-opts:
     headers:
-      Host: kjgx.laoyoutiao.link
-    path: /Telegram@WangCai2/
-- delay: 2703
-  latency: 1.898050308227539
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 141
+      Host: jp.laoyoutiao.link
+    path: /
+- delay: 932
+  latency: 1.6798973083496094
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 66
   network: ws
   port: 8880
-  server: 168.100.6.3
+  server: 199.34.230.251
   tls: false
   type: vless
   udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
   ws-opts:
     headers:
-      Host: bitget1.asdasd.click
-    path: /Telegram🇨🇳
-- delay: 1696
-  latency: 1.9154548645019531
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 230
+      Host: cf.d3z.net
+    path: /
+- delay: 599
+  latency: 1.6825199127197266
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 108
   network: ws
   port: 8880
-  server: 188.244.122.20
-  servername: us.laoyoutiao.link
+  server: 188.244.122.213
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
+    path: /
+- latency: 1.6829967498779297
+  name: 🇺🇸US_73 | ⬇️ 2.1MB/s
+  network: ws
+  port: 8880
+  server: 156.238.18.197
+  skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      host: yd.laoyoutiao.link
+    path: /
+- delay: 876
+  latency: 1.6829967498779297
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 159
+  network: ws
+  port: 8880
+  server: 5.182.84.251
+  servername: Telegram-channel-WangCai2
+  tls: false
+  type: vless
+  udp: true
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
+  ws-opts:
+    headers:
+      Host: cf.d3z.net
+    path: /Telegram🇨🇳
+- alpn:
+  - http/1.1
+  client-fingerprint: chrome
+  latency: 1.6841888427734375
+  name: 🇺🇸US_24 | ⬇️ 1.2MB/s
+  network: ws
+  port: 443
+  server: 104.21.21.72
+  servername: 4W.003330333.XYZ
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: true
+  uuid: 6e5925c0-f39e-4449-93e9-2e2e9772b17b
+  ws-opts:
+    headers:
+      host: 4w.003330333.xyz
+    path: /XKkmZUl83R8RsRHVp4fx59ry
+- delay: 611
+  latency: 1.6858577728271484
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 216
+  network: ws
+  port: 80
+  server: 141.193.213.154
   tls: false
   type: vless
   udp: true
@@ -174,15 +642,29 @@ proxies:
   ws-opts:
     headers:
       Host: us.laoyoutiao.link
+    path: /TelegramрЯЗ®рЯЗ≥
+- delay: 648
+  latency: 1.6863346099853516
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 271
+  network: ws
+  port: 8880
+  server: 185.193.30.63
+  servername: jp.laoyoutiao.link
+  tls: false
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      Host: jp.laoyoutiao.link
     path: /Telegram
-- client-fingerprint: chrome
-  latency: 1.924753189086914
-  name: 🇺🇸US_5|5.7MB/s|NF|D+
+- delay: 596
+  latency: 1.6872882843017578
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 201
   network: ws
   port: 8880
-  server: 190.93.247.177
+  server: 104.129.167.87
   servername: Telegram-channel-WangCai2
-  skip-cert-verify: false
   tls: false
   type: vless
   udp: true
@@ -190,24 +672,10 @@ proxies:
   ws-opts:
     headers:
       Host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- delay: 2882
-  latency: 1.9309520721435547
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 439
-  network: ws
-  port: 8880
-  server: 31.43.179.177
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /Telegram@WangCai2/
-- delay: 1661
-  latency: 1.9745826721191406
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 179
+    path: /Telegram🇨🇳 @WangCai2 /
+- delay: 597
+  latency: 1.6889572143554688
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 116
   network: ws
   port: 8880
   server: 194.152.44.156
@@ -220,402 +688,27 @@ proxies:
     headers:
       Host: kjgx.laoyoutiao.link
     path: /Telegram🇨🇳 @WangCai2 /
-- client-fingerprint: chrome
-  latency: 1.9848346710205078
-  name: 🇺🇸US_16|6.0MB/s|NF|D+
+- latency: 1.6891956329345703
+  name: 🇺🇸US_8|6.0MB/s
   network: ws
-  port: 8880
-  server: 74.49.214.63
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: false
-  tls: false
+  port: '2086'
+  server: 45.131.5.58
   type: vless
   udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  uuid: f366e744-abcd-4b5b-bd5e-2bd97b6443bf
   ws-opts:
     headers:
-      Host: jp.laoyoutiao.link
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- delay: 644
-  latency: 1.9888877868652344
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 401
-  network: ws
-  port: 8880
-  server: 190.93.244.186
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /Telegram @WangCai2 /
-- delay: 2502
-  latency: 1.9922256469726562
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 135
-  network: ws
-  port: 8880
-  server: 167.68.11.87
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /
-- delay: 2620
-  latency: 2.000570297241211
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 187
-  network: ws
-  port: 8880
-  server: 185.148.105.177
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /TelegramU0001F1E8U0001F1F3 @WangCai2 /
-- delay: 2727
-  latency: 2.007722854614258
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 9
-  network: ws
-  port: 8880
-  server: 193.9.49.254
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
-  ws-opts:
-    headers:
-      Host: yg.bantony199.top
-    path: /Telegram🇨🇳
-- delay: 2278
-  latency: 2.0132064819335938
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 411
-  network: ws
-  port: 8880
-  server: 176.124.223.3
-  tls: false
-  type: vless
-  udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
-  ws-opts:
-    headers:
-      Host: bitget1.asdasd.click
-    path: /telegram🇨🇳 @wangcai2 /
-- delay: 1421
-  latency: 2.02178955078125
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 303
-  network: ws
-  port: 8880
-  server: 141.11.202.29
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: hk.laoyoutiao.link
-    path: /Telegram🇨🇳 @MxlShare @WangCai2 /
-- delay: 1371
-  latency: 2.022266387939453
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 372
-  network: ws
-  port: 8880
-  server: 185.176.26.247
-  servername: ex.sue.x10.mx
-  tls: false
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      Host: ex.sue.x10.mx
-    path: /Telegram🇨🇳
-- delay: 2686
-  latency: 2.0313262939453125
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 345
-  network: ws
-  port: 8880
-  server: 156.238.18.48
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: kjgx.laoyoutiao.link
-    path: /Telegram🇨🇳@WangCai2/
-- latency: 2.0334720611572266
-  name: US_speednode_0088
-  network: ws
-  port: 8880
-  server: 167.68.4.63
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: false
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: jp.laoyoutiao.link
-    path: /
-- delay: 1704
-  latency: 2.0351409912109375
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 145
-  network: ws
-  port: 8880
-  server: 181.214.1.177
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /
-- delay: 1879
-  latency: 2.053499221801758
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 434
-  network: ws
-  port: 8880
-  server: 216.24.57.156
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: kjgx.laoyoutiao.link
-    path: /Telegram🇨🇳 @WangCai2 /
-- delay: 1655
-  latency: 2.057313919067383
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 352
-  network: ws
-  port: 8880
-  server: 160.153.168.87
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /
-- delay: 910
-  latency: 2.0704269409179688
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 114
-  network: ws
-  port: 8880
-  server: 156.238.18.123
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: sg.laoyoutiao.link
-    path: /Telegram@节点狂魔2/
-- latency: 2.074003219604492
-  name: 🇺🇸US_29|5.6MB/s|GPT⁺|NF|D+|7%
-  network: ws
-  port: '8880'
-  server: 156.238.18.1
-  servername: yd.laoyoutiao.link
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: yd.laoyoutiao.link
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/60.0.3112.113 Safari/537.36
-    path: /
+      Host: fva64rbmjfkfznnptk6imz6sihrno35m4csom83admge5tfxniwduyuyt954fdh.ks3om.workers.Dev
+      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/57.0.2987.133 Safari/537.36
+    path: /@AZARBAYJAB1@AZARBAYJAB1@AZARBAYJAB1@AZARBAYJAB1@AZARBAYJAB1@AZARBAYJAB1?ed=2560
   xudp: true
-- delay: 1726
-  latency: 2.088308334350586
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 3
+- delay: 657
+  latency: 1.6951560974121094
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 274
   network: ws
   port: 8880
-  server: 25.26.27.177
-  servername: ip.langmanshanxi.top
-  skip-cert-verify: true
-  tfo: false
-  tls: false
-  type: vless
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /
-- client-fingerprint: chrome
-  delay: 2617
-  latency: 2.0956993103027344
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 259
-  network: ws
-  port: 443
-  server: www.speedtest.net
-  servername: rAyAn-cOnFiG-TeLeGrAm-a03.lEiLa.dPdNs.oRg
-  tls: true
-  type: vless
-  udp: true
-  uuid: 7a80a8d9-92f9-4f0a-8352-9005a8215ab8
-  ws-opts:
-    headers:
-      Host: rayan-config-telegram-a03.leila.dpdns.org
-    path: /@Rayan_Config
-- delay: 1131
-  latency: 2.0999908447265625
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 272
-  network: ws
-  port: 8880
-  server: 91.193.58.35
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: kjgx.laoyoutiao.link
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560fp=chrome
-- latency: 2.100706100463867
-  name: 🇺🇸US_75 | ⬇️ 2.1MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.60
-  servername: us.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: us.laoyoutiao.link
-    path: /Telegram🇨🇳
-- delay: 834
-  latency: 2.113819122314453
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 63
-  network: ws
-  port: 8880
-  server: 160.79.105.7
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /
-- delay: 1387
-  latency: 2.1293163299560547
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 275
-  network: ws
-  port: 8880
-  server: 102.132.188.87
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /
-- delay: 2043
-  latency: 2.134561538696289
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 267
-  network: ws
-  port: 8880
-  server: 185.193.28.168
-  servername: kjgx.laoyoutiao.link
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: kjgx.laoyoutiao.link
-    path: /Telegram@WangCai2/
-- delay: 1744
-  latency: 2.137899398803711
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 12
-  network: ws
-  port: 8880
-  server: 45.159.216.87
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /
-- delay: 1436
-  latency: 2.1409988403320312
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 325
-  network: ws
-  port: 8880
-  server: 154.198.173.177
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /
-- delay: 2302
-  latency: 2.1429061889648438
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 254
-  network: ws
-  port: 8880
-  server: 199.34.229.29
-  servername: hk.laoyoutiao.link
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: hk.laoyoutiao.link
-    path: /
-- client-fingerprint: randomized
-  latency: 2.1436214447021484
-  name: 🇺🇸US_82 | ⬇️ 1.0MB/s
-  network: ws
-  port: 8443
-  server: 45.80.111.221
-  servername: gGHDFa.pAgeS.Dev
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: a396b860-11b7-4af3-9950-146caf79735e
-  ws-opts:
-    headers:
-      host: gghdfa.pages.dev
-    path: /Tel-@V2ray_Alpha/?ed=2560
-- delay: 1114
-  latency: 2.1505355834960938
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 227
-  network: ws
-  port: 8880
-  server: 45.131.211.254
+  server: 86.38.214.254
   tls: false
   type: vless
   udp: true
@@ -623,121 +716,4 @@ proxies:
   ws-opts:
     headers:
       Host: yg.bantony199.top
-    path: /
-- delay: 2701
-  latency: 2.1522045135498047
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 367
-  network: ws
-  port: 8880
-  server: 185.162.230.63
-  servername: jp.laoyoutiao.link
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: jp.laoyoutiao.link
-    path: /Telegram🇨🇳
-- delay: 1763
-  latency: 2.162933349609375
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 121
-  network: ws
-  port: 8880
-  server: 156.238.18.24
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: us.laoyoutiao.link
-    path: /TelegramрЯЗ®рЯЗ≥
-- delay: 1419
-  latency: 2.1784305572509766
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 445
-  network: ws
-  password: ttfang
-  port: 2096
-  server: 45.131.6.216
-  sni: ttfang.fange.me
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ttfang.fange.me
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 2588
-  latency: 2.182483673095703
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 5
-  network: ws
-  port: 8880
-  server: 45.128.76.87
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /
-- delay: 1586
-  latency: 2.1944046020507812
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 36
-  network: ws
-  port: 8880
-  server: 92.53.191.247
-  servername: ex.sue.x10.mx
-  tls: false
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      Host: ex.sue.x10.mx
     path: /Telegram
-- latency: 2.1970272064208984
-  name: US_speednode_0082
-  network: ws
-  port: 8880
-  server: 192.0.54.213
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: false
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: jp.laoyoutiao.link
-    path: /
-- delay: 1551
-  latency: 2.2029876708984375
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 73
-  network: ws
-  port: 8880
-  server: 185.193.29.7
-  servername: Telegram-channel-WangCai2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      Host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /
-- delay: 743
-  latency: 2.2034645080566406
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 266
-  network: ws
-  port: 80
-  server: 141.193.213.233
-  servername: cs.laoyoutiao.link
-  tls: false
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      Host: cs.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3
