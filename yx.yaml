@@ -75,6 +75,20 @@ dns:
     - +.stun.*.*.*.*
     - +.stun.*.*.*.*.*
 proxies:
+   - name: 天书git
+    type: vless
+    server: laji.jisucf.cloudns.biz
+    port: 443
+    uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
+    udp: true
+    tls: true
+    skip-cert-verify: false
+    servername: git01.jisucf.cloudns.biz
+    network: ws
+    ws-opts:
+      path: /?ed=2560
+      headers:
+        Host: git01.jisucf.cloudns.biz
   - name: 天书cf
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -89,20 +103,6 @@ proxies:
       path: /?ed=2560
       headers:
         Host: git02.jisucf.cloudns.biz
-  - name: 天书git
-    type: vless
-    server: laji.jisucf.cloudns.biz
-    port: 443
-    uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
-    udp: true
-    tls: true
-    skip-cert-verify: false
-    servername: git01.jisucf.cloudns.biz
-    network: ws
-    ws-opts:
-      path: /?ed=2560
-      headers:
-        Host: git01.jisucf.cloudns.biz
 proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
@@ -110,8 +110,8 @@ proxy-groups:
     interval: 180
     tolerance: 30
     proxies:
-      - 天书cf
       - 天书git
+      - 天书cf
   - name: 🚀 节点选择
     type: select
     proxies:
