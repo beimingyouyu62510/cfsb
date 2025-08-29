@@ -75,7 +75,7 @@ dns:
     - +.stun.*.*.*.*
     - +.stun.*.*.*.*.*
 proxies:
-   - name: 天书git
+  - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
     port: 443
