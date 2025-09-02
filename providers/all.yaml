@@ -15,7 +15,7 @@ proxies:
     path: /oooo
 - alterId: 0
   cipher: auto
-  latency: 14.842510223388672
+  latency: 63.39430809020996
   name: 🇩🇰_DK_丹麦->🇺🇸_US_美国
   network: ws
   port: 80
@@ -28,7 +28,7 @@ proxies:
     path: /profile/telegram@ssrsub
 - alterId: 0
   cipher: auto
-  latency: 167.29450225830078
+  latency: 28.482675552368164
   name: 🇩🇰_DK_丹麦->🇺🇸_US_美国_1
   network: ws
   port: 80
@@ -41,7 +41,7 @@ proxies:
     path: /profile/telegram@ssrsub
 - alterId: 0
   cipher: auto
-  latency: 113.52753639221191
+  latency: 29.454469680786133
   name: 🇩🇰_DK_丹麦->🇺🇸_US_美国_2
   network: ws
   port: 80
@@ -66,7 +66,7 @@ proxies:
   ws-opts:
     path: /IOebhLMhl1CTbFHbL95myfRX2
 - cipher: chacha20-ietf-poly1305
-  latency: 166.43285751342773
+  latency: 158.45513343811035
   name: SS-美国-NF解锁自制剧-ChatGPT-TikTok-YouTube-204.136.10.115:1866
   password: oXGp1+ihlfKg826H
   port: 1866
@@ -219,7 +219,7 @@ proxies:
   cipher: auto
   h2-opts: {}
   http-opts: {}
-  latency: 9.790420532226562
+  latency: 28.311491012573242
   name: VMESS-未知>美国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-npmjs.com:8080
   network: ws
   port: 8080
@@ -235,7 +235,7 @@ proxies:
   cipher: auto
   h2-opts: {}
   http-opts: {}
-  latency: 1.9946098327636719
+  latency: 16.968727111816406
   name: VMESS-未知>美国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-104.17.223.175:8080
   network: ws
   port: 8080
@@ -252,7 +252,7 @@ proxies:
   cipher: auto
   h2-opts: {}
   http-opts: {}
-  latency: 1.5425682067871094
+  latency: 16.826391220092773
   name: VMESS-未知>美国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-104.17.176.171:8080
   network: ws
   port: 8080
@@ -272,7 +272,7 @@ proxies:
   server: 46.101.245.131
   type: ss
 - cipher: rc4-md5
-  latency: 8.50367546081543
+  latency: 9.139776229858398
   name: SSR-美国-NF解锁自制剧-ChatGPT-TikTok-YouTube-107.151.182.253:8080
   obfs: plain
   password: 14fFPrbezE3HDZzsMOr6
@@ -309,7 +309,7 @@ proxies:
       HOST: h4.grAsSoRy.shop
     path: /
 - cipher: chacha20-ietf-poly1305
-  latency: 66.52641296386719
+  latency: 58.391571044921875
   name: SS-美国-NF解锁自制剧-ChatGPT-TikTok-YouTube-104.167.197.25:57456
   password: 360e21d21977dc11
   port: 57456
@@ -325,7 +325,7 @@ proxies:
   cipher: auto
   h2-opts: {}
   http-opts: {}
-  latency: 23.125410079956055
+  latency: 33.53142738342285
   name: VMESS-未知>美国-NF解锁自制剧-ChatGPT-TikTok-YouTube-orvps2.horsenma.net:8443
   network: ws
   port: 8443
@@ -354,259 +354,7 @@ proxies:
     headers:
       HOST: kr.xiaoqi666.xyz
     path: /
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  name: 🇩🇪DE_1|2.2MB/s
-  network: ws
-  port: '443'
-  server: 172.67.74.104
-  servername: b5r.ir
-  tls: true
-  type: vless
-  udp: true
-  uuid: 8b63cf90-830c-4fd8-a911-9e84fd7a5898
-  ws-opts:
-    headers:
-      Host: s.s.google.com.b5r.ir.
-      User-Agent: Mozilla/5.0 (X11; U; Linux i586; en-US) AppleWebKit/533.2 (KHTML,
-        like Gecko) Chrome/5.0.342.1 Safari/533.2
-    path: /Join----JKVPN---Join----JKVPN----Join----JKVPN----Join----JKVPN?ed=2560
-  xudp: true
-- cipher: aes-256-cfb
-  name: 🇲🇩MD_1|3.8MB/s
-  password: f8f7aCzcPKbsF8p3
-  port: 989
-  server: 185.153.197.5
-  type: ss
-- cipher: chacha20-ietf-poly1305
-  name: 🇹🇼TW_1|2.2MB/s
-  password: 1f64d67c-33f3-478f-a6a4-1dc4284ee192
-  port: 10036
-  server: 118.170.208.101
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: 🇹🇼TW_2|2.6MB/s
-  password: 60f661f4-579c-45c9-8156-e0db88911dc6
-  port: 10047
-  server: 114.33.53.80
-  type: ss
-  udp: true
-- name: 🇫🇷FR_1|2.2MB/s
-  network: ws
-  port: 80
-  server: 63.141.128.14
-  servername: a.joIn.zEdMoDeOn.oNl.
-  skip-cert-verify: false
-  tls: false
-  type: vless
-  udp: true
-  uuid: 18494a96-f6a7-425d-ae82-dc00c4f3f819
-  ws-opts:
-    headers:
-      Host: a.joIn.zEdMoDeOn.oNl.
-    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
-- cipher: chacha20-ietf-poly1305
-  name: ❓Other_1|2.2MB/s
-  password: c6081e42-2dac-4ca0-ab51-176be0f479e7
-  port: 10070
-  server: 114.46.79.69
-  type: ss
-  udp: true
-- alpn:
-  - h3
-  auth-str: dongtaiwang.com
-  auth_str: dongtaiwang.com
-  delay: 1147
-  down: '100'
-  name: 🇫🇷FR_2|4.1MB/s
-  obfs: ''
-  port: 15010
-  protocol: ''
-  server: 195.154.200.40
-  skip-cert-verify: true
-  sni: apple.com
-  type: hysteria
-  up: '100'
-- delay: 2047
-  latency: 2.3984909057617188
-  name: 🇺🇸US_1|2.1MB/s
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.238.228.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- alterId: 0
-  cipher: auto
-  latency: 1.7414093017578125
-  name: 🇺🇸US_2|3.3MB/s
-  network: ws
-  port: 80
-  server: 104.18.14.54
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  uuid: bd8f4c3a-b55a-4a55-a4be-d2ead4a4c66a
-  ws-opts:
-    headers:
-      Host: 845296302850992025082820102725073.s15.chibaba.filegear-sg.me
-    path: /index.html?ed=2048
-- latency: 1.6689300537109375
-  name: 🇺🇸US_3|4.0MB/s
-  network: ws
-  password: f282b878-8711-45a1-8c69-5564172123c1
-  port: 443
-  server: 172.67.181.173
-  skip-cert-verify: false
-  sni: vpn.stupidworld.web.id
-  type: trojan
-  ws-opts:
-    headers:
-      Host: vpn.stupidworld.web.id
-    path: /Stupid-World/103.106.228.126-2053
-- cipher: chacha20-ietf
-  name: 🇭🇰HK_1|2.3MB/s
-  password: asd123456
-  port: 8388
-  server: 103.149.182.191
-  type: ss
-- down: ''
-  fingerprint: ''
-  name: 🇺🇸US_4|2.7MB/s
-  obfs: ''
-  obfs-password: ''
-  password: dongtaiwang.com
-  port: '63015'
-  server: 108.181.5.130
-  skip-cert-verify: true
-  sni: apple.com
-  type: hysteria2
-  up: ''
-- down: ''
-  fingerprint: ''
-  name: 🇺🇸US_5|2.0MB/s
-  obfs: ''
-  obfs-password: ''
-  password: dongtaiwang.com
-  port: '22222'
-  server: 208.87.243.187
-  skip-cert-verify: true
-  sni: www.bing.com
-  type: hysteria2
-  up: ''
-- down: ''
-  fingerprint: ''
-  name: 🇫🇮FI_1|2.5MB/s
-  obfs: salamander
-  obfs-password: r3fe@$WGefweqf
-  password: AOzO2rBKFB
-  port: '14825'
-  server: 46.62.129.200
-  skip-cert-verify: true
-  sni: ''
-  type: hysteria2
-  up: ''
-- name: 🇩🇪DE_2|4.6MB/s
-  network: ws
-  port: '2052'
-  server: 172.66.40.99
-  type: vless
-  udp: true
-  uuid: a3570d6b-a91a-4fd3-9077-5f77f631b5fd
-  ws-opts:
-    headers:
-      Host: υρρσят-多言語-دعم.snaptripupport.space.
-      User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko)
-        Chrome/46.0.2490.71 Safari/537.36
-    path: /@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet--@Maznet
-  xudp: true
-- client-fingerprint: chrome
-  name: 🇩🇪DE_3|3.9MB/s
-  network: ws
-  port: '443'
-  server: tgju.org
-  servername: 6389113402676776509.VtNeT.infO
-  tls: true
-  type: vless
-  udp: true
-  uuid: 88538870-5626-4cd7-9cda-1e0b6253c9ce
-  ws-opts:
-    headers:
-      Host: 6389113402676776509.VtNeT.infO
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/56.0.2924.87 Safari/537.36
-    path: ''
-  xudp: true
-- name: 🇩🇪DE_5|4.6MB/s
-  network: ws
-  port: '8880'
-  server: 172.66.40.99
-  type: vless
-  udp: true
-  uuid: a678ad4f-e5c3-442f-be24-6e55088d9fc5
-  ws-opts:
-    headers:
-      Host: inFo.laLezaRanegomaNandish.mdV.V2.onlineshopbb.org.
-      User-Agent: Mozilla/5.0 (Linux; Android 7.0; TRT-LX2 Build/HUAWEITRT-LX2; wv)
-        AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/59.0.3071.125 Mobile
-        Safari/537.36
-    path: /@MdVpnSec----@MdVpnSec----@MdVpnSec----@MdVpnSec----@MdVpnSec----@MdVpnSec----@MdVpnSec----@MdVpnSec----@MdVpnSec----@MdVpnSec----@MdVpnSec----@MdVpnSec
-  xudp: true
-- client-fingerprint: chrome
-  name: 🇳🇱NL_1|2.4MB/s
-  network: ws
-  port: '443'
-  server: indeed.com
-  servername: revcloud.migacpi.org
-  tls: true
-  type: vless
-  udp: true
-  uuid: 7d18fc67-1994-4f7e-8ff8-c024223f33bb
-  ws-opts:
-    headers:
-      Host: revcloud.migacpi.org
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/56.0.2924.87 Safari/537.36
-    path: /cbde4058-6b81-432b-8689-dd7ce10e479c
-  xudp: true
-- client-fingerprint: chrome
-  name: 🇳🇱NL_2|3.5MB/s
-  network: ws
-  port: '443'
-  server: aio.nolimit.dpdns.org
-  servername: aio.nolimit.dpdns.org
-  tls: true
-  type: vless
-  udp: true
-  uuid: f282b878-8711-45a1-8c69-5564172123c1
-  ws-opts:
-    headers:
-      Host: aio.nolimit.dpdns.org
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/62.0.3202.94 Safari/537.36
-    path: /aioproxybot/146.190.192.43-80
-  xudp: true
-- name: 🇳🇱NL_3|4.4MB/s
-  network: ws
-  port: '2082'
-  server: 172.67.72.39
-  type: vless
-  udp: true
-  uuid: cb93debf-77f5-4a26-af9e-f6b67c0d294d
-  ws-opts:
-    headers:
-      Host: s6.inFo.laLezaRanegomaNandish.suB420-mohaMad.OnlinE.
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/55.0.2883.87 Safari/537.36
-    path: /Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420?ed=2080
-  xudp: true
-- name: 🇩🇪DE_7|5.7MB/s
+- name: 🇩🇪DE_1|3.8MB/s
   network: ws
   port: '2086'
   server: www.speedtest.net
@@ -620,91 +368,445 @@ proxies:
         like Gecko) Chrome/68.0.3440.75 Safari/537.36
     path: /@ZedBaz_vpn--@ZedBaz_vpn--@ZedBaz_vpn--@ZedBaz_vpn--@ZedBaz_vpn--@ZedBaz_vpn--@ZedBaz_vpn--@ZedBaz_vpn--@ZedBaz_vpn--
   xudp: true
-- name: 🇫🇷FR_4|6.2MB/s
-  network: ws
-  port: '8080'
-  server: 63.141.128.28
-  type: vless
-  udp: true
-  uuid: 49e77ea9-62bd-44c4-8a52-0d7569c305c5
-  ws-opts:
-    headers:
-      Host: f.jOin.zEdMoDeOn.oNl.
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/65.0.3325.181 Safari/537.36
-    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
-  xudp: true
-- name: 🇩🇪DE_8|4.2MB/s
-  network: ws
-  port: '80'
-  server: FASTSHOVPNTELEGRAM2.vinamarketcenter.ir
-  type: vless
-  udp: true
-  uuid: 5f7ff0f2-5e79-46b9-c0c5-8a63dc34f9e9
-  ws-opts:
-    headers:
-      Host: eng.vinamarketcenter.ir
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/35.0.1916.153 Safari/537.36
-    path: /FASTSHOVPNTELEGRAM-FASTSHOVPNTELEGRAM-FASTSHOVPNTELEGRAM-FASTSHOVPNTELEGRAM-FASTSHOVPNTELEGRAM?ed=2048
-  xudp: true
-- name: 🇫🇷FR_5|4.3MB/s
-  network: ws
-  port: '80'
-  server: 63.141.128.13
-  type: vless
-  udp: true
-  uuid: fdf5ef4d-bf23-4bd1-b04e-39c80ba0c577
-  ws-opts:
-    headers:
-      Host: c.jOin.zEdMoDeOn.oNl.
-      User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/60.0.3112.113 Safari/537.36
-    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
-  xudp: true
 - client-fingerprint: chrome
-  name: 🇬🇧GB_1|4.9MB/s
+  name: 🇫🇷FR_1|2.0MB/s
   network: ws
-  port: '8443'
-  server: 104.17.147.22
-  servername: lease-17.access.name.ng
-  tls: true
-  type: vless
-  udp: true
-  uuid: ccbe6b7c-9264-40c4-8bc1-ef8f6205d7a4
-  ws-opts:
-    headers:
-      Host: lease-17.access.name.ng
-      User-Agent: Mozilla/5.0 (Linux; Android 6.0; vivo 1606 Build/MMB29M) AppleWebKit/537.36
-        (KHTML, like Gecko) Chrome/53.0.2785.124 Mobile Safari/537.36
-    path: /
-  xudp: true
-- client-fingerprint: chrome
-  latency: 238.80362510681152
-  name: 🇺🇸US_6|3.2MB/s
-  network: ws
-  port: '443'
+  port: 443
   server: zula.ir
-  servername: yutwm.gregory-sportage.info
+  servername: tydfp.richard-motalebegarbashhamishe.info
   tls: true
   type: vless
   udp: true
   uuid: cd2e9541-3fce-4d95-9bec-919d884f911e
   ws-opts:
     headers:
-      Host: yutwm.gregory-sportage.info
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/53.0.2785.143 Safari/537.36
+      Host: tydfp.richard-motalebegarbashhamishe.info
     path: /tiger
+- delay: 1833
+  name: 🇷🇺RU_1|3.1MB/s
+  password: ee4a8f20-5467-4f12-bd87-ff21b7ba817c
+  port: 16187
+  server: 95.181.212.141
+  skip-cert-verify: true
+  tfo: false
+  type: hysteria2
+- delay: 1363
+  latency: 8.584976196289062
+  name: 🇺🇸US_1|2.3MB/s
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 188.42.145.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- latency: 8.53729248046875
+  name: 🇺🇸US_2|4.8MB/s
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 188.42.89.195
+  skip-cert-verify: true
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram🇨🇳
+- latency: 16.97254180908203
+  name: 🇺🇸US_3|2.0MB/s
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 190.93.245.195
+  skip-cert-verify: true
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram🇨🇳
+- latency: 8.918285369873047
+  name: 🇺🇸US_4|2.4MB/s
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 185.162.229.195
+  skip-cert-verify: true
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram🇨🇳
+- client-fingerprint: chrome
+  name: 🇳🇱NL_1|3.1MB/s
+  network: ws
+  port: '8443'
+  server: 104.21.3.219
+  servername: ovhwuxian.pai50288.uk
+  tls: true
+  type: vless
+  udp: true
+  uuid: 57ba2ab1-a283-42eb-82ee-dc3561a805b8
+  ws-opts:
+    headers:
+      Host: ovhwuxian.pai50288.uk
+      User-Agent: Mozilla/5.0 (Linux; Android 7.1.1; CPH1723 Build/N6F26Q) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/61.0.3163.98 Mobile Safari/537.36
+    path: /57ba2ab1
+  xudp: true
+- client-fingerprint: chrome
+  latency: 8.58616828918457
+  name: 🇺🇸US_5|4.7MB/s
+  network: ws
+  port: '443'
+  server: 104.21.84.58
+  servername: eeEddFfGvb.IRAn2035.DPDNs.ORg
+  tls: true
+  type: vless
+  udp: true
+  uuid: a94fafdb-10d6-46c2-be8a-5c2e8358fbb0
+  ws-opts:
+    headers:
+      Host: eeEddFfGvb.IRAn2035.DPDNs.ORg
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/54.0.2840.99 Safari/537.36
+    path: /xeg9Fvgzc4aVkracmjyiKVby2Lp
+  xudp: true
+- name: 🇫🇷FR_2|4.8MB/s
+  network: ws
+  port: '8080'
+  server: 63.141.128.15
+  type: vless
+  udp: true
+  uuid: cf6deb67-e7a5-4a8d-bc8e-11efd14817cc
+  ws-opts:
+    headers:
+      Host: d.jOin.zEdMoDeOn.oNl.
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/54.0.2840.71 Safari/537.36
+    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
+  xudp: true
+- client-fingerprint: chrome
+  name: 🇬🇧GB_1|5.7MB/s
+  network: ws
+  port: '8443'
+  server: www.speedtest.net
+  servername: lease-20.access.name.ng
+  tls: true
+  type: vless
+  udp: true
+  uuid: ccbe6b7c-9264-40c4-8bc1-ef8f6205d7a4
+  ws-opts:
+    headers:
+      Host: lease-20.access.name.ng
+      User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36
+    path: /
+  xudp: true
+- alpn:
+  - h3
+  client-fingerprint: chrome
+  name: 🇩🇪DE_2|3.4MB/s
+  network: ws
+  port: '443'
+  server: 162.159.153.144
+  servername: tcp.biz.id
+  tls: true
+  type: vless
+  udp: true
+  uuid: 2bcfbfba-b446-4ad5-93ad-72af9e008f61
+  ws-opts:
+    headers:
+      Host: tcp.biz.id
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/61.0.3163.79 Safari/537.36
+    path: /free/1.177.76.215:10026
+  xudp: true
+- name: 🇫🇮FI_1|3.8MB/s
+  network: ws
+  port: '8080'
+  server: chat.openai.com
+  type: vless
+  udp: true
+  uuid: 4c266f5d-5836-4417-d5ab-f253ca9de933
+  ws-opts:
+    headers:
+      Host: shad.ir.fin.test.digicyber.click.
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/51.0.2704.106 Safari/537.36
+    path: /olem/ws?ed=1024
+  xudp: true
+- name: 🇩🇪DE_3|2.6MB/s
+  network: ws
+  port: '8080'
+  server: numberland.ir
+  type: vless
+  udp: true
+  uuid: f6b0723c-bb28-45f2-9b7f-82fab9ef8640
+  ws-opts:
+    headers:
+      Host: bia-to-unlimiteddev.unlimiteddev-service.ir
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/56.0.2924.87 Safari/537.36
+    path: /@unlimiteddev----@unlimiteddev-----@unlimiteddev----@unlimiteddev----@unlimiteddev----@unlimiteddev----@unlimiteddev----@unlimiteddev----@unlimitedev----@unlimitedev----@unlimiteddev----@unlimiteddev?ed=2480
   xudp: true
 - cipher: chacha20-ietf-poly1305
-  latency: 3.3407211303710938
-  name: 🇺🇸US_7|3.4MB/s
-  password: WStKA4n7KqAFCJxzw8cuM0
-  port: '443'
-  server: 138.68.6.88
+  name: 🇦🇷AR_1|3.7MB/s
+  password: 8taL4CnyG3SH5EEs7PE75c
+  port: '8443'
+  server: 190.103.176.123
   type: ss
   udp: true
+- client-fingerprint: chrome
+  latency: 8.955717086791992
+  name: 🇺🇸US_6|3.2MB/s
+  network: ws
+  port: '443'
+  server: 104.18.13.145
+  servername: usa.rtot.me
+  tls: true
+  type: vless
+  udp: true
+  uuid: f19ed531-81cb-433e-8746-1a69e009f9df
+  ws-opts:
+    headers:
+      Host: usa.rtot.me
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/69.0.3497.100 Safari/537.36
+    path: /bing
+  xudp: true
+- name: 🇩🇪DE_4|4.1MB/s
+  network: ws
+  port: '2082'
+  server: www.speedtest.net
+  type: vless
+  udp: true
+  uuid: c29763e2-a224-45a2-ffce-44cba2941f89
+  ws-opts:
+    headers:
+      Host: novinsoft.ir.oradoshop.com.persiangsm.ir.digikala.com.abadis.ir.shad.ir.divar.ir.downloadly.com.aparat.com.cafebazar.ir.varzesh3.com.ninisite.com.abadis.ir.bama.ir.p30download.ir.telewebion.bmi.ir.shad.ir.mayket.com.ninisite.top.
+      User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/51.0.2704.63 Safari/537.36
+    path: /@spikevpn-@spikevpn-@spikevpn-@spikevpn-@spikevpn-@spikevpn?ed=2082
+  xudp: true
+- name: 🇳🇱NL_2|2.1MB/s
+  network: ws
+  port: '80'
+  server: 172.66.40.99
+  type: vless
+  udp: true
+  uuid: 77050208-c927-42fd-bbd8-bea4fe5cca6b
+  ws-opts:
+    headers:
+      Host: s6.inFo.laLezaRanegomaNandish.suB420-mohaMad.OnlinE.
+      User-Agent: Mozilla/5.0 (Linux; Android 7.0; SM-G610M) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36
+    path: /Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420?ed=2080
+  xudp: true
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 🇹🇷TR_1|4.3MB/s
+  network: tcp
+  port: '443'
+  reality-opts:
+    public-key: oncHA5R446UW_VbO6t2jRllAI4iLFbpvOvi1ndZ-Mys
+    short-id: 404c8792dfd88e41
+  server: 45.89.52.228
+  servername: www.trendyol.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: id6686739236
+  xudp: true
+- client-fingerprint: chrome
+  name: 🇫🇮FI_2|3.9MB/s
+  network: ws
+  port: '2053'
+  server: axe.soyet2j.ir
+  servername: mojito.soyet2j.ir
+  tls: true
+  type: vless
+  udp: true
+  uuid: cd0c470a-d10a-4d3c-a901-425936312c1e
+  ws-opts:
+    headers:
+      Host: mojito.soyet2j.ir
+      User-Agent: Mozilla/5.0 (Linux; Android 7.0; SM-G570M Build/NRD90M) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36
+    path: /homepage?ed=2560
+  xudp: true
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 🇳🇱NL_3|3.6MB/s
+  network: tcp
+  port: '443'
+  reality-opts:
+    public-key: BhTJ3phnq-Z-10aFKSsj1lzhA8mULR4L6leE4-0WTAs
+    short-id: ''
+  server: eng14.netliberated.org
+  servername: www.halfords.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: 0bb6dff2-0029-4b81-8c81-4fc70fae1ed9
+  xudp: true
+- name: 🇫🇮FI_3|3.7MB/s
+  network: ws
+  port: '8080'
+  server: 104.21.80.1
+  type: vless
+  udp: true
+  uuid: 4c266f5d-5836-4417-d5ab-f253ca9de933
+  ws-opts:
+    headers:
+      Host: shad.ir.fin.test.digicyber.click.
+      User-Agent: Mozilla/5.0 (Linux; Android 5.1.1; SM-J120M Build/LMY47X) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36
+    path: /olem/ws?ed=1024
+  xudp: true
+- alpn:
+  - h2
+  - http/1.1
+  client-fingerprint: chrome
+  name: 🇫🇮FI_4|2.5MB/s
+  network: ws
+  port: '2087'
+  server: www.researchgate.net
+  servername: interimrita.shividpolo.store
+  tls: true
+  type: vless
+  udp: true
+  uuid: cd7f3c2f-8d6d-4ad8-98eb-fb10e0f6da9e
+  ws-opts:
+    headers:
+      Host: interimrita.shividpolo.store
+      User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/533.2 (KHTML,
+        like Gecko) Chrome/5.0.342.1 Safari/533.2
+    path: /downloader?ed=2048
+  xudp: true
+- client-fingerprint: chrome
+  latency: 69.8995590209961
+  name: 🇺🇸US_7|2.2MB/s
+  network: ws
+  port: '443'
+  server: f3.askkf.com
+  servername: s2.askkf.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: 81fae892-37b3-47d5-d047-b44b3395fa38
+  ws-opts:
+    headers:
+      Host: s2.askkf.com
+      User-Agent: Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/57.0.2987.133 Safari/537.36
+    path: /
+  xudp: true
+- alpn:
+  - h2
+  - http/1.1
+  client-fingerprint: chrome
+  latency: 17.772674560546875
+  name: 🇺🇸US_8|4.3MB/s
+  network: ws
+  port: '443'
+  server: www.speedtest.net
+  servername: amIR-ebR.pAGeS.Dev
+  tls: true
+  type: vless
+  udp: true
+  uuid: 256b56b5-9079-4266-8777-c39fdcd87cd9
+  ws-opts:
+    headers:
+      Host: amir-ebr.pages.dev
+      User-Agent: Mozilla/5.0 (Linux; Android 7.0; Moto G (5) Build/NPPS25.137-93-14)
+        AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36
+    path: /2IBbZjAugSH41qc5?ed
+  xudp: true
+- client-fingerprint: chrome
+  latency: 45.58920860290527
+  name: 🇺🇸US_9|2.0MB/s
+  network: ws
+  port: '443'
+  server: bestcf.030101.xyz
+  servername: xv6.jpmj.dpdns.org
+  tls: true
+  type: vless
+  udp: true
+  uuid: 897a4bec-26b8-11e8-94be-00505695472c
+  ws-opts:
+    headers:
+      Host: xv6.jpmj.dpdns.org
+      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/39.0.2171.95 Safari/537.36
+    path: /bbs?ed=2048security=tls
+  xudp: true
+- client-fingerprint: chrome
+  latency: 16.743898391723633
+  name: 🇺🇸US_10|3.7MB/s
+  network: ws
+  port: '443'
+  server: 104.16.86.74
+  servername: s2.askkf.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: 81fae892-37b3-47d5-d047-b44b3395fa38
+  ws-opts:
+    headers:
+      Host: s2.askkf.com
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/61.0.3163.100 Safari/537.36
+    path: /
+  xudp: true
+- name: 🇳🇱NL_4|4.1MB/s
+  network: ws
+  port: '80'
+  server: 104.21.42.42
+  type: vless
+  udp: true
+  uuid: f282b878-8711-45a1-8c69-5564172123c1
+  ws-opts:
+    headers:
+      Host: aio.zipzap.biz.id
+      User-Agent: Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4 Build/NRD90M) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36
+    path: /aioproxybot/146.190.192.43-80
+  xudp: true
+- name: 🇳🇱NL_5|2.2MB/s
+  network: ws
+  port: '80'
+  server: www.speedtest.net
+  type: vless
+  udp: true
+  uuid: 77050208-c927-42fd-bbd8-bea4fe5cca6b
+  ws-opts:
+    headers:
+      Host: s6.inFo.laLezaRanegomaNandish.suB420-mohaMad.OnlinE.
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/67.0.3396.99 Safari/537.36
+    path: /Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420?ed=2080
+  xudp: true
+- latency: 8.685588836669922
+  name: 🇺🇸US_11|6.8MB/s
+  network: ws
+  port: '8080'
+  server: 104.26.4.60
+  type: vless
+  udp: true
+  uuid: d345d11e-c424-4583-b36e-527ab1f0afa4
+  ws-opts:
+    headers:
+      Host: v2raynselling.kir-rasol-kir.workers.dev
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/65.0.3325.162 Safari/537.36
+    path: /?ed=2048
+  xudp: true
 - alterId: 0
   cipher: auto
   name: 防范境外势力渗透
@@ -989,8 +1091,7 @@ proxies:
   server: cn01.efan8867801.xyz
   tfo: false
   type: ss
-- latency: 279.491662979126
-  name: 美国3|@ripaojiedian
+- name: 美国3|@ripaojiedian
   network: tcp
   password: 253bc477d4e43c209f2d427272968280
   port: 4801
@@ -998,8 +1099,7 @@ proxies:
   skip-cert-verify: true
   sni: 23.45.86.28
   type: trojan
-- latency: 280.1320552825928
-  name: 美国4|@ripaojiedian
+- name: 美国4|@ripaojiedian
   network: tcp
   password: 253bc477d4e43c209f2d427272968280
   port: 4317
@@ -1027,7 +1127,20 @@ proxies:
   tls: false
   type: vmess
   uuid: 8a9150bc-b9c8-40ac-be83-aaec45176a81
-- name: CR_speednode_0005
+- name: CH_speednode_0001
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 185.18.250.195
+  skip-cert-verify: false
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: /Telegram🇨🇳
+- name: CR_speednode_0008
   network: ws
   password: slch2024
   port: 2096
@@ -1040,7 +1153,20 @@ proxies:
     headers:
       Host: ocost-dy.wmlefl.cc
     path: /Telegram🇨🇳
-- name: RU_speednode_0011
+- name: ES_speednode_0012
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 185.238.228.195
+  skip-cert-verify: false
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: /Telegram🇨🇳
+- name: RU_speednode_0022
   network: ws
   password: slch2024
   port: 2096
@@ -1053,8 +1179,8 @@ proxies:
     headers:
       Host: ocost-dy.wmlefl.cc
     path: /Telegram🇨🇳
-- latency: 1.5108585357666016
-  name: US_speednode_0049
+- latency: 8.879423141479492
+  name: US_speednode_0029
   network: ws
   password: slch2024
   port: 2096
@@ -1067,37 +1193,119 @@ proxies:
     headers:
       Host: ocost-dy.wmlefl.cc
     path: /Telegram🇨🇳
-- cipher: aes-128-gcm
-  name: CN_speednode_0001
-  password: 01721e43-5389-4f97-b21c-900abb2bda9e
-  port: 12030
-  server: awes35lesl.blhao0o.dpdns.org
+- latency: 283.28609466552734
+  name: US_speednode_0031
+  network: ws
+  password: 318cab24-ec99-40a6-a54a-0db9c661a3d0
+  port: 443
+  server: aio.proxybox.dpdns.org
+  skip-cert-verify: false
+  sni: aio.proxybox.dpdns.org
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: aio.proxybox.dpdns.org
+    path: /188.34.160.97-2053
+- alterId: 2
+  cipher: auto
+  name: CN_speednode_0002
+  network: ws
+  port: 30806
+  server: v6.heduian.link
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
+  ws-opts:
+    headers:
+      Host: ocbc.com
+    path: /oooo
+- alterId: 2
+  cipher: auto
+  name: CN_speednode_0003
+  network: ws
+  port: 30808
+  server: v8.heduian.link
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
+  ws-opts:
+    headers:
+      Host: baidu.com
+    path: /oooo
+- alterId: 2
+  cipher: auto
+  name: CN_speednode_0004
+  network: ws
+  port: 30805
+  server: v5.heduian.link
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
+  ws-opts:
+    headers:
+      Host: ocbc.com
+    path: /oooo
+- cipher: chacha20-ietf-poly1305
+  name: CN_speednode_0006
+  password: D8FCC5C0-4AB6-4978-BAC7-55B31D67D76E
+  port: 31101
+  server: freed.themars.top
   type: ss
   udp: true
 - cipher: chacha20-ietf-poly1305
-  name: CN_speednode_0002
-  password: Sur5Ny74npD3
+  name: CN_speednode_0007
+  password: D8FCC5C0-4AB6-4978-BAC7-55B31D67D76E
+  port: 31102
+  server: freed.themars.top
+  type: ss
+  udp: true
+- cipher: aes-256-cfb
+  name: DE_speednode_0009
+  password: amazonskr05
   port: 443
-  server: 185.242.247.249
+  server: 18.196.64.123
   type: ss
   udp: true
-- cipher: 2022-blake3-aes-256-gcm
-  name: CN_speednode_0003
-  password: mtMkp+1FttkSLmDOF9blnNMLigcCRacprQS3ry0nf3o=:JB1ueTCKNIGMbhzWNjs+0FnZjZXO3UyXcZhIJ28vifA=
-  port: 4059
-  server: pop.ultra.6341.0tk8a3a1q4t94dler.com
-  type: ss
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: DE_speednode_0010
+  port: 443
+  reality-opts:
+    public-key: BhTJ3phnq-Z-10aFKSsj1lzhA8mULR4L6leE4-0WTAs
+  server: deu246.bypassall.org
+  servername: www.bing.com
+  skip-cert-verify: false
+  tls: true
+  type: vless
   udp: true
-- cipher: 2022-blake3-aes-256-gcm
-  name: CN_speednode_0004
-  password: mtMkp+1FttkSLmDOF9blnNMLigcCRacprQS3ry0nf3o=:JB1ueTCKNIGMbhzWNjs+0FnZjZXO3UyXcZhIJ28vifA=
-  port: 7059
-  server: pop.plus.3123.0tk8a3a1q4t94dler.com
-  type: ss
+  uuid: b4b8aa1f-77d2-4851-a5a4-f78886f3e997
+- http-opts:
+    headers:
+      Host:
+      - speedtest.net
+    method: GET
+    path:
+    - /
+  name: DE_speednode_0011
+  network: http
+  port: 8444
+  server: fina.iranbuildings.com
+  servername: speedtest.net
+  skip-cert-verify: false
+  tls: false
+  type: vless
   udp: true
+  uuid: ac083fa9-df9a-4722-b70d-24c17bef0516
 - alterId: 0
   cipher: auto
-  name: GB_speednode_0006
+  name: GB_speednode_0013
   port: 47535
   server: 31.56.204.125
   skip-cert-verify: false
@@ -1106,7 +1314,7 @@ proxies:
   udp: true
   uuid: bd31942b-9b80-4f70-893a-c75604228b84
 - client-fingerprint: chrome
-  name: GB_speednode_0007
+  name: GB_speednode_0014
   port: 34045
   reality-opts:
     public-key: cDaDzPr3PlS3NM8lreHZbdo-Mhqz8vMBzMSkHXhGIUA
@@ -1120,7 +1328,56 @@ proxies:
   uuid: d8dd94fd-540e-461d-b5d4-acebef02c22a
 - alterId: 0
   cipher: auto
-  name: JP_speednode_0009
+  http-opts:
+    method: GET
+    path:
+    - /
+  name: HK_speednode_0015
+  network: http
+  port: 30397
+  server: 43.247.135.17
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: 7364bf26-0eb6-40cc-b7e6-fb1a4b6bf69c
+- name: IR_speednode_0017
+  port: 8443
+  server: cdn28.saloonak.ir
+  skip-cert-verify: false
+  tls: false
+  type: vless
+  udp: true
+  uuid: 789d4f30-c31b-4762-8116-ed42574d5e85
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: IR_speednode_0018
+  port: 44443
+  reality-opts:
+    public-key: XHjKkrNBYXOaamOx8IUCrwX0zp5dAQRVErHiQ5bwAEQ
+  server: 193.151.135.21
+  servername: www.speedtest.net
+  skip-cert-verify: false
+  tls: true
+  type: vless
+  udp: true
+  uuid: 53fff6cc-b4ec-43e8-ade5-e0c42972fc33
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: IR_speednode_0019
+  port: 44443
+  reality-opts:
+    public-key: XHjKkrNBYXOaamOx8IUCrwX0zp5dAQRVErHiQ5bwAEQ
+  server: hybrid.arvancloud.online
+  servername: www.speedtest.net
+  skip-cert-verify: false
+  tls: true
+  type: vless
+  udp: true
+  uuid: 53fff6cc-b4ec-43e8-ade5-e0c42972fc33
+- alterId: 0
+  cipher: auto
+  name: JP_speednode_0020
   port: 50414
   server: 103.13.19.254
   skip-cert-verify: false
@@ -1128,317 +1385,168 @@ proxies:
   type: vmess
   udp: true
   uuid: aacec49a-c6eb-43a0-b14a-e3b4302e5f1a
-- cipher: aes-256-gcm
-  name: JP_speednode_0010
-  password: McRu2JvKif
-  port: 38001
-  server: jphj-hk-500m-100g.ifuck.gay
+- cipher: aes-256-cfb
+  name: MD_speednode_0021
+  password: f8f7aCzcPKbsF8p3
+  port: 989
+  server: 185.153.197.5
+  type: ss
+  udp: true
+- cipher: chacha20-ietf-poly1305
+  name: TR_speednode_0023
+  password: NbQNqngaIwS7
+  port: 443
+  server: 83.217.9.101
   type: ss
   udp: true
 - client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: RU_speednode_0012
+  latency: 9.263038635253906
+  name: US_speednode_0025
+  network: ws
   port: 443
-  reality-opts:
-    public-key: J_jQq9-SWQZjiMhuPaFV7V2MaJ4pkKgVRaz7x6tmvy8
-    short-id: 16895459a2c7768d
-  server: wa.sfasti.ru
-  servername: wa.sfasti.ru
+  server: 104.21.48.1
+  servername: s1-c3r.pages.dev
   skip-cert-verify: false
   tls: true
   type: vless
   udp: true
-  uuid: d4e4c02a-d969-47a6-ba0f-3d433fdac206
-- cipher: chacha20-ietf
-  name: SC_speednode_0013
-  password: asd123456
-  port: 8388
-  server: 154.197.26.237
-  type: ss
-  udp: true
-- name: SE_speednode_0014
-  network: ws
-  port: 2052
-  server: 185.146.173.39
-  servername: michalde.lemoex.ir
-  skip-cert-verify: false
-  tls: false
-  type: vless
-  udp: true
-  uuid: 2d14c894-aca5-4854-bcdb-75d4505486c2
+  uuid: e5c2e234-333e-48b4-8199-2793a64527bc
   ws-opts:
     headers:
-      Host: michalde.lemoex.ir
-    path: /wsmmad
+      Host: s1-c3r.pages.dev
+    path: /
 - client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: SE_speednode_0015
+  latency: 304.72731590270996
+  name: US_speednode_0026
+  network: ws
   port: 443
-  reality-opts:
-    public-key: -P9ZxYZP76-s_0mXFUDZeXxgUllKI1zkxSCqQca3NBM
-    short-id: 8f36094fbbe8e92e
-  server: james2.evovpn.ru
-  servername: speedtest.net
+  server: aio.xtradata.dpdns.org
+  servername: aio.xtradata.dpdns.org
   skip-cert-verify: false
   tls: true
   type: vless
   udp: true
-  uuid: d7b157a3-c463-4bd6-909b-64bfbaa379bb
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0016
-  password: 02150e6a-2a32-4028-89b7-a203cb56ad89
-  port: 10047
-  server: 114.33.53.80
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0017
-  password: 1cdb8dcd-36be-4d54-ae30-7c88b3f04e18
-  port: 10141
-  server: 111.253.197.201
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0018
-  password: 60df4359-5fe2-4df7-8751-c97ff6a52668
-  port: 10075
-  server: 114.46.83.122
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0019
-  password: 5aeb7d55-60fc-479d-a35d-f24e3d757f8c
-  port: 10020
-  server: 118.170.217.180
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0020
-  password: f1ad222f-b304-40a8-aeab-24a810371ea9
-  port: 10148
-  server: 111.253.199.25
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0021
-  password: 9cd50d98-7e20-4b5f-8c1c-23a81de7a541
-  port: 10089
-  server: 125.228.180.215
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0022
-  password: 7182ca82-f580-4e2e-9e9a-22b1c3fdfafb
-  port: 10140
-  server: 36.232.127.162
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0023
-  password: 7fc173fa-fbad-4cf1-94d3-3c7fe576a1ce
-  port: 10070
-  server: 114.46.79.69
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0024
-  password: e73c8f9f-d53e-4f34-9237-2212ccc12d63
-  port: 10025
-  server: 118.170.220.47
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0025
-  password: 60f661f4-579c-45c9-8156-e0db88911dc6
-  port: 10080
-  server: 125.231.85.152
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0026
-  password: 5b60ce4f-e6f1-4db8-a8a3-6778e7f3ef53
-  port: 10025
-  server: 118.170.220.47
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0027
-  password: 04066376-d974-4ba0-a76f-20f8aeecd05b
-  port: 10075
-  server: 114.46.83.122
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0028
-  password: 7182ca82-f580-4e2e-9e9a-22b1c3fdfafb
-  port: 10075
-  server: 114.46.83.122
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0030
-  password: 5f1cdb54-70ee-4f52-a8d3-db5bf6f2729c
-  port: 10066
-  server: 59.126.32.59
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0031
-  password: 95911f0e-ca9e-4570-89a3-2622ac71ada0
-  port: 10141
-  server: 111.253.197.201
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0032
-  password: 04066376-d974-4ba0-a76f-20f8aeecd05b
-  port: 10140
-  server: 36.232.127.162
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0033
-  password: 5b60ce4f-e6f1-4db8-a8a3-6778e7f3ef53
-  port: 10005
-  server: 118.170.211.35
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0034
-  password: 7182ca82-f580-4e2e-9e9a-22b1c3fdfafb
-  port: 10025
-  server: 118.170.220.47
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0035
-  password: 60df4359-5fe2-4df7-8751-c97ff6a52668
-  port: 10005
-  server: 118.170.211.35
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0036
-  password: 9cd50d98-7e20-4b5f-8c1c-23a81de7a541
-  port: 10047
-  server: 114.33.53.80
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0037
-  password: 7fc173fa-fbad-4cf1-94d3-3c7fe576a1ce
-  port: 10147
-  server: 36.232.126.210
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0038
-  password: 5f1cdb54-70ee-4f52-a8d3-db5bf6f2729c
-  port: 10047
-  server: 114.33.53.80
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0039
-  password: 5b60ce4f-e6f1-4db8-a8a3-6778e7f3ef53
-  port: 10027
-  server: 118.170.208.202
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0040
-  password: 04066376-d974-4ba0-a76f-20f8aeecd05b
-  port: 10126
-  server: 111.253.200.231
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0041
-  password: f1ad222f-b304-40a8-aeab-24a810371ea9
-  port: 10080
-  server: 125.231.85.152
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: TW_speednode_0042
-  password: 02150e6a-2a32-4028-89b7-a203cb56ad89
-  port: 10126
-  server: 111.253.200.231
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  latency: 8.057117462158203
-  name: US_speednode_0043
-  password: t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv
-  plugin: obfs
-  plugin-opts:
-    host: (TG @WangCai2)4fa101a:48723
-    mode: tls
-    tls: false
-  port: 2377
-  server: 95.174.71.28
-  type: ss
-  udp: true
-- alterId: 0
-  cipher: auto
-  http-opts:
-    method: GET
-    path:
-    - /
-  latency: 8.996009826660156
-  name: US_speednode_0044
-  network: http
-  port: 25740
-  server: 192.3.216.180
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 43cf14a5-5b85-47e2-a4c2-b514beab7054
-- alterId: 0
-  cipher: auto
-  name: US_speednode_0045
-  port: 40083
-  server: 66.253.5.58
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 19003217-0407-43d5-bf22-9aa642469a83
-- alterId: 0
-  cipher: auto
-  name: US_speednode_0047
-  port: 42940
-  server: 64.81.24.59
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  udp: true
-  uuid: f68d852e-cef3-4baf-f4ce-b98c88197bde
-- latency: 1.7054080963134766
-  name: US_speednode_0052
+  uuid: f282b878-8711-45a1-8c69-5564172123c1
+  ws-opts:
+    headers:
+      Host: aio.xtradata.dpdns.org
+    path: /aioproxybot/129.150.49.58-18650
+- latency: 136.80553436279297
+  name: US_speednode_0027
   network: ws
   port: 80
-  server: 63.141.128.23
-  servername: b.jOin.zEdMoDeOn.oNl.
+  server: tgju.org
+  servername: SeRvER02.VtNEt.InFO
   skip-cert-verify: false
   tls: false
   type: vless
   udp: true
-  uuid: d59d49d3-a392-403a-8480-59934008431d
+  uuid: 2b277eea-66b2-4f3a-b934-46225c1f5e6f
   ws-opts:
     headers:
-      Host: b.jOin.zEdMoDeOn.oNl.
-    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
+      Host: SeRvER02.VtNEt.InFO
+    path: /
+- client-fingerprint: chrome
+  latency: 8.694648742675781
+  name: US_speednode_0030
+  network: ws
+  port: 443
+  server: 104.21.28.82
+  servername: backhaxus.dh04.shop
+  skip-cert-verify: false
+  tls: true
+  type: vless
+  udp: true
+  uuid: 71504eaf-29ac-4190-89d1-dd9ce2c9ee14
+  ws-opts:
+    headers:
+      Host: backhaxus.dh04.shop
+    path: /
+- latency: 8.631229400634766
+  name: US_speednode_0032
+  network: ws
+  port: 80
+  server: 63.141.128.14
+  servername: a.joIn.zEdMoDeOn.oNl.
+  skip-cert-verify: false
+  tls: false
+  type: vless
+  udp: true
+  uuid: 18494a96-f6a7-425d-ae82-dc00c4f3f819
+  ws-opts:
+    headers:
+      Host: a.joIn.zEdMoDeOn.oNl.
+    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
+- latency: 9.852409362792969
+  name: US_speednode_0033
+  network: ws
+  port: 8080
+  server: 63.141.128.28
+  servername: f.jOin.zEdMoDeOn.oNl.
+  skip-cert-verify: false
+  tls: false
+  type: vless
+  udp: true
+  uuid: 49e77ea9-62bd-44c4-8a52-0d7569c305c5
+  ws-opts:
+    headers:
+      Host: f.jOin.zEdMoDeOn.oNl.
+    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
+- latency: 8.862733840942383
+  name: US_speednode_0034
+  network: ws
+  port: 8080
+  server: 63.141.128.16
+  servername: e.jOin.zEdMoDeOn.oNl.
+  skip-cert-verify: false
+  tls: false
+  type: vless
+  udp: true
+  uuid: a82def0b-92c5-450b-9fca-7f1b7f932e8e
+  ws-opts:
+    headers:
+      Host: e.jOin.zEdMoDeOn.oNl.
+    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
+- latency: 8.52823257446289
+  name: US_speednode_0036
+  network: ws
+  port: 80
+  server: 63.141.128.13
+  servername: c.jOin.zEdMoDeOn.oNl.
+  skip-cert-verify: false
+  tls: false
+  type: vless
+  udp: true
+  uuid: fdf5ef4d-bf23-4bd1-b04e-39c80ba0c577
+  ws-opts:
+    headers:
+      Host: c.jOin.zEdMoDeOn.oNl.
+    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
+- latency: 8.774995803833008
+  name: US_speednode_0037
+  network: ws
+  packet-encoding: xudp
+  port: 2082
+  server: 159.112.235.174
+  servername: workerr.schodog1.workers.dev
+  skip-cert-verify: false
+  tls: false
+  type: vless
+  udp: true
+  uuid: 47e9a0db-50c6-4522-8819-502c55b06dde
+  ws-opts:
+    headers:
+      Host: workerr.schodog1.workers.dev
+    path: /?ed=2048
 - cipher: aes-256-cfb
-  name: VN_speednode_0054
+  name: VN_speednode_0038
   password: Xn8jKdmDM00IeO%#$#fJAMtsEAEUOpH/YWYtYqDFnT0SV
   port: 38388
-  server: 103.186.154.19
+  server: 103.186.154.24
   type: ss
   udp: true
 - cipher: aes-256-cfb
-  name: VN_speednode_0055
+  name: VN_speednode_0039
   password: Xn8jKdmDM00IeO%#$#fJAMtsEAEUOpH/YWYtYqDFnT0SV
   port: 38388
   server: 103.186.154.37
@@ -1631,7 +1739,7 @@ proxies:
     headers:
       host: bitget1.asdasd.click
     path: /Telegram🇨🇳
-- latency: 1.741647720336914
+- latency: 8.567333221435547
   name: 🇺🇸US_13 | ⬇️ 1.2MB/s
   network: ws
   port: 8880
@@ -1724,7 +1832,7 @@ proxies:
     headers:
       host: ip.langmanshanxi.top
     path: /Telegram🇨🇳
-- latency: 1.5876293182373047
+- latency: 8.668899536132812
   name: 🇺🇸US_47 | ⬇️ 1.2MB/s
   network: ws
   port: 8880
@@ -1763,7 +1871,7 @@ proxies:
     headers:
       host: jp.laoyoutiao.link
     path: /
-- latency: 1.4615058898925781
+- latency: 8.641719818115234
   name: 🇺🇸US_11 | ⬇️ 2.9MB/s
   network: ws
   port: 8880
@@ -1777,7 +1885,7 @@ proxies:
     headers:
       host: us.laoyoutiao.link
     path: /TelegramU0001F1E8U0001F1F3 @MxlShare @WangCai2 /?ed=2560
-- latency: 1.5871524810791016
+- latency: 8.578300476074219
   name: 🇺🇸US_29 | ⬇️ 1.4MB/s
   network: ws
   port: 8880
@@ -1830,7 +1938,7 @@ proxies:
     headers:
       host: ex.sue.x10.mx
     path: /Telegram
-- latency: 1.9290447235107422
+- latency: 8.960723876953125
   name: 🇺🇸US_45 | ⬇️ 1.3MB/s
   network: ws
   port: 8880
@@ -1843,7 +1951,7 @@ proxies:
     headers:
       host: cf.d3z.net
     path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- latency: 1.7745494842529297
+- latency: 8.481025695800781
   name: 🇺🇸US_50 | ⬇️ 1.2MB/s
   network: ws
   port: 8880
@@ -1868,7 +1976,7 @@ proxies:
     headers:
       host: hk.laoyoutiao.link
     path: /
-- latency: 1.7538070678710938
+- latency: 8.927106857299805
   name: 🇺🇸US_75 | ⬇️ 2.1MB/s
   network: ws
   port: 8880
@@ -2078,7 +2186,7 @@ proxies:
     headers:
       host: kjgx.laoyoutiao.link
     path: /Telegram@WangCai2/?ed=2560
-- latency: 1.859426498413086
+- latency: 9.896039962768555
   name: 🇺🇸US_44 | ⬇️ 1.7MB/s
   network: ws
   port: 8880
@@ -2131,7 +2239,7 @@ proxies:
       host: hk.laoyoutiao.link
     path: /TelegramU0001F1E8U0001F1F3
 - client-fingerprint: randomized
-  latency: 1.5189647674560547
+  latency: 9.529829025268555
   name: 🇺🇸US_82 | ⬇️ 1.0MB/s
   network: ws
   port: 8443
@@ -2146,7 +2254,7 @@ proxies:
     headers:
       host: gghdfa.pages.dev
     path: /Tel-@V2ray_Alpha/?ed=2560
-- latency: 2.1271705627441406
+- latency: 8.799552917480469
   name: 🇺🇸US_61 | ⬇️ 2.2MB/s
   network: ws
   port: 8880
@@ -2202,7 +2310,7 @@ proxies:
     headers:
       host: nEwMTPROxI.PAGes.DEv
     path: /
-- latency: 1.6150474548339844
+- latency: 8.834123611450195
   name: 🇺🇸US_43 | ⬇️ 2.3MB/s
   network: ws
   port: 8880
@@ -2271,7 +2379,7 @@ proxies:
     headers:
       host: sg.laoyoutiao.link
     path: /Telegram@WangCai2/?ed=2048
-- latency: 2.1257400512695312
+- latency: 9.572982788085938
   name: 🇺🇸US_80 | ⬇️ 2.3MB/s
   network: ws
   port: 8880
@@ -2337,7 +2445,7 @@ proxies:
       host: ip.langmanshanxi.top
     path: /Telegram🇨🇳 @WangCai2 /?ed=2560
 - client-fingerprint: chrome
-  latency: 1.3148784637451172
+  latency: 8.568048477172852
   name: 🇺🇸US_60 | ⬇️ 1.8MB/s
   network: ws
   port: 443
@@ -2352,7 +2460,7 @@ proxies:
     headers:
       host: barayeiranmahsang.ghormehsabzi.dpdns.org
     path: /@warp_city
-- latency: 1.9588470458984375
+- latency: 8.605003356933594
   name: 🇺🇸US_74 | ⬇️ 3.0MB/s
   network: ws
   port: 8880
@@ -2499,7 +2607,7 @@ proxies:
     headers:
       host: faruzan.changli.ddns-ip.net
     path: /Tel-@V2ray_Alpha
-- latency: 1.6803741455078125
+- latency: 8.71896743774414
   name: 🇺🇸US_64 | ⬇️ 2.2MB/s
   network: ws
   port: 8880
@@ -2580,7 +2688,7 @@ proxies:
       host: nuclear.us.kg
     path: /free/1.226.227.169:50001
 - client-fingerprint: chrome
-  latency: 2.225637435913086
+  latency: 8.623361587524414
   name: 🇺🇸US_34 | ⬇️ 1.3MB/s
   network: ws
   port: 443
@@ -2682,7 +2790,7 @@ proxies:
       host: kjgx.laoyoutiao.link
     path: /Telegram🇨🇳 @WangCai2 /?ed=2560
 - client-fingerprint: chrome
-  latency: 8.96453857421875
+  latency: 8.815288543701172
   name: 🇺🇸US_36 | ⬇️ 1.1MB/s
   network: ws
   port: 443
@@ -2713,7 +2821,7 @@ proxies:
       host: XLZ767V2RAy.PAGES.dEv
     path: /t3fgslbvys9sp8zt?ed=2560
 - client-fingerprint: randomized
-  latency: 3.2722949981689453
+  latency: 9.102582931518555
   name: 🇺🇸US_81 | ⬇️ 1.3MB/s
   network: ws
   port: 8443
@@ -2745,7 +2853,7 @@ proxies:
     headers:
       host: configmr.pages.dev
     path: /--JoiN--@FREEV2RNG--Bia--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG?ed=2560
-- latency: 1.73187255859375
+- latency: 8.890628814697266
   name: 🇺🇸US_52 | ⬇️ 1.1MB/s
   network: ws
   port: 8880
@@ -2774,7 +2882,7 @@ proxies:
     headers:
       host: Xlz767V2Ray.PAGEs.DEv
     path: /bethzrzkz5ljs32v?ed=2560
-- latency: 2.3963451385498047
+- latency: 9.611845016479492
   name: 🇺🇸US_46 | ⬇️ 1.7MB/s
   network: ws
   port: 8880
@@ -2788,7 +2896,7 @@ proxies:
       host: cf.d3z.net
     path: /
 - client-fingerprint: chrome
-  latency: 1.4770030975341797
+  latency: 17.297744750976562
   name: 🇺🇸US_21 | ⬇️ 1.9MB/s
   network: ws
   port: 443
@@ -2824,7 +2932,7 @@ proxies:
     headers:
       host: sg.laoyoutiao.link
     path: /
-- latency: 1.583099365234375
+- latency: 8.95833969116211
   name: 🇺🇸US_72 | ⬇️ 1.8MB/s
   network: ws
   port: 8880
@@ -2880,7 +2988,7 @@ proxies:
       host: zoomgov.vipren.biz.id
     path: /15.235.199.103=8443
 - client-fingerprint: random
-  latency: 1.8877983093261719
+  latency: 9.18722152709961
   name: 🇺🇸US_41 | ⬇️ 1.2MB/s
   network: ws
   port: 443
@@ -2907,7 +3015,7 @@ proxies:
     headers:
       host: dl1-fi-cdn.easy-upload.org
     path: /
-- latency: 1.817464828491211
+- latency: 8.662223815917969
   name: 🇺🇸US_51 | ⬇️ 1.2MB/s
   network: ws
   port: 8880
@@ -2921,7 +3029,7 @@ proxies:
     headers:
       host: bitget1.asdasd.click
     path: /Telegram🇨🇳
-- latency: 2.366304397583008
+- latency: 9.709596633911133
   name: 🇺🇸US_42 | ⬇️ 1.5MB/s
   network: ws
   port: 8880
@@ -2949,21 +3057,6 @@ proxies:
       host: ex.sue.x10.mx
     path: /Telegram🇨🇳
 - client-fingerprint: chrome
-  name: 🇸🇬SG_7 | ⬇️ 1.4MB/s
-  network: ws
-  port: 443
-  server: aio.xtradata.dpdns.org
-  servername: aio.xtradata.dpdns.org
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: f282b878-8711-45a1-8c69-5564172123c1
-  ws-opts:
-    headers:
-      host: aio.xtradata.dpdns.org
-    path: /aioproxybot/129.150.49.58-18650
-- client-fingerprint: chrome
   flow: xtls-rprx-vision
   name: 🇨🇦CA_2 | ⬇️ 1.5MB/s
   network: tcp
@@ -2980,7 +3073,7 @@ proxies:
 - alpn:
   - h3,h2,http/1.1
   client-fingerprint: chrome
-  latency: 17.145633697509766
+  latency: 47.68109321594238
   name: 🇺🇸US_55 | ⬇️ 2.3MB/s
   network: ws
   port: 2053
@@ -3011,7 +3104,7 @@ proxies:
 - alpn:
   - http/1.1
   client-fingerprint: chrome
-  latency: 11.979818344116211
+  latency: 31.141281127929688
   name: 🇺🇸US_5 | ⬇️ 3.0MB/s
   network: ws
   password: f69b7304-9bea-4740-a555-797514012a53
@@ -3023,7 +3116,7 @@ proxies:
   udp: true
   ws-opts:
     path: /MxtuuhyCwC29auSeckWI9
-- latency: 1.878976821899414
+- latency: 8.655071258544922
   name: 🇺🇸US_39 | ⬇️ 1.9MB/s
   network: ws
   port: 8880
@@ -3040,7 +3133,7 @@ proxies:
 - alpn:
   - http/1.1
   client-fingerprint: chrome
-  latency: 9.35220718383789
+  latency: 9.54437255859375
   name: 🇺🇸US_3 | ⬇️ 1.8MB/s
   network: ws
   password: fa050497-fc2a-45ee-89c0-96670c4ecb65
@@ -3065,7 +3158,7 @@ proxies:
     headers:
       host: kjgx.laoyoutiao.link
     path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- latency: 1.4352798461914062
+- latency: 8.71586799621582
   name: 🇺🇸US_84 | ⬇️ 1.1MB/s
   network: ws
   port: 8880
@@ -3111,7 +3204,7 @@ proxies:
 - alpn:
   - http/1.1
   client-fingerprint: chrome
-  latency: 9.180068969726562
+  latency: 9.340047836303711
   name: 🇺🇸US_24 | ⬇️ 1.2MB/s
   network: ws
   port: 443
@@ -3176,7 +3269,7 @@ proxies:
       host: rayan-07.leila.dpdns.org
     path: /@Rayan_Config
 - client-fingerprint: chrome
-  latency: 9.309768676757812
+  latency: 9.23609733581543
   name: 🇺🇸US_25 | ⬇️ 3.0MB/s
   network: ws
   port: 443
@@ -3219,7 +3312,7 @@ proxies:
 - alpn:
   - http/1.1
   client-fingerprint: chrome
-  latency: 1.4111995697021484
+  latency: 9.434700012207031
   name: 🇺🇸US_4 | ⬇️ 1.2MB/s
   network: ws
   password: e4cbe8b8-37db-4aaa-8469-b84f34c51ebc
@@ -3266,7 +3359,7 @@ proxies:
 - alpn:
   - http/1.1
   client-fingerprint: chrome
-  latency: 8.804559707641602
+  latency: 9.374618530273438
   name: 🇺🇸US_68 | ⬇️ 1.0MB/s
   network: ws
   port: 443
@@ -3284,7 +3377,7 @@ proxies:
 - alpn:
   - http/1.1
   client-fingerprint: chrome
-  latency: 2.6535987854003906
+  latency: 9.870767593383789
   name: 🇺🇸US_33 | ⬇️ 2.1MB/s
   network: ws
   port: 443
@@ -3315,7 +3408,7 @@ proxies:
 - alpn:
   - http/1.1
   client-fingerprint: chrome
-  latency: 1.3995170593261719
+  latency: 8.927583694458008
   name: 🇺🇸US_37 | ⬇️ 1.2MB/s
   network: ws
   port: 443
@@ -3345,7 +3438,7 @@ proxies:
   type: vless
   udp: true
   uuid: 0e8a6896-ad90-4a3b-89a3-77d64aa409e2
-- latency: 1.8777847290039062
+- latency: 8.645057678222656
   name: 🇺🇸US_73 | ⬇️ 2.1MB/s
   network: ws
   port: 8880
@@ -3358,7 +3451,7 @@ proxies:
     headers:
       host: yd.laoyoutiao.link
     path: /
-- latency: 2.039670944213867
+- latency: 8.585929870605469
   name: 🇺🇸US_8 | ⬇️ 1.3MB/s
   network: ws
   port: 8880
@@ -3372,7 +3465,7 @@ proxies:
       host: us.laoyoutiao.link
     path: /Telegram🇨🇳 @MxlShare @WangCai2 /?ed=2560
 - client-fingerprint: chrome
-  latency: 2.0928382873535156
+  latency: 9.068965911865234
   name: 🇺🇸US_22 | ⬇️ 1.3MB/s
   network: ws
   port: 443
@@ -3388,7 +3481,7 @@ proxies:
       host: f1.parsa.filegear-sg.me
     path: /?ed=2560
 - client-fingerprint: chrome
-  latency: 144.81520652770996
+  latency: 9.240150451660156
   name: 🇺🇸US_65 | ⬇️ 1.2MB/s
   network: ws
   password: 9c67ebbe-d620-4b6d-ad82-1ebc675e22c6
@@ -3524,7 +3617,7 @@ proxies:
   - h2
   client-fingerprint: chrome
   grpc-opts: {}
-  latency: 9.552955627441406
+  latency: 8.89277458190918
   name: 🇺🇸US_83 | ⬇️ 1.2MB/s
   network: grpc
   port: 443
@@ -3576,7 +3669,7 @@ proxies:
 - alpn:
   - http/1.1
   client-fingerprint: chrome
-  latency: 9.164094924926758
+  latency: 9.956121444702148
   name: 🇺🇸US_66 | ⬇️ 2.3MB/s
   network: ws
   port: 443
@@ -3616,7 +3709,7 @@ proxies:
     headers:
       host: jp.laoyoutiao.link
     path: /
-- latency: 1.668691635131836
+- latency: 8.307933807373047
   name: 🇺🇸US_76 | ⬇️ 1.1MB/s
   network: ws
   port: 8880
@@ -3694,7 +3787,7 @@ proxies:
     headers:
       host: us.laoyoutiao.link
     path: /
-- latency: 1.7578601837158203
+- latency: 11.020183563232422
   name: 🇺🇸US_40 | ⬇️ 1.9MB/s
   network: ws
   port: 8880
@@ -3751,7 +3844,7 @@ proxies:
     headers:
       host: ip.langmanshanxi.top
     path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- latency: 1.6796588897705078
+- latency: 9.602546691894531
   name: 🇺🇸US_77 | ⬇️ 2.6MB/s
   network: ws
   port: 8880
@@ -3764,7 +3857,7 @@ proxies:
     headers:
       host: cf.d3z.net
     path: /
-- latency: 1.5385150909423828
+- latency: 9.254693984985352
   name: 🇺🇸US_17 | ⬇️ 1.6MB/s
   network: ws
   port: 8880
@@ -3903,7 +3996,7 @@ proxies:
 - alpn:
   - http/1.1
   client-fingerprint: chrome
-  latency: 9.233474731445312
+  latency: 8.937597274780273
   name: 🇺🇸US_23 | ⬇️ 1.6MB/s
   network: ws
   port: 443
@@ -3957,7 +4050,7 @@ proxies:
     headers:
       host: ex.sue.x10.mx
     path: /Telegram🇨🇳
-- latency: 1.542806625366211
+- latency: 8.642435073852539
   name: 🇺🇸US_48 | ⬇️ 1.5MB/s
   network: ws
   port: 8880
@@ -3997,7 +4090,7 @@ proxies:
   type: ss
 - alpn:
   - http/1.1
-  latency: 267.50898361206055
+  latency: 218.37902069091797
   name: 🇷🇺_RU_俄罗斯->🇺🇸_US_美国
   network: tcp
   password: tunnel-astrovpn_official-tr
@@ -4072,7 +4165,7 @@ proxies:
     path: /oooo
 - alterId: 0
   cipher: auto
-  latency: 139.89901542663574
+  latency: 9.645223617553711
   name: 🇩🇰_DK_丹麦->🇺🇸_US_美国
   network: ws
   port: 80
@@ -4094,6 +4187,30 @@ proxies:
   tls: false
   type: vmess
   uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+- cipher: chacha20-ietf-poly1305
+  delay: 908
+  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 10
+  password: 60f661f4-579c-45c9-8156-e0db88911dc6
+  port: 10080
+  server: 125.231.85.152
+  type: ss
+  udp: true
+- cipher: chacha20-ietf-poly1305
+  delay: 1697
+  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 11
+  password: c6081e42-2dac-4ca0-ab51-176be0f479e7
+  port: 10070
+  server: 114.46.79.69
+  type: ss
+  udp: true
+- cipher: chacha20-ietf-poly1305
+  delay: 1682
+  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 12
+  password: 7fc173fa-fbad-4cf1-94d3-3c7fe576a1ce
+  port: 10147
+  server: 36.232.126.210
+  type: ss
+  udp: true
 - cipher: chacha20-ietf-poly1305
   delay: 409
   name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 13
@@ -4138,6 +4255,14 @@ proxies:
   port: 2377
   server: 3ce8ee8.b5.gladns.com
   type: ss
+- cipher: chacha20-ietf-poly1305
+  delay: 1685
+  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 9
+  password: 7fc173fa-fbad-4cf1-94d3-3c7fe576a1ce
+  port: 10070
+  server: 114.46.79.69
+  type: ss
+  udp: true
 - alterId: 0
   cipher: auto
   country: 🇨🇳 CN
@@ -4182,28 +4307,12 @@ proxies:
   type: vmess
   udp: true
   uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-- delay: 1833
-  name: 俄罗斯 - 莫斯科 - Citytelecom LLC - 1
-  password: ee4a8f20-5467-4f12-bd87-ff21b7ba817c
-  port: 16187
-  server: 95.181.212.141
-  skip-cert-verify: true
-  tfo: false
-  type: hysteria2
 - cipher: chacha20-ietf-poly1305
   delay: 2076
   name: 土耳其 - 伊斯坦布尔 - Global Connectivity Solutions LLP - 1
   password: qscavF5UviIL-8V-E4raBA
   port: 2222
   server: 62.133.63.226
-  type: ss
-- cipher: aes-256-cfb
-  country: 🇩🇪DE
-  delay: 689
-  name: 德国 - Frankfurt am Main - Amazon Technologies Inc. - 1
-  password: amazonskr05
-  port: 443
-  server: 18.196.64.123
   type: ss
 - delay: 1481
   name: 新加坡 - 新加坡 - Leaseweb Singapore Pte. Ltd. - 1
@@ -4256,6 +4365,21 @@ proxies:
   uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
   ws-opts:
     path: /
+- alpn:
+  - h3
+  auth-str: dongtaiwang.com
+  auth_str: dongtaiwang.com
+  delay: 1147
+  down: '100'
+  name: 法国 - 巴黎 - Online S.A.S. - 3
+  obfs: ''
+  port: 15010
+  protocol: ''
+  server: 195.154.200.40
+  skip-cert-verify: true
+  sni: apple.com
+  type: hysteria
+  up: '100'
 - auth: dongtaiwang.com
   delay: 1597
   name: 法国 - 巴黎 - SCALEWAY - 1
@@ -4294,6 +4418,17 @@ proxies:
   type: hysteria2
 - alterId: 0
   cipher: auto
+  delay: 835
+  name: 美国 - 洛杉矶 - GTT Communications Inc - 28
+  port: 42940
+  server: 64.81.24.59
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: f68d852e-cef3-4baf-f4ce-b98c88197bde
+- alterId: 0
+  cipher: auto
   delay: 1169
   name: 美国 - 洛杉矶 - GTT Communications Inc - 3
   port: 46611
@@ -4311,8 +4446,19 @@ proxies:
   tls: false
   type: vmess
   uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+- alterId: 0
+  cipher: auto
+  delay: 632
+  name: 美国 - 纽约 - GTT Communications Inc - 2
+  port: 40083
+  server: 66.253.5.58
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: 19003217-0407-43d5-bf22-9aa642469a83
 - delay: 1886
-  latency: 3.631114959716797
+  latency: 8.82411003112793
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 10
   network: ws
   password: slch2024
@@ -4325,7 +4471,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 2100
-  latency: 1.91497802734375
+  latency: 8.818864822387695
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 11
   network: ws
   password: slch2024
@@ -4338,7 +4484,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 2323
-  latency: 2.8612613677978516
+  latency: 8.870840072631836
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 12
   network: ws
   password: slch2024
@@ -4351,7 +4497,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1770
-  latency: 1.8393993377685547
+  latency: 8.528709411621094
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 13
   network: ws
   password: slch2024
@@ -4364,7 +4510,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1943
-  latency: 1.699209213256836
+  latency: 8.645772933959961
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 14
   network: ws
   password: slch2024
@@ -4377,7 +4523,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1713
-  latency: 1.3926029205322266
+  latency: 9.120702743530273
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 15
   network: ws
   password: slch2024
@@ -4390,7 +4536,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1700
-  latency: 39.62540626525879
+  latency: 25.748252868652344
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 16
   network: ws
   password: slch2024
@@ -4403,7 +4549,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1670
-  latency: 39.333343505859375
+  latency: 26.727676391601562
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 17
   network: ws
   password: slch2024
@@ -4416,7 +4562,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 2240
-  latency: 2.1238327026367188
+  latency: 8.707284927368164
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 18
   network: ws
   password: slch2024
@@ -4428,21 +4574,8 @@ proxies:
     headers:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1363
-  latency: 1.8413066864013672
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 19
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 188.42.145.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1932
-  latency: 1.4667510986328125
+  latency: 8.525371551513672
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 20
   network: ws
   password: slch2024
@@ -4455,7 +4588,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1924
-  latency: 1.4865398406982422
+  latency: 9.019613265991211
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 21
   network: ws
   password: slch2024
@@ -4468,7 +4601,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 942
-  latency: 2.4712085723876953
+  latency: 8.897781372070312
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 23
   network: ws
   password: slch2024
@@ -4481,7 +4614,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1004
-  latency: 1.5828609466552734
+  latency: 8.961677551269531
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 24
   network: ws
   password: slch2024
@@ -4494,7 +4627,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1951
-  latency: 1.5265941619873047
+  latency: 9.06229019165039
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 25
   network: ws
   password: slch2024
@@ -4508,7 +4641,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: /Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1956
-  latency: 1.7621517181396484
+  latency: 8.67772102355957
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 26
   network: ws
   password: slch2024
@@ -4521,7 +4654,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 2421
-  latency: 2.5224685668945312
+  latency: 9.011983871459961
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 27
   network: ws
   password: slch2024
@@ -4534,7 +4667,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1636
-  latency: 1.323699951171875
+  latency: 9.030580520629883
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 4
   network: ws
   password: slch2024
@@ -4547,7 +4680,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1726
-  latency: 2.701282501220703
+  latency: 8.639097213745117
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 5
   network: ws
   password: slch2024
@@ -4560,7 +4693,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 2356
-  latency: 2.0563602447509766
+  latency: 8.906364440917969
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 6
   network: ws
   password: slch2024
@@ -4573,7 +4706,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 944
-  latency: 1.8448829650878906
+  latency: 8.907079696655273
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 7
   network: ws
   password: slch2024
@@ -4586,7 +4719,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 1436
-  latency: 2.0170211791992188
+  latency: 8.858442306518555
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 8
   network: ws
   password: slch2024
@@ -4599,7 +4732,7 @@ proxies:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
 - delay: 2580
-  latency: 1.6024112701416016
+  latency: 9.077310562133789
   name: 美国 - 聖荷西 - Cloudflare, Inc. - 9
   network: ws
   password: slch2024
@@ -4611,18 +4744,21 @@ proxies:
     headers:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1403
-  name: 荷兰 - 阿姆斯特丹 - Cloudflare, Inc. - 2
-  network: ws
-  password: 318cab24-ec99-40a6-a54a-0db9c661a3d0
+- cipher: chacha20-ietf-poly1305
+  delay: 1067
+  name: 芬兰 - 赫尔辛基 - Global Connectivity Solutions LLP - 1
+  password: Sur5Ny74npD3
   port: 443
-  server: aio.proxybox.dpdns.org
-  sni: aio.proxybox.dpdns.org
-  type: trojan
-  ws-opts:
-    headers:
-      Host: aio.proxybox.dpdns.org
-    path: /188.34.160.97-2053
+  server: 185.242.247.249
+  type: ss
+- cipher: 2022-blake3-aes-256-gcm
+  delay: 1459
+  name: 英国 - Tower Hamlets - The Constant Company - 2
+  password: mtMkp+1FttkSLmDOF9blnNMLigcCRacprQS3ry0nf3o=:JB1ueTCKNIGMbhzWNjs+0FnZjZXO3UyXcZhIJ28vifA=
+  port: 7059
+  server: pop.plus.3123.0tk8a3a1q4t94dler.com
+  type: ss
+  udp: true
 - auth: Yet-Another-Public-Config-1
   delay: 2129
   name: 荷兰 - 阿姆斯特丹 - Macarne LLC - 3
@@ -4753,20 +4889,6 @@ proxies:
   skip-cert-verify: true
   sni: www.baidu.com
   type: trojan
-- alterId: 2
-  cipher: auto
-  name: 🇯🇵 日本5
-  network: ws
-  port: 30806
-  server: v6.heduian.link
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
-  ws-opts:
-    headers:
-      Host: ocbc.com
-    path: /oooo
 - cipher: chacha20-ietf-poly1305
   name: 🇯🇵 日本6
   password: 1a17b19d-4896-4531-af79-6e91d8ef8228
@@ -4799,7 +4921,7 @@ proxies:
   skip-cert-verify: true
   sni: www.baidu.com
   type: trojan
-- latency: 8.844137191772461
+- latency: 9.324789047241211
   name: 🇺🇸 美国
   network: ws
   password: 7248e825-887c-48b9-83bc-c26bc6392bf8
