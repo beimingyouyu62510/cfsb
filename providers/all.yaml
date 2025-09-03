@@ -1,4553 +1,695 @@
 proxies:
-- alterId: 2
-  cipher: auto
-  name: 🇨🇳_CN_中国->🇺🇸_US_美国
-  network: ws
-  port: 30829
-  server: v29.heduian.link
-  skip-cert-verify: true
-  sni: ''
-  type: vmess
-  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
-  ws-opts:
-    headers:
-      host: ocbc.com
-    path: /oooo
-- cipher: aes-256-cfb
-  name: 🇲🇩_MD_摩尔多瓦
-  password: f8f7aCzcPKbsF8p3
-  port: 989
-  server: 185.153.197.5
-  type: ss
-- cipher: chacha20-ietf-poly1305
-  latency: 1107.1703433990479
-  name: 🇺🇸_US_美国_1
-  password: Kuiqk2cP0BMWrgme9IfEvp
-  port: 443
-  server: 38.180.211.126
-  type: ss
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  name: VMESS-加拿大-NF解锁加拿大地区非自制剧-ChatGPT-TikTok-YouTube-51.79.102.253:80
+- name: vless
   network: ws
   port: 80
-  server: 51.79.102.253
-  skip-cert-verify: true
-  type: vmess
-  uuid: 58fe1542-5290-40ad-815a-77707a81afe5
+  server: www.speedtest.net
+  type: vless
+  uuid: f58d125b-cf2e-4c1a-bb4a-49fead500461
   ws-opts:
-    path: /IOebhLMhl1CTbFHbL95myfRX2
+    headers:
+      Host: www.speedtest.net.b.1.speedtest2029.com.v2logy.ir.#Cld-Doctor🤚🏻ممنون میشیم
+        اگه دوست داشتین مارو به آشناهاتون معرفی کنیناین حمایت خیلی بزرگی از سمت شماست❤️@v2pediaBOT
+    path: /ali
+- name: vless
+  network: ws#🇨🇵telegram ➠ @v2rayNG_Matsurivless://ccbe6b7c-9264-40c4-8bc1-ef8f6205d7a4@www.speedtest.net:8443?path=/
+  port: 8880
+  server: 172.66.40.99
+  type: vless
+  uuid: d569ff14-a955-4b76-9d47-05d49d6512a9
+- name: vless
+  network: xhttp#🇨🇵telegram ➠ @v2rayNG_Matsurivless://630f7b7c-8e64-49d8-a23b-bf65e63c2b15@speedtestcustom.com:80?mode=auto
+  port: 80
+  server: mci.dl101movis.ir
+  type: vless
+  uuid: 630f7b7c-8e64-49d8-a23b-bf65e63c2b15
+- name: vless
+  network: ws#🇨🇦telegram ➠ @v2rayNG_Matsurivless://49e77ea9-62bd-44c4-8a52-0d7569c305c5@63.141.128.28:8080?path=/Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
+  port: 80
+  server: 63.141.128.23
+  type: vless
+  uuid: d59d49d3-a392-403a-8480-59934008431d
+- name: vless
+  network: ws
+  port: 443
+  server: 172.66.40.99
+  servername: kSo.2SeDkFjEuIxIjD0Ew9DvKcxoisiEk61.BlOg#🇩🇪@FreakConfigvless://TELEGRAM-CONFiGLiNE-joiin@test.fast.hosting-ip.com:80?mode=auto
+  tls: true
+  type: vless
+  uuid: telegram-id-Arfilter
+  ws-opts:
+    headers:
+      Host: kSo.2SeDkFjEuIxIjD0Ew9DvKcxoisiEk61.BlOg
+    path: /telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray?ed=2048
+- name: vless
+  network: grpc#🇺🇲@FreakConfigvless://e4824193-4f54-453b-d037-88368e85ef0e@185.236.232.129:8880?mode=gun
+  port: 8880
+  server: 185.236.232.157
+  type: vless
+  uuid: e4824193-4f54-453b-d037-88368e85ef0e
+- name: vless
+  network: grpc#🇺🇲@FreakConfigvless://e508d2b9-b117-4252-9a88-6e1f75ebcd51@172.66.40.99:80?path=/telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE?ed=2048
+  port: 8880
+  server: 45.86.72.106
+  type: vless
+  uuid: e4824193-4f54-453b-d037-88368e85ef0e
+- name: vless
+  network: ws
+  port: 443
+  server: 172.67.74.104
+  servername: b5r.ir#🇺🇲@FreakConfigss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpRQ1hEeHVEbFRUTUQ3anRnSFVqSW9q@45.87.175.175:8080#🇳🇱@FreakConfigvless://e1103da3-811a-4543-a1db-2bdf31a895dd@m58a.vip784.com:33801?security=none
+  tls: true
+  type: vless
+  uuid: 8b63cf90-830c-4fd8-a911-9e84fd7a5898
+  ws-opts:
+    headers:
+      Host: s.s.google.com.b5r.ir.
+    path: ?ed=2560?ed=2048JOIN---PLANB_PROXY
+- name: vless
+  network: ws#🇩🇪@FreakConfighysteria2://Yet-Another-Public-Config-1@[2a14:3f87:f001:13::a]:36400?security=tls
+  port: 80
+  server: 188.114.97.1
+  type: vless
+  uuid: 18af2c68-edb3-4224-b8cb-5c7b42450a36
+- name: vless
+  network: ws
+  port: 8443
+  server: www.speedtest.net
+  servername: lease-15.access.name.ng#🇬🇧@FreakConfigvless://18af2c68-edb3-4224-b8cb-5c7b42450a36@188.114.97.1:80?path=/telegram,@BINEXTIFY-telegram,@BINEXTIFY-telegram,@BINEXTIFY-telegram,@BINEXTIFY-telegram,@BINEXTIFY-telegram,@BINEXTIFY-telegram,@BINEXTIFY-telegram,@BINEXTIFY-telegram,@BINEXTIFY?ed=2560
+  tls: true
+  type: vless
+  uuid: ccbe6b7c-9264-40c4-8bc1-ef8f6205d7a4
+  ws-opts:
+    headers:
+      Host: lease-15.access.name.ng
+    path: /
+- name: vless
+  network: httpupgrade#🇨🇵@FreakConfigtrojan://f282b878-8711-45a1-8c69-5564172123c1@172.67.181.173:443?path=/Stupid-World/103.106.228.126-2053
+  port: 8880
+  server: www.speedtest.net
+  type: vless
+  uuid: 65b71cc5-a34d-4efa-8af8-7a0d9bedd240
+- name: vless
+  network: grpc#🇺🇲@FreakConfigvless://e4824193-4f54-453b-d037-88368e85ef0e@185.236.232.243:8880?mode=gun
+  port: 8880
+  server: 45.82.251.58
+  type: vless
+  uuid: e4824193-4f54-453b-d037-88368e85ef0e
+- name: vless
+  network: grpc#🇺🇲@FreakConfigvless://1708fb1a-cff1-4532-a837-435af960ee77@185.113.223.65:10321?security=reality
+  port: 8880
+  server: 45.82.251.63
+  type: vless
+  uuid: e4824193-4f54-453b-d037-88368e85ef0e
+- name: vless
+  network: ws#@EuServer
+  port: 80
+  server: 104.18.26.90
+  type: vless
+  uuid: 6f690965-3be3-43bb-9331-3ead6efb20aa
+- name: vless
+  network: ws#@EuServer
+  port: 80
+  server: 172.67.92.147
+  type: vless
+  uuid: b8be6118-0dd7-4402-ae1a-69b2816f3a7f
+- name: vless
+  network: ws
+  port: 443
+  server: 104.16.34.128
+  servername: ensHOLP-91s.pageS.DEv#@EuServer
+  tls: true
+  type: vless
+  uuid: 267613d7-f53f-4005-b642-d6f1f687b7cf
+  ws-opts:
+    headers:
+      Host: ensHOLP-91s.pageS.DEv
+    path: /dQMN2VQLkaE52qWD?ed=2560
+- name: vless
+  network: ws
+  port: 8443
+  server: 188.114.96.3
+  servername: w325.pAges.Dev#@EuServer
+  tls: true
+  type: vless
+  uuid: 88d05a33-ff36-415d-9d2c-7e1e8468e7e8
+  ws-opts:
+    headers:
+      Host: w325.pages.dev
+    path: /6WKNgcKo7LMqOzhb?ed=2560
+- name: vless
+  network: ws
+  port: 8443
+  server: 172.66.47.61
+  servername: gGHDFa.pAgeS.Dev#@EuServer
+  tls: true
+  type: vless
+  uuid: a396b860-11b7-4af3-9950-146caf79735e
+  ws-opts:
+    headers:
+      Host: gghdfa.pages.dev
+    path: /8WuhXm4QjK0L68Uf?ed=2560
+- name: vless
+  network: ws#@EuServer
+  port: 80
+  server: 104.21.112.1
+  type: vless
+  uuid: 2036e2c3-18a5-4eed-9db4-f91a7f02c7d5
+- name: vless
+  network: ws#@EuServer
+  port: 8880
+  server: 172.67.65.158
+  type: vless
+  uuid: e9979910-79d1-4621-a93c-b2a579c44ba7
 - cipher: chacha20-ietf-poly1305
-  latency: 162.17541694641113
-  name: SS-美国-NF解锁自制剧-ChatGPT-TikTok-YouTube-204.136.10.115:1866
-  password: oXGp1+ihlfKg826H
-  port: 1866
-  server: 204.136.10.115
+  latency: 89.85137939453125
+  name: '@EuServer'
+  password: cvII85TrW6n0OGyfpHVS1u
+  port: 8080
+  server: 45.87.175.171
+  type: ss
+- name: vless
+  network: ws
+  port: 443
+  server: web.xhamster.biz.id
+  servername: web.xhamster.biz.id#@VMESSIR4N جهت خرید کانفیگvless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.122:8880?mode=gun
+  tls: true
+  type: vless
+  uuid: aaaaaaa1-bbbb-4ccc-accc-eeeeeeeeeee1
+  ws-opts:
+    headers:
+      Host: web.xhamster.biz.id
+    path: /Free-CF-Proxy-AT29
+- cipher: chacha20-ietf-poly1305
+  latency: 86.22169494628906
+  name: '@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.158.171.132:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.158.171.151:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.87.175.171:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.87.175.192:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToxUld3WGh3ZkFCNWdBRW96VTRHMlBn@45.87.175.188:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@45.87.175.92:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@45.87.175.22:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpPV1k0T0RCbQ==@95.164.36.59:8388#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpaVFV4T1RRNQ==@146.19.247.183:8388#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpPVEJrWW1Gaw==@95.164.68.37:8388#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpOMlZoTkRRMg==@45.140.167.94:8388#@V2rayNG3ss://YWVzLTI1Ni1nY206MWNjN2FkNWYtYzliYy00MTM4LTg0OWEtMDJhZWVjOGUzN2E3@141.94.115.231:8443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpCb2cwRUxtTU05RFN4RGRR@16.24.166.103:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpXNzRYRkFMTEx1dzZtNUlB@35.176.197.229:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp1MTdUM0J2cFlhYWl1VzJj@40.172.178.194:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp1MTdUM0J2cFlhYWl1VzJj@3.28.107.6:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpCb2cwRUxtTU05RFN4RGRR@157.175.135.28:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToyYWZiYzk3NDAwY2E3MWM4ZjMzMDZmOTg0M2E2ZTFjMg==@216.250.97.118:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp1MTdUM0J2cFlhYWl1VzJj@3.28.107.6:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp1MTdUM0J2cFlhYWl1VzJj@3.28.107.6:443#@V2rayNG3trojan://Pooria@104.17.148.22:443?path=trPyOrWMfkHd15oxiI?ed=1520#@v2ray_alpha&security=tls&alpn=h2,http/1.1&host=301.pooriam.ir&fp=randomized&type=ws&sni=301.pOORiAm.ir#@V2rayNG3trojan://Pooria@104.17.148.22:443?path=/trPyOrWMfkHd15oxiI?ed=1520#FreeV2Alpha&security=tls&alpn=h2,http/1.1&host=301.pooriam.ir&fp=randomized&type=ws&sni=301.pOORiAm.ir#@V2rayNG3trojan://Pooria@104.17.148.22:443?path=/trPyOrWMfkHd15oxiI?ed=1520&security=tls&alpn=h2,http/1.1&host=301.pooriam.ir&fp=randomized&type=ws&sni=301.pOORiAm.ir#@V2rayNG3trojan://da86c6b5-a130-4bb8-a6ef-00b77b85b9e7@94.131.122.157:8443?mode=gun&security=tls&type=grpc&serviceName=grpc&sni=uk2.safecdn.site#@V2rayNG3trojan://da86c6b5-a130-4bb8-a6ef-00b77b85b9e7@94.131.122.157:8443?mode=gun&security=tls&type=grpc&serviceName=grpc&sni=uk2.safecdn.site#@V2rayNG3wireguard://IIi0qWjug05eWUsXLsYoP79SsVfjPPACM9fG8iG+f2c=@188.114.96.247:3854?address=172.16.0.2/32,2606:4700:110:8f81:d551:a0:532e:a2b3/128&presharedkey=&reserved=248,43,18&publickey=bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=&mtu=1280#@V2rayNG3wireguard://mG19nkJr2J60ykmjomEIK1bBlNuxrwV18B0FuGImY3M=@162.159.192.111:987?address=172.16.0.2/32,2606:4700:110:8c8f:5d96:18d6:bc6d:ef0e/128&presharedkey=&reserved=30,137,216&publickey=bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=&mtu=1280#@V2rayNG3wireguard://CFx5a+H2JC3mc2OCa21AgH+Dxz51/gNzJSsLgYos+E4=@188.114.98.251:8854?address=172.16.0.2/32,2606:4700:110:89ec:5d4:bc67:ce4b:6587/128&presharedkey=&reserved=106,207,207&publickey=bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=&mtu=1280#@V2rayNG3wireguard://mG19nkJr2J60ykmjomEIK1bBlNuxrwV18B0FuGImY3M=@162.159.192.111:987?address=172.16.0.2/32,2606:4700:110:8c8f:5d96:18d6:bc6d:ef0e/128&presharedkey=&reserved=30,137,216&publickey=bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=&mtu=1280#@V2rayNG3❤@V2rayNG3❤@SERVER444'
+  password: 4a2rfixophdjffa8KVA4Aa
+  port: 8080
+  server: 45.87.175.192
   type: ss
 - cipher: chacha20-ietf-poly1305
-  name: SS-立陶宛>荷兰-NF解锁荷兰自制剧-ChatGPT-TikTok-YouTube-45.87.175.28:8080
+  name: '@V2rayNG3'
+  password: 4a2rfixophdjffa8KVA4Aa
+  port: 8080
+  server: 45.87.175.171
+  type: ss
+- cipher: chacha20-ietf-poly1305
+  name: '@V2rayNG3'
+  password: 1RWwXhwfAB5gAEozU4G2Pg
+  port: 8080
+  server: 45.87.175.188
+  type: ss
+- cipher: chacha20-ietf-poly1305
+  name: '@V2rayNG3'
   password: oZIoA69Q8yhcQV8ka3Pa3A
   port: 8080
-  server: 45.87.175.28
+  server: 45.87.175.92
   type: ss
 - cipher: chacha20-ietf-poly1305
-  name: SS-美国-NF解锁自制剧-ChatGPT-TikTok-YouTube-172.233.128.126:1866
-  password: oXGp1+ihlfKg826H
-  port: 1866
-  server: 172.233.128.126
-  type: ss
-- cipher: aes-256-cfb
-  name: SSR-加拿大-79.127.233.170:989
-  obfs: plain
-  password: f8f7aCzcPKbsF8p3
-  port: 989
-  protocol: origin
-  server: 79.127.233.170
-  type: ssr
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  name: VMESS-未知>法国-ChatGPT-1a2d514b-37cf-499f-8d08-d017a92ab5bb.asoul-ava.top:443
-  network: ws
-  port: 443
-  server: 1a2d514b-37cf-499f-8d08-d017a92ab5bb.asoul-ava.top
-  servername: 1a2d514b-37cf-499f-8d08-d017a92ab5bb.asoul-ava.top
-  skip-cert-verify: true
-  tls: true
-  type: vmess
-  uuid: 5f726fe3-d82e-4da5-a711-8af0cbb2b682
-  ws-opts:
-    headers:
-      HOST: 1a2d514b-37cf-499f-8d08-d017a92ab5bb.asoul-ava.top
-    path: /azumase.ren
-- cipher: chacha20-ietf-poly1305
-  name: SS-英国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-45.150.32.13:14628
-  password: DKyRdoqQIebdKZVYs5GzW8
-  port: 14628
-  server: 45.150.32.13
-  type: ss
-- cipher: chacha20-ietf-poly1305
-  name: SS-斯洛文尼亚-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-45.144.54.33:34803
-  password: LiHQX9cDbdooBHlIg0eiqQ
-  port: 34803
-  server: 45.144.54.33
-  type: ss
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  name: VMESS-未知>英国-NF解锁波兰地区非自制剧-ChatGPT-TikTok-b62a948c-faa2-4e8a-bf8a-3ff3121c875a.asoul-ava.top:443
-  network: ws
-  port: 443
-  server: b62a948c-faa2-4e8a-bf8a-3ff3121c875a.asoul-ava.top
-  skip-cert-verify: true
-  tls: true
-  type: vmess
-  uuid: 5f726fe3-d82e-4da5-a711-8af0cbb2b682
-  ws-opts:
-    headers:
-      Host: b62a948c-faa2-4e8a-bf8a-3ff3121c875a.asoul-ava.top
-    path: /azumase.ren
-- cipher: chacha20-ietf-poly1305
-  name: SS-荷兰-NF解锁荷兰地区非自制剧-ChatGPT-TikTok-YouTube-213.109.147.242:62685
-  password: VpKABcOpNNA0l5G2AVOmw8
-  port: 62685
-  server: 213.109.147.242
-  type: ss
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  name: VMESS-未知>德国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-188.114.98.18:80
-  network: ws
-  port: 80
-  server: 188.114.98.18
-  servername: h4.grAsSoRy.shop
-  skip-cert-verify: true
-  type: vmess
-  uuid: d2866d01-d76d-4a08-8bae-04fb3c502588
-  ws-opts:
-    headers:
-      HOST: h4.grAsSoRy.shop
-    path: /
-- cipher: chacha20-ietf-poly1305
-  name: SS-德国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-147.45.178.200:57456
-  password: a58fa62b4944ddbf
-  port: 57456
-  server: 147.45.178.200
-  type: ss
-- cipher: chacha20-ietf-poly1305
-  name: SS-法国-NF解锁法国地区非自制剧-ChatGPT-TikTok-YouTube-81.19.137.222:57456
-  password: a58fa62b4944ddbf
-  port: 57456
-  server: 81.19.137.222
-  type: ss
-- cipher: chacha20-ietf-poly1305
-  name: SS-荷兰-NF解锁荷兰地区非自制剧-ChatGPT-TikTok-YouTube-164.92.156.41:24206
-  password: zI7kiNZ0UfV9cXB73a4nRD
-  port: 24206
-  server: 164.92.156.41
-  type: ss
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  name: VMESS-南非>德国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-102.132.188.3:80
-  network: ws
-  port: 80
-  server: 102.132.188.3
-  servername: h4.grAsSoRy.shop
-  skip-cert-verify: true
-  type: vmess
-  uuid: e95e35ba-f874-4eb3-9600-4dbd6d099f4e
-  ws-opts:
-    headers:
-      HOST: h4.grAsSoRy.shop
-    path: /
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  name: VMESS-未知>芬兰-NF解锁芬兰地区非自制剧-ChatGPT-TikTok-YouTube-104.17.223.18:80
-  network: ws
-  port: 80
-  server: 104.17.223.18
-  servername: q2.19kAla.co
-  skip-cert-verify: true
-  type: vmess
-  uuid: ff2d17c6-0d96-4801-a270-9dba8334f8c6
-  ws-opts:
-    headers:
-      HOST: q2.19kAla.co
-    path: /
-- cipher: chacha20-ietf-poly1305
-  name: SS-德国-NF解锁澳大利亚自制剧-ChatGPT-TikTok-185.177.229.245:1866
-  password: oXGp1+ihlfKg826H
-  port: 1866
-  server: 185.177.229.245
-  type: ss
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  latency: 6.15382194519043
-  name: VMESS-未知>美国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-npmjs.com:8080
-  network: ws
+  name: '@V2rayNG3'
+  password: oZIoA69Q8yhcQV8ka3Pa3A
   port: 8080
-  server: npmjs.com
-  skip-cert-verify: true
-  type: vmess
-  uuid: 6cbc9c78-1cb1-57d4-a999-e2f4e34c1e03
-  ws-opts:
-    headers:
-      Host: ke7hz36ewz-4515017473.mashallahbet.com
-    path: /nasnet/cdn
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  latency: 1.489877700805664
-  name: VMESS-未知>美国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-104.17.223.175:8080
-  network: ws
-  port: 8080
-  server: 104.17.223.175
-  servername: ke7hz36ewz-4515017473.mashallahbet.com
-  skip-cert-verify: true
-  type: vmess
-  uuid: 6cbc9c78-1cb1-57d4-a999-e2f4e34c1e03
-  ws-opts:
-    headers:
-      HOST: ke7hz36ewz-4515017473.mashallahbet.com
-    path: /nasnet/cdn
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  latency: 9.994745254516602
-  name: VMESS-未知>美国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-104.17.176.171:8080
-  network: ws
-  port: 8080
-  server: 104.17.176.171
-  servername: ke7hz36ewz-4515017473.mashallahbet.com
-  skip-cert-verify: true
-  type: vmess
-  uuid: 6cbc9c78-1cb1-57d4-a999-e2f4e34c1e03
-  ws-opts:
-    headers:
-      HOST: ke7hz36ewz-4515017473.mashallahbet.com
-    path: /nasnet/cdn
-- cipher: chacha20-ietf-poly1305
-  name: SS-德国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-46.101.245.131:44354
-  password: 9RviNa4tscjcmCB408vLSg
-  port: 44354
-  server: 46.101.245.131
+  server: 45.87.175.22
   type: ss
-- cipher: rc4-md5
-  latency: 8.524656295776367
-  name: SSR-美国-NF解锁自制剧-ChatGPT-TikTok-YouTube-107.151.182.253:8080
-  obfs: plain
-  password: 14fFPrbezE3HDZzsMOr6
-  port: 8080
-  protocol: origin
-  server: 107.151.182.253
-  type: ssr
-- cipher: chacha20-ietf-poly1305
-  name: SS-法国-NF解锁法国地区非自制剧-ChatGPT-TikTok-YouTube-62.210.88.22:443
-  password: WDavBimDmH2QLxljf5PSO1
+- name: trojan
+  password: Pooria
   port: 443
-  server: 62.210.88.22
-  type: ss
-- cipher: chacha20-ietf-poly1305
-  name: SS-英国-NF解锁英国地区非自制剧-ChatGPT-TikTok-YouTube-46.226.163.225:57456
-  password: c40641c1f89e7acb
-  port: 57456
-  server: 46.226.163.225
-  type: ss
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  name: VMESS-未知>德国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-188.114.99.18:80
-  network: ws
-  port: 80
-  server: 188.114.99.18
-  servername: h4.grAsSoRy.shop
-  skip-cert-verify: true
-  type: vmess
-  uuid: d2866d01-d76d-4a08-8bae-04fb3c502588
-  ws-opts:
-    headers:
-      HOST: h4.grAsSoRy.shop
-    path: /
-- cipher: chacha20-ietf-poly1305
-  latency: 66.85280799865723
-  name: SS-美国-NF解锁自制剧-ChatGPT-TikTok-YouTube-104.167.197.25:57456
-  password: 360e21d21977dc11
-  port: 57456
-  server: 104.167.197.25
-  type: ss
-- cipher: chacha20-ietf-poly1305
-  name: SS-法国-NF解锁法国地区非自制剧-ChatGPT-TikTok-YouTube-107.191.63.241:30665
-  password: 44fe4b7d-cd48-45fc-a036-60ea40e4a96c
-  port: 30665
-  server: 107.191.63.241
-  type: ss
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  latency: 85.6618881225586
-  name: VMESS-未知>美国-NF解锁自制剧-ChatGPT-TikTok-YouTube-orvps2.horsenma.net:8443
-  network: ws
-  port: 8443
-  server: orvps2.horsenma.net
-  skip-cert-verify: true
+  server: 104.17.148.22
   tls: true
-  type: vmess
-  uuid: 57e595e6-ef54-4e0d-b8df-e96db9612b99
-  ws-opts:
-    headers:
-      Host: orvps2.horsenma.net
-    path: /horsen
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  name: VMESS-未知>韩国-NF解锁韩国地区非自制剧-ChatGPT-TikTok-YouTube-time.is:80
-  network: ws
-  port: 80
-  server: time.is
-  servername: kr.xiaoqi666.xyz
-  skip-cert-verify: true
-  type: vmess
-  uuid: 66ddd790-10ed-4a16-b334-0b7e3577b5b7
-  ws-opts:
-    headers:
-      HOST: kr.xiaoqi666.xyz
-    path: /
-- latency: 1.5685558319091797
-  name: 🇺🇸US_1|2.0MB/s
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 190.93.244.195
-  sni: ocost-dy.wmlefl.cc
   type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- latency: 41.34964942932129
-  name: 🇺🇸US_2|3.2MB/s
+- name: vless
   network: ws
-  password: slch2024
-  port: 2096
-  server: 213.219.247.195
-  skip-cert-verify: false
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram🇨🇳
-- latency: 1.6252994537353516
-  name: 🇺🇸US_3|2.1MB/s
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 193.124.224.195
-  skip-cert-verify: false
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram🇨🇳
-- name: 🇳🇱NL_1|4.4MB/s
-  network: ws
-  password: f282b878-8711-45a1-8c69-5564172123c1
-  port: 443
-  server: aio.nolimit.dpdns.org
-  skip-cert-verify: false
-  sni: aio.nolimit.dpdns.org
-  type: trojan
-  ws-opts:
-    headers:
-      Host: aio.nolimit.dpdns.org
-    path: '%2Faioproxybot%2F146.190.192.43-80'
-- client-fingerprint: chrome
-  latency: 1.6129016876220703
-  name: 🇺🇸US_4|2.0MB/s
-  network: ws
-  port: '443'
-  server: 104.18.35.85
-  servername: cf.vless.sandesh.fr
-  tls: true
-  type: vless
-  udp: true
-  uuid: 060a8fe8-7175-4ded-94a5-d9808bc645b6
-  ws-opts:
-    headers:
-      Host: cf.vless.sandesh.fr
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/49.0.2623.110 Safari/537.36
-    path: /telegram:@Eternal_Connect-telegram:@Eternal_Connect-telegram:@Eternal_Connect-telegram:@Eternal_Connect
-  xudp: true
-- client-fingerprint: chrome
-  name: 🇸🇪SE_1|2.2MB/s
-  network: ws
-  port: '2096'
-  server: zula.ir
-  servername: frAgteSt.JaHANGiRKh.eU.orG
-  tls: true
-  type: vless
-  udp: true
-  uuid: 97909ffd-6da0-4893-9d63-00e72ad55256
-  ws-opts:
-    headers:
-      Host: frAgteSt.JaHANGiRKh.eU.orG
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/37.0.2062.120 Safari/537.36
-    path: /
-  xudp: true
-- down: ''
-  fingerprint: ''
-  name: 🇸🇬SG_1|2.4MB/s
-  obfs: ''
-  obfs-password: ''
-  password: KYIFgW1don6L8TaDBJHynafxZ0
-  port: '4763'
-  server: 47.237.23.83
-  skip-cert-verify: true
-  sni: bing.com
-  type: hysteria2
-  up: ''
-- down: ''
-  fingerprint: ''
-  name: 🇺🇸US_5|3.3MB/s
-  obfs: ''
-  obfs-password: ''
-  password: peEduuHzbExjK7UQHzazXwqgA
-  port: '27704'
-  server: 166.88.164.9
-  skip-cert-verify: true
-  sni: bing.com
-  type: hysteria2
-  up: ''
-- name: 🇭🇰HK_1|4.9MB/s
-  password: <password>
-  port: 8443
-  server: 9497cfdb-sx4v40-t1bnjq-1krtb.hkt.cdnhuawei.com
-  tls: true
-  type: http
-  username: 60f6b4c4-9d70-11ed-a4d2-f23c9164ca5d
-- alpn:
-  - h2http/1.1
-  client-fingerprint: chrome
-  name: 🇩🇪DE_1|2.3MB/s
-  network: ws
-  port: '443'
-  server: 104.26.14.85
-  servername: 6389113402676776506.VtNeT.infO
-  tls: true
-  type: vless
-  udp: true
-  uuid: 88538870-5626-4cd7-9cda-1e0b6253c9ce
-  ws-opts:
-    headers:
-      Host: 6389113402676776506.VtNeT.infO
-      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko)
-        Chrome/67.0.3396.99 Safari/537.36
-    path: ''
-  xudp: true
-- cipher: chacha20-ietf-poly1305
-  name: 🇮🇪IE_1|5.0MB/s
-  password: wchV4YUUanCPEXcNfd8U6Z
-  port: '443'
-  server: 52.213.50.72
-  type: ss
-  udp: true
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  name: 🇩🇪DE_2|5.3MB/s
-  network: ws
-  port: '2087'
+  port: 2083
   server: www.speedtest.net
-  servername: amin.amin-app.ir
+  servername: hAsTi.frEEairLainEs.Com#@V2rayNG3
   tls: true
   type: vless
-  udp: true
-  uuid: 5b1a3493-6f9b-4530-aab7-af11e16c0a41
+  uuid: 89b3cbba-e6ac-485a-9481-976a0415eab9
   ws-opts:
     headers:
-      Host: amin.amin-app.ir
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/57.0.2987.133 Safari/537.36
-    path: /Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android/Telegram,@Archive_Android
-  xudp: true
-- client-fingerprint: chrome
-  latency: 66.62464141845703
-  name: 🇺🇸US_6|4.8MB/s
-  network: tcp
-  port: '34045'
-  reality-opts:
-    public-key: cDaDzPr3PlS3NM8lreHZbdo-Mhqz8vMBzMSkHXhGIUA
-    short-id: e8ab71d0
-  server: 172.233.200.194
-  servername: visit-this-invitation-link-to-join-tg-enkelte-notif.ekt.me
+      Host: HaSTI.fReeAIrLAINes.COm
+    path: /telegram@v2ray_alpha?ed=2560
+- name: vless
+  network: tcp#@V2rayNG3
+  port: 443
+  server: 147135001195.sec22org.com
   tls: true
   type: vless
-  udp: true
-  uuid: d8dd94fd-540e-461d-b5d4-acebef02c22a
-  xudp: true
-- client-fingerprint: chrome
-  grpc-opts:
-    grpc-service-name: grpc-jd
-  name: 🇳🇱NL_2|5.2MB/s
+  uuid: ea286109-d20f-415e-849e-4af20ab04b65
+- name: vless
+  network: ws
+  port: 2053
+  server: 173.245.59.132
+  servername: de.gt-ov.com#@V2rayNG3
+  tls: true
+  type: vless
+  uuid: 3d6ca650-df5c-43fd-bd69-01a335e1376a
+  ws-opts:
+    headers:
+      Host: de.gt-ov.com
+    path: /#telegram@V2ray_Alpha
+- name: vless
+  network: ws
+  port: 2087
+  server: 104.21.69.44
+  servername: hq1.NEWrEtR432as.inFo#@V2rayNG3
+  tls: true
+  type: vless
+  uuid: 48d34244-8fac-4fa4-b4fe-0931474f183d
+  ws-opts:
+    headers:
+      Host: hq1.NEWrEtR432as.inFo
+    path: /#Telegram@V2ray_Alpha
+- name: vless
+  network: ws
+  port: 2087
+  server: 104.21.32.1
+  servername: HASti.FReeAirlAINEs.cOm#@V2rayNG3
+  tls: true
+  type: vless
+  uuid: 89b3cbba-e6ac-485a-9481-976a0415eab9
+  ws-opts:
+    headers:
+      Host: HaSti.fReEaIRlAineS.coM
+    path: /telegram@v2ray_alpha/?ed=2048
+- name: vless
   network: grpc
-  port: '8443'
-  reality-opts:
-    public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
-    short-id: 41a4cee2c50c4fc3
-  server: 89.185.85.219
-  servername: jd.com
+  port: 2087
+  server: 172.64.32.217
+  servername: ba19.bewface-smart.rest#@V2rayNG3
   tls: true
   type: vless
-  udp: true
-  uuid: 464ec76e-fd60-4ad4-993e-d2c262f88ed1
-  xudp: true
-- alpn:
-  - h2
-  - http/1.1
-  client-fingerprint: chrome
-  name: 🇩🇪DE_3|4.2MB/s
+  uuid: bb29c155-d55e-4c07-8403-0581e384f7a2
+- name: vless
+  network: tcp
+  port: 43434
+  server: 62.60.178.27
+  type: vless
+  uuid: 8c5e476d-d52b-4206-9df7-55a5f18a78f1
+- name: vless
+  network: xhttp#@V2rayNG3
+  port: 80
+  server: 151.101.2.133
+  type: vless
+  uuid: 275d87d1-221a-4e47-96b1-9a6f76a7daba
+- name: vless
+  network: ws#@V2rayNG3
+  port: 80
+  server: 104.26.14.85
+  type: vless
+  uuid: d342d11e-d424-4583-b36e-524ab1f0afa4
+- name: vless
+  network: ws#@V2rayNG3
+  port: 80
+  server: 104.21.56.44
+  type: vless
+  uuid: 53fa8faf-ba4b-4322-9c69-a3e5b1555049
+- name: vless
+  network: ws#@V2rayNG3
+  port: 80
+  server: 104.16.132.207
+  type: vless
+  uuid: 5b75d93d-1e40-43a4-af3d-d6cb11fbafe8
+- name: vless
+  network: ws#@V2rayNG3
+  port: 80
+  server: 104.17.148.22
+  type: vless
+  uuid: 53fa8faf-ba4b-4322-9c69-a3e5b1555049
+- name: vless
+  network: xhttp#@V2rayNG3
+  port: 80
+  server: 151.101.194.133
+  type: vless
+  uuid: 64768b60-88b8-4414-80e7-ac04b6223259
+- name: vless
   network: ws
-  port: '443'
-  server: 172.66.40.99
-  servername: www.dollardoon.com
+  port: 443
+  server: 104.21.1.12
+  servername: pHOTOgrApHipiCTureaI.IR#@V2rayNG3
   tls: true
   type: vless
-  udp: true
-  uuid: 465b542a-15fa-4130-90d2-989e73192914
+  uuid: f6bd2c47-99da-4bca-bf70-7186aa9e7e06
   ws-opts:
     headers:
-      Host: www.dollardoon.com
-      User-Agent: Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko)
-        Chrome/70.0.3538.67 Safari/537.36
-    path: /@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7?ed=2048
-  xudp: true
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  name: 🇩🇪DE_4|3.4MB/s
+      Host: photographipictureai.ir
+    path: /telegram@V2ray_Alpha/?ed=2560
+- name: vless
   network: ws
-  port: '443'
-  server: 172.67.196.23
-  servername: cdn.romil-ltd.co.uk
+  port: 443
+  server: 104.21.34.163
+  servername: crolinde.carlotta.cloudns.org#@V2rayNG3
   tls: true
   type: vless
-  udp: true
-  uuid: 7d5d4b4f-99b4-45ef-a8d7-24e805745b9e
+  uuid: 4d3e4850-83e4-4e9e-a4c1-0f11c43663e7
   ws-opts:
     headers:
-      Host: cdn.romil-ltd.co.uk
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/52.0.2743.116 Safari/537.36
-    path: /Ki5km8BGWTxThVEAefvkMj
-  xudp: true
-- latency: 1.4629364013671875
-  name: 🇺🇸US_7|4.1MB/s
+      Host: crolinde.carlotta.cloudns.org
+    path: /telegram@v2ray_alpha/?ed=2560
+- name: vless
   network: ws
-  port: '8880'
+  port: 443
+  server: 172.67.163.18
+  servername: crolinde.carlotta.cloudns.org#@V2rayNG3
+  tls: true
+  type: vless
+  uuid: 4d3e4850-83e4-4e9e-a4c1-0f11c43663e7
+  ws-opts:
+    headers:
+      Host: crolinde.carlotta.cloudns.org
+    path: telegramV2ray_Alpha=88.218.78.212
+- name: vless
+  network: ws
+  port: 443
+  server: 104.21.56.44
+  servername: REDw.pOOriam.Ir#@V2rayNG3
+  tls: true
+  type: vless
+  uuid: 53fa8faf-ba4b-4322-9c69-a3e5b1555049
+  ws-opts:
+    headers:
+      Host: redw.pooriam.ir
+    path: /telegram@v2ray_alpha?ed=2560
+- name: vless
+  network: grpc
+  port: 443
+  server: 104.17.147.22
+  servername: hq3.newretr432as.info#@V2rayNG3
+  tls: true
+  type: vless
+  uuid: 08ef1330-8ffb-4001-a15e-96befc065c06
+- name: vless
+  network: tcp
+  port: 443
+  server: 15.204.150.39
+  servername: 147135001178.sec22org.com#@V2rayNG3
+  tls: true
+  type: vless
+  uuid: e20ebe01-1815-4c09-8e77-fb2f168263ce
+- cipher: chacha20-ietf-poly1305
+  name: '@V2rayNG3'
+  password: QCXDxuDlTTMD7jtgHUjIoj
+  port: 8080
+  server: 45.87.175.181
+  type: ss
+- cipher: chacha20-ietf-poly1305
+  name: '@V2rayNG3'
+  password: oZIoA69Q8yhcQV8ka3Pa3A
+  port: 8080
+  server: 45.87.175.35
+  type: ss
+- cipher: chacha20-ietf-poly1305
+  name: '@V2rayNG3'
+  password: 1RWwXhwfAB5gAEozU4G2Pg
+  port: 8080
+  server: 45.87.175.192
+  type: ss
+- name: trojan
+  password: redfree8
+  port: 80
+  server: 104.17.148.22
+  tls: false
+  type: trojan
+- name: vless
+  network: ws
+  port: 443
+  server: ns1.cloudflare.com
+  servername: cr7.medicaldream.ir#@V2rayNG3
+  tls: true
+  type: vless
+  uuid: ccff34b1-44fd-478d-bc0e-5111cb11f5be
+  ws-opts:
+    headers:
+      Host: cr7.medicaldream.ir
+    path: /Telegram@V2ray_Alpha/?ed=2550
+- name: vless
+  network: ws#@V2rayNG3
+  port: 80
   server: 104.17.147.22
   type: vless
-  udp: true
-  uuid: Parsashonam-Bot-19
+  uuid: 53fa8faf-ba4b-4322-9c69-a3e5b1555049
+- name: vless
+  network: ws
+  port: 2086
+  server: 162.159.10.162
+  type: vless
+  uuid: 59860b15-b2d9-47f9-9b92-81bd1639fcc5
+  ws-opts:
+    headers:
+      Host: 5-55sfjslf.ifenxiang.cfd
+    path: Telegram-@V2ray_Alpha
+- name: vless
+  network: ws
+  port: 443
+  server: 188.114.97.3
+  servername: paS-kaLE-AGhA.pageS.deV#@V2rayNG3
+  tls: true
+  type: vless
+  uuid: f2e486f9-1697-4be6-be59-6c4fb42c7a24
+  ws-opts:
+    headers:
+      Host: pas-kale-agha.pages.dev
+    path: /Telegram@V2ray_Alpha/?ed=2560
+- name: vless
+  network: ws
+  port: 443
+  server: 104.21.112.1
+  servername: pSYcho.sUeX12.IR#@V2rayNG3
+  tls: true
+  type: vless
+  uuid: 53fa8faf-ba4b-4322-9c69-a3e5b1555049
+  ws-opts:
+    headers:
+      Host: psycho.suex12.ir
+    path: /Telegram@V2ray_Alpha/?ed=2560
+- name: vless
+  network: ws
+  port: 2096
+  server: sub.shadowsokstes.WoRkErs.DeV
+  servername: "sub.shadowsokstes.WoRkErs.DeV#\U0001D412\U0001D407\U0001D400\U0001D403\
+    \U0001D40E\U0001D416\U0001D412\U0001D40E\U0001D402\U0001D40A\U0001D412\U0001D412\
+    \U0001D407\U0001D40E\U0001D40FVmess Reality  ✅پشتیبانی ⬅️ همراه اول \U0001F6A5\
+    \ ایرانسل \U0001F6A5 و....\U0001F9E8 با گذاشتن ریکشن از ما حمایت کنید \U0001F97A\
+    【\uFEFFدوستان　عزیز　برای　استفاده　از　لینک　های　ＳＵＢبر　روی　لینک　های　پست　کلیک　کنید　و　از　آموزش　های　که　داخل　پست　گذاشتم　استفاده　کنید❤️】لینک\
+    \ ＳＵＢ برای Ｖ２ＲＡＹ \U0001F447https://t.me/shadowsocksshop/1496لینک ＳＵＢ برای ＳＩＮＧ\
+    \ ＢＯＸ\U0001F447‌https://t.me/shadowsocksshop/1500"
+  tls: true
+  type: vless
+  uuid: 70f5d3b8-7d31-4d7d-9467-e43752d66fca
+  ws-opts:
+    headers:
+      Host: sub.shadowsokstes.WoRkErs.DeV
+    path: vless-ws/?ed=2048
+- name: vless
+  network: ws#@v2rayan@v2rayan
+  port: 80
+  server: 172.67.73.163
+  type: vless
+  uuid: 48bd4d22-e42f-4749-af6a-85ecf716c823
+- name: vless
+  network: ws
+  port: 443
+  server: 172.67.170.103
+  servername: 3k.pureboy.eu.org#@v2rayan@v2rayan
+  tls: true
+  type: vless
+  uuid: b9ad895b-12ac-40fc-a5ac-a5b2a1285001
+  ws-opts:
+    headers:
+      Host: 3k.pureboy.eu.org
+    path: /?ed=2048
+- name: vless
+  network: 'ws#سرورهایبیشتردرکانال تلگرام:@v2ray_ngchanl 🇹🇷 #https://t.me/V2ray_for_free'
+  port: 80
+  server: 151.101.0.155
+  type: vless
+  uuid: 424c2031-1add-4063-8fc0-d57dc8358b21
+- name: vless
+  network: 'tcp#سرورهایبیشتردرکانال تلگرام:@v2ray_ngchanl 🇹🇷 #https://t.me/V2ray_for_free'
+  port: 16895
+  server: sosooos.turbo2v.top
+  type: vless
+  uuid: 2162d1b3-25d4-435e-b017-47da789eb389
+- name: vless
+  network: ws#New-7059414778_b7ed#https://t.me/V2ray_for_free
+  port: 80
+  server: free.fastly80.hosting-ip.com
+  type: vless
+  uuid: 634e1883-0f11-4ab5-9e41-90d0c0d22463
+- name: vless
+  network: ws
+  port: 443
+  server: ipw.gfdv54cvghhgfhgj-njhgj64.info
+  servername: 638901504444939106.esfahan-prx-dnraabg.info#🇫🇷@FreakConfig
+  tls: true
+  type: vless
+  uuid: 57f00763-7751-4e0c-a6c9-29d3176a74fb
+  ws-opts:
+    headers:
+      Host: 638901504444939106.esfahan-prx-dnraabg.info
+    path: /urdpjvws
+- name: vless
+  network: ws
+  port: 443
+  server: 104.16.190.41
+  servername: cr7.traneh.dpdns.org#ALIvless://102e5f34-1913-4dd3-a1f2-f831d891a490@104.16.186.41:443?path=/sinavm-sinavm/?ed=2560
+  tls: true
+  type: vless
+  uuid: 102e5f34-1913-4dd3-a1f2-f831d891a490
+  ws-opts:
+    headers:
+      Host: cr7.traneh.dpdns.org
+    path: /
+- name: vless
+  network: xhttp#✔︎𝐜𝐡𝐚𝐧𝐧𝐞𝐥➪@ConfigV2rayForFree
+  port: 80
+  server: speedtest.net
+  type: vless
+  uuid: 8918d0d6-b266-4f71-9aaf-4160265537e6
+- name: vless
+  network: ws
+  port: 8443
+  server: ipe3.alighan.ir
+  servername: ipe4.alighan.ir#✔︎𝐜𝐡𝐚𝐧𝐧𝐞𝐥➪@ConfigV2rayForFree
+  tls: true
+  type: vless
+  uuid: e3b665fd-0329-47dc-bc05-3474b14bcaf6
+  ws-opts:
+    headers:
+      Host: s.alighan.ir
+    path: /?ed=2048
+- name: vless
+  network: ws#@Digiv2ray🇩🇪
+  port: 80
+  server: Speedtest.net
+  type: vless
+  uuid: b1f58d90-e65f-4566-91f3-1b96e9a68613
+- cipher: chacha20-ietf-poly1305
+  name: '[🇬🇧]t.me/vpn_market_v2'
+  password: 1xO2cqPazqjGfCfd
+  port: 443
+  server: admin.c1.webramz.co
+  type: ss
+- name: trojan
+  password: VPNCUSTOMIZE
+  port: 80
+  server: www.speedtest.net
+  tls: false
+  type: trojan
+- name: vless
+  network: ws
+  port: 8080
+  server: 104.17.147.22
+  type: vless
+  uuid: Parsashonam-Bot-7
   ws-opts:
     headers:
       Host: Fi.Parsashonam.CfD.
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/60.0.3112.90 Safari/537.36
     path: /Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam?ed=2056
-  xudp: true
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 🇮🇶IQ_1|5.7MB/s
-  network: tcp
-  port: '443'
-  reality-opts:
-    public-key: GyivnLvG6JEO7xV9PI12Z0XTLZJGClBHOcpHwSfrsj4
-    short-id: e3015cd4
-  server: 178.17.58.126
-  servername: outlook.office.com
-  tls: true
+- name: vless
+  network: ws#@Network_442_ 🇨🇦 New 004
+  port: 80
+  server: 172.67.188.18
   type: vless
-  udp: true
-  uuid: 6035325d-399a-5148-9126-29cedfd5966a
-  xudp: true
-- client-fingerprint: chrome
-  latency: 68.5570240020752
-  name: 🇺🇸US_8|4.8MB/s
-  network: tcp
-  port: '34045'
-  reality-opts:
-    public-key: cDaDzPr3PlS3NM8lreHZbdo-Mhqz8vMBzMSkHXhGIUA
-    short-id: e8ab71d0
-  server: 172.233.201.122
-  servername: visit-this-invitation-link-to-join-tg-enkelte-notif.ekt.me
-  tls: true
-  type: vless
-  udp: true
-  uuid: d8dd94fd-540e-461d-b5d4-acebef02c22a
-  xudp: true
-- name: 🇩🇪DE_5|3.9MB/s
-  network: ws
-  port: '8080'
-  server: 104.26.4.60
-  type: vless
-  udp: true
-  uuid: d345d11e-c424-4583-b36e-527ab1f0afa4
-  ws-opts:
-    headers:
-      Host: v2raynselling.kir-rasol-kir.workers.dev
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/49.0.2623.87 Safari/537.36
-    path: /?ed=2048
-  xudp: true
-- alpn:
-  - h3
-  client-fingerprint: chrome
-  latency: 1.60980224609375
-  name: 🇺🇸US_9|2.8MB/s
-  network: ws
-  port: '443'
-  server: 104.16.253.83
-  servername: vless7-7a1.pages.dev
-  tls: true
-  type: vless
-  udp: true
-  uuid: c98a16e4-0dc5-42f0-b3db-30f04525c123
-  ws-opts:
-    headers:
-      Host: vless7-7a1.pages.dev
-      User-Agent: Mozilla/5.0 (Linux; Android 7.1; vivo 1716 Build/N2G47H) AppleWebKit/537.36
-        (KHTML, like Gecko) Chrome/61.0.3163.98 Mobile Safari/537.36
-    path: /
-  xudp: true
-- client-fingerprint: chrome
-  latency: 18.031597137451172
-  name: 🇺🇸US_10|4.5MB/s
-  network: ws
-  password: slch2024
-  port: '8443'
-  server: myanmar.visa.com
-  skip-cert-verify: false
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      User-Agent: Mozilla/5.0 (Linux; Android 5.1; A1601 Build/LMY47I) AppleWebKit/537.36
-        (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36
-    path: /
-- client-fingerprint: chrome
-  latency: 10.53929328918457
-  name: 🇺🇸US_11|3.8MB/s
-  network: ws
-  password: slch2024
-  port: '443'
-  server: usa.visa.com
-  skip-cert-verify: false
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-        like Gecko) Chrome/70.0.3538.77 Safari/537.36
-    path: /
-- client-fingerprint: chrome
-  name: 🇳🇱NL_3|3.2MB/s
-  network: ws
-  port: '443'
-  server: 104.21.14.232
-  servername: nuclear.us.kg
-  tls: true
-  type: vless
-  udp: true
-  uuid: 2bcfbfba-b446-4ad5-93ad-72af9e008f61
-  ws-opts:
-    headers:
-      Host: nuclear.us.kg
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/56.0.2924.87 Safari/537.36
-    path: /free/103.101.153.32:443
-  xudp: true
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 9.463787078857422
-  name: 🇺🇸US_12|2.5MB/s
-  network: ws
-  password: 4174b95d-115e-4d39-add6-1f8db95bb860
-  port: '443'
-  server: 172.67.153.179
-  skip-cert-verify: false
-  sni: qqqqqqqqqqa.www890604.dpdns.org
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      User-Agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.30 (KHTML, like Gecko)
-        Slackware/Chrome/12.0.742.100 Safari/534.30
-    path: /uzJNzgkkYWRWGxgFnoFPw1
-- client-fingerprint: chrome
-  latency: 1.5909671783447266
-  name: 🇺🇸US_13|4.4MB/s
-  network: ws
-  password: slch2024
-  port: '8443'
-  server: 104.18.2.108
-  skip-cert-verify: false
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/46.0.2490.80 Safari/537.36
-    path: /
-- alterId: 0
-  cipher: auto
-  name: 🇨🇦CA_1|2.3MB/s
-  network: ws
-  port: 2096
-  server: 05e285b5-903e-98bc-3ea9-775403760191.huangshang.online
-  servername: 05e285b5-903e-98bc-3ea9-775403760191.huangshang.online
-  skip-cert-verify: false
-  tls: true
-  type: vmess
-  udp: true
-  uuid: bae194be-06ae-4343-bb89-fb34bee796ff
-  ws-opts:
-    headers:
-      Host: b0599e83-9ae5-f588-37a2-314edf394be0.huangshang.online
-    path: /
-  xudp: true
-- alpn:
-  - ''
-  alterId: '0'
-  cipher: auto
-  http-opts:
-    headers:
-      Host:
-      - speedtest.net
-    path:
-    - /
-  latency: 180.0689697265625
-  name: 🇺🇸US_14|4.5MB/s
-  network: http
-  port: '54797'
-  server: all.primenet4.shop
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 56ecc5b6-c89d-42d7-a432-e2cebeab798b
-  xudp: true
-- alpn:
-  - h3
-  - h2
-  - http/1.1
-  client-fingerprint: chrome
-  name: 🇮🇷IR_1|3.7MB/s
-  network: ws
-  port: '443'
-  server: 104.24.93.159
-  servername: shop.happyground.ir
-  tls: true
-  type: vless
-  udp: true
-  uuid: d365b4a1-76b8-4a30-a83c-db47cb32f6b7
-  ws-opts:
-    headers:
-      Host: shop.happyground.ir
-      User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; SM-G532G Build/MMB29T) AppleWebKit/537.36
-        (KHTML, like Gecko) Chrome/63.0.3239.83 Mobile Safari/537.36
-    path: /telegram-sarv2,NGV2ray?ed=2048
-  xudp: true
-- client-fingerprint: chrome
-  http-opts:
-    headers: {}
-    path:
-    - /
-  latency: 68.48907470703125
-  name: 🇺🇸US_15|3.2MB/s
-  network: tcp
-  port: '34045'
-  reality-opts:
-    public-key: cDaDzPr3PlS3NM8lreHZbdo-Mhqz8vMBzMSkHXhGIUA
-    short-id: e8ab71d0
-  server: 172.233.201.93
-  servername: visit-this-invitation-link-to-join-tg-enkelte-notif.ekt.me
-  tls: true
-  type: vless
-  udp: true
-  uuid: d8dd94fd-540e-461d-b5d4-acebef02c22a
-  xudp: true
-- alterId: 0
-  cipher: auto
-  name: 敏感时期，更新暂停
-  network: tcp
-  port: '1'
-  server: 0.0.0.0
-  servername: web.51.la
-  tls: false
-  type: vmess
-  uuid: 88888888-8888-8888-8888-888888888888
-- alterId: 0
-  cipher: auto
-  name: 如有需要，自行搭建
-  network: tcp
-  port: '2'
-  server: 0.0.0.0
-  servername: web.51.la
-  tls: false
-  type: vmess
-  uuid: 88888888-8888-8888-8888-888888888888
-- alterId: 0
-  cipher: auto
-  name: 庆祝世界反法西斯战争胜利80周年！
-  network: tcp
-  port: '3'
-  server: 0.0.0.0
-  servername: web.51.la
-  tls: false
-  type: vmess
-  uuid: 88888888-8888-8888-8888-888888888888
-- name: CH_speednode_0001
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.18.250.195
-  skip-cert-verify: false
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: /Telegram🇨🇳
-- name: HK_speednode_0003
-  password: <password>
-  port: 8443
-  server: dd902adc-sxc9s0-t1bnjq-1krtb.hkt.cdnhuawei.com
-  tls: true
-  type: http
-  udp: true
-  username: 60f6b4c4-9d70-11ed-a4d2-f23c9164ca5d
+  uuid: 2cf5523e-c4e2-4e97-be1f-b9b7d356c140
 - cipher: chacha20-ietf-poly1305
-  name: IN_speednode_0004
-  password: WgACwLy1BPk47JOzHyA7zu
-  port: 47347
-  server: 167.71.235.238
-  type: ss
-  udp: true
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: IQ_speednode_0006
-  port: 443
-  reality-opts:
-    public-key: BhTJ3phnq-Z-10aFKSsj1lzhA8mULR4L6leE4-0WTAs
-  server: deu246.bypassall.org
-  servername: www.bing.com
-  skip-cert-verify: false
-  tls: true
-  type: vless
-  udp: true
-  uuid: b4b8aa1f-77d2-4851-a5a4-f78886f3e997
-- client-fingerprint: chrome
-  name: NL_speednode_0007
-  port: 34045
-  reality-opts:
-    public-key: cDaDzPr3PlS3NM8lreHZbdo-Mhqz8vMBzMSkHXhGIUA
-    short-id: e8ab71d0
-  server: 5.61.50.192
-  servername: visit-this-invitation-link-to-join-tg-enkelte-notif.ekt.me
-  skip-cert-verify: false
-  tls: true
-  type: vless
-  udp: true
-  uuid: d8dd94fd-540e-461d-b5d4-acebef02c22a
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: RU_speednode_0008
-  port: 443
-  reality-opts:
-    public-key: mLmBhbVFfNuo2eUgBh6r9-5Koz9mUCn3aSzlR6IejUg
-    short-id: 8453e5fd9af927
-  server: ru-nl01-vlr01.tcp-reset-club.net
-  servername: hls-svod.itunes.apple.com
-  skip-cert-verify: false
-  tls: true
-  type: vless
-  udp: true
-  uuid: ee67c9fd-0dc1-4fca-ad59-4dfac221a9f2
-- name: RU_speednode_0009
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.148.107.195
-  skip-cert-verify: true
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: /TelegramU0001F1E8U0001F1F3
-- name: RU_speednode_0010
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.221.160.195
-  skip-cert-verify: false
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: /Telegram🇨🇳
-- latency: 5033.718585968018
-  name: US_speednode_0011
-  network: ws
-  password: 318cab24-ec99-40a6-a54a-0db9c661a3d0
-  port: 443
-  server: aio.proxybox.dpdns.org
-  skip-cert-verify: false
-  sni: aio.proxybox.dpdns.org
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: aio.proxybox.dpdns.org
-    path: /188.34.160.97-2053
-- latency: 1.80816650390625
-  name: US_speednode_0012
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 209.94.90.195
-  skip-cert-verify: false
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: /Telegram🇨🇳
-- latency: 1.4674663543701172
-  name: US_speednode_0013
-  network: ws
-  port: 80
-  server: 63.141.128.34
-  servername: b.jOin.zEdMoDeOn.oNl.
-  skip-cert-verify: false
-  tls: false
-  type: vless
-  udp: true
-  uuid: 2f2327bd-ff1b-4ce5-bf86-fe0565334138
-  ws-opts:
-    headers:
-      Host: b.jOin.zEdMoDeOn.oNl.
-    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  latency: 9.958505630493164
-  name: US_speednode_0014
-  port: 443
-  reality-opts:
-    public-key: 0n_NS2q2bvgpgQt0-gNmGNXTH-B0aqaJdE1A40sjsyE
-  server: 64.81.117.172
-  servername: ts2.tc.mm.bing.net
-  skip-cert-verify: false
-  tls: true
-  type: vless
-  udp: true
-  uuid: 0cd07402-0edb-4890-808d-cd6f0e2625ee
-- latency: 1.6505718231201172
-  name: US_speednode_0015
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.148.105.195
-  skip-cert-verify: false
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: /Telegram🇨🇳
-- latency: 2.334117889404297
-  name: US_speednode_0016
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 199.68.156.195
-  skip-cert-verify: false
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: /Telegram🇨🇳
-- cipher: aes-256-cfb
-  name: VN_speednode_0017
-  password: Xn8jKdmDM00IeO%#$#fJAMtsEAEUOpH/YWYtYqDFnT0SV
-  port: 38388
-  server: 103.186.154.32
-  type: ss
-  udp: true
-- cipher: aes-256-cfb
-  name: VN_speednode_0018
-  password: Xn8jKdmDM00IeO%#$#fJAMtsEAEUOpH/YWYtYqDFnT0SV
-  port: 38388
-  server: 103.186.154.35
-  type: ss
-  udp: true
-- cipher: aes-256-cfb
-  name: VN_speednode_0019
-  password: Xn8jKdmDM00IeO%#$#fJAMtsEAEUOpH/YWYtYqDFnT0SV
-  port: 38388
-  server: 103.186.155.21
-  type: ss
-  udp: true
-- client-fingerprint: chrome
-  name: https://t.me/xyfqzy ⚡_1
-  network: ws
-  port: 443
-  server: 198.41.206.102
-  servername: rayan-10.parastoo.dpdns.org
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 4e4768df-0fbb-4cc1-8fd3-7c6fea95742a
-  ws-opts:
-    headers:
-      host: rayan-10.parastoo.dpdns.org
-    path: /@Rayan_Config
-- alpn:
-  - h3
-  client-fingerprint: randomized
-  name: https://t.me/xyfqzy ⚡_2
-  network: ws
-  password: Aimer
-  port: 9950
-  server: 43.134.167.135
-  skip-cert-verify: true
-  sni: epgz.aimercc.filegear-sg.me
-  type: trojan
-  udp: true
-  ws-opts:
-    path: /?ed=2560&proxyip=ts.hpc.tw
-- client-fingerprint: chrome
-  name: https://t.me/xyfqzy ⚡_3
-  network: ws
-  port: 50001
-  server: 221.142.117.59
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /Telegram@WangCai2/?ed=2560
-- client-fingerprint: chrome
-  name: https://t.me/xyfqzy ⚡_4
-  network: ws
-  port: 12196
-  server: 202.150.185.128
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /Telegram@WangCai2/?ed=2560
-- name: https://t.me/xyfqzy ⚡_5
-  network: ws
-  port: 8880
-  server: 185.148.107.213
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /
-- name: https://t.me/xyfqzy ⚡_6
-  network: ws
-  port: 8880
-  server: 188.42.145.148
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: https://t.me/xyfqzy ⚡_7
-  network: ws
-  port: 8880
-  server: 194.152.44.177
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳
-- name: https://t.me/xyfqzy ⚡_8
-  network: ws
-  port: 8880
-  server: 91.193.58.37
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sk.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3
-- name: https://t.me/xyfqzy ⚡_9
-  network: ws
-  port: 8880
-  server: 92.53.191.156
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: kjgx.laoyoutiao.link
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: https://t.me/xyfqzy ⚡_10
-  network: ws
-  port: 8880
-  server: 91.193.58.98
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: tw.laoyoutiao.link
-    path: /
-- alpn:
-  - h3
-  client-fingerprint: randomized
-  name: https://t.me/xyfqzy ⚡_11
-  network: ws
-  password: Aimer
-  port: 443
-  server: 49.51.179.33
-  skip-cert-verify: true
-  sni: epgz.aimercc.filegear-sg.me
-  type: trojan
-  udp: true
-  ws-opts:
-    path: /?ed=2560&proxyip=ts.hpc.tw
-- name: https://t.me/xyfqzy ⚡_12
-  network: ws
-  port: 80
-  server: 141.193.213.0
-  servername: us.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: us.laoyoutiao.link
-    path: /Telegram🇨🇳@WangCai2/?ed
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: https://t.me/xyfqzy ⚡_13
-  network: tcp
-  port: 8443
-  reality-opts:
-    public-key: 1jupCbzD9RB34YhWct4C6_I1bx_O5Ct7ZnT5dfCiV18
-  server: uuk1v.tok8888.com
-  servername: www.apple.com.cn
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: d1bcd5ee-7bdb-4de9-9aa7-48f54a97390d
-- name: https://t.me/xyfqzy ⚡_14
-  network: ws
-  port: 8880
-  server: 104.129.164.3
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
-  ws-opts:
-    headers:
-      host: bitget1.asdasd.click
-    path: /Telegram🇨🇳
-- latency: 2.4213790893554688
-  name: 🇺🇸US_13 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 45.149.12.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: 🇸🇬SG_3 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 156.238.18.94
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sg.laoyoutiao.link
-    path: /Telegram@WangCai2/?ed=2048
-- name: ❓Other_76 | ⬇️ 2.8MB/s
-  network: ws
-  port: 8880
-  server: www.speedtest.net
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 6ec52bc7-fcd7-4841-ab69-70d6e03a6eda
-  ws-opts:
-    headers:
-      host: www.speedtest.net.zula.ir.cfp1.a2hdhjdxjbxjsjdjd.ddns-ip.nEt.
-    path: /Telegram@V2ray_Alpha/?ed=2560
-- name: ❓Other_14 | ⬇️ 1.0MB/s
-  network: ws
-  port: 8880
-  server: 154.194.12.63
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /Telegram
-- name: ❓Other_64 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 92.243.74.213
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /?ed=2560fp=chrome
-- alpn:
-  - h2,http/1.1
-  client-fingerprint: randomized
-  name: 🇫🇮FI_9 | ⬇️ 1.6MB/s
-  network: ws
-  port: 443
-  server: 108.165.152.82
-  servername: GgGgr.PaGES.dEV
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 9368b093-d790-4096-9d8a-1265e82f9e2f
-  ws-opts:
-    headers:
-      host: ggggr.pages.dev
-    path: /gLHWGBXwDuMKHx2C?ed=2560
-- name: ❓Other_58 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 45.153.7.186
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳
-- latency: 1.2640953063964844
-  name: 🇺🇸US_47 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.137
-  servername: sk.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sk.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3
-- name: ❓Other_63 | ⬇️ 1.9MB/s
-  network: ws
-  port: 8880
-  server: 91.124.127.148
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: ❓Other_59 | ⬇️ 1.5MB/s
-  network: ws
-  port: 8880
-  server: 80.93.202.213
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /
-- latency: 1.59454345703125
-  name: 🇺🇸US_11 | ⬇️ 2.9MB/s
-  network: ws
-  port: 8880
-  server: 77.232.140.20
-  servername: us.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: us.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3 @MxlShare @WangCai2 /?ed=2560
-- latency: 2.011537551879883
-  name: 🇺🇸US_29 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 160.153.137.251
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /Telegram
-- name: ❓Other_28 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 185.135.9.177
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: ❓Other_37 | ⬇️ 1.6MB/s
-  network: ws
-  port: 8880
-  server: 190.93.244.247
-  servername: ex.sue.x10.mx
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      host: ex.sue.x10.mx
-    path: /Telegram🇨🇳
-- name: ❓Other_44 | ⬇️ 1.6MB/s
-  network: ws
-  port: 8880
-  server: 195.13.54.247
-  servername: ex.sue.x10.mx
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      host: ex.sue.x10.mx
-    path: /Telegram
-- latency: 1.4920234680175781
-  name: 🇺🇸US_45 | ⬇️ 1.3MB/s
-  network: ws
-  port: 8880
-  server: 199.181.197.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- latency: 1.7766952514648438
-  name: 🇺🇸US_50 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 94.247.142.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560fp=chrome
-- name: 🇭🇰HK_11 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 155.46.213.20
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: hk.laoyoutiao.link
-    path: /
-- latency: 1.9123554229736328
-  name: 🇺🇸US_75 | ⬇️ 2.1MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.60
-  servername: us.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: us.laoyoutiao.link
-    path: /Telegram🇨🇳
-- client-fingerprint: chrome
-  name: ❓Other_67 | ⬇️ 3.3MB/s
-  network: ws
-  port: 443
-  server: vipren.biz.id
-  servername: vipren.biz.id
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: bbbbbbbb-cccc-4ddd-eeee-ffffffffffff
-  ws-opts:
-    headers:
-      host: vipren.biz.id
-    path: /Neoxide-X/121.169.228.177-17050
-- name: 🇰🇷KR_13 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 135.84.79.177
-  servername: ip.langmanshanxi.top
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳
-- name: ❓Other_12 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 103.245.228.156
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: kjgx.laoyoutiao.link
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: ❓Other_17 | ⬇️ 1.7MB/s
-  network: ws
-  port: 8880
-  server: 154.198.173.186
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram @WangCai2 /?ed=2560
-- client-fingerprint: chrome
-  name: 🇨🇦CA_1 | ⬇️ 1.8MB/s
-  network: ws
-  port: 2083
-  server: 172.67.69.129
-  servername: e.exedu.ip-ddns.com
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 8f320d6a-9953-4065-b61c-d62f89a6767f
-  ws-opts:
-    headers:
-      host: e.exedu.ip-ddns.com
-    path: /Telegram@V2ray_Alpha/?ed=2048
-- name: 🇯🇵JP_3 | ⬇️ 1.3MB/s
-  network: ws
-  port: 8880
-  server: 213.182.199.63
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /Telegram🇨🇳
-- name: ❓Other_26 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 168.100.6.168
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: kjgx.laoyoutiao.link
-    path: /Telegram@WangCai2/?ed=2560
-- name: ❓Other_34 | ⬇️ 2.3MB/s
-  network: ws
-  port: 8880
-  server: 185.59.218.148
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: ❓Other_36 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 188.164.248.177
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳
-- name: ❓Other_42 | ⬇️ 2.5MB/s
-  network: ws
-  port: 8880
-  server: 193.9.49.156
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: kjgx.laoyoutiao.link
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: ❓Other_49 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 199.34.229.148
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- alpn:
-  - h3,h2,http/1.1
-  client-fingerprint: chrome
-  name: 🇩🇪DE_12 | ⬇️ 1.2MB/s
-  network: tcp
-  port: 16704
-  server: a.shenasnamegan.shop
-  servername: a.shenasnamegan.shop
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 183babc7-da94-4b90-8194-33f312bf5331
-- name: 🇰🇷KR_6 | ⬇️ 1.0MB/s
-  network: ws
-  port: 8880
-  server: 185.148.104.177
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳@WangCai2/?ed=2560
-- name: 🇰🇷KR_7 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 185.238.228.186
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram @WangCai2 /?ed=2560
-- name: ❓Other_79 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 86.38.214.168
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: kjgx.laoyoutiao.link
-    path: /Telegram@WangCai2/?ed=2560
-- latency: 2.296924591064453
-  name: 🇺🇸US_44 | ⬇️ 1.7MB/s
-  network: ws
-  port: 8880
-  server: 198.62.62.3
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
-  ws-opts:
-    headers:
-      host: bitget1.asdasd.click
-    path: /Telegram🇨🇳
-- name: ❓Other_53 | ⬇️ 2.0MB/s
-  network: ws
-  port: 8880
-  server: 216.205.52.148
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: ❓Other_65 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 94.140.0.213
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /
-- name: 🇭🇰HK_10 | ⬇️ 1.7MB/s
-  network: ws
-  port: 8880
-  server: 185.221.160.29
-  servername: hk.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: hk.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3
-- client-fingerprint: randomized
-  latency: 1.683950424194336
-  name: 🇺🇸US_82 | ⬇️ 1.0MB/s
-  network: ws
-  port: 8443
-  server: 45.80.111.221
-  servername: gGHDFa.pAgeS.Dev
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: a396b860-11b7-4af3-9950-146caf79735e
-  ws-opts:
-    headers:
-      host: gghdfa.pages.dev
-    path: /Tel-@V2ray_Alpha/?ed=2560
-- latency: 1.3794898986816406
-  name: 🇺🇸US_61 | ⬇️ 2.2MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.248
-  servername: sk.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sk.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3?ed=2048
-- client-fingerprint: chrome
-  name: ❓Other_3 | ⬇️ 3.6MB/s
-  network: ws
-  password: tg-fq521free
-  port: 443
-  server: 198.62.62.67
-  skip-cert-verify: false
-  sni: torjan.xn--xhq44j.eu.org
-  type: trojan
-  udp: true
-  ws-opts:
-    path: /
-- client-fingerprint: chrome
-  name: ❓Other_9 | ⬇️ 2.3MB/s
-  network: ws
-  port: 2083
-  server: 172.67.151.188
-  servername: ex.sue.x10.mx
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      host: ex.sue.x10.mx
-    path: /?ed=2560
-- client-fingerprint: chrome
-  name: 🇰🇷KR_5 | ⬇️ 1.9MB/s
-  network: ws
-  port: 2087
-  server: 172.66.47.31
-  servername: nEwMTPROxI.PAGes.DEv
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 2cec2733-389a-46a7-9053-218594a6336d
-  ws-opts:
-    headers:
-      host: nEwMTPROxI.PAGes.DEv
-    path: /
-- latency: 1.6798973083496094
-  name: 🇺🇸US_43 | ⬇️ 2.3MB/s
-  network: ws
-  port: 8880
-  server: 192.200.160.254
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
-  ws-opts:
-    headers:
-      host: yg.bantony199.top
-    path: /Telegram🇨🇳
-- name: ❓Other_57 | ⬇️ 1.7MB/s
-  network: ws
-  port: 8880
-  server: 27.50.49.63
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /Telegram🇨🇳
-- alpn:
-  - http/1.1
-  client-fingerprint: randomized
-  name: 🇩🇪DE_6 | ⬇️ 1.1MB/s
-  network: ws
-  port: 443
-  server: 104.21.30.90
-  servername: faruzan.changli.ddns-ip.net
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: a739ad80-0aab-40b2-9b0e-8192c74287ef
-  ws-opts:
-    headers:
-      host: faruzan.changli.ddns-ip.net
-    path: /proxyip=navia.shorekeeper.ir
-- name: ❓Other_15 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 154.198.173.156
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: kjgx.laoyoutiao.link
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: 🇸🇬SG_10 | ⬇️ 1.8MB/s
-  network: ws
-  port: 8880
-  server: 156.238.18.93
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sg.laoyoutiao.link
-    path: /Telegram@WangCai2/?ed=2048
-- latency: 2.3419857025146484
-  name: 🇺🇸US_80 | ⬇️ 2.3MB/s
-  network: ws
-  port: 8880
-  server: 62.72.166.3
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
-  ws-opts:
-    headers:
-      host: bitget1.asdasd.click
-    path: /Telegram🇨🇳
-- name: ❓Other_39 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 190.93.247.63
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /Telegram🇨🇳
-- name: ❓Other_54 | ⬇️ 1.7MB/s
-  network: ws
-  port: 8880
-  server: 216.24.57.177
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳
-- name: 🇭🇰HK_5 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 159.112.235.29
-  servername: hk.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: hk.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3
-- name: 🇰🇷KR_9 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 194.53.53.148
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- client-fingerprint: chrome
-  latency: 2.6557445526123047
-  name: 🇺🇸US_60 | ⬇️ 1.8MB/s
-  network: ws
-  port: 443
-  server: 104.18.26.90
-  servername: barayeiranmahsang.ghormehsabzi.dpdns.org
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: e6236ebc-7334-4bed-977f-0c20bcdfcc00
-  ws-opts:
-    headers:
-      host: barayeiranmahsang.ghormehsabzi.dpdns.org
-    path: /@warp_city
-- latency: 1.3511180877685547
-  name: 🇺🇸US_74 | ⬇️ 3.0MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.127
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sk.laoyoutiao.link
-    path: /Telegram🇨🇳 @MxlShare @WangCai2 /
-- alpn:
-  - http/1.1
-  client-fingerprint: randomized
-  name: 🇮🇪IE_1 | ⬇️ 1.3MB/s
-  network: ws
-  port: 443
-  server: 104.21.54.114
-  servername: faruzan.changli.ddns-ip.net
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: a739ad80-0aab-40b2-9b0e-8192c74287ef
-  ws-opts:
-    headers:
-      host: faruzan.changli.ddns-ip.net
-    path: /proxyip=navia.shorekeeper.ir
-- name: ❓Other_52 | ⬇️ 1.6MB/s
-  network: ws
-  port: 8880
-  server: 216.24.57.213
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /
-- name: ❓Other_8 | ⬇️ 1.6MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.14
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: tw.laoyoutiao.link
-    path: /Telegram🇨🇳@WangCai2/?ed=2048
-- alpn:
-  - h3,h2,http/1.1
-  client-fingerprint: chrome
-  name: 🇫🇷FR_1 | ⬇️ 1.2MB/s
-  network: ws
-  port: 56817
-  server: amir021.amir021.tech
-  servername: amir021.amir021.tech
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 7b601ebe-d8ac-470a-b745-1bca7d89ee14
-  ws-opts:
-    path: /@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-@vpn_Zvpn-?ed=2560
-- client-fingerprint: chrome
-  name: 🇩🇪DE_13 | ⬇️ 1.8MB/s
-  network: ws
-  port: 443
-  server: aboringdad.dpdns.org
-  servername: aboringdad.dpdns.org
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 601e7e24-0697-4fed-9715-f3336ad5094c
-  ws-opts:
-    headers:
-      host: aboringdad.dpdns.org
-    path: /?ed=2560
-- alpn:
-  - http/1.1
-  client-fingerprint: randomized
-  name: 🇩🇪DE_4 | ⬇️ 2.2MB/s
-  network: ws
-  port: 443
-  server: 104.24.171.107
-  servername: vNgSUppLy.IP-dDnS.COm
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: e9979910-79d1-4621-a93c-b2a579c44ba7
-  ws-opts:
-    headers:
-      host: vngsupply.ip-ddns.com
-    path: /eJ5JZ3A1HxfU0bPO?ed=2560/?JOKERRVPN_BIA_CHANEL@JOKERRVPN
-- name: 🇭🇰HK_2 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 141.11.203.29
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: hk.laoyoutiao.link
-    path: /Telegram🇨🇳 @MxlShare @WangCai2 /?ed=2560
-- alpn:
-  - h2,http/1.1
-  client-fingerprint: chrome
-  name: 🇵🇭PH_3 | ⬇️ 1.5MB/s
-  network: ws
-  port: 443
-  server: mangaread.org
-  servername: ConFIgmr.PaGeS.dEV
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 63005378-e32e-4e23-bc6e-84812f147a6f
-  ws-opts:
-    headers:
-      host: configmr.pages.dev
-    path: /--JoiN--@FREEV2RNG--Bia--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG?ed=2560
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  name: 🇬🇧GB_3 | ⬇️ 2.3MB/s
-  network: ws
-  port: 2096
-  server: 172.66.132.196
-  servername: faruzan.changli.ddns-ip.net
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: a739ad80-0aab-40b2-9b0e-8192c74287ef
-  ws-opts:
-    headers:
-      host: faruzan.changli.ddns-ip.net
-    path: /Tel-@V2ray_Alpha
-- latency: 2.1486282348632812
-  name: 🇺🇸US_64 | ⬇️ 2.2MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.245
-  servername: us.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: us.laoyoutiao.link
-    path: /
-- name: ❓Other_77 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 185.251.80.213
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /
-- alpn:
-  - h3
-  client-fingerprint: randomized
-  name: 🇩🇪DE_1 | ⬇️ 1.4MB/s
-  network: ws
-  password: Aimer
-  port: 443
-  server: 91.149.239.64
-  skip-cert-verify: true
-  sni: epgz.aimercc.filegear-sg.me
-  type: trojan
-  udp: true
-  ws-opts:
-    path: /?ed=2560&proxyip=ts.hpc.tw
-- name: ❓Other_24 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 167.68.5.213
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /
-- name: ❓Other_22 | ⬇️ 1.6MB/s
-  network: ws
-  port: 8880
-  server: 160.79.104.63
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /Telegram🇨🇳
-- client-fingerprint: chrome
-  name: 🇰🇷KR_11 | ⬇️ 3.7MB/s
-  network: ws
-  port: 443
-  server: nuclear.us.kg
-  servername: nuclear.us.kg
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 2bcfbfba-b446-4ad5-93ad-72af9e008f61
-  ws-opts:
-    headers:
-      host: nuclear.us.kg
-    path: /free/1.226.227.169:50001
-- client-fingerprint: chrome
-  latency: 22.65191078186035
-  name: 🇺🇸US_34 | ⬇️ 1.3MB/s
-  network: ws
-  port: 443
-  server: 172.67.160.192
-  servername: nuclear.us.kg
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 2bcfbfba-b446-4ad5-93ad-72af9e008f61
-  ws-opts:
-    headers:
-      host: nuclear.us.kg
-    path: /free/103.101.153.32:443
-- client-fingerprint: chrome
-  grpc-opts: {}
-  name: 🇩🇪DE_18 | ⬇️ 1.5MB/s
-  network: grpc
-  port: 24070
-  reality-opts:
-    public-key: Wkuh9iexXuhWaaFt1saCWk8iGS0h1mEiMtDsmoJSgAk
-    short-id: '93'
-  server: 91.107.136.146
-  servername: yahoo.com
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: c23c9151-c696-4e0a-8dc5-75edfcc4a271
-- name: 🇯🇵JP_1 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 103.116.7.213
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /
-- alpn:
-  - http/1.1
-  client-fingerprint: random
-  name: 🇸🇪SE_1 | ⬇️ 1.4MB/s
-  network: ws
-  port: 443
-  server: 104.21.67.11
-  servername: carlotta.shoorekeeper.cloudns.org
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 30f2d443-af46-4dd6-83c9-b5e17299ebd2
-  ws-opts:
-    headers:
-      host: carlotta.shoorekeeper.cloudns.org
-    path: /proxyip=zani.yaemiko.ggff.net
-- name: ❓Other_71 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 5.10.215.63
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3 @WangCai2 /?ed=2560fp=chrome
-- alpn:
-  - http/1.1
-  client-fingerprint: randomized
-  name: 🇸🇪SE_2 | ⬇️ 1.2MB/s
-  network: ws
-  port: 443
-  server: 172.67.72.191
-  servername: carlotta.shoorekeeper.cloudns.org
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 30f2d443-af46-4dd6-83c9-b5e17299ebd2
-  ws-opts:
-    headers:
-      host: carlotta.shoorekeeper.cloudns.org
-    path: /proxyip=zani.yaemiko.ggff.net
-- name: ❓Other_41 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 193.233.132.156
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: kjgx.laoyoutiao.link
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- client-fingerprint: chrome
-  latency: 23.43273162841797
-  name: 🇺🇸US_36 | ⬇️ 1.1MB/s
-  network: ws
-  port: 443
-  server: 172.67.218.254
-  servername: F1.paRsa.fiLegEar-Sg.Me
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 8df60790-c903-4661-b85d-64c0009378e5
-  ws-opts:
-    headers:
-      host: f1.parsa.filegear-sg.me
-    path: /?ed=2560
-- client-fingerprint: chrome
-  name: 🇫🇮FI_6 | ⬇️ 1.4MB/s
-  network: ws
-  port: 443
-  server: 188.114.97.11
-  servername: XLZ767V2RAy.PAGES.dEv
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: b9b8cf4c-29a3-4288-9c6c-8811dc37beec
-  ws-opts:
-    headers:
-      host: XLZ767V2RAy.PAGES.dEv
-    path: /t3fgslbvys9sp8zt?ed=2560
-- client-fingerprint: randomized
-  latency: 1.964569091796875
-  name: 🇺🇸US_81 | ⬇️ 1.3MB/s
-  network: ws
-  port: 8443
-  server: 45.131.210.218
-  servername: gGHDFa.pAgeS.Dev
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: a396b860-11b7-4af3-9950-146caf79735e
-  ws-opts:
-    headers:
-      host: gghdfa.pages.dev
-    path: /Tel-@V2ray_Alpha/?ed=2560
-- alpn:
-  - h2,http/1.1
-  client-fingerprint: chrome
-  name: 🇵🇭PH_2 | ⬇️ 2.8MB/s
-  network: ws
-  port: 443
-  server: 37.153.171.107
-  servername: ConFIgmr.PaGeS.dEV
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 63005378-e32e-4e23-bc6e-84812f147a6f
-  ws-opts:
-    headers:
-      host: configmr.pages.dev
-    path: /--JoiN--@FREEV2RNG--Bia--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG--@FREEV2RNG?ed=2560
-- latency: 1.5835762023925781
-  name: 🇺🇸US_52 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 94.247.142.254
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
-  ws-opts:
-    headers:
-      host: yg.bantony199.top
-    path: /Telegram
-- client-fingerprint: chrome
-  name: 🇩🇪DE_5 | ⬇️ 1.4MB/s
-  network: ws
-  port: 2087
-  server: 188.114.97.11
-  servername: Xlz767V2Ray.PAGEs.DEv
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: b9b8cf4c-29a3-4288-9c6c-8811dc37beec
-  ws-opts:
-    headers:
-      host: Xlz767V2Ray.PAGEs.DEv
-    path: /bethzrzkz5ljs32v?ed=2560
-- latency: 1.611471176147461
-  name: 🇺🇸US_46 | ⬇️ 1.7MB/s
-  network: ws
-  port: 8880
-  server: 209.94.90.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /
-- client-fingerprint: chrome
-  latency: 2.7174949645996094
-  name: 🇺🇸US_21 | ⬇️ 1.9MB/s
-  network: ws
-  port: 443
-  server: 104.18.158.152
-  servername: F1.paRsa.fiLegEar-Sg.Me
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 8df60790-c903-4661-b85d-64c0009378e5
-  ws-opts:
-    headers:
-      host: f1.parsa.filegear-sg.me
-    path: /?ed=2560
-- name: 🇺🇸US_32 | ⬇️ 1.5MB/s
-  network: tcp
-  port: 2321
-  server: 172.234.31.253
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 7028cb85-9611-4876-bb19-e15fa050b253
-- name: 🇸🇬SG_6 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: ::ffff:156.238.18.136
-  servername: sg.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sg.laoyoutiao.link
-    path: /
-- latency: 2.7468204498291016
-  name: 🇺🇸US_72 | ⬇️ 1.8MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.196
-  servername: sk.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sk.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3
-- name: ❓Other_35 | ⬇️ 1.0MB/s
-  network: ws
-  port: 8880
-  server: 188.164.159.247
-  servername: ex.sue.x10.mx
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      host: ex.sue.x10.mx
-    path: /Telegram🇨🇳
-- name: ❓Other_62 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 91.124.127.247
-  servername: ex.sue.x10.mx
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      host: ex.sue.x10.mx
-    path: /Telegram🇨🇳
-- client-fingerprint: chrome
-  name: 🇸🇬SG_8 | ⬇️ 2.7MB/s
-  network: ws
-  port: 443
-  server: zoomgov.vipren.biz.id
-  servername: zoomgov.vipren.biz.id
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: f9eae0f4-9b13-467d-ac46-a0f86ea21cf2
-  ws-opts:
-    headers:
-      host: zoomgov.vipren.biz.id
-    path: /15.235.199.103=8443
-- client-fingerprint: random
-  latency: 8.98599624633789
-  name: 🇺🇸US_41 | ⬇️ 1.2MB/s
-  network: ws
-  port: 443
-  server: 188.114.99.93
-  servername: jack.jack-cq.click
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 72982133-27fb-46fc-9061-61113e77e201
-  ws-opts:
-    headers:
-      host: jack.jack-cq.click
-    path: /?ed=2560
-- name: 🇫🇮FI_3 | ⬇️ 2.0MB/s
-  network: ws
-  port: 80
-  server: dl1-fi-cdn.easy-upload.org
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: ee2bb495-2632-445b-b1f8-3c476a50b78b
-  ws-opts:
-    headers:
-      host: dl1-fi-cdn.easy-upload.org
-    path: /
-- latency: 1.8317699432373047
-  name: 🇺🇸US_51 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 94.247.142.3
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
-  ws-opts:
-    headers:
-      host: bitget1.asdasd.click
-    path: /Telegram🇨🇳
-- latency: 1.6841888427734375
-  name: 🇺🇸US_42 | ⬇️ 1.5MB/s
-  network: ws
-  port: 8880
-  server: 192.0.63.3
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
-  ws-opts:
-    headers:
-      host: bitget1.asdasd.click
-    path: /Telegram🇨🇳
-- name: ❓Other_46 | ⬇️ 2.0MB/s
-  network: ws
-  port: 8880
-  server: 198.202.211.247
-  servername: ex.sue.x10.mx
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      host: ex.sue.x10.mx
-    path: /Telegram🇨🇳
-- client-fingerprint: chrome
-  name: 🇸🇬SG_7 | ⬇️ 1.4MB/s
-  network: ws
-  port: 443
-  server: aio.xtradata.dpdns.org
-  servername: aio.xtradata.dpdns.org
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: f282b878-8711-45a1-8c69-5564172123c1
-  ws-opts:
-    headers:
-      host: aio.xtradata.dpdns.org
-    path: /aioproxybot/129.150.49.58-18650
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 🇨🇦CA_2 | ⬇️ 1.5MB/s
-  network: tcp
-  port: 42557
-  reality-opts:
-    public-key: LiHpb4jWrgHBSpi1mjKH3I8m2ahpVNexeNDh-sMW3Xo
-    short-id: f430927d
-  server: 40.233.115.223
-  servername: www.yahoo.com
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 2429bee3-e0c1-47dd-b420-75e6512b184b
-- alpn:
-  - h3,h2,http/1.1
-  client-fingerprint: chrome
-  latency: 45.36557197570801
-  name: 🇺🇸US_55 | ⬇️ 2.3MB/s
-  network: ws
-  port: 2053
-  server: loscdn.bm04.xyz
-  servername: loscdn.bm04.xyz
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 94cf288d-f764-4ce9-a547-a7228144f056
-  ws-opts:
-    headers:
-      host: loscdn.bm04.xyz
-    path: /workspace/stream/
-- name: ❓Other_31 | ⬇️ 1.0MB/s
-  network: ws
-  port: 8880
-  server: 185.176.24.247
-  servername: ex.sue.x10.mx
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      host: ex.sue.x10.mx
-    path: /Telegram🇨🇳
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 17.357587814331055
-  name: 🇺🇸US_5 | ⬇️ 3.0MB/s
-  network: ws
-  password: f69b7304-9bea-4740-a555-797514012a53
-  port: 443
-  server: ggbnhju.859885.xyz
-  skip-cert-verify: false
-  sni: gGbNHjU.859885.xYZ
-  type: trojan
-  udp: true
-  ws-opts:
-    path: /MxtuuhyCwC29auSeckWI9
-- latency: 1.7499923706054688
-  name: 🇺🇸US_39 | ⬇️ 1.9MB/s
-  network: ws
-  port: 8880
-  server: 184.174.80.148
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 33.025264739990234
-  name: 🇺🇸US_3 | ⬇️ 1.8MB/s
-  network: ws
-  password: fa050497-fc2a-45ee-89c0-96670c4ecb65
-  port: 443
-  server: 172.67.145.200
-  skip-cert-verify: false
-  sni: Rrr4.8906004.xYZ
-  type: trojan
-  udp: true
-  ws-opts:
-    path: /DZxb5QZyWgQPuXTwt
-- name: ❓Other_47 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 198.202.211.156
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: kjgx.laoyoutiao.link
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- latency: 2.0923614501953125
-  name: 🇺🇸US_84 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 185.238.228.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /Telegram🇨🇳
-- name: ❓Other_50 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 209.94.90.177
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- alterId: 0
-  cipher: auto
-  name: ❓Other_10 | ⬇️ 3.5MB/s
-  network: ws
-  port: 443
-  server: aio.zipzap.biz.id
-  servername: aio.zipzap.biz.id
-  skip-cert-verify: true
-  tls: true
-  type: vmess
-  udp: true
-  uuid: f282b878-8711-45a1-8c69-5564172123c1
-  version: '2'
-  ws-opts:
-    headers:
-      host: aio.zipzap.biz.id
-    path: /aioproxybot/146.190.192.43-80
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 8.941888809204102
-  name: 🇺🇸US_24 | ⬇️ 1.2MB/s
-  network: ws
-  port: 443
-  server: 104.21.21.72
-  servername: 4W.003330333.XYZ
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 6e5925c0-f39e-4449-93e9-2e2e9772b17b
-  ws-opts:
-    headers:
-      host: 4w.003330333.xyz
-    path: /XKkmZUl83R8RsRHVp4fx59ry
-- name: 🇨🇦CA_3 | ⬇️ 1.8MB/s
-  network: tcp
-  port: 45877
-  server: fahra-isbsus-iwbsha.haratipulan.ir
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 81ed7265-be10-498b-c96f-46789e81ac88
-- name: ❓Other_27 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 184.174.80.247
-  servername: ex.sue.x10.mx
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      host: ex.sue.x10.mx
-    path: /Telegram🇨🇳
-- name: ❓Other_25 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 167.68.5.63
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560fp=chrome
-- client-fingerprint: chrome
-  name: 🇩🇪DE_10 | ⬇️ 1.2MB/s
-  network: ws
-  port: 443
-  server: 172.67.200.156
-  servername: rayan-07.leila.dpdns.org
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 7a80a8d9-92f9-4f0a-8352-9005a8215ab8
-  ws-opts:
-    headers:
-      host: rayan-07.leila.dpdns.org
-    path: /@Rayan_Config
-- client-fingerprint: chrome
-  latency: 9.169578552246094
-  name: 🇺🇸US_25 | ⬇️ 3.0MB/s
-  network: ws
-  port: 443
-  server: 104.21.26.17
-  servername: ttttttt67.459.pp.ua
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 07a3df8f-2a2c-42f8-ad92-65889d90f3bf
-  ws-opts:
-    headers:
-      host: ttttttt67.459.pp.ua
-    path: /5UW2C42lpZ7Dj4VDwVOkZfoq
-- name: 🇳🇱NL_3 | ⬇️ 2.8MB/s
-  network: ws
+  name: '@Network_442_ 🇹🇷 iZMIR @2'
+  password: 1RWwXhwfAB5gAEozU4G2Pg
   port: 8080
-  server: 104.21.43.168
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: b3fb50dd-35ce-4c4a-9280-acaeb1677640
-  ws-opts:
-    headers:
-      host: Kk78.4qwertyuiopasdfghjklzxcvbnmmnbvccjzlkjhgfdsapoiuytre0107252.sub420-mohamad.OnlinE.
-    path: /Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420/Telegram,@EXPRESSVPN_420?ed=80
-- client-fingerprint: chrome
-  name: 🇩🇪DE_8 | ⬇️ 1.4MB/s
-  network: tcp
-  port: 1419
-  reality-opts:
-    public-key: 0L-XvEVE4KLbDk-evkkxEWK3y-Nkz0E181t0PD_o4h4
-    short-id: ae439107157c97
-  server: 165.227.244.151
-  servername: journalofbigdata.springeropen.com
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 57a5d042-6618-4042-a2de-1a2169c4ce9d
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 22.706031799316406
-  name: 🇺🇸US_4 | ⬇️ 1.2MB/s
+  server: 45.87.175.157
+  type: ss
+- name: vless
   network: ws
-  password: e4cbe8b8-37db-4aaa-8469-b84f34c51ebc
   port: 443
-  server: 172.67.157.220
-  skip-cert-verify: false
-  sni: 6666YHjU.777159.xYz
-  type: trojan
-  udp: true
-  ws-opts:
-    path: /dilyfCPEmLvYr5hYXD
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 🇳🇱NL_1 | ⬇️ 2.3MB/s
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: gi8v7_r3NbWuPl9kjt8ZZLDavCMz1w0rVeNhcVnVxEM
-    short-id: 9d56b1e4
-  server: 83.217.222.183
-  servername: microsoft.com
-  skip-cert-verify: true
+  server: 172.67.74.133
+  servername: blog.ruangguru.com.servpn.my.id#Allnet Telegram:@ultrasurf_12vless://0fbf4f81-2598-4b6a-a623-0ead4cb9efa8@privasi.turah.my.id:443?path=/Free-CF-Proxy-AD192.3.113.4-19318?ed=2048@
   tls: true
   type: vless
-  udp: true
-  uuid: 38e45e75-cabb-4b98-8e2f-9d65843b7efa
-- alterId: 0
-  cipher: auto
-  name: https://t.me/xyfqzy ⚡_15
-  network: ws
-  port: 80
-  server: 104.21.65.190
-  servername: ''
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 20e89a95-cedf-4fe3-9421-517ce66be170
-  version: '2'
+  uuid: 6780a3c0-a98c-4622-b894-8e34167f7b31
   ws-opts:
     headers:
-      host: tttgggbnh.4444936.xyz
-    path: /SHToRcqfiraYkzOdf
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 22.681713104248047
-  name: 🇺🇸US_68 | ⬇️ 1.0MB/s
-  network: ws
-  port: 443
-  server: 172.67.130.204
-  servername: HHhhhHhhhhH.777198.xYz
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: c226ac5d-65e9-4379-95c3-fb542bc242d8
-  ws-opts:
-    headers:
-      host: hhhhhhhhhhh.777198.xyz
-    path: /OjdW89Bpg4ykd4O
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 10.394811630249023
-  name: 🇺🇸US_33 | ⬇️ 2.1MB/s
-  network: ws
-  port: 443
-  server: 172.67.157.220
-  servername: XXCsDERT6.777159.XyZ
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: ffcf7ec1-3e09-4821-b3d9-b426a107b73b
-  ws-opts:
-    headers:
-      host: xxcsdert6.777159.xyz
-    path: /O9jlBCbIm3xr1D40NK
-- name: 🇭🇰HK_9 | ⬇️ 1.5MB/s
-  network: ws
-  port: 8880
-  server: 46.254.93.29
-  servername: hk.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: hk.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 23.336172103881836
-  name: 🇺🇸US_37 | ⬇️ 1.2MB/s
-  network: ws
-  port: 443
-  server: 172.67.212.82
-  servername: ddddddccccccccccccccvv.131.pp.ua
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 4174b95d-115e-4d39-add6-1f8db95bb860
-  ws-opts:
-    headers:
-      host: ddddddccccccccccccccvv.131.pp.ua
-    path: /eAbAcRHV1QuhyXWGxgFnoFPw1
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 🇮🇱IL_1 | ⬇️ 2.8MB/s
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: YVDo7U4O-AT2fa5H9E7hyYHKgfZd1vB6UdbAf2ggWQE
-    short-id: 55e6af1a35e64a98
-  server: ilta-wzxrxkdhbjpnprhkkpplsjwawhssvollvxzdhqshiqckwdgrdm.orbnet.xyz
-  servername: i2pd.website
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 0e8a6896-ad90-4a3b-89a3-77d64aa409e2
-- latency: 2.1436214447021484
-  name: 🇺🇸US_73 | ⬇️ 2.1MB/s
-  network: ws
-  port: 8880
-  server: 156.238.18.197
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: yd.laoyoutiao.link
-    path: /
-- latency: 1.4107227325439453
-  name: 🇺🇸US_8 | ⬇️ 1.3MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.238
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: us.laoyoutiao.link
-    path: /Telegram🇨🇳 @MxlShare @WangCai2 /?ed=2560
-- client-fingerprint: chrome
-  latency: 9.996652603149414
-  name: 🇺🇸US_22 | ⬇️ 1.3MB/s
-  network: ws
-  port: 443
-  server: 104.19.120.225
-  servername: F1.paRsa.fiLegEar-Sg.Me
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 8df60790-c903-4661-b85d-64c0009378e5
-  ws-opts:
-    headers:
-      host: f1.parsa.filegear-sg.me
-    path: /?ed=2560
-- client-fingerprint: chrome
-  latency: 16.245126724243164
-  name: 🇺🇸US_65 | ⬇️ 1.2MB/s
-  network: ws
-  password: 9c67ebbe-d620-4b6d-ad82-1ebc675e22c6
-  port: 8443
-  server: csgo.com
-  skip-cert-verify: false
-  sni: cdn-node-oss-99.paofu.de
-  type: trojan
-  udp: true
-  ws-opts:
-    path: /profile/telegram@ssrsub
-- name: ❓Other_66 | ⬇️ 1.5MB/s
-  network: ws
-  port: 8880
-  server: 94.140.0.148
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: 🇨🇦CA_4 | ⬇️ 2.1MB/s
-  network: ws
-  port: 80
-  server: 104.18.26.90
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 3ac2de34-47c5-4dd5-afc0-8fb4b05d4077
-  ws-opts:
-    headers:
-      host: blaze-can-118.blazecanada.site
-    path: /?ed=2560/?BIA_TELEGRAM@MARAMBASHI_MARAMBASHI_MARAMBASHI
-- name: ❓Other_40 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 192.65.217.186
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳
-- name: ❓Other_19 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 156.238.18.195
-  servername: yd.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: yd.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3
-- alpn:
-  - http/1.1
-  client-fingerprint: random
-  name: 🇬🇧GB_2 | ⬇️ 1.2MB/s
-  network: ws
-  port: 443
-  server: 160.153.0.132
-  servername: escoffier.changli.ddns-ip.net
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1e610976-fef5-4ca4-a447-f3530e70603e
-  ws-opts:
-    headers:
-      host: escoffier.changli.ddns-ip.net
-    path: /proxyip=navia.shorekeeper.ir
-- name: ❓Other_16 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 154.197.121.177
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: 🇰🇷KR_8 | ⬇️ 1.0MB/s
-  network: ws
-  port: 8880
-  server: 188.164.158.177
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- name: 🇸🇬SG_11 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.174
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: kjgx.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3 @WangCai2 /?ed
-- name: ❓Other_72 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 147.78.140.186
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- alpn:
-  - h2
-  client-fingerprint: chrome
-  grpc-opts: {}
-  latency: 19.56009864807129
-  name: 🇺🇸US_83 | ⬇️ 1.2MB/s
+      Host: blog.ruangguru.com.servpn.my.id
+    path: /id5?ed=2560/?@
+- name: vless
   network: grpc
-  port: 443
-  server: 104.21.76.21
-  servername: nnHHgTYRE.00890604.XYZ
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: b8992384-c118-43a7-97aa-8f8423f19169
-- name: 🇩🇪DE_14 | ⬇️ 2.1MB/s
-  network: ws
   port: 80
-  server: ftp6.tehran-park.com
-  skip-cert-verify: true
+  server: 20.96.165.134
   type: vless
-  udp: true
-  uuid: 2658fffa-e35a-43cd-9df8-5ad29576931b
-  ws-opts:
-    headers:
-      host: 185.232.70.52.www.speedtest.net.www.debian.org.www.speedtest.net自己不去看啥事情基本没啥事事自己不去看啥事情基本没啥事事.teHran-PC.infO.
-    path: /CANALTELEGRAM--jet_config--TELEGRAM--jet_config--CANALTELEGRAM--jet_config--TELEGRAM--jet_config--CANALTELEGRAM--jet_config--TELEGRAM--jet_config--CANALTELEGRAM--jet_config--TELEGRAM--jet_configCANALTELEGRAM--jet_config--TELEGRAM--jet_config--CANALTELEGRAM--jet_config--TELEGRAM--jet_config--CANALTELEGRAM--jet_config--TELEGRAM--jet_config--CANALTELEGRAM--jet_config
-- client-fingerprint: chrome
-  name: 🇰🇿KZ_1 | ⬇️ 1.5MB/s
-  network: tcp
-  port: 19747
-  reality-opts:
-    public-key: ZO9dTeg1slvTXgVsBsaJ1BDvz_YUImTLJjbHs-GdVyM
-    short-id: '2001'
-  server: 77.73.232.61
-  servername: yahoo.com
-  skip-cert-verify: true
+  uuid: 89722a6c-e074-4651-d0a7-6ad6c29ce87b
+- name: vless
+  network: ws#مرغ بریان @freV2rayNG➖➖➖➖➖➖vless://9b4a2cd4-7d28-4ebe-d701-95723b811aff@ZULA.IR:80?path=/Telegram:@NUFiLTER-Telegram:@NUFiLTER-Telegram:@NUFiLTER-Telegram:@NUFiLTER-Telegram:@NUFiLTER-Telegram:@NUFiLTER-Telegram:@NUFiLTER-Telegram:@NUFiLTER-Telegram:@NUFiLTER-Telegram:@NUFiLTER-Telegram:@NUFiLTER
+  port: 2086
+  server: WWW.SPEEDTEST.NET
   type: vless
-  udp: true
-  uuid: 2a9ed01e-5455-44b4-a66a-76ee8165f0ac
-- name: 🇸🇬SG_9 | ⬇️ 1.0MB/s
-  network: ws
-  port: 8880
-  server: 156.238.18.148
-  servername: sg.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sg.laoyoutiao.link
-    path: /Telegram@WangCai2/?ed=2048
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 9.18269157409668
-  name: 🇺🇸US_66 | ⬇️ 2.3MB/s
+  uuid: c142dd91-b36b-430b-b0d7-8c9c2a073a1e
+- cipher: chacha20-ietf-poly1305
+  name: '@Awlix_irss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpVM0lsZ0l2Z0FrQWthQkNuMFNVQXNY@77.239.117.121:28694#@Awlix_irss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToxUld3WGh3ZkFCNWdBRW96VTRHMlBn@45.87.175.157:8080#@Awlix_irvless://df0680ca-e43c-498d-ed86-8e196eedd012@88.216.187.57:8880?mode=gun&security=none&encryption=none&type=grpc#@Awlix_irسری
+    کانفیگ های جدید ، حتما همشو تست کنید حمایت فراموش نشه عزیزان دمتون گرم💚💛🙏🏻@awlix_ir'
+  password: cvII85TrW6n0OGyfpHVS1u
+  port: 8080
+  server: 45.87.175.192
+  type: ss
+- name: vless
   network: ws
   port: 443
-  server: 172.67.200.11
-  servername: SsSSSSSsSSSD.890606.Xyz
-  skip-cert-verify: true
+  server: 162.159.153.2
+  servername: 5-55sfjslf.ifenxiang.cfd
   tls: true
   type: vless
-  udp: true
-  uuid: 357b1bba-6400-4944-baff-1b933311ff28
+  uuid: 59860b15-b2d9-47f9-9b92-81bd1639fcc5
   ws-opts:
     headers:
-      host: SsSSSSSsSSSD.890606.Xyz
-    path: /kSIHD28dr9nkaMBYIsgt
-- name: ❓Other_74 | ⬇️ 2.3MB/s
+      Host: 5-55sfjslf.ifenxiang.cfd
+    path: /Telegram@proxy_mtm/?ed=2560#@awlix_irvless://5efbe592-3027-417d-8807-47fcddb40549@198.244.193.109:13039?encryption=none
+- cipher: aes-256-gcm
+  name: '@awlix_irss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@154.223.16.212:989#@awlix_irtrojan://bpb-trojan@104.21.30.195:443?security=tls&sni=403b3611-99BC-43B7-88D7-26eD5d0825a9-3.PagES.DEv&type=tcp#@awlix_irtrojan://juzi@104.19.57.183:2096?security=tls&sni=juzi8186-sr1.pages.dev&type=tcp#@awlix_irtrojan://3r372@91.195.240.94:443?security=tls&sni=tj786.37927.online&type=tcp#@awlix_irtrojan://juzi@3.76.154.119:443?security=tls&sni=juzi8186-sr1.pages.dev&type=tcp#@awlix_irtrojan://telegram-id-privatevpns@51.21.59.141:22222?security=tls&sni=trojan.burgerip.co.uk&alpn=http/1.1&type=tcp#@awlix_irtrojan://bpb-trojan@162.159.152.227:443?security=tls&sni=cf.090227.xyz&allowInsecure=1&type=tcp#@awlix_irسری
+    کانفیگ های جدید ، حتما همشو تست کنید حمایت فراموش نشه عزیزان دمتون گرم💚💛🙏🏻@awlix_ir'
+  password: PCnnH6SQSnfoS27
+  port: 8090
+  server: 67.220.95.135
+  type: ss
+- name: vless
   network: ws
-  port: 8880
-  server: 156.238.18.157
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
+  port: 443
+  server: 172.67.158.146
+  servername: m7rtTYu.777169.xyz
+  tls: true
   type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  uuid: 03c93f49-d573-4889-a4bb-187047c5a314
   ws-opts:
     headers:
-      host: jp.laoyoutiao.link
-    path: /Telegram@WangCai2/?ed=2560
-- name: ❓Other_30 | ⬇️ 1.4MB/s
+      Host: 7rttyu.777169.xyz
+    path: /bstMMelSTch7YcAPgiEbt
+- name: vless
   network: ws
-  port: 8880
-  server: 185.162.231.213
-  skip-cert-verify: true
+  port: 443
+  server: 104.21.21.31
+  servername: us.cishanjichang.me
+  tls: true
   type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  uuid: 432e1e8b-18ce-488f-8203-2ba54b2fb61f
   ws-opts:
     headers:
-      host: jp.laoyoutiao.link
-    path: /
-- latency: 1.9960403442382812
-  name: 🇺🇸US_76 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 103.245.229.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- alpn:
-  - h2
-  client-fingerprint: chrome
-  grpc-opts:
-    grpc-service-name: x9F83IcyjcEyBX5Ttq58yozYn
-  name: https://t.me/xyfqzy ⚡_16
+      Host: us.cishanjichang.me
+    path: /swordnewnewnew
+- name: vless
   network: grpc
-  password: bce0c7cb-08d1-46a7-b77b-7bff8b46252f
-  port: 443
-  server: 104.21.96.1
-  skip-cert-verify: false
-  sni: XxXcdvfgTyy67.222569.XYz
-  type: trojan
-  udp: true
-- name: 🇭🇰HK_3 | ⬇️ 1.2MB/s
-  network: ws
   port: 8880
-  server: 31.43.179.29
-  skip-cert-verify: true
+  server: 45.82.251.161
   type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: hk.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3
-- client-fingerprint: chrome
-  name: 🇫🇮FI_4 | ⬇️ 1.7MB/s
-  network: ws
-  port: 443
-  server: 172.66.44.241
-  servername: GgGgr.PaGES.dEV
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 9368b093-d790-4096-9d8a-1265e82f9e2f
-  ws-opts:
-    headers:
-      host: ggggr.pages.dev
-    path: /g...
-- name: ❓Other_70 | ⬇️ 2.4MB/s
-  network: ws
+  uuid: e4824193-4f54-453b-d037-88368e85ef0e
+- name: vless
+  network: grpc
   port: 8880
-  server: 199.34.230.213
-  skip-cert-verify: true
+  server: 45.82.251.152
   type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /
-- name: ❓Other_75 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.149
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: us.laoyoutiao.link
-    path: /
-- latency: 1.4488697052001953
-  name: 🇺🇸US_40 | ⬇️ 1.9MB/s
-  network: ws
-  port: 8880
-  server: 185.159.247.3
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
-  ws-opts:
-    headers:
-      host: bitget1.asdasd.click
-    path: /Telegram🇨🇳
-- name: 🇰🇷KR_10 | ⬇️ 1.0MB/s
-  network: ws
-  port: 8880
-  server: 194.36.55.148
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  name: 🇨🇦CA_5 | ⬇️ 1.7MB/s
-  network: ws
-  port: 443
-  server: 172.67.175.139
-  servername: 999O0.859886.xyz
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 288124da-0d68-42f4-9f48-70dc4dcc55a6
-  ws-opts:
-    headers:
-      host: 999o0.859886.xyz
-    path: /e49RZLgIb0TdfgF5HdHEIupMZeK
-- name: 🇰🇷KR_4 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 154.211.8.177
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
-  ws-opts:
-    headers:
-      host: ip.langmanshanxi.top
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- latency: 1.9021034240722656
-  name: 🇺🇸US_77 | ⬇️ 2.6MB/s
-  network: ws
-  port: 8880
-  server: 45.80.111.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /
-- latency: 1.8148422241210938
-  name: 🇺🇸US_17 | ⬇️ 1.6MB/s
-  network: ws
-  port: 8880
-  server: 102.177.176.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- alpn:
-  - http/1.1
-  client-fingerprint: randomized
-  name: 🇵🇱PL_1 | ⬇️ 3.0MB/s
-  network: ws
-  port: 443
-  server: 104.17.185.58
-  servername: frieren.albedo.ddns-ip.net
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: c1601a96-febd-4baa-8fe3-17ca8f4121bd
-  ws-opts:
-    headers:
-      host: frieren.albedo.ddns-ip.net
-    path: /proxyip=ayaka.shorekeeper.ir
-- alpn:
-  - http/1.1
-  client-fingerprint: randomized
-  name: 🇩🇪DE_19 | ⬇️ 1.0MB/s
-  network: ws
-  port: 443
-  server: 104.16.245.252
-  servername: VNGsUppLY.IP-ddnS.COm
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: e9979910-79d1-4621-a93c-b2a579c44ba7
-  ws-opts:
-    headers:
-      host: vngsupply.ip-ddns.com
-    path: /ycqlKbi40f2kVjZS?ed=2560
-- alterId: 0
-  cipher: auto
-  name: https://t.me/xyfqzy ⚡_17
-  network: ws
-  port: 2087
-  server: rak2ding.89060004.xyz
-  servername: rak2d3.89060004.xyz
-  skip-cert-verify: true
-  tls: true
-  type: vmess
-  udp: true
-  uuid: 350e2b01-d410-44a6-90ba-6483f1062972
-  version: '2'
-  ws-opts:
-    headers:
-      host: rak2d3.89060004.xyz
-    path: /
-- name: 🇭🇰HK_8 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 46.254.92.29
-  servername: hk.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: hk.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  name: https://t.me/xyfqzy ⚡_18
-  network: ws
-  port: 443
-  server: 104.21.94.69
-  servername: jjJjjjjjjjjj.000890604.xYZ
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: bce0c7cb-08d1-46a7-b77b-7bff8b46252f
-  ws-opts:
-    headers:
-      host: jjjjjjjjjjjj.000890604.xyz
-    path: /Ryxyg63Pk7cFSnZBROjL3Q5vTymr
-- name: 🇭🇰HK_7 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.94
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: hk.laoyoutiao.link
-    path: /Telegram@WangCai2/?ed
-- name: ❓Other_32 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 185.193.29.156
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: kjgx.laoyoutiao.link
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  name: 🇰🇷KR_3 | ⬇️ 2.9MB/s
-  network: ws
-  port: 443
-  server: 104.16.248.63
-  servername: VNGsUppLY.IP-ddnS.COm
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: e9979910-79d1-4621-a93c-b2a579c44ba7
-  ws-opts:
-    headers:
-      host: vngsupply.ip-ddns.com
-    path: /ycqlKbi40f2kVjZS?ed=2560
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 23.596763610839844
-  name: 🇺🇸US_23 | ⬇️ 1.6MB/s
-  network: ws
-  port: 443
-  server: 104.21.13.36
-  servername: XcdvfGBnHU7.0890604.XyZ
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: a7c9c017-db10-4d15-b01b-0634db498b57
-  ws-opts:
-    headers:
-      host: xcdvfgbnhu7.0890604.xyz
-    path: /xZjr7v1DqrYyamxeTh7sLJtI1
-- name: 🇯🇵JP_2 | ⬇️ 1.8MB/s
-  network: ws
-  port: 8880
-  server: 185.251.83.63
-  servername: jp.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: jp.laoyoutiao.link
-    path: /Telegram
-- name: 🇸🇬SG_4 | ⬇️ 1.4MB/s
-  network: ws
-  port: 8880
-  server: 199.34.230.63
-  servername: sg.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sg.laoyoutiao.link
-    path: /Telegram🇨🇳
-- name: ❓Other_33 | ⬇️ 1.8MB/s
-  network: ws
-  port: 8880
-  server: 185.207.199.247
-  servername: ex.sue.x10.mx
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: d60fc3c5-9f07-4cdb-b81f-70af27936bdc
-  ws-opts:
-    headers:
-      host: ex.sue.x10.mx
-    path: /Telegram🇨🇳
-- latency: 1.2531280517578125
-  name: 🇺🇸US_48 | ⬇️ 1.5MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.114
-  servername: sk.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sk.laoyoutiao.link
-    path: /Telegram
-- cipher: aes-256-cfb
-  name: 🇷🇺_RU_俄罗斯
-  password: f8f7aCzcPKbsF8p3
-  port: 989
-  server: 185.231.233.112
-  type: ss
-- cipher: aes-128-gcm
-  name: 未知_1
-  password: 01721e43-5389-4f97-b21c-900abb2bda9e
-  port: 12024
-  server: awes35lesl.blhao0o.dpdns.org
-  type: ss
-- cipher: aes-128-gcm
-  name: 未知_2
-  password: 01721e43-5389-4f97-b21c-900abb2bda9e
-  port: 12028
-  server: awes35lesl.blhao0o.dpdns.org
-  type: ss
-- cipher: aes-256-gcm
-  name: 🇺🇸_US_美国->🇨🇳_CN_中国
-  password: iUB0923RBA
-  port: 30067
-  server: 154.3.8.151
-  type: ss
-- alpn:
-  - http/1.1
-  latency: 198.41551780700684
-  name: 🇷🇺_RU_俄罗斯->🇺🇸_US_美国
-  network: tcp
-  password: tunnel-astrovpn_official-tr
-  port: 8441
-  server: tr-1.stunnel.cc
-  skip-cert-verify: true
-  sni: zula.ir.AstroVPN-official.AstroVPN-official.workers.dev.AstroVPN_Official.org.AstroVPN.com.AstroVPN_Official.xyz.AstroVPN_Official.monster.JoinTelegram-------------AstroVPN_Official----------Join.ir
-  type: trojan
-- alterId: 2
-  cipher: auto
-  name: 🇨🇳_CN_中国->🇺🇸_US_美国_1
-  network: ws
-  port: 30837
-  server: v37.heduian.link
-  skip-cert-verify: true
-  sni: ''
-  type: vmess
-  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
-  ws-opts:
-    headers:
-      host: v37.heduian.link
-    path: /oooo
-- alterId: 0
-  cipher: auto
-  fingerprint: ''
-  name: 🇩🇪_DE_德国->🇷🇴_RO_罗马尼亚_1
-  network: tcp
-  port: 100
-  server: cpanel.erade32.ir
-  sni: ''
-  type: vmess
-  uuid: 0888adea-086c-4783-9989-85df86819c1f
-- alterId: 2
-  cipher: auto
-  name: 🇨🇳_CN_中国->🇬🇧_GB_英国
-  network: ws
-  port: 30836
-  server: v36.heduian.link
-  type: vmess
-  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
-  ws-opts:
-    headers:
-      host: v36.heduian.link
-    path: /oooo
-- alterId: 0
-  cipher: auto
-  fingerprint: ''
-  name: 🇩🇪_DE_德国->🇷🇴_RO_罗马尼亚_2
-  network: ws
-  port: 100
-  server: cpanel.erade33.ir
-  sni: ''
-  type: vmess
-  uuid: 0888adea-086c-4783-9989-85df86819c1f
-  ws-opts:
-    headers:
-      host: uploadboy.com
-    path: /
-- alterId: 2
-  cipher: auto
-  name: 🇨🇳_CN_中国->🇺🇸_US_美国_3
-  network: ws
-  port: 30824
-  server: v24.heduian.link
-  skip-cert-verify: true
-  sni: ''
-  type: vmess
-  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
-  ws-opts:
-    headers:
-      host: v24.heduian.link
-    path: /oooo
-- alterId: 0
-  cipher: auto
-  latency: 10.042667388916016
-  name: 🇩🇰_DK_丹麦->🇺🇸_US_美国
+  uuid: e4824193-4f54-453b-d037-88368e85ef0e
+- name: vless
   network: ws
   port: 80
-  server: csgo.com
-  type: vmess
-  uuid: a134e3de-b25a-4020-9998-05fa6b715f1a
+  server: 151.101.1.124
+  type: vless
+  uuid: f149f3ea-ac0f-4e29-8db2-89d57b4f6eac
   ws-opts:
     headers:
-      host: cdn-node-oss-99.paofu.de
-    path: /profile/telegram@ssrsub
-- alterId: 64
-  cipher: auto
-  delay: 320
-  h2-opts: {}
-  http-opts: {}
-  name: 中国 - 上海 - Hangzhou Alibaba Advertising Co., Ltd. - 5
-  network: tcp
-  port: 50002
-  server: 47.116.166.178
-  type: vmess
-  udp: true
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-- alterId: 64
-  cipher: auto
-  delay: 346
-  name: 中国 - 北京 - Hangzhou Alibaba Advertising Co - 6
-  port: 50002
-  server: 47.92.152.169
-  servername: chunchuan.kejixiaoqi666.store
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-- cipher: chacha20-ietf-poly1305
-  delay: 908
-  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 10
-  password: 60f661f4-579c-45c9-8156-e0db88911dc6
-  port: 10080
-  server: 125.231.85.152
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  delay: 1697
-  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 11
-  password: c6081e42-2dac-4ca0-ab51-176be0f479e7
-  port: 10070
-  server: 114.46.79.69
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  delay: 1682
-  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 12
-  password: 7fc173fa-fbad-4cf1-94d3-3c7fe576a1ce
-  port: 10147
-  server: 36.232.126.210
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  delay: 409
-  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 13
-  password: 5aeb7d55-60fc-479d-a35d-f24e3d757f8c
-  port: 10089
-  server: 125.228.180.215
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  delay: 349
-  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 14
-  password: 95911f0e-ca9e-4570-89a3-2622ac71ada0
-  port: 10043
-  server: 114.46.78.106
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  delay: 406
-  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 15
-  password: ec37a3e3-d17b-4ffc-a9c0-3c7f91b2cf98
-  port: 10066
-  server: 59.126.32.59
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  delay: 227
-  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 16
-  password: e73c8f9f-d53e-4f34-9237-2212ccc12d63
-  port: 10089
-  server: 125.228.180.215
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  country: 🇨🇳 TW
-  delay: 1477
-  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 7
-  password: t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv
-  plugin: obfs
-  plugin-opts:
-    host: 97f5bf6:94874
-    mode: tls
-  port: 2377
-  server: 3ce8ee8.b5.gladns.com
-  type: ss
-- cipher: chacha20-ietf-poly1305
-  delay: 1685
-  name: 中国 - 台湾 - Chunghwa Telecom Co., Ltd. - 9
-  password: 7fc173fa-fbad-4cf1-94d3-3c7fe576a1ce
-  port: 10070
-  server: 114.46.79.69
-  type: ss
-  udp: true
-- cipher: aes-128-gcm
-  delay: 713
-  name: 中国 - 台湾 - Pittqiao Network Information Co., Ltd. - 8
-  password: 01721e43-5389-4f97-b21c-900abb2bda9e
-  port: 12008
-  server: awes35lesl.blhao0o.dpdns.org
-  type: ss
-- alterId: 0
-  cipher: auto
-  country: 🇨🇳 CN
-  delay: 320
-  h2-opts: {}
-  http-opts: {}
-  name: 中国 - 合肥 - China Unicom CHINA169 Anhui Province Network - 1
-  network: tcp
-  port: 50007
-  server: 112.132.215.34
-  skip-cert-verify: true
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  ws-path: /
-- alterId: 64
-  cipher: auto
-  delay: 1478
-  name: 中国 - 广州市 - China Mobile communications corporation - 4
-  port: 50002
-  server: 120.210.205.59
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-- alterId: 64
-  cipher: auto
-  delay: 346
-  name: 中国 - 杭州 - Hangzhou Alibaba Advertising Co., Ltd. - 3
-  port: 50112
-  server: 120.26.55.225
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-- alterId: 0
-  cipher: auto
-  delay: 307
-  name: 中国 - 青岛市 - Hangzhou Alibaba Advertising Co - 2
-  port: 50002
-  server: 47.104.186.133
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-- delay: 1833
-  name: 俄罗斯 - 莫斯科 - Citytelecom LLC - 1
-  password: ee4a8f20-5467-4f12-bd87-ff21b7ba817c
-  port: 16187
-  server: 95.181.212.141
-  skip-cert-verify: true
-  tfo: false
-  type: hysteria2
-- cipher: chacha20-ietf-poly1305
-  delay: 2076
-  name: 土耳其 - 伊斯坦布尔 - Global Connectivity Solutions LLP - 1
-  password: qscavF5UviIL-8V-E4raBA
-  port: 2222
-  server: 62.133.63.226
-  type: ss
-- cipher: aes-256-cfb
-  country: 🇩🇪DE
-  delay: 689
-  name: 德国 - Frankfurt am Main - Amazon Technologies Inc. - 1
-  password: amazonskr05
-  port: 443
-  server: 18.196.64.123
-  type: ss
-- delay: 1481
-  name: 新加坡 - 新加坡 - Leaseweb Singapore Pte. Ltd. - 1
-  password: 5h0hcc7wc8
-  port: 43597
-  server: 142.91.102.176
-  skip-cert-verify: true
-  sni: cn.bing.com
-  tfo: false
-  type: hysteria2
-- delay: 1069
-  name: 日本 - Minato - IDC Cube - 1
-  password: 4ce1005b-aa80-4dcc-842b-17c713ef4ce1
-  port: 18888
-  server: 178.94.142.163
-  skip-cert-verify: true
-  tfo: false
-  type: hysteria2
-- auth: 14a480fb-0594-4917-88c7-94d2d318dcb6
-  delay: 1814
-  name: 日本 - 东京 - Datacamp Limited - 5
-  password: 14a480fb-0594-4917-88c7-94d2d318dcb6
-  port: 50000
-  ports: 50000-55000
-  server: 45.11.1.62
-  skip-cert-verify: true
-  sni: www.microsoft.com
-  type: hysteria2
-  udp: true
-- auth: e3d91183-ee0e-440a-a1b1-727341ed23e5
-  delay: 2267
-  name: 日本 - 大阪市 - KAGOYA JAPAN Inc. - 2
-  password: e3d91183-ee0e-440a-a1b1-727341ed23e5
-  port: 50000
-  ports: 50000-55000
-  server: 133.18.163.202
-  skip-cert-verify: true
-  sni: www.microsoft.com
-  type: hysteria2
-  udp: true
-- alterId: 0
-  cipher: auto
-  delay: 829
-  name: 法国 - 巴黎 - Online S.A.S. - 2
-  network: ws
-  port: 44579
-  server: 2001:bc8:32d7:302::10
-  tls: false
-  type: vmess
-  uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
-  ws-opts:
+      Host: danuwazero.com
     path: /
-- alpn:
-  - h3
-  auth-str: dongtaiwang.com
-  auth_str: dongtaiwang.com
-  delay: 1147
-  down: '100'
-  name: 法国 - 巴黎 - Online S.A.S. - 3
-  obfs: ''
-  port: 15010
-  protocol: ''
-  server: 195.154.200.40
-  skip-cert-verify: true
-  sni: apple.com
-  type: hysteria
-  up: '100'
-- auth: dongtaiwang.com
-  delay: 1597
-  name: 法国 - 巴黎 - SCALEWAY - 1
-  password: dongtaiwang.com
-  port: 5355
-  server: 51.159.111.32
-  skip-cert-verify: true
-  sni: www.bing.com
-  type: hysteria2
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  country: 🇺🇸US
-  delay: 1159
-  name: 瑞典 - 斯德哥尔摩 - Aeza International LTD - 1
-  password: phIc0b2uJfdEgdfg0Wm5AK
-  port: 4443
-  server: gurvpn-bot.outlinekeys.net
-  type: ss
-- auth: ba8f7058-4f30-4720-9454-714ad2481f6b
-  delay: 1130
-  name: 美国 - 拉斯维加斯 - FranTech Solutions - 30
-  password: ba8f7058-4f30-4720-9454-714ad2481f6b
-  port: 14558
-  server: us.xilucloud.top
-  skip-cert-verify: true
-  sni: us.xilucloud.top
-  type: hysteria2
-  udp: true
-- delay: 833
-  name: 美国 - 洛杉矶 - Easy Link LLC - 29
-  password: ed206fcd-c81f-4983-a6bf-bbfcc71a2664
-  port: 16688
-  server: 199.245.100.27
-  skip-cert-verify: true
-  tfo: false
-  type: hysteria2
-- alterId: 0
-  cipher: auto
-  delay: 835
-  name: 美国 - 洛杉矶 - GTT Communications Inc - 28
-  port: 42940
-  server: 64.81.24.59
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  udp: true
-  uuid: f68d852e-cef3-4baf-f4ce-b98c88197bde
-- alterId: 0
-  cipher: auto
-  delay: 1169
-  name: 美国 - 洛杉矶 - GTT Communications Inc - 3
-  port: 46611
-  server: 64.81.33.109
-  tls: false
-  type: vmess
-  uuid: 363d7952-cd0f-41df-be8a-386a64e15f8b
-- alterId: 64
-  cipher: auto
-  delay: 1087
-  name: 美国 - 洛杉矶 - PEG TECH INC - 1
-  port: 41442
-  server: 183.237.27.69
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-- alterId: 0
-  cipher: auto
-  delay: 632
-  name: 美国 - 纽约 - GTT Communications Inc - 2
-  port: 40083
-  server: 66.253.5.58
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 19003217-0407-43d5-bf22-9aa642469a83
-- delay: 1886
-  latency: 1.4576911926269531
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 10
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 198.71.190.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 2100
-  latency: 2.4132728576660156
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 11
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 198.71.188.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 2323
-  latency: 1.8956661224365234
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 12
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 198.62.62.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1770
-  latency: 1.2941360473632812
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 13
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 198.12.144.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1943
-  latency: 1.4569759368896484
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 14
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 195.26.229.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1713
-  latency: 1.8916130065917969
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 15
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 194.36.55.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1700
-  latency: 41.05734825134277
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 16
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 193.233.132.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1670
-  latency: 39.15715217590332
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 17
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 193.233.21.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 2240
-  latency: 1.605987548828125
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 18
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 188.164.158.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1363
-  latency: 1.4147758483886719
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 19
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 188.42.145.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1932
-  latency: 1.4407634735107422
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 20
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 188.42.88.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1924
-  latency: 2.0813941955566406
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 21
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.251.80.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 2047
-  latency: 1.6582012176513672
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 22
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.238.228.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 942
-  latency: 1.455068588256836
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 23
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.207.199.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1004
-  latency: 1.596212387084961
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 24
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.158.133.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1951
-  latency: 1.7480850219726562
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 25
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.148.104.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: /Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1956
-  latency: 2.6373863220214844
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 26
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.59.218.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 2421
-  latency: 2.0325183868408203
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 27
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.18.184.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1636
-  latency: 2.3207664489746094
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 4
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 216.205.52.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1726
-  latency: 1.3039112091064453
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 5
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 216.24.57.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 2356
-  latency: 1.463174819946289
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 6
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 213.182.199.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 944
-  latency: 1.4774799346923828
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 7
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 204.93.210.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1436
-  latency: 2.132892608642578
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 8
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 198.177.56.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 2580
-  latency: 1.70135498046875
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 9
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 198.71.232.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- cipher: chacha20-ietf-poly1305
-  delay: 1067
-  name: 芬兰 - 赫尔辛基 - Global Connectivity Solutions LLP - 1
-  password: Sur5Ny74npD3
-  port: 443
-  server: 185.242.247.249
-  type: ss
-- cipher: 2022-blake3-aes-256-gcm
-  delay: 1459
-  name: 英国 - Tower Hamlets - The Constant Company - 2
-  password: mtMkp+1FttkSLmDOF9blnNMLigcCRacprQS3ry0nf3o=:JB1ueTCKNIGMbhzWNjs+0FnZjZXO3UyXcZhIJ28vifA=
-  port: 7059
-  server: pop.plus.3123.0tk8a3a1q4t94dler.com
-  type: ss
-  udp: true
-- auth: Yet-Another-Public-Config-1
-  delay: 2129
-  name: 荷兰 - 阿姆斯特丹 - Macarne LLC - 3
-  obfs: salamander
-  obfs-password: Yet-Another-Public-Config-1
-  password: Yet-Another-Public-Config-1
-  port: 35000
-  server: yapc-1.adamhayward.co.uk
-  skip-cert-verify: false
-  sni: YAPC-1.afshin.ir
-  type: hysteria2
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  country: 🇺🇸US
-  delay: 919
-  name: 荷兰 - 阿姆斯特丹 - Matteo Martelloni trading as DELUXHOST - 1
-  password: RFK38Cg7APneSB5cWDcpbm
-  port: 443
-  server: switcher-nick-croquet.freesocks.work
-  type: ss
-- cipher: aes-128-gcm
-  delay: 462
-  name: 韩国 - 首尔特别市 - Sejong Networks - 1
-  password: VXPipi29nxMO
-  plugin: obfs
-  plugin-opts:
-    host: 182039459a34f64238143cd31ddebbc914362.taobao.com
-    mode: http
-  port: 1052
-  server: kr2.qiangdong.xyz
-  type: ss
-- cipher: aes-256-cfb
-  name: tg频道:@freenodedaily
-  password: amazonskr05
-  port: 443
-  server: 13.239.17.206
-  type: ss
-- alterId: 2
-  cipher: auto
-  name: 🇭🇰 香港
-  network: ws
-  port: 30809
-  server: v9.heduian.link
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
-  ws-opts:
-    headers:
-      Host: baidu.com
-    path: /oooo
-- cipher: aes-256-gcm
-  name: 🇭🇰 香港2
-  password: 9bfdde71b4c0
-  plugin: v2ray-plugin
-  plugin-opts:
-    host: newroot2v1.dsjsapp.com
-    mode: websocket
-    mux: true
-    path: /cauejypbltqt
-    skip-cert-verify: false
-    tls: true
-  port: 636
-  server: 103.103.245.158
-  type: ss
-- alterId: 2
-  cipher: auto
-  name: 🇭🇰 香港3
-  network: ws
-  port: 80
-  server: hkt.gotochinatown.net
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  uuid: 5dc6fa05-a601-aba6-7761-ecde22d2b0fc
-  ws-opts:
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-    path: /
-- name: 🇭🇰 香港4
-  password: 253bc477d4e43c209f2d427272968280
-  port: 447
-  server: 36.156.102.125
-  skip-cert-verify: true
-  sni: www.baidu.com
-  type: trojan
-- alterId: 2
-  cipher: auto
-  name: 🇭🇰 香港5
-  network: ws
-  port: 80
-  server: hkt.gotochinatown.net
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  uuid: f5c0eda2-4b97-11ed-bd7c-f23c913c8d2b
-  ws-opts:
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-    path: /
-- name: 🇭🇰 香港6
-  password: 253bc477d4e43c209f2d427272968280
-  port: 444
-  server: 36.156.102.125
-  skip-cert-verify: true
-  sni: www.ithome.com
-  type: trojan
-- name: 🇨🇳 台湾
-  password: test.+
-  port: 30443
-  server: cmhkb.ssv.vc
-  skip-cert-verify: false
-  sni: cmhkb.ssv.vc
-  tls: true
-  type: http
-  username: test
-- cipher: rc4-md5
-  name: 🇯🇵 日本
-  password: efanccyun
-  plugin: obfs
-  plugin-opts:
-    host: 202507282137611-8jPSOxErXG.download.microsoft.com
-    mode: http
-  port: 8766
-  server: cn01.efan8867801.xyz
-  type: ss
-- cipher: aes-256-gcm
-  name: 🇯🇵 日本2
-  password: 823e135ed103
-  plugin: v2ray-plugin
-  plugin-opts:
-    host: jp7v1.lingjfjkm002.com
-    mode: websocket
-    mux: true
-    path: /dchlbvrbbotc
-    skip-cert-verify: false
-    tls: true
-  port: 636
-  server: 137.220.191.40
-  type: ss
-- name: 🇯🇵 日本3
-  password: 253bc477d4e43c209f2d427272968280
-  port: 193
-  server: 36.156.102.78
-  skip-cert-verify: true
-  sni: www.baidu.com
-  type: trojan
-- name: 🇯🇵 日本4
-  password: 253bc477d4e43c209f2d427272968280
-  port: 461
-  server: 36.156.102.125
-  skip-cert-verify: true
-  sni: www.baidu.com
-  type: trojan
-- alterId: 2
-  cipher: auto
-  name: 🇯🇵 日本5
-  network: ws
-  port: 30806
-  server: v6.heduian.link
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
-  ws-opts:
-    headers:
-      Host: ocbc.com
-    path: /oooo
-- cipher: chacha20-ietf-poly1305
-  name: 🇯🇵 日本6
-  password: 1a17b19d-4896-4531-af79-6e91d8ef8228
-  port: 9898
-  server: 52.199.211.144
-  type: ss
-- cipher: chacha20-ietf-poly1305
-  name: 🇰🇷 韩国
-  password: feafc2ef-d5fd-4f6d-803b-fad4a5cc1f0e
-  port: 19852
-  server: mm.huawei-api.top
-  type: ss
-- cipher: chacha20-ietf-poly1305
-  name: 🇰🇷 韩国2
-  password: 1a17b19d-4896-4531-af79-6e91d8ef8228
-  port: 9898
-  server: 43.201.7.128
-  type: ss
-- name: 🇸🇬 新加坡
-  password: 253bc477d4e43c209f2d427272968280
-  port: 1256
-  server: 36.156.102.125
-  skip-cert-verify: true
-  sni: www.baidu.com
-  type: trojan
-- name: 🇸🇬 新加坡2
-  password: 253bc477d4e43c209f2d427272968280
-  port: 406
-  server: 36.156.102.125
-  skip-cert-verify: true
-  sni: www.baidu.com
-  type: trojan
-- latency: 32.58395195007324
-  name: 🇺🇸 美国
-  network: ws
-  password: 7248e825-887c-48b9-83bc-c26bc6392bf8
-  port: 443
-  server: 172.67.214.21
-  skip-cert-verify: false
-  sni: xXcdvFgt.191268.XYz
-  type: trojan
-  ws-opts:
-    headers:
-      Host: xXcdvFgt.191268.XYz
-    path: /ctdmgeIg3NII3ibrzzKXJGy3S1
-- cipher: rc4-md5
-  latency: 387.4075412750244
-  name: 🇺🇸 美国2
-  password: efanccyun
-  plugin: obfs
-  plugin-opts:
-    host: 202507282137611-8jPSOxErXG.download.microsoft.com
-    mode: http
-  port: 8774
-  server: cn01.efan8867801.xyz
-  type: ss
-- name: 🇺🇸 美国3
-  password: 253bc477d4e43c209f2d427272968280
-  port: 347
-  server: 36.156.102.125
-  skip-cert-verify: true
-  sni: www.baidu.com
-  type: trojan
-- name: 🇺🇸 美国4
-  password: 253bc477d4e43c209f2d427272968280
-  port: 22006
-  server: 36.156.102.67
-  skip-cert-verify: true
-  sni: www.baidu.com
-  type: trojan
