@@ -15,16 +15,7 @@ from aiohttp import client_exceptions
 
 # ========== 配置：多个订阅源 ==========
 SUBSCRIPTION_URLS = [
-    "https://nodesfree.github.io/clashnode/subscribe/clash.yml",
-    "https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml",
-    "https://raw.githubusercontent.com/shaoyouvip/free/refs/heads/main/all.yaml",
-    "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml",
-    "https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml",
-    "https://raw.githubusercontent.com/xyfqzy/free-nodes/main/nodes/clash.yaml",
-    "https://v2rayshare.githubrowcontent.com/2025/08/20250813.yaml",
-    "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml",
-    "https://freenode.openrunner.net/uploads/20250813-clash.yaml",
-    "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
+    "https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/United%20States/config.txt"
 ]
 
 OUTPUT_ALL = "providers/all.yaml"
