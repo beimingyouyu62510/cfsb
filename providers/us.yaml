@@ -1,279 +1,5 @@
 proxies:
-- client-fingerprint: chrome
-  latency: 1.3399124145507812
-  name: 🇺🇸US_60 | ⬇️ 1.8MB/s
-  network: ws
-  port: 443
-  server: 104.18.26.90
-  servername: barayeiranmahsang.ghormehsabzi.dpdns.org
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: e6236ebc-7334-4bed-977f-0c20bcdfcc00
-  ws-opts:
-    headers:
-      host: barayeiranmahsang.ghormehsabzi.dpdns.org
-    path: /@warp_city
-- delay: 1956
-  latency: 1.4736652374267578
-  name: 🇺🇸US_2|2.1MB/s
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.59.218.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- latency: 1.5037059783935547
-  name: 🇺🇸US_61 | ⬇️ 2.2MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.248
-  servername: sk.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: sk.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3?ed=2048
-- latency: 1.5108585357666016
-  name: 🇺🇸US_73 | ⬇️ 2.1MB/s
-  network: ws
-  port: 8880
-  server: 156.238.18.197
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: yd.laoyoutiao.link
-    path: /
-- latency: 1.5301704406738281
-  name: 🇺🇸US_64 | ⬇️ 2.2MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.245
-  servername: us.laoyoutiao.link
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: us.laoyoutiao.link
-    path: /
-- alterId: 0
-  cipher: auto
-  h2-opts: {}
-  http-opts: {}
-  latency: 1.5463829040527344
-  name: VMESS-未知>美国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-104.17.176.171:8080
-  network: ws
-  port: 8080
-  server: 104.17.176.171
-  servername: ke7hz36ewz-4515017473.mashallahbet.com
-  skip-cert-verify: true
-  type: vmess
-  uuid: 6cbc9c78-1cb1-57d4-a999-e2f4e34c1e03
-  ws-opts:
-    headers:
-      HOST: ke7hz36ewz-4515017473.mashallahbet.com
-    path: /nasnet/cdn
-- client-fingerprint: chrome
-  latency: 1.590728759765625
-  name: 🇺🇸US_22 | ⬇️ 1.3MB/s
-  network: ws
-  port: 443
-  server: 104.19.120.225
-  servername: F1.paRsa.fiLegEar-Sg.Me
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 8df60790-c903-4661-b85d-64c0009378e5
-  ws-opts:
-    headers:
-      host: f1.parsa.filegear-sg.me
-    path: /?ed=2560
-- delay: 1924
-  latency: 1.6040802001953125
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 21
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.251.80.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 942
-  latency: 1.6376972198486328
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 23
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.207.199.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- latency: 1.6443729400634766
-  name: 🇺🇸US_76 | ⬇️ 1.1MB/s
-  network: ws
-  port: 8880
-  server: 103.245.229.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- alpn:
-  - ''
-  alterId: '0'
-  cipher: auto
-  latency: 1.6541481018066406
-  name: 🇺🇸US_9|2.3MB/s
-  network: ws
-  port: '80'
-  server: 104.18.14.54
-  servername: 845296302850992025082820102725073.s15.chibaba.filegear-sg.me
-  skip-cert-verify: false
-  tls: false
-  type: vmess
-  udp: true
-  uuid: bd8f4c3a-b55a-4a55-a4be-d2ead4a4c66a
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: 845296302850992025082820102725073.s15.chibaba.filegear-sg.me
-    max-early-data: 2048
-    path: /index.html
-  xudp: true
-- delay: 1726
-  latency: 1.6922950744628906
-  name: 🇺🇸US_3|2.4MB/s
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 216.24.57.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1886
-  latency: 1.6925334930419922
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 10
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 198.71.190.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 2240
-  latency: 1.6946792602539062
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 18
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 188.164.158.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 1.722574234008789
-  name: 🇺🇸US_33 | ⬇️ 2.1MB/s
-  network: ws
-  port: 443
-  server: 172.67.157.220
-  servername: XXCsDERT6.777159.XyZ
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: ffcf7ec1-3e09-4821-b3d9-b426a107b73b
-  ws-opts:
-    headers:
-      host: xxcsdert6.777159.xyz
-    path: /O9jlBCbIm3xr1D40NK
-- latency: 1.7480850219726562
-  name: 🇺🇸US_1|3.0MB/s
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 185.18.250.195
-  skip-cert-verify: false
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: /Telegram🇨🇳
-- delay: 2323
-  latency: 1.7642974853515625
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 12
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 198.62.62.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1932
-  latency: 1.7769336700439453
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 20
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 188.42.88.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- latency: 1.783609390258789
-  name: 🇺🇸US_13 | ⬇️ 1.2MB/s
-  network: ws
-  port: 8880
-  server: 45.149.12.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- latency: 1.7905235290527344
+- latency: 1.2531280517578125
   name: 🇺🇸US_48 | ⬇️ 1.5MB/s
   network: ws
   port: 8880
@@ -287,38 +13,265 @@ proxies:
     headers:
       host: sk.laoyoutiao.link
     path: /Telegram
-- client-fingerprint: chrome
-  latency: 1.7960071563720703
-  name: US_speednode_0030
+- latency: 1.2640953063964844
+  name: 🇺🇸US_47 | ⬇️ 1.2MB/s
   network: ws
-  port: 443
-  server: 104.21.28.82
-  servername: backhaxus.dh04.shop
-  skip-cert-verify: false
-  tls: true
+  port: 8880
+  server: 91.193.58.137
+  servername: sk.laoyoutiao.link
+  skip-cert-verify: true
   type: vless
   udp: true
-  uuid: 71504eaf-29ac-4190-89d1-dd9ce2c9ee14
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
   ws-opts:
     headers:
-      Host: backhaxus.dh04.shop
-    path: /
-- latency: 1.8122196197509766
-  name: US_speednode_0034
+      host: sk.laoyoutiao.link
+    path: /TelegramU0001F1E8U0001F1F3
+- delay: 1770
+  latency: 1.2941360473632812
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 13
   network: ws
-  port: 8080
-  server: 63.141.128.16
-  servername: e.jOin.zEdMoDeOn.oNl.
+  password: slch2024
+  port: 2096
+  server: 198.12.144.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 1726
+  latency: 1.3039112091064453
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 5
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 216.24.57.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- latency: 1.3511180877685547
+  name: 🇺🇸US_74 | ⬇️ 3.0MB/s
+  network: ws
+  port: 8880
+  server: 91.193.58.127
+  skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      host: sk.laoyoutiao.link
+    path: /Telegram🇨🇳 @MxlShare @WangCai2 /
+- latency: 1.3794898986816406
+  name: 🇺🇸US_61 | ⬇️ 2.2MB/s
+  network: ws
+  port: 8880
+  server: 91.193.58.248
+  servername: sk.laoyoutiao.link
+  skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      host: sk.laoyoutiao.link
+    path: /TelegramU0001F1E8U0001F1F3?ed=2048
+- latency: 1.4107227325439453
+  name: 🇺🇸US_8 | ⬇️ 1.3MB/s
+  network: ws
+  port: 8880
+  server: 91.193.58.238
+  skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      host: us.laoyoutiao.link
+    path: /Telegram🇨🇳 @MxlShare @WangCai2 /?ed=2560
+- delay: 1363
+  latency: 1.4147758483886719
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 19
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 188.42.145.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 1932
+  latency: 1.4407634735107422
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 20
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 188.42.88.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- latency: 1.4488697052001953
+  name: 🇺🇸US_40 | ⬇️ 1.9MB/s
+  network: ws
+  port: 8880
+  server: 185.159.247.3
+  servername: Telegram-channel-WangCai2
+  skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
+  ws-opts:
+    headers:
+      host: bitget1.asdasd.click
+    path: /Telegram🇨🇳
+- delay: 942
+  latency: 1.455068588256836
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 23
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 185.207.199.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 1943
+  latency: 1.4569759368896484
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 14
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 195.26.229.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 1886
+  latency: 1.4576911926269531
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 10
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 198.71.190.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- latency: 1.4629364013671875
+  name: 🇺🇸US_7|4.1MB/s
+  network: ws
+  port: '8880'
+  server: 104.17.147.22
+  type: vless
+  udp: true
+  uuid: Parsashonam-Bot-19
+  ws-opts:
+    headers:
+      Host: Fi.Parsashonam.CfD.
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/60.0.3112.90 Safari/537.36
+    path: /Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam-Parsashonam?ed=2056
+  xudp: true
+- delay: 2356
+  latency: 1.463174819946289
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 6
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 213.182.199.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- latency: 1.4674663543701172
+  name: US_speednode_0013
+  network: ws
+  port: 80
+  server: 63.141.128.34
+  servername: b.jOin.zEdMoDeOn.oNl.
   skip-cert-verify: false
   tls: false
   type: vless
   udp: true
-  uuid: a82def0b-92c5-450b-9fca-7f1b7f932e8e
+  uuid: 2f2327bd-ff1b-4ce5-bf86-fe0565334138
   ws-opts:
     headers:
-      Host: e.jOin.zEdMoDeOn.oNl.
-    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
-- latency: 1.8436908721923828
+      Host: b.jOin.zEdMoDeOn.oNl.
+    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
+- delay: 944
+  latency: 1.4774799346923828
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 7
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 204.93.210.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- alterId: 0
+  cipher: auto
+  h2-opts: {}
+  http-opts: {}
+  latency: 1.489877700805664
+  name: VMESS-未知>美国-NF解锁德国地区非自制剧-ChatGPT-TikTok-YouTube-104.17.223.175:8080
+  network: ws
+  port: 8080
+  server: 104.17.223.175
+  servername: ke7hz36ewz-4515017473.mashallahbet.com
+  skip-cert-verify: true
+  type: vmess
+  uuid: 6cbc9c78-1cb1-57d4-a999-e2f4e34c1e03
+  ws-opts:
+    headers:
+      HOST: ke7hz36ewz-4515017473.mashallahbet.com
+    path: /nasnet/cdn
+- latency: 1.4920234680175781
+  name: 🇺🇸US_45 | ⬇️ 1.3MB/s
+  network: ws
+  port: 8880
+  server: 199.181.197.251
+  skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
+  ws-opts:
+    headers:
+      host: cf.d3z.net
+    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
+- latency: 1.5685558319091797
+  name: 🇺🇸US_1|2.0MB/s
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 190.93.244.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- latency: 1.5835762023925781
   name: 🇺🇸US_52 | ⬇️ 1.1MB/s
   network: ws
   port: 8880
@@ -332,30 +285,87 @@ proxies:
     headers:
       host: yg.bantony199.top
     path: /Telegram
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 1.905202865600586
-  name: 🇺🇸US_37 | ⬇️ 1.2MB/s
+- client-fingerprint: chrome
+  latency: 1.5909671783447266
+  name: 🇺🇸US_13|4.4MB/s
   network: ws
-  port: 443
-  server: 172.67.212.82
-  servername: ddddddccccccccccccccvv.131.pp.ua
+  password: slch2024
+  port: '8443'
+  server: 104.18.2.108
+  skip-cert-verify: false
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/46.0.2490.80 Safari/537.36
+    path: /
+- latency: 1.59454345703125
+  name: 🇺🇸US_11 | ⬇️ 2.9MB/s
+  network: ws
+  port: 8880
+  server: 77.232.140.20
+  servername: us.laoyoutiao.link
   skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  ws-opts:
+    headers:
+      host: us.laoyoutiao.link
+    path: /TelegramU0001F1E8U0001F1F3 @MxlShare @WangCai2 /?ed=2560
+- delay: 1004
+  latency: 1.596212387084961
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 24
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 185.158.133.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- delay: 2240
+  latency: 1.605987548828125
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 18
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 188.164.158.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- alpn:
+  - h3
+  client-fingerprint: chrome
+  latency: 1.60980224609375
+  name: 🇺🇸US_9|2.8MB/s
+  network: ws
+  port: '443'
+  server: 104.16.253.83
+  servername: vless7-7a1.pages.dev
   tls: true
   type: vless
   udp: true
-  uuid: 4174b95d-115e-4d39-add6-1f8db95bb860
+  uuid: c98a16e4-0dc5-42f0-b3db-30f04525c123
   ws-opts:
     headers:
-      host: ddddddccccccccccccccvv.131.pp.ua
-    path: /eAbAcRHV1QuhyXWGxgFnoFPw1
-- latency: 1.9080638885498047
-  name: 🇺🇸US_29 | ⬇️ 1.4MB/s
+      Host: vless7-7a1.pages.dev
+      User-Agent: Mozilla/5.0 (Linux; Android 7.1; vivo 1716 Build/N2G47H) AppleWebKit/537.36
+        (KHTML, like Gecko) Chrome/61.0.3163.98 Mobile Safari/537.36
+    path: /
+  xudp: true
+- latency: 1.611471176147461
+  name: 🇺🇸US_46 | ⬇️ 1.7MB/s
   network: ws
   port: 8880
-  server: 160.153.137.251
-  servername: Telegram-channel-WangCai2
+  server: 209.94.90.251
   skip-cert-verify: true
   type: vless
   udp: true
@@ -363,9 +373,80 @@ proxies:
   ws-opts:
     headers:
       host: cf.d3z.net
-    path: /Telegram
+    path: /
+- client-fingerprint: chrome
+  latency: 1.6129016876220703
+  name: 🇺🇸US_4|2.0MB/s
+  network: ws
+  port: '443'
+  server: 104.18.35.85
+  servername: cf.vless.sandesh.fr
+  tls: true
+  type: vless
+  udp: true
+  uuid: 060a8fe8-7175-4ded-94a5-d9808bc645b6
+  ws-opts:
+    headers:
+      Host: cf.vless.sandesh.fr
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/49.0.2623.110 Safari/537.36
+    path: /telegram:@Eternal_Connect-telegram:@Eternal_Connect-telegram:@Eternal_Connect-telegram:@Eternal_Connect
+  xudp: true
+- latency: 1.6252994537353516
+  name: 🇺🇸US_3|2.1MB/s
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 193.124.224.195
+  skip-cert-verify: false
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram🇨🇳
+- latency: 1.6505718231201172
+  name: US_speednode_0015
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 185.148.105.195
+  skip-cert-verify: false
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: /Telegram🇨🇳
+- delay: 2047
+  latency: 1.6582012176513672
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 22
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 185.238.228.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- latency: 1.6798973083496094
+  name: 🇺🇸US_43 | ⬇️ 2.3MB/s
+  network: ws
+  port: 8880
+  server: 192.200.160.254
+  skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
+  ws-opts:
+    headers:
+      host: yg.bantony199.top
+    path: /Telegram🇨🇳
 - client-fingerprint: randomized
-  latency: 1.9414424896240234
+  latency: 1.683950424194336
   name: 🇺🇸US_82 | ⬇️ 1.0MB/s
   network: ws
   port: 8443
@@ -380,166 +461,7 @@ proxies:
     headers:
       host: gghdfa.pages.dev
     path: /Tel-@V2ray_Alpha/?ed=2560
-- delay: 1943
-  latency: 1.9483566284179688
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 14
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 195.26.229.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1713
-  latency: 2.0003318786621094
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 15
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 194.36.55.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- latency: 2.0096302032470703
-  name: US_speednode_0035
-  network: ws
-  port: 8080
-  server: 63.141.128.15
-  servername: d.jOin.zEdMoDeOn.oNl.
-  skip-cert-verify: false
-  tls: false
-  type: vless
-  udp: true
-  uuid: cf6deb67-e7a5-4a8d-bc8e-11efd14817cc
-  ws-opts:
-    headers:
-      Host: d.jOin.zEdMoDeOn.oNl.
-    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
-- delay: 1363
-  latency: 2.0132064819335938
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 19
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 188.42.145.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 1770
-  latency: 2.039670944213867
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 13
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 198.12.144.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- delay: 944
-  latency: 2.0427703857421875
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 7
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 204.93.210.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- latency: 2.0580291748046875
-  name: 🇺🇸US_45 | ⬇️ 1.3MB/s
-  network: ws
-  port: 8880
-  server: 199.181.197.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
-- delay: 2580
-  latency: 2.073526382446289
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 9
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 198.71.232.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- latency: 2.0787715911865234
-  name: 🇺🇸US_44 | ⬇️ 1.7MB/s
-  network: ws
-  port: 8880
-  server: 198.62.62.3
-  servername: Telegram-channel-WangCai2
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
-  ws-opts:
-    headers:
-      host: bitget1.asdasd.click
-    path: /Telegram🇨🇳
-- latency: 2.093076705932617
-  name: 🇺🇸US_8 | ⬇️ 1.3MB/s
-  network: ws
-  port: 8880
-  server: 91.193.58.238
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
-  ws-opts:
-    headers:
-      host: us.laoyoutiao.link
-    path: /Telegram🇨🇳 @MxlShare @WangCai2 /?ed=2560
-- delay: 1436
-  latency: 2.1102428436279297
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 8
-  network: ws
-  password: slch2024
-  port: 2096
-  server: 198.177.56.195
-  sni: ocost-dy.wmlefl.cc
-  type: trojan
-  ws-opts:
-    headers:
-      Host: ocost-dy.wmlefl.cc
-    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- latency: 2.125978469848633
-  name: 🇺🇸US_77 | ⬇️ 2.6MB/s
-  network: ws
-  port: 8880
-  server: 45.80.111.251
-  skip-cert-verify: true
-  type: vless
-  udp: true
-  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
-  ws-opts:
-    headers:
-      host: cf.d3z.net
-    path: /
-- latency: 2.131938934326172
+- latency: 1.6841888427734375
   name: 🇺🇸US_42 | ⬇️ 1.5MB/s
   network: ws
   port: 8880
@@ -553,81 +475,141 @@ proxies:
     headers:
       host: bitget1.asdasd.click
     path: /Telegram🇨🇳
-- latency: 2.135753631591797
-  name: US_speednode_0036
-  network: ws
-  port: 80
-  server: 63.141.128.13
-  servername: c.jOin.zEdMoDeOn.oNl.
-  skip-cert-verify: false
-  tls: false
-  type: vless
-  udp: true
-  uuid: fdf5ef4d-bf23-4bd1-b04e-39c80ba0c577
-  ws-opts:
-    headers:
-      Host: c.jOin.zEdMoDeOn.oNl.
-    path: /Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
-- delay: 2100
-  latency: 2.162456512451172
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 11
+- delay: 2580
+  latency: 1.70135498046875
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 9
   network: ws
   password: slch2024
   port: 2096
-  server: 198.71.188.195
+  server: 198.71.232.195
   sni: ocost-dy.wmlefl.cc
   type: trojan
   ws-opts:
     headers:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 2.1729469299316406
-  name: 🇺🇸US_66 | ⬇️ 2.3MB/s
+- delay: 1951
+  latency: 1.7480850219726562
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 25
   network: ws
-  port: 443
-  server: 172.67.200.11
-  servername: SsSSSSSsSSSD.890606.Xyz
+  password: slch2024
+  port: 2096
+  server: 185.148.104.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: /Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- latency: 1.7499923706054688
+  name: 🇺🇸US_39 | ⬇️ 1.9MB/s
+  network: ws
+  port: 8880
+  server: 184.174.80.148
+  servername: Telegram-channel-WangCai2
   skip-cert-verify: true
-  tls: true
   type: vless
   udp: true
-  uuid: 357b1bba-6400-4944-baff-1b933311ff28
+  uuid: 583ceab3-4022-4553-9158-9bedc625ad4e
   ws-opts:
     headers:
-      host: SsSSSSSsSSSD.890606.Xyz
-    path: /kSIHD28dr9nkaMBYIsgt
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  latency: 2.1948814392089844
-  name: 🇺🇸US_4 | ⬇️ 1.2MB/s
+      host: ip.langmanshanxi.top
+    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
+- latency: 1.7766952514648438
+  name: 🇺🇸US_50 | ⬇️ 1.2MB/s
   network: ws
-  password: e4cbe8b8-37db-4aaa-8469-b84f34c51ebc
-  port: 443
-  server: 172.67.157.220
-  skip-cert-verify: false
-  sni: 6666YHjU.777159.xYz
-  type: trojan
+  port: 8880
+  server: 94.247.142.251
+  skip-cert-verify: true
+  type: vless
   udp: true
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
   ws-opts:
-    path: /dilyfCPEmLvYr5hYXD
-- delay: 1636
-  latency: 2.2668838500976562
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 4
+    headers:
+      host: cf.d3z.net
+    path: /Telegram🇨🇳 @WangCai2 /?ed=2560fp=chrome
+- latency: 1.80816650390625
+  name: US_speednode_0012
   network: ws
   password: slch2024
   port: 2096
-  server: 216.205.52.195
+  server: 209.94.90.195
+  skip-cert-verify: false
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: /Telegram🇨🇳
+- latency: 1.8148422241210938
+  name: 🇺🇸US_17 | ⬇️ 1.6MB/s
+  network: ws
+  port: 8880
+  server: 102.177.176.251
+  skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
+  ws-opts:
+    headers:
+      host: cf.d3z.net
+    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
+- latency: 1.8317699432373047
+  name: 🇺🇸US_51 | ⬇️ 1.2MB/s
+  network: ws
+  port: 8880
+  server: 94.247.142.3
+  servername: Telegram-channel-WangCai2
+  skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: b5441b0d-2147-4898-8a6a-9b2c87f58382
+  ws-opts:
+    headers:
+      host: bitget1.asdasd.click
+    path: /Telegram🇨🇳
+- delay: 1713
+  latency: 1.8916130065917969
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 15
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 194.36.55.195
   sni: ocost-dy.wmlefl.cc
   type: trojan
   ws-opts:
     headers:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- latency: 2.2690296173095703
+- delay: 2323
+  latency: 1.8956661224365234
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 12
+  network: ws
+  password: slch2024
+  port: 2096
+  server: 198.62.62.195
+  sni: ocost-dy.wmlefl.cc
+  type: trojan
+  ws-opts:
+    headers:
+      Host: ocost-dy.wmlefl.cc
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
+- latency: 1.9021034240722656
+  name: 🇺🇸US_77 | ⬇️ 2.6MB/s
+  network: ws
+  port: 8880
+  server: 45.80.111.251
+  skip-cert-verify: true
+  type: vless
+  udp: true
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
+  ws-opts:
+    headers:
+      host: cf.d3z.net
+    path: /
+- latency: 1.9123554229736328
   name: 🇺🇸US_75 | ⬇️ 2.1MB/s
   network: ws
   port: 8880
@@ -641,76 +623,72 @@ proxies:
     headers:
       host: us.laoyoutiao.link
     path: /Telegram🇨🇳
-- latency: 2.2826194763183594
-  name: 🇺🇸US_47 | ⬇️ 1.2MB/s
+- client-fingerprint: randomized
+  latency: 1.964569091796875
+  name: 🇺🇸US_81 | ⬇️ 1.3MB/s
+  network: ws
+  port: 8443
+  server: 45.131.210.218
+  servername: gGHDFa.pAgeS.Dev
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: true
+  uuid: a396b860-11b7-4af3-9950-146caf79735e
+  ws-opts:
+    headers:
+      host: gghdfa.pages.dev
+    path: /Tel-@V2ray_Alpha/?ed=2560
+- latency: 1.9960403442382812
+  name: 🇺🇸US_76 | ⬇️ 1.1MB/s
   network: ws
   port: 8880
-  server: 91.193.58.137
-  servername: sk.laoyoutiao.link
+  server: 103.245.229.251
   skip-cert-verify: true
   type: vless
   udp: true
-  uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
   ws-opts:
     headers:
-      host: sk.laoyoutiao.link
-    path: /TelegramU0001F1E8U0001F1F3
-- latency: 2.3298263549804688
-  name: US_speednode_0037
+      host: cf.d3z.net
+    path: /Telegram🇨🇳 @WangCai2 /?ed=2560
+- latency: 2.011537551879883
+  name: 🇺🇸US_29 | ⬇️ 1.4MB/s
   network: ws
-  packet-encoding: xudp
-  port: 2082
-  server: 159.112.235.174
-  servername: workerr.schodog1.workers.dev
-  skip-cert-verify: false
-  tls: false
+  port: 8880
+  server: 160.153.137.251
+  servername: Telegram-channel-WangCai2
+  skip-cert-verify: true
   type: vless
   udp: true
-  uuid: 47e9a0db-50c6-4522-8819-502c55b06dde
+  uuid: 0132166f-e702-48ed-a9e7-b07af768faf8
   ws-opts:
     headers:
-      Host: workerr.schodog1.workers.dev
-    path: /?ed=2048
-- delay: 1004
-  latency: 2.330303192138672
-  name: 美国 - 聖荷西 - Cloudflare, Inc. - 24
+      host: cf.d3z.net
+    path: /Telegram
+- delay: 2421
+  latency: 2.0325183868408203
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 27
   network: ws
   password: slch2024
   port: 2096
-  server: 185.158.133.195
+  server: 185.18.184.195
   sni: ocost-dy.wmlefl.cc
   type: trojan
   ws-opts:
     headers:
       Host: ocost-dy.wmlefl.cc
     path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
-- client-fingerprint: chrome
-  latency: 2.35748291015625
-  name: 🇺🇸US_21 | ⬇️ 1.9MB/s
-  network: ws
-  port: 443
-  server: 104.18.158.152
-  servername: F1.paRsa.fiLegEar-Sg.Me
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: true
-  uuid: 8df60790-c903-4661-b85d-64c0009378e5
-  ws-opts:
-    headers:
-      host: f1.parsa.filegear-sg.me
-    path: /?ed=2560
-- latency: 2.3844242095947266
-  name: US_speednode_0029
+- delay: 1924
+  latency: 2.0813941955566406
+  name: 美国 - 聖荷西 - Cloudflare, Inc. - 21
   network: ws
   password: slch2024
   port: 2096
-  server: 209.94.90.195
-  skip-cert-verify: false
+  server: 185.251.80.195
   sni: ocost-dy.wmlefl.cc
   type: trojan
-  udp: true
   ws-opts:
     headers:
       Host: ocost-dy.wmlefl.cc
-    path: /Telegram🇨🇳
+    path: Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3
