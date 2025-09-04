@@ -22,18 +22,27 @@ proxies:
   server: 63.141.128.23
   type: vless
   uuid: d59d49d3-a392-403a-8480-59934008431d
+- cipher: chacha20-ietf-poly1305
+  name: 🇨🇦telegram ➠ @v2rayNG_Matsurivmess://eyJhZGQiOiI4OS4xNjkuMTMuNjAiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6IiIsImlkIjoiYjlkM2M0MTQtODljYy00NTVkLWI3MTctMTBjN2NhMTY2NWExIiwibmV0Ijoid3MiLCJwYXRoIjoiLyIsInBvcnQiOiIyODgzOCIsInBzIjoi8J+HqPCfh6Z0ZWxlZ3JhbSDinqAgQHYycmF5TkdfTWF0c3VyaSIsInNjeSI6ImF1dG8iLCJzbmkiOiIiLCJ0bHMiOiIiLCJ0eXBlIjoiLS0tIiwidiI6IjIifQ==vless://91b77af9-6f06-4c22-9c0e-bdd8f63de158@51.77.91.192:8081?security=reality&encryption=none&pbk=KdvX1bbHtA4Y16IukcDsNiEJ9iKYk4BLlI7LDsV0iFU&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=yahoo.com&sid=d5bfd6c4#🇮🇱telegram
+    ➠ @v2rayNG_Matsuriss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpRQ1hEeHVEbFRUTUQ3anRnSFVqSW9q@45.158.171.146:8080#🇨🇦telegram
+    ➠ @v2rayNG_Matsuriss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.87.175.154:8080#🇨🇦telegram
+    ➠ @v2rayNG_Matsurivmess://eyJhZGQiOiI4OS4xNjkuMTMuNjAiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6IiIsImlkIjoiYjlkM2M0MTQtODljYy00NTVkLWI3MTctMTBjN2NhMTY2NWExIiwibmV0Ijoid3MiLCJwYXRoIjoiLyIsInBvcnQiOiIyODgzOCIsInBzIjoi8J+HqfCfh6p0ZWxlZ3JhbSDinqAgQHYycmF5TkdfTWF0c3VyaSIsInNjeSI6ImF1dG8iLCJzbmkiOiIiLCJ0bHMiOiIiLCJ0eXBlIjoiLS0tIiwidiI6IjIifQ==
+  password: cvII85TrW6n0OGyfpHVS1u
+  port: 8080
+  server: 45.87.175.166
+  type: ss
 - name: vless
   network: ws
   port: 443
   server: 172.66.40.99
-  servername: kSo.2SeDkFjEuIxIjD0Ew9DvKcxoisiEk61.BlOg#🇩🇪@FreakConfigvless://TELEGRAM-CONFiGLiNE-joiin@test.fast.hosting-ip.com:80?mode=auto
+  servername: az136.dr-mojtaba.ir#🇩🇪@FreakConfigss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpyaU92TGtoTVZjMUc=@77.83.245.191:443#🇹🇷@FreakConfigvless://5fe68e53-f50f-4c1b-8107-39b1c0957dc6@63.141.128.23:8080?path=/Join-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
   tls: true
   type: vless
-  uuid: telegram-id-Arfilter
+  uuid: bee3ac04-a986-4de1-9c2f-12dba6caa371
   ws-opts:
     headers:
-      Host: kSo.2SeDkFjEuIxIjD0Ew9DvKcxoisiEk61.BlOg
-    path: /telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray?ed=2048
+      Host: Az136.Dr-MojtabA.iR
+    path: /telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE,telegram-CONFiGLiNE?ed=2048
 - name: vless
   network: grpc#🇺🇲@FreakConfigvless://e4824193-4f54-453b-d037-88368e85ef0e@185.236.232.129:8880?mode=gun
   port: 8880
@@ -95,12 +104,17 @@ proxies:
   type: vless
   uuid: e4824193-4f54-453b-d037-88368e85ef0e
 - name: vless
-  network: grpc#🇺🇲@FreakConfigvmess://eyJhZGQiOiIxNS4yMDQuMjM0LjIwMCIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoiIiwiaWQiOiJjN2YxNjlhMy0yZTlhLTQ4OTQtYmE1My03YjJmYTZmZDA4YjQiLCJuZXQiOiJ0Y3AiLCJwYXRoIjoiIiwicG9ydCI6IjQxMTAwIiwicHMiOiLwn4e68J
-    HskBGcmVha0NvbmZpZyIsInNjeSI6ImF1dG8iLCJzbmkiOiIiLCJ0bHMiOiIiLCJ0eXBlIjoibm9uZSIsInYiOiIyIn0=vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.63:8880?mode=gun
-  port: 8880
-  server: 185.236.232.116
+  network: tcp
+  port: 443
+  server: 5.181.171.2
   type: vless
-  uuid: e4824193-4f54-453b-d037-88368e85ef0e
+  uuid: 8e6acce9-8b56-7190-d491-7d84f8189e26
+- name: vless
+  network: tcp
+  port: 443
+  server: 146.19.90.2
+  type: vless
+  uuid: 33bdc1f3-a2ce-6a15-c286-d602b373063d
 - name: vless
   network: ws#@EuServer
   port: 80
@@ -162,7 +176,7 @@ proxies:
   type: vless
   uuid: e9979910-79d1-4621-a93c-b2a579c44ba7
 - cipher: chacha20-ietf-poly1305
-  latency: 85.74867248535156
+  latency: 82.16547966003418
   name: '@EuServer'
   password: cvII85TrW6n0OGyfpHVS1u
   port: 8080
@@ -181,7 +195,7 @@ proxies:
       Host: web.xhamster.biz.id
     path: /Free-CF-Proxy-AT29
 - cipher: chacha20-ietf-poly1305
-  latency: 85.31832695007324
+  latency: 82.69977569580078
   name: '@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.158.171.132:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.158.171.151:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.87.175.171:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.87.175.192:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToxUld3WGh3ZkFCNWdBRW96VTRHMlBn@45.87.175.188:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@45.87.175.92:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@45.87.175.22:8080#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpPV1k0T0RCbQ==@95.164.36.59:8388#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpaVFV4T1RRNQ==@146.19.247.183:8388#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpPVEJrWW1Gaw==@95.164.68.37:8388#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpOMlZoTkRRMg==@45.140.167.94:8388#@V2rayNG3ss://YWVzLTI1Ni1nY206MWNjN2FkNWYtYzliYy00MTM4LTg0OWEtMDJhZWVjOGUzN2E3@141.94.115.231:8443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpCb2cwRUxtTU05RFN4RGRR@16.24.166.103:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpXNzRYRkFMTEx1dzZtNUlB@35.176.197.229:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp1MTdUM0J2cFlhYWl1VzJj@40.172.178.194:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp1MTdUM0J2cFlhYWl1VzJj@3.28.107.6:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpCb2cwRUxtTU05RFN4RGRR@157.175.135.28:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToyYWZiYzk3NDAwY2E3MWM4ZjMzMDZmOTg0M2E2ZTFjMg==@216.250.97.118:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp1MTdUM0J2cFlhYWl1VzJj@3.28.107.6:443#@V2rayNG3ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp1MTdUM0J2cFlhYWl1VzJj@3.28.107.6:443#@V2rayNG3trojan://Pooria@104.17.148.22:443?path=trPyOrWMfkHd15oxiI?ed=1520#@v2ray_alpha&security=tls&alpn=h2,http/1.1&host=301.pooriam.ir&fp=randomized&type=ws&sni=301.pOORiAm.ir#@V2rayNG3trojan://Pooria@104.17.148.22:443?path=/trPyOrWMfkHd15oxiI?ed=1520#FreeV2Alpha&security=tls&alpn=h2,http/1.1&host=301.pooriam.ir&fp=randomized&type=ws&sni=301.pOORiAm.ir#@V2rayNG3trojan://Pooria@104.17.148.22:443?path=/trPyOrWMfkHd15oxiI?ed=1520&security=tls&alpn=h2,http/1.1&host=301.pooriam.ir&fp=randomized&type=ws&sni=301.pOORiAm.ir#@V2rayNG3trojan://da86c6b5-a130-4bb8-a6ef-00b77b85b9e7@94.131.122.157:8443?mode=gun&security=tls&type=grpc&serviceName=grpc&sni=uk2.safecdn.site#@V2rayNG3trojan://da86c6b5-a130-4bb8-a6ef-00b77b85b9e7@94.131.122.157:8443?mode=gun&security=tls&type=grpc&serviceName=grpc&sni=uk2.safecdn.site#@V2rayNG3wireguard://IIi0qWjug05eWUsXLsYoP79SsVfjPPACM9fG8iG+f2c=@188.114.96.247:3854?address=172.16.0.2/32,2606:4700:110:8f81:d551:a0:532e:a2b3/128&presharedkey=&reserved=248,43,18&publickey=bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=&mtu=1280#@V2rayNG3wireguard://mG19nkJr2J60ykmjomEIK1bBlNuxrwV18B0FuGImY3M=@162.159.192.111:987?address=172.16.0.2/32,2606:4700:110:8c8f:5d96:18d6:bc6d:ef0e/128&presharedkey=&reserved=30,137,216&publickey=bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=&mtu=1280#@V2rayNG3wireguard://CFx5a+H2JC3mc2OCa21AgH+Dxz51/gNzJSsLgYos+E4=@188.114.98.251:8854?address=172.16.0.2/32,2606:4700:110:89ec:5d4:bc67:ce4b:6587/128&presharedkey=&reserved=106,207,207&publickey=bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=&mtu=1280#@V2rayNG3wireguard://mG19nkJr2J60ykmjomEIK1bBlNuxrwV18B0FuGImY3M=@162.159.192.111:987?address=172.16.0.2/32,2606:4700:110:8c8f:5d96:18d6:bc6d:ef0e/128&presharedkey=&reserved=30,137,216&publickey=bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=&mtu=1280#@V2rayNG3❤@V2rayNG3❤@SERVER444'
   password: 4a2rfixophdjffa8KVA4Aa
   port: 8080
@@ -517,6 +531,12 @@ proxies:
   type: vless
   uuid: 634e1883-0f11-4ab5-9e41-90d0c0d22463
 - name: vless
+  network: ws#🇳🇱@FreakConfig
+  port: 8880
+  server: 172.66.40.99
+  type: vless
+  uuid: 1b766abe-05da-46fa-973c-0d06d9605736
+- name: vless
   network: ws
   port: 443
   server: ipw.gfdv54cvghhgfhgj-njhgj64.info
@@ -528,12 +548,6 @@ proxies:
     headers:
       Host: 638901504444939106.esfahan-prx-dnraabg.info
     path: /urdpjvws
-- name: vless
-  network: ws#🇳🇱@FreakConfig
-  port: 8880
-  server: 172.66.40.99
-  type: vless
-  uuid: 1b766abe-05da-46fa-973c-0d06d9605736
 - name: vless
   network: ws
   port: 443
@@ -570,12 +584,6 @@ proxies:
   server: Speedtest.net
   type: vless
   uuid: b1f58d90-e65f-4566-91f3-1b96e9a68613
-- cipher: chacha20-ietf-poly1305
-  name: '[🇬🇧]t.me/vpn_market_v2'
-  password: 1xO2cqPazqjGfCfd
-  port: 443
-  server: admin.c1.webramz.co
-  type: ss
 - name: trojan
   password: VPNCUSTOMIZE
   port: 80
