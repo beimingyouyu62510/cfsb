@@ -35,9 +35,6 @@ TEST_TIMEOUT = 20  # 增加超时时间以提高成功率
 MAX_CONCURRENCY = 50  # 并发数
 PING_TIMEOUT = 3  # ping 超时时间（未使用）
 
-# 全局节点计数器
-node_counter = 0
-
 # ========== 代理处理函数 ==========
 async def fetch_subscription(session, url):
     """异步下载订阅内容，设置超时和状态码检查"""
@@ -67,10 +64,10 @@ def parse_clash_yaml(text):
     return None
 
 def parse_base64_links(text):
-    """解析 Base64 编码的订阅链接，专注于 vless 协议，生成固定名称"""
-    global node_counter
+    """解析 Base64 编码的订阅链接，专注于 vless 协议，使用原始名称"""
     proxies = []
     uuid_count = {}  # 跟踪 UUID 重复
+    seen_names = set()  # 跟踪已使用名称
     try:
         text_corrected = text.strip().replace('-', '+').replace('_', '/')
         decoded_text = base64.b64decode(text_corrected + "===").decode("utf-8", errors="ignore")
@@ -90,9 +87,11 @@ def parse_base64_links(text):
                 server, port = server_port.split(":", 1)
                 params = urllib.parse.parse_qs(params_raw[0]) if params_raw else {}
                 
-                # 生成固定名称
-                node_counter += 1
-                name = f"US_Node_{node_counter}"  # 示例：US_Node_1
+                # 使用原始名称，附加 server/port 确保唯一性
+                name = base_name
+                if name in seen_names:
+                    name = f"{base_name}_{server}_{port}"
+                seen_names.add(name)
                 
                 # 检查 UUID 重复
                 uuid_count[uuid] = uuid_count.get(uuid, 0) + 1
@@ -140,12 +139,16 @@ def deduplicate(proxies):
     return result
 
 def filter_us(proxies):
-    """放宽筛选条件，捕获更多可能的 US 节点"""
+    """放宽筛选条件，捕获 US 节点，排除非 US 节点"""
     us_nodes = []
+    exclude_keywords = ["HK", "HONG KONG", "香港", "SG", "SINGAPORE", "新加坡", "JP", "JAPAN", "日本"]
     for p in proxies:
         name = p.get("name", "").upper()
         if any(keyword in name for keyword in ["US", "USA", "美国", "UNITED STATES", "AMERICA"]):
-            us_nodes.append(p)
+            if not any(exclude in name for exclude in exclude_keywords):
+                us_nodes.append(p)
+            else:
+                print(f"[⚠️] 排除非 US 节点: {p['name']}", file=sys.stderr)
     print(f"[🔍] 筛选出 {len(us_nodes)} 个 US 节点: {[p['name'] for p in us_nodes]}")
     return us_nodes
 
@@ -196,8 +199,6 @@ async def test_connection_async(session, proxy_config, semaphore):
 
 async def main():
     """主函数，包含异步下载和测试流程"""
-    global node_counter
-    node_counter = 0  # 重置计数器
     all_proxies = []
 
     print("--- 开始下载并合并订阅 ---")
@@ -244,7 +245,7 @@ async def main():
     if not available_us_nodes:
         print("[⚠️] 所有 US 节点测试失败，us.yaml 将为空")
     else:
-        save_yaml(OUTPUT_US, available_us_nodes)  # 保存所有节点
+        save_yaml(OUTPUT_US, available_us_nodes)
         print(f"[💾] 已保存 {len(available_us_nodes)} 个可用美国节点到 {OUTPUT_US}")
 
 if __name__ == "__main__":
