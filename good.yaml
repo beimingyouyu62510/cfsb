@@ -4,7 +4,6 @@ unified-delay: false
 tcp-concurrent: true
 find-process-mode: strict
 global-client-fingerprint: chrome
-
 profile:
   store-selected: true
   store-fake-ip: true
@@ -32,7 +31,7 @@ sniffer:
 
 # ================= TUN 模式 =================
 tun:
-  enable: true
+  enable: false  # 临时禁用，测试后再启用
   stack: system
   dns-hijack:
     - any:53
@@ -49,24 +48,20 @@ dns:
   ipv6: false
   prefer-h3: true
   respect-rules: true
-  enhanced-mode: fake-ip
+  enhanced-mode: redir-host
   use-hosts: true
-
-  # 修复: 添加 proxy-server-nameserver
   proxy-server-nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
     - https://dns.quad9.net/dns-query
-
   nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
     - https://dns.alidns.com/dns-query
-
+    - 114.114.114.114
   fallback:
     - 223.5.5.5
     - 119.29.29.29
-
   nameserver-policy:
     "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
       - 223.5.5.5
@@ -80,13 +75,14 @@ dns:
       - 223.5.5.5
       - 117.50.11.11
       - 180.168.255.18
-
-  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - '*.lan'
     - '*.local'
     - '+.stun.*'
-    - "localhost.ptlogin2.qq.com"
+    - 'localhost.ptlogin2.qq.com'
+    - '*.bilibili.com'
+    - '*.netease.com'
+    - '*.163.com'
 
 # ================= 节点订阅 =================
 proxy-providers:
@@ -97,7 +93,7 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 600
+      interval: 3600
 
 # ================= 代理分组 =================
 proxy-groups:
@@ -108,31 +104,26 @@ proxy-groups:
       - DIRECT
     use:
       - all
-
   - name: ♻️ 自动选择
     type: url-test
     url: http://cp.cloudflare.com/generate_204
     interval: 300
     use:
       - all
-
   - name: 🌍 国外媒体
     type: select
     proxies:
       - 🚀 节点选择
       - DIRECT
-
   - name: 🎯 国内直连
     type: select
     proxies:
       - DIRECT
       - 🚀 节点选择
-
   - name: 🛑 拦截广告
     type: select
     proxies:
       - REJECT
-
   - name: 🐟 漏网之鱼
     type: select
     proxies:
@@ -146,256 +137,225 @@ rule-providers:
     behavior: classical
     format: text
     path: ruleset/LocalAreaNetwork.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
+    interval: 172800
   UnBan:
     type: http
     behavior: classical
     format: text
     path: ruleset/UnBan.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+    interval: 172800
   BanAD:
     type: http
     behavior: classical
     format: text
     path: ruleset/BanAD.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanAD.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    interval: 172800
   QiufengAD:
     type: http
     behavior: domain
     format: yaml
     path: ruleset/QiufengAD.yaml
     url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
-    interval: 86400
-
+    interval: 172800
   BanProgramAD:
     type: http
     behavior: classical
     format: text
     path: ruleset/BanProgramAD.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+    interval: 172800
   GoogleCN:
     type: http
     behavior: classical
     format: text
     path: ruleset/GoogleCN.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleCN.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
+    interval: 172800
   SteamCN:
     type: http
     behavior: classical
     format: text
     path: ruleset/SteamCN.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/SteamCN.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/SteamCN.list
+    interval: 172800
   NetEaseMusic:
     type: http
     behavior: classical
     format: text
     path: ruleset/NetEaseMusic.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/NetEaseMusic.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/NetEaseMusic.list
+    interval: 172800
   BilibiliHMT:
     type: http
     behavior: classical
     format: text
     path: ruleset/BilibiliHMT.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BilibiliHMT.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BilibiliHMT.list
+    interval: 172800
   Bilibili:
     type: http
     behavior: classical
     format: text
     path: ruleset/Bilibili.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bilibili.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bilibili.list
+    interval: 172800
   ChinaMedia:
     type: http
     behavior: classical
     format: text
     path: ruleset/ChinaMedia.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list
+    interval: 172800
   ChinaDomain:
     type: http
     behavior: classical
     format: text
     path: ruleset/ChinaDomain.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaDomain.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+    interval: 172800
   ChinaCompanyIp:
     type: http
     behavior: classical
     format: text
     path: ruleset/ChinaCompanyIp.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaCompanyIp.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
+    interval: 172800
   Download:
     type: http
     behavior: classical
     format: text
     path: ruleset/Download.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list
+    interval: 172800
   GoogleFCM:
     type: http
     behavior: classical
     format: text
     path: ruleset/GoogleFCM.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleFCM.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleFCM.list
+    interval: 172800
   Bing:
     type: http
     behavior: classical
     format: text
     path: ruleset/Bing.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bing.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
+    interval: 172800
   OneDrive:
     type: http
     behavior: classical
     format: text
     path: ruleset/OneDrive.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OneDrive.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
+    interval: 172800
   Microsoft:
     type: http
     behavior: classical
     format: text
     path: ruleset/Microsoft.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Microsoft.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
+    interval: 172800
   Apple:
     type: http
     behavior: classical
     format: text
     path: ruleset/Apple.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Apple.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
+    interval: 172800
   Telegram:
     type: http
     behavior: classical
     format: text
     path: ruleset/Telegram.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Telegram.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
+    interval: 172800
   AI:
     type: http
     behavior: classical
     format: text
     path: ruleset/AI.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/AI.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/AI.list
+    interval: 172800
   OpenAi:
     type: http
     behavior: classical
     format: text
     path: ruleset/OpenAi.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OpenAi.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OpenAi.list
+    interval: 172800
   Epic:
     type: http
     behavior: classical
     format: text
     path: ruleset/Epic.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Epic.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Epic.list
+    interval: 172800
   Origin:
     type: http
     behavior: classical
     format: text
     path: ruleset/Origin.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Origin.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Origin.list
+    interval: 172800
   Sony:
     type: http
     behavior: classical
     format: text
     path: ruleset/Sony.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Sony.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Sony.list
+    interval: 172800
   Steam:
     type: http
     behavior: classical
     format: text
     path: ruleset/Steam.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Steam.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Steam.list
+    interval: 172800
   Nintendo:
     type: http
     behavior: classical
     format: text
     path: ruleset/Nintendo.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Nintendo.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Nintendo.list
+    interval: 172800
   YouTube:
     type: http
     behavior: classical
     format: text
     path: ruleset/YouTube.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/YouTube.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/YouTube.list
+    interval: 172800
   Netflix:
     type: http
     behavior: classical
     format: text
     path: ruleset/Netflix.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Netflix.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Netflix.list
+    interval: 172800
   Bahamut:
     type: http
     behavior: classical
     format: text
     path: ruleset/Bahamut.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bahamut.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bahamut.list
+    interval: 172800
   ProxyMedia:
     type: http
     behavior: classical
     format: text
     path: ruleset/ProxyMedia.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyMedia.list
-    interval: 86400
-
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
+    interval: 172800
   ProxyGFWlist:
     type: http
     behavior: classical
     format: text
     path: ruleset/ProxyGFWlist.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list
-    interval: 86400
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
+    interval: 172800
 
 # ================= 分流规则 =================
 rules:
