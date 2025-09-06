@@ -13,19 +13,9 @@ import socket
 import concurrent.futures
 from aiohttp import client_exceptions
 
-# ========== 配置：多个订阅源 ==========
-SUBSCRIPTION_URLS = [
-    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=www.flashspeed.cloud-ip.cc&type=ws&host=www.flashspeed.cloud-ip.cc&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
-    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=speed.gospeedygo.cyou&type=ws&host=speed.gospeedygo.cyou&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
-    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=www.1154874.xyz&type=ws&host=www.1154874.xyz&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
-    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=cloud.5587124.xyz&type=ws&host=cloud.5587124.xyz&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
-    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=blog.1547415.xyz&type=ws&host=blog.1547415.xyz&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
-    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=www.zmxquick.cloudns.org&type=ws&host=www.zmxquick.cloudns.org&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
-    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=www.vl.de5.net&type=ws&host=www.vl.de5.net&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
-    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=www2.zmxquick.cloudns.org&type=ws&host=www2.zmxquick.cloudns.org&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
-    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=lovemoneycat.ggff.net&type=ws&host=lovemoneycat.ggff.net&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
-    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=cfvs.eu.org&type=ws&host=cfvs.eu.org&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4"
-]
+# ========== 配置：固定更新文件 URL 和 fallback 文件路径 ==========
+UPDATE_FILE_URL = "https://apicsv.sosorg.nyc.mn/gengxin.txt?token=CMorg"
+FALLBACK_FILE = "fallback_urls.txt"
 OUTPUT_ALL = "providers/all.yaml"
 OUTPUT_US = "providers/us.yaml"
 
@@ -33,7 +23,45 @@ OUTPUT_US = "providers/us.yaml"
 TEST_URL = "http://cp.cloudflare.com/generate_204"
 TEST_TIMEOUT = 20  # 增加超时时间以提高成功率
 MAX_CONCURRENCY = 50  # 并发数
-PING_TIMEOUT = 3  # ping 超时时间（未使用）
+
+# ========== 管理 fallback URLs ==========
+def load_fallback_urls():
+    """加载本地保存的 fallback URL 列表"""
+    if os.path.exists(FALLBACK_FILE):
+        with open(FALLBACK_FILE, "r", encoding="utf-8") as f:
+            return [line.strip() for line in f if line.strip() and line.strip().startswith('http')]
+    return []
+
+def save_fallback_urls(urls):
+    """保存 fallback URL 列表到本地文件"""
+    with open(FALLBACK_FILE, "w", encoding="utf-8") as f:
+        f.write("\n".join(urls))
+
+# ========== 新增：从固定 URL 获取订阅源 ==========
+async def fetch_subscription_urls(session):
+    """从固定 URL 下载订阅源列表，更新并返回 fallback URLs"""
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36'
+    }
+    try:
+        async with session.get(UPDATE_FILE_URL, timeout=15, headers=headers) as resp:
+            resp.raise_for_status()
+            content = await resp.text()
+            if not content.strip():
+                print(f"[⚠️] {UPDATE_FILE_URL} 文件为空，使用本地 fallback URLs", file=sys.stderr)
+                return load_fallback_urls()
+            # 假设每行一个 URL，解析并过滤有效 URL
+            urls = [line.strip() for line in content.splitlines() if line.strip() and line.strip().startswith('http')]
+            if urls:
+                print(f"[✅] 从 {UPDATE_FILE_URL} 获取 {len(urls)} 个订阅源")
+                save_fallback_urls(urls)  # 更新本地 fallback 文件
+                return urls
+            else:
+                print(f"[⚠️] {UPDATE_FILE_URL} 无有效 URL，使用本地 fallback URLs", file=sys.stderr)
+                return load_fallback_urls()
+    except Exception as e:
+        print(f"[❌] 下载 {UPDATE_FILE_URL} 失败: {e}，使用本地 fallback URLs", file=sys.stderr)
+        return load_fallback_urls()
 
 # ========== 代理处理函数 ==========
 async def fetch_subscription(session, url):
@@ -159,7 +187,8 @@ def save_yaml(path, proxies):
         yaml.safe_dump({"proxies": proxies}, f, allow_unicode=True)
 
 def direct_socket_test(server, port, timeout=TEST_TIMEOUT):
-    """直接使用 socket 测试 TCP 连接，返回延迟(ms)或 None"""
+    """直接使用 socket 测试 TCP 连接，支持 IPv4 和 IPv6，返回延迟(ms)或 None"""
+    # IPv4 测试
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(timeout)
@@ -169,14 +198,26 @@ def direct_socket_test(server, port, timeout=TEST_TIMEOUT):
         sock.close()
         if result == 0:
             return (end_time - start_time) * 1000
-        else:
-            return None
     except Exception as e:
-        print(f"[⚠️] Socket 测试失败: {server}:{port}, 错误: {e}", file=sys.stderr)
-        return None
+        print(f"[⚠️] IPv4 Socket 测试失败: {server}:{port}, 错误: {e}", file=sys.stderr)
+    
+    # IPv6 测试（针对 nat64=6to4）
+    try:
+        sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+        sock.settimeout(timeout)
+        start_time = time.time()
+        result = sock.connect_ex((server, port))
+        end_time = time.time()
+        sock.close()
+        if result == 0:
+            return (end_time - start_time) * 1000
+    except Exception as e:
+        print(f"[⚠️] IPv6 Socket 测试失败: {server}:{port}, 错误: {e}", file=sys.stderr)
+    
+    return None
 
 async def test_connection_async(session, proxy_config, semaphore):
-    """异步测试单个节点的连接性，针对 vless 优化：仅 socket 测试"""
+    """异步测试单个节点的连接性，针对 vless 优化：socket 测试 + 延迟过滤"""
     async with semaphore:
         node_name = proxy_config.get('name', '未知节点')
         server = proxy_config.get('server')
@@ -190,8 +231,8 @@ async def test_connection_async(session, proxy_config, semaphore):
             concurrent.futures.ThreadPoolExecutor(),
             direct_socket_test, server, port
         )
-        if socket_latency is None:
-            print(f"[❌] {node_name} | Socket 连接失败", file=sys.stderr)
+        if socket_latency is None or socket_latency > 2000:  # 过滤高延迟节点
+            print(f"[❌] {node_name} | Socket 连接失败或延迟过高 ({socket_latency}ms)", file=sys.stderr)
             return None
 
         print(f"[✅] {node_name} | vless (Socket: {socket_latency:.0f}ms)")
@@ -201,9 +242,13 @@ async def main():
     """主函数，包含异步下载和测试流程"""
     all_proxies = []
 
-    print("--- 开始下载并合并订阅 ---")
+    print("--- 开始从固定 URL 获取订阅源 ---")
     async with aiohttp.ClientSession() as session:
-        tasks = [fetch_subscription(session, url) for url in SUBSCRIPTION_URLS]
+        # 动态获取订阅源列表，更新并使用 fallback
+        subscription_urls = await fetch_subscription_urls(session)
+        
+        print("--- 开始下载并合并订阅 ---")
+        tasks = [fetch_subscription(session, url) for url in subscription_urls]
         responses = await asyncio.gather(*tasks)
         for url, text in responses:
             if text:
