@@ -34,8 +34,10 @@ def load_fallback_urls():
 
 def save_fallback_urls(urls):
     """保存 fallback URL 列表到本地文件"""
+    os.makedirs(os.path.dirname(FALLBACK_FILE) or ".", exist_ok=True)
     with open(FALLBACK_FILE, "w", encoding="utf-8") as f:
         f.write("\n".join(urls))
+    print(f"[✅] 已保存 {len(urls)} 个 URL 到 {FALLBACK_FILE}")
 
 # ========== 新增：从固定 URL 获取订阅源 ==========
 async def fetch_subscription_urls(session):
@@ -47,6 +49,7 @@ async def fetch_subscription_urls(session):
         async with session.get(UPDATE_FILE_URL, timeout=15, headers=headers) as resp:
             resp.raise_for_status()
             content = await resp.text()
+            print(f"[DEBUG] 原始内容: {content[:100]}...")  # 调试前100字符
             if not content.strip():
                 print(f"[⚠️] {UPDATE_FILE_URL} 文件为空，使用本地 fallback URLs", file=sys.stderr)
                 return load_fallback_urls()
@@ -72,6 +75,7 @@ async def fetch_subscription(session, url):
         async with session.get(url, timeout=15, headers=headers) as resp:
             resp.raise_for_status()
             text = await resp.text()
+            print(f"[DEBUG] 订阅 {url} 内容首100字符: {text[:100]}...")  # 调试订阅内容
             return url, text
     except client_exceptions.ClientError as e:
         print(f"[❌] 下载失败: {url} 错误: {e}", file=sys.stderr)
@@ -85,20 +89,22 @@ def parse_clash_yaml(text):
     try:
         data = yaml.safe_load(text)
         if isinstance(data, dict) and "proxies" in data:
+            print(f"[DEBUG] 解析到 {len(data['proxies'])} 个 Clash 节点")
             return data["proxies"]
     except Exception as e:
-        print(f"[⚠️] 解析 Clash YAML 失败: {e}", file=sys.stderr)
-    return None
+        print(f"[⚠️] 解析 Clash YAML 失败: {e}，内容: {text[:200]}...", file=sys.stderr)
+    return []
 
 def parse_base64_links(text):
     """解析 Base64 编码的订阅链接，专注于 vless 协议，使用原始名称"""
     proxies = []
-    uuid_count = {}  # 跟踪 UUID 重复
-    seen_names = set()  # 跟踪已使用名称
+    uuid_count = {}
+    seen_names = set()
     try:
         text_corrected = text.strip().replace('-', '+').replace('_', '/')
         decoded_text = base64.b64decode(text_corrected + "===").decode("utf-8", errors="ignore")
-    except Exception:
+    except Exception as e:
+        print(f"[⚠️] Base64 解码失败: {e}，使用原始文本", file=sys.stderr)
         decoded_text = text.strip()
 
     for line in decoded_text.splitlines():
@@ -146,7 +152,8 @@ def parse_base64_links(text):
                 
                 proxies.append(node_config)
         except Exception as e:
-            print(f"[⚠️] 解析节点链接失败: {line} 错误: {e}", file=sys.stderr)
+            print(f"[⚠️] 解析节点链接失败: {line[:50]}... 错误: {e}", file=sys.stderr)
+    print(f"[DEBUG] 解析到 {len(proxies)} 个 vless 节点")
     return proxies
 
 def deduplicate(proxies):
@@ -154,13 +161,14 @@ def deduplicate(proxies):
     seen = set()
     result = []
     for p in proxies:
-        key_parts = [p.get('server'), str(p.get('port')), p.get('type'), p.get('uuid')]
-        if 'ws-opts' in p:
-            key_parts.append(p['ws-opts'].get('path', ''))
+        key_parts = [p.get('server', ''), str(p.get('port', 0)), p.get('type', ''), p.get('uuid', '')]
+        if 'ws-opts' in p and p['ws-opts'].get('path'):
+            key_parts.append(p['ws-opts']['path'])
         key = md5(':'.join(key_parts).encode()).hexdigest()
         if key not in seen:
             seen.add(key)
             result.append(p)
+    print(f"[DEBUG] 去重后节点数: {len(result)}")
     return result
 
 def filter_us(proxies):
@@ -174,7 +182,7 @@ def filter_us(proxies):
                 us_nodes.append(p)
             else:
                 print(f"[⚠️] 排除非 US 节点: {p['name']}", file=sys.stderr)
-    print(f"[🔍] 筛选出 {len(us_nodes)} 个 US 节点: {[p['name'] for p in us_nodes]}")
+    print(f"[DEBUG] 筛选出 {len(us_nodes)} 个 US 节点")
     return us_nodes
 
 def save_yaml(path, proxies):
@@ -183,12 +191,12 @@ def save_yaml(path, proxies):
     abs_path = os.path.abspath(path)
     os.makedirs(os.path.dirname(abs_path), exist_ok=True)
     with open(abs_path, "w", encoding="utf-8") as f:
-        yaml.safe_dump({"proxies": proxies}, f, allow_unicode=True)
-    print(f"[💾] 已保存到 {abs_path}")
+        yaml.safe_dump({"proxies": proxies}, f, allow_unicode=True, default_flow_style=False)
+    print(f"[💾] 已保存到 {abs_path}，节点数: {len(proxies)}")
     if os.path.exists(abs_path):
         with open(abs_path, "r", encoding="utf-8") as f:
             content = f.read()
-            print(f"[DEBUG] 文件 {abs_path} 内容首行: {content.splitlines()[0][:50]}...")  # 调试输出前50字符
+            print(f"[DEBUG] 文件 {abs_path} 内容首行: {content.splitlines()[0][:50]}...")
         print(f"[✅] 文件 {abs_path} 存在")
     else:
         print(f"[❌] 文件 {abs_path} 未生成")
@@ -237,20 +245,31 @@ async def main():
     print("--- 开始从固定 URL 获取订阅源 ---")
     async with aiohttp.ClientSession() as session:
         subscription_urls = await fetch_subscription_urls(session)
+        if not subscription_urls:
+            print("[❌] 无可用订阅 URL，退出", file=sys.stderr)
+            return
         
         print("--- 开始下载并合并订阅 ---")
         tasks = [fetch_subscription(session, url) for url in subscription_urls]
-        responses = await asyncio.gather(*tasks)
+        responses = await asyncio.gather(*tasks, return_exceptions=True)
         for url, text in responses:
+            if isinstance(text, Exception):
+                print(f"[❌] 任务失败: {url}，错误: {text}", file=sys.stderr)
+                continue
             if text:
                 proxies = parse_clash_yaml(text) or parse_base64_links(text)
                 if proxies:
                     print(f"[✅] 订阅: {url} → {len(proxies)} 节点")
                     all_proxies.extend(proxies)
                 else:
-                    print(f"[⚠️] 未能识别订阅格式: {url}", file=sys.stderr)
+                    print(f"[⚠️] 未能识别订阅格式: {url}，内容: {text[:200]}...", file=sys.stderr)
             else:
-                print(f"[❌] 跳过订阅: {url}", file=sys.stderr)
+                print(f"[❌] 跳过订阅: {url}，无内容", file=sys.stderr)
+
+    if not all_proxies:
+        print("[❌] 未解析到任何节点，all.yaml 将为空", file=sys.stderr)
+        save_yaml(OUTPUT_ALL, [])
+        return
 
     merged = deduplicate(all_proxies)
     print(f"[📦] 合并并去重后节点总数: {len(merged)}")
@@ -259,7 +278,8 @@ async def main():
 
     us_nodes_to_test = filter_us(merged)
     if not us_nodes_to_test:
-        print("[⚠️] 未找到任何名称包含 'US'、'USA'、'美国'、'UNITED STATES' 或 'AMERICA' 的节点，us.yaml 文件将为空。")
+        print("[⚠️] 未找到任何 US 节点，us.yaml 将为空")
+        save_yaml(OUTPUT_US, [])
         return
 
     available_us_nodes = []
@@ -267,11 +287,14 @@ async def main():
 
     async with aiohttp.ClientSession() as session:
         tasks = [test_connection_async(session, node, semaphore) for node in us_nodes_to_test]
-        results = await asyncio.gather(*tasks)
+        results = await asyncio.gather(*tasks, return_exceptions=True)
 
-    for node_result in results:
-        if node_result:
-            available_us_nodes.append(node_result)
+    for result in results:
+        if isinstance(result, Exception):
+            print(f"[⚠️] 节点测试失败: {result}", file=sys.stderr)
+            continue
+        if result:
+            available_us_nodes.append(result)
 
     available_us_nodes.sort(key=lambda x: x['name'])
     print(f"[✅] 经过测试，获得 {len(available_us_nodes)} 个可用 US 节点")
@@ -279,6 +302,7 @@ async def main():
     
     if not available_us_nodes:
         print("[⚠️] 所有 US 节点测试失败，us.yaml 将为空")
+        save_yaml(OUTPUT_US, [])
     else:
         save_yaml(OUTPUT_US, available_us_nodes)
 
