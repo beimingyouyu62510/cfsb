@@ -13,7 +13,7 @@ import socket
 import concurrent.futures
 from aiohttp import client_exceptions
 
-# ========== 配置：固定更新文件 URL 和 fallback 文件路径 ==========
+# ========== 配置：固定更新文件 URL 和文件路径 ==========
 UPDATE_FILE_URL = "https://apicsv.sosorg.nyc.mn/gengxin.txt?token=CMorg"
 FALLBACK_FILE = "fallback_urls.txt"
 OUTPUT_ALL = "providers/all.yaml"
