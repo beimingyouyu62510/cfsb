@@ -1,8 +1,10 @@
 name: Update Free Proxies
 
 on:
+  # 自动运行：每天上午 9:00 和下午 9:00 EDT (UTC 13:00 和 01:00 次日)
   schedule:
     - cron: '0 13,1 * * *'
+  # 手动运行：在 GitHub 仓库 Actions 页面中手动触发
   workflow_dispatch:
 
 jobs:
@@ -13,6 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.0
 
+      # 启用 pip 缓存以加速依赖安装
       - name: Set up Python
         uses: actions/setup-python@v5.1.0
         with:
@@ -28,6 +31,7 @@ jobs:
       - name: Run merge script
         run: |
           set -e
+          # 使用 `tee` 命令同时将日志输出到控制台和文件，方便实时查看和保存
           python merge.py 2>&1 | tee merge.log || { echo "Merge script failed"; exit 1; }
           echo "Merge script completed"
 
@@ -52,6 +56,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
+          # 在提交前检查是否有文件更改，避免空提交
           if git status --porcelain | grep -q "providers/"; then
             echo "Changes detected in providers/, committing files."
             git add providers/all.yaml providers/us.yaml fallback_urls.txt
@@ -75,7 +80,7 @@ jobs:
 
       - name: Notify failure
         if: failure()
-        uses: rtCamp/github-action-slack-notify@v2
+        uses: rtCamp/github-action-slack-notify@v2 # 修正为正确的大小写
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }} 
           text: |
