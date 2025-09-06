@@ -1,46 +1,72 @@
 name: Update Free Proxies
 
 on:
-  # 自动运行：每12小时运行一次
+  # 自动运行：每天上午 9:00 和下午 9:00 EDT (UTC 13:00 和 01:00 次日)
   schedule:
-    - cron: '0 */12 * * *'
-
+    - cron: '0 13,1 * * *'
   # 手动运行：在 GitHub 仓库 Actions 页面中手动触发
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.0  # 固定版本
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5.1.0  # 固定版本
         with:
           python-version: '3.10'
 
       - name: Install dependencies
         run: |
+          set -e  # 退出脚本时检测错误
           python -m pip install --upgrade pip
           pip install requests pyyaml aiohttp
-      
+
       - name: Run merge script
-        run: python merge.py
-        
+        id: run-merge
+        run: |
+          set -e
+          python merge.py > merge.log 2>&1 || { echo "Merge script failed"; exit 1; }
+          echo "Merge script completed"
+
       - name: Commit files
         run: |
-          # 配置 Git
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          # 添加并提交更改
-          git add providers/
-          git commit -m "Update proxy lists" || echo "No changes to commit"
+          # 显式添加文件，检查是否存在
+          if [ -f providers/all.yaml ]; then git add providers/all.yaml; else echo "all.yaml not found"; fi
+          if [ -f providers/us.yaml ]; then git add providers/us.yaml; else echo "us.yaml not found"; fi
+          if [ -f fallback_urls.txt ]; then git add fallback_urls.txt; else echo "fallback_urls.txt not found"; fi
           
+          # 提交更改，如果有变化
+          git commit -m "Update proxy lists" || echo "No changes to commit"
+
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v1.0.0  # 固定版本
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: merge-logs
+          path: merge.log
+
+      - name: Notify failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Workflow failed: ${{ github.job }}. Check logs in the "merge-logs" artifact.'
+            })
