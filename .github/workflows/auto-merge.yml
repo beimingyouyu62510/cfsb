@@ -13,45 +13,45 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.1.0  # 固定版本
+        uses: actions/checkout@v4.1.0
 
-      - name: Clear cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/pip
-            ${{ github.workspace }}  # 清除工作目录缓存
-          key: clear-cache-${{ github.run_id }}  # 每次运行生成唯一 key 强制清除
-        if: always()
+      # --- 优化点：删除不必要的缓存清除 ---
+      # 这个步骤会使缓存失效，降低效率。
+      # GitHub Actions 内置的 setup-python 已经包含了依赖缓存功能。
+      # - name: Clear cache
+      #   uses: actions/cache@v3
+      #   ...
 
       - name: Set up Python
-        uses: actions/setup-python@v5.1.0  # 固定版本
+        uses: actions/setup-python@v5.1.0
         with:
           python-version: '3.10'
+          # 内置的缓存功能，无需手动清理
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
-          set -e  # 退出脚本时检测错误
+          set -e
           python -m pip install --upgrade pip
           pip install requests pyyaml aiohttp
 
       - name: Run merge script
-        id: run-merge
         run: |
           set -e
-          python merge.py > merge.log 2>&1 || { echo "Merge script failed"; exit 1; }
+          # 将日志同时输出到控制台和文件
+          python merge.py 2>&1 | tee merge.log || { echo "Merge script failed"; exit 1; }
           echo "Merge script completed"
 
       - name: Verify and display file contents
         run: |
-          if [ -f providers/all.yaml ]; then 
+          if [ -f providers/all.yaml ]; then
             echo "all.yaml exists, first line: $(head -n 1 providers/all.yaml)"
-          else 
+          else
             echo "all.yaml not found"
           fi
-          if [ -f providers/us.yaml ]; then 
+          if [ -f providers/us.yaml ]; then
             echo "us.yaml exists, first line: $(head -n 1 providers/us.yaml)"
-          else 
+          else
             echo "us.yaml not found"
           fi
 
@@ -60,28 +60,14 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          # 显式添加文件，检查是否存在
-          if [ -f providers/all.yaml ]; then 
-            git add providers/all.yaml
-            git diff --staged providers/all.yaml || echo "No changes in all.yaml"
-          else 
-            echo "all.yaml not found"
+          # 检查是否有文件更改，如果有则添加并提交
+          if git status --porcelain | grep -q "providers/"; then
+            git add providers/all.yaml providers/us.yaml fallback_urls.txt
+            git commit -m "Update proxy lists"
+            echo "Changes committed."
+          else
+            echo "No changes to commit."
           fi
-          if [ -f providers/us.yaml ]; then 
-            git add providers/us.yaml
-            git diff --staged providers/us.yaml || echo "No changes in us.yaml"
-          else 
-            echo "us.yaml not found"
-          fi
-          if [ -f fallback_urls.txt ]; then 
-            git add fallback_urls.txt
-            git diff --staged fallback_urls.txt || echo "No changes in fallback_urls.txt"
-          else 
-            echo "fallback_urls.txt not found"
-          fi
-          
-          # 提交更改，如果有变化
-          git commit -m "Update proxy lists" || echo "No changes to commit"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
