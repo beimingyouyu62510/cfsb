@@ -409,18 +409,27 @@ async def test_socket_connection(server, port, timeout=8):
         return None
 
 def save_yaml_optimized(path, proxies):
-    """优化的YAML保存，确保Clash兼容性"""
+    """优化的YAML保存，确保Clash兼容性，并解决节点名称重复问题"""
     abs_path = os.path.abspath(path)
     os.makedirs(os.path.dirname(abs_path), exist_ok=True)
     
     # 按质量分数排序
     sorted_proxies = sorted(proxies, key=lambda x: x.get('quality_score', 0), reverse=True)
     
-    # 清理配置，移除测试数据
+    # 清理配置，移除测试数据并确保名称唯一
     clean_proxies = []
+    name_counts = defaultdict(int)
+    
     for proxy in sorted_proxies:
         clean_proxy = {k: v for k, v in proxy.items()
-                     if k not in ['quality_score', 'test_info']}
+                       if k not in ['quality_score', 'test_info']}
+                       
+        # 确保名称唯一
+        original_name = clean_proxy.get('name', 'unnamed')
+        name_counts[original_name] += 1
+        if name_counts[original_name] > 1:
+            clean_proxy['name'] = f"{original_name} #{name_counts[original_name]}"
+        
         clean_proxies.append(clean_proxy)
     
     # 标准Clash格式
