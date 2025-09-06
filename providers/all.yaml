@@ -1,5 +1,5 @@
 proxies:
-- name: 电信🌐发布🌐群组™️™️™️：t.me/@zyssadmin🐲™️【请勿测速】_aliyun.2096.us.kg_2096
+- name: US_Node_1
   network: ws
   port: 2096
   server: aliyun.2096.us.kg
@@ -10,8 +10,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 天诚🌐官方🌐订阅🌐群组HKG™️™️™️：t.me/zyssadmin🐲™️【请勿测速】_38.147.189.48_8017
+    path: /snippets?ip=aliyun.2096.us.kg:2096&nat64=6to4
+- name: US_Node_6
   network: ws
   port: 8017
   server: 38.147.189.48
@@ -22,8 +22,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 天诚🌐官方🌐更新🌐群组HKG™️™️™️：t.me/zyssadmin🐲™️【请勿测速】_91.217.139.79_555
+    path: /snippets?ip=38.147.189.48:8017&nat64=6to4
+- name: US_Node_7
   network: ws
   port: 555
   server: 91.217.139.79
@@ -34,8 +34,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 天诚🌐官方🌐发布🌐频道HKG™️™️™️：t.me/cloudflareorg🐲™️【请勿测速】_70.39.204.128_57785
+    path: /snippets?ip=91.217.139.79:555&nat64=6to4
+- name: US_Node_8
   network: ws
   port: 57785
   server: 70.39.204.128
@@ -46,8 +46,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 天诚🌐官方🌐极搜🌐群组HKG™️™️™️：t.me/ssoadmin🐲™️【请勿测速】_8.210.75.107_2010
+    path: /snippets?ip=70.39.204.128:57785&nat64=6to4
+- name: US_Node_9
   network: ws
   port: 2010
   server: 8.210.75.107
@@ -58,8 +58,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 天诚🌐官方🌐搜索🌐群组HKG™️™️™️：t.me/zyssorg🐲™️【请勿测速】_47.243.177.147_9443
+    path: /snippets?ip=8.210.75.107:2010&nat64=6to4
+- name: US_Node_10
   network: ws
   port: 9443
   server: 47.243.177.147
@@ -70,8 +70,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: HK🐲™️【请勿测速】_8.223.12.202_443
+    path: /snippets?ip=47.243.177.147:9443&nat64=6to4
+- name: US_Node_11
   network: ws
   port: 443
   server: 8.223.12.202
@@ -82,8 +82,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: HK🐲™️【请勿测速】_219.76.13.166_443
+    path: /snippets?ip=8.223.12.202:443&nat64=6to4
+- name: US_Node_12
   network: ws
   port: 443
   server: 219.76.13.166
@@ -94,8 +94,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: HK🐲™️【请勿测速】_8.218.209.29_9002
+    path: /snippets?ip=219.76.13.166:443&nat64=6to4
+- name: US_Node_13
   network: ws
   port: 9002
   server: 8.218.209.29
@@ -106,8 +106,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: SG🐲™️【请勿测速】_27.50.49.179_2096
+    path: /snippets?ip=8.218.209.29:9002&nat64=6to4
+- name: US_Node_14
   network: ws
   port: 2096
   server: 27.50.49.179
@@ -118,8 +118,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: SG🐲™️【请勿测速】_27.50.49.242_8443
+    path: /snippets?ip=27.50.49.179:2096&nat64=6to4
+- name: US_Node_15
   network: ws
   port: 8443
   server: 27.50.49.242
@@ -130,8 +130,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: SG🐲™️【请勿测速】_92.243.74.2_8443
+    path: /snippets?ip=27.50.49.242:8443&nat64=6to4
+- name: US_Node_16
   network: ws
   port: 8443
   server: 92.243.74.2
@@ -142,8 +142,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: SG🐲™️【请勿测速】_43.128.95.110_40029
+    path: /snippets?ip=92.243.74.2:8443&nat64=6to4
+- name: US_Node_17
   network: ws
   port: 40029
   server: 43.128.95.110
@@ -154,8 +154,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: SG🐲™️【请勿测速】_27.50.49.136_443
+    path: /snippets?ip=43.128.95.110:40029&nat64=6to4
+- name: US_Node_18
   network: ws
   port: 443
   server: 27.50.49.136
@@ -166,8 +166,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: SG🐲™️【请勿测速】_92.243.74.23_2096
+    path: /snippets?ip=27.50.49.136:443&nat64=6to4
+- name: US_Node_19
   network: ws
   port: 2096
   server: 92.243.74.23
@@ -178,8 +178,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: SG🐲™️【请勿测速】_92.243.74.239_8443
+    path: /snippets?ip=92.243.74.23:2096&nat64=6to4
+- name: US_Node_20
   network: ws
   port: 8443
   server: 92.243.74.239
@@ -190,8 +190,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: SG🐲™️【请勿测速】_27.50.49.61_2096
+    path: /snippets?ip=92.243.74.239:8443&nat64=6to4
+- name: US_Node_21
   network: ws
   port: 2096
   server: 27.50.49.61
@@ -202,8 +202,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: SG🐲™️【请勿测速】_27.50.49.209_2087
+    path: /snippets?ip=27.50.49.61:2096&nat64=6to4
+- name: US_Node_22
   network: ws
   port: 2087
   server: 27.50.49.209
@@ -214,8 +214,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: SG🐲™️【请勿测速】_92.243.74.115_443
+    path: /snippets?ip=27.50.49.209:2087&nat64=6to4
+- name: US_Node_23
   network: ws
   port: 443
   server: 92.243.74.115
@@ -226,8 +226,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: JP🐲™️【请勿测速】_160.16.123.65_443
+    path: /snippets?ip=92.243.74.115:443&nat64=6to4
+- name: US_Node_24
   network: ws
   port: 443
   server: 160.16.123.65
@@ -238,8 +238,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: JP🐲™️【请勿测速】_185.184.223.85_8443
+    path: /snippets?ip=160.16.123.65:443&nat64=6to4
+- name: US_Node_25
   network: ws
   port: 8443
   server: 185.184.223.85
@@ -250,8 +250,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: JP🐲™️【请勿测速】_43.163.199.251_10000
+    path: /snippets?ip=185.184.223.85:8443&nat64=6to4
+- name: US_Node_26
   network: ws
   port: 10000
   server: 43.163.199.251
@@ -262,8 +262,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: JP🐲™️【请勿测速】_138.2.10.149_45638
+    path: /snippets?ip=43.163.199.251:10000&nat64=6to4
+- name: US_Node_27
   network: ws
   port: 45638
   server: 138.2.10.149
@@ -274,8 +274,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: JP🐲™️【请勿测速】_47.79.90.82_8843
+    path: /snippets?ip=138.2.10.149:45638&nat64=6to4
+- name: US_Node_28
   network: ws
   port: 8843
   server: 47.79.90.82
@@ -286,8 +286,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: JP🐲™️【请勿测速】_131.186.63.89_11655
+    path: /snippets?ip=47.79.90.82:8843&nat64=6to4
+- name: US_Node_29
   network: ws
   port: 11655
   server: 131.186.63.89
@@ -298,8 +298,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: JP🐲™️【请勿测速】_152.70.101.24_16096
+    path: /snippets?ip=131.186.63.89:11655&nat64=6to4
+- name: US_Node_30
   network: ws
   port: 16096
   server: 152.70.101.24
@@ -310,8 +310,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: JP🐲™️【请勿测速】_140.83.57.20_13118
+    path: /snippets?ip=152.70.101.24:16096&nat64=6to4
+- name: US_Node_31
   network: ws
   port: 13118
   server: 140.83.57.20
@@ -322,8 +322,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: JP🐲™️【请勿测速】_47.79.35.191_443
+    path: /snippets?ip=140.83.57.20:13118&nat64=6to4
+- name: US_Node_32
   network: ws
   port: 443
   server: 47.79.35.191
@@ -334,8 +334,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: JP🐲™️【请勿测速】_138.3.222.124_46209
+    path: /snippets?ip=47.79.35.191:443&nat64=6to4
+- name: US_Node_33
   network: ws
   port: 46209
   server: 138.3.222.124
@@ -346,8 +346,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: KR🐲™️【请勿测速】_116.47.199.34_50000
+    path: /snippets?ip=138.3.222.124:46209&nat64=6to4
+- name: US_Node_34
   network: ws
   port: 50000
   server: 116.47.199.34
@@ -358,8 +358,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: KR🐲™️【请勿测速】_121.186.198.94_12114
+    path: /snippets?ip=116.47.199.34:50000&nat64=6to4
+- name: US_Node_35
   network: ws
   port: 12114
   server: 121.186.198.94
@@ -370,8 +370,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: KR🐲™️【请勿测速】_125.138.28.68_12088
+    path: /snippets?ip=121.186.198.94:12114&nat64=6to4
+- name: US_Node_36
   network: ws
   port: 12088
   server: 125.138.28.68
@@ -382,8 +382,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: KR🐲™️【请勿测速】_112.161.10.25_12129
+    path: /snippets?ip=125.138.28.68:12088&nat64=6to4
+- name: US_Node_37
   network: ws
   port: 12129
   server: 112.161.10.25
@@ -394,8 +394,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: KR🐲™️【请勿测速】_220.71.116.165_50001
+    path: /snippets?ip=112.161.10.25:12129&nat64=6to4
+- name: US_Node_38
   network: ws
   port: 50001
   server: 220.71.116.165
@@ -406,8 +406,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: KR🐲™️【请勿测速】_61.74.51.222_12341
+    path: /snippets?ip=220.71.116.165:50001&nat64=6to4
+- name: US_Node_39
   network: ws
   port: 12341
   server: 61.74.51.222
@@ -418,8 +418,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: KR🐲™️【请勿测速】_210.123.143.214_18070
+    path: /snippets?ip=61.74.51.222:12341&nat64=6to4
+- name: US_Node_40
   network: ws
   port: 18070
   server: 210.123.143.214
@@ -430,8 +430,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: KR🐲™️【请勿测速】_112.168.169.191_20200
+    path: /snippets?ip=210.123.143.214:18070&nat64=6to4
+- name: US_Node_41
   network: ws
   port: 20200
   server: 112.168.169.191
@@ -442,8 +442,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: KR🐲™️【请勿测速】_59.4.161.71_21311
+    path: /snippets?ip=112.168.169.191:20200&nat64=6to4
+- name: US_Node_42
   network: ws
   port: 21311
   server: 59.4.161.71
@@ -454,8 +454,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: KR🐲™️【请勿测速】_218.157.158.21_12460
+    path: /snippets?ip=59.4.161.71:21311&nat64=6to4
+- name: US_Node_43
   network: ws
   port: 12460
   server: 218.157.158.21
@@ -466,8 +466,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: US🐲™️【请勿测速】_108.165.152.131_443
+    path: /snippets?ip=218.157.158.21:12460&nat64=6to4
+- name: US_Node_44
   network: ws
   port: 443
   server: 108.165.152.131
@@ -478,8 +478,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: US🐲™️【请勿测速】_50.228.203.26_443
+    path: /snippets?ip=108.165.152.131:443&nat64=6to4
+- name: US_Node_45
   network: ws
   port: 443
   server: 50.228.203.26
@@ -490,8 +490,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: US🐲™️【请勿测速】_162.120.94.232_8443
+    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+- name: US_Node_46
   network: ws
   port: 8443
   server: 162.120.94.232
@@ -502,8 +502,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: US🐲™️【请勿测速】_108.165.152.98_2087
+    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
+- name: US_Node_47
   network: ws
   port: 2087
   server: 108.165.152.98
@@ -514,8 +514,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: US🐲™️【请勿测速】_91.149.239.122_443
+    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
+- name: US_Node_48
   network: ws
   port: 443
   server: 91.149.239.122
@@ -526,8 +526,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: US🐲™️【请勿测速】_154.26.183.16_8443
+    path: /snippets?ip=91.149.239.122:443&nat64=6to4
+- name: US_Node_49
   network: ws
   port: 8443
   server: 154.26.183.16
@@ -538,8 +538,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: US🐲™️【请勿测速】_38.207.190.210_8788
+    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+- name: US_Node_50
   network: ws
   port: 8788
   server: 38.207.190.210
@@ -550,8 +550,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: US🐲™️【请勿测速】_154.211.8.98_2087
+    path: /snippets?ip=38.207.190.210:8788&nat64=6to4
+- name: US_Node_51
   network: ws
   port: 2087
   server: 154.211.8.98
@@ -562,8 +562,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: US🐲™️【请勿测速】_154.211.8.152_2053
+    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
+- name: US_Node_52
   network: ws
   port: 2053
   server: 154.211.8.152
@@ -574,8 +574,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: US🐲™️【请勿测速】_135.84.74.254_2083
+    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
+- name: US_Node_53
   network: ws
   port: 2083
   server: 135.84.74.254
@@ -586,8 +586,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: PL🐲™️【请勿测速】_193.124.41.165_2053
+    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+- name: US_Node_54
   network: ws
   port: 2053
   server: 193.124.41.165
@@ -598,8 +598,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: PL🐲™️【请勿测速】_38.180.51.120_443
+    path: /snippets?ip=193.124.41.165:2053&nat64=6to4
+- name: US_Node_55
   network: ws
   port: 443
   server: 38.180.51.120
@@ -610,8 +610,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: PL🐲™️【请勿测速】_185.188.147.79_443
+    path: /snippets?ip=38.180.51.120:443&nat64=6to4
+- name: US_Node_56
   network: ws
   port: 443
   server: 185.188.147.79
@@ -622,8 +622,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: PL🐲™️【请勿测速】_86.110.56.71_2053
+    path: /snippets?ip=185.188.147.79:443&nat64=6to4
+- name: US_Node_57
   network: ws
   port: 2053
   server: 86.110.56.71
@@ -634,8 +634,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: PL🐲™️【请勿测速】_86.110.56.94_2053
+    path: /snippets?ip=86.110.56.71:2053&nat64=6to4
+- name: US_Node_58
   network: ws
   port: 2053
   server: 86.110.56.94
@@ -646,8 +646,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: PL🐲™️【请勿测速】_176.105.253.98_443
+    path: /snippets?ip=86.110.56.94:2053&nat64=6to4
+- name: US_Node_59
   network: ws
   port: 443
   server: 176.105.253.98
@@ -658,8 +658,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: PL🐲™️【请勿测速】_91.239.148.84_2053
+    path: /snippets?ip=176.105.253.98:443&nat64=6to4
+- name: US_Node_60
   network: ws
   port: 2053
   server: 91.239.148.84
@@ -670,8 +670,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: PL🐲™️【请勿测速】_86.110.56.169_2053
+    path: /snippets?ip=91.239.148.84:2053&nat64=6to4
+- name: US_Node_61
   network: ws
   port: 2053
   server: 86.110.56.169
@@ -682,8 +682,8 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: PL🐲™️【请勿测速】_45.144.48.48_443
+    path: /snippets?ip=86.110.56.169:2053&nat64=6to4
+- name: US_Node_62
   network: ws
   port: 443
   server: 45.144.48.48
@@ -694,4 +694,4 @@ proxies:
   ws-opts:
     headers:
       Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+    path: /snippets?ip=45.144.48.48:443&nat64=6to4
