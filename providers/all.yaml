@@ -467,8 +467,7 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- latency: 17.099380493164062
-  name: US🐲™️【请勿测速】
+- name: US🐲™️【请勿测速】
   network: ws
   port: 443
   server: 108.165.152.131
@@ -480,8 +479,7 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- latency: 50.72188377380371
-  name: US🐲™️【请勿测速】
+- name: US🐲™️【请勿测速】
   network: ws
   port: 443
   server: 50.228.203.26
@@ -493,8 +491,7 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- latency: 17.23027229309082
-  name: US🐲™️【请勿测速】
+- name: US🐲™️【请勿测速】
   network: ws
   port: 8443
   server: 162.120.94.232
@@ -506,8 +503,7 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- latency: 17.19045639038086
-  name: US🐲™️【请勿测速】
+- name: US🐲™️【请勿测速】
   network: ws
   port: 2087
   server: 108.165.152.98
@@ -519,8 +515,7 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- latency: 24.736881256103516
-  name: US🐲™️【请勿测速】
+- name: US🐲™️【请勿测速】
   network: ws
   port: 443
   server: 91.149.239.122
@@ -532,8 +527,7 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- latency: 35.436153411865234
-  name: US🐲™️【请勿测速】
+- name: US🐲™️【请勿测速】
   network: ws
   port: 8443
   server: 154.26.183.16
@@ -557,8 +551,7 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- latency: 17.167091369628906
-  name: US🐲™️【请勿测速】
+- name: US🐲™️【请勿测速】
   network: ws
   port: 2087
   server: 154.211.8.98
@@ -570,8 +563,7 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- latency: 17.315149307250977
-  name: US🐲™️【请勿测速】
+- name: US🐲™️【请勿测速】
   network: ws
   port: 2053
   server: 154.211.8.152
@@ -583,8 +575,7 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- latency: 17.84682273864746
-  name: US🐲™️【请勿测速】
+- name: US🐲™️【请勿测速】
   network: ws
   port: 2083
   server: 135.84.74.254
