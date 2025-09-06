@@ -33,7 +33,7 @@ OUTPUT_US = "providers/us.yaml"
 TEST_URL = "http://cp.cloudflare.com/generate_204"
 TEST_TIMEOUT = 10  # 增加超时时间以提高成功率
 MAX_CONCURRENCY = 50  # 降低并发数以减少网络压力
-PING_TIMEOUT = 3  # 增加 ping 超时时间
+PING_TIMEOUT = 3  # ping 超时时间（未使用）
 
 # ========== 代理处理函数 ==========
 async def fetch_subscription(session, url):
@@ -64,7 +64,7 @@ def parse_clash_yaml(text):
     return None
 
 def parse_base64_links(text):
-    """解析 Base64 编码的订阅链接，专注于 vless 协议"""
+    """解析 Base64 编码的订阅链接，专注于 vless 协议，生成唯一名称"""
     proxies = []
     try:
         text_corrected = text.strip().replace('-', '+').replace('_', '/')
@@ -79,11 +79,14 @@ def parse_base64_links(text):
         try:
             if line.startswith("vless://"):
                 url_part, *remark_part = line[8:].split("#", 1)
-                name = urllib.parse.unquote(remark_part[0]) if remark_part else "vless"
+                base_name = urllib.parse.unquote(remark_part[0]) if remark_part else "vless"
                 uuid, server_info = url_part.split("@", 1)
                 server_port, *params_raw = server_info.split("?", 1)
                 server, port = server_port.split(":", 1)
                 params = urllib.parse.parse_qs(params_raw[0]) if params_raw else {}
+                
+                # 生成唯一名称
+                name = f"{base_name}_{server}_{port}"
                 
                 node_config = {
                     "name": name,
@@ -127,7 +130,6 @@ def filter_us(proxies):
     us_nodes = []
     for p in proxies:
         name = p.get("name", "").upper()
-        # 扩展筛选条件：包含 "US"、"USA"、"美国" 或其他相关关键字
         if any(keyword in name for keyword in ["US", "USA", "美国", "UNITED STATES"]):
             us_nodes.append(p)
     print(f"[🔍] 筛选出 {len(us_nodes)} 个 US 节点: {[p['name'] for p in us_nodes]}")
@@ -156,45 +158,27 @@ def direct_socket_test(server, port, timeout=TEST_TIMEOUT):
         print(f"[⚠️] Socket 测试失败: {server}:{port}, 错误: {e}", file=sys.stderr)
         return None
 
-def ping_test(server, timeout=PING_TIMEOUT):
-    """使用 socket 模拟 ping 测试，返回延迟(ms)或 None"""
-    try:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
-        sock.settimeout(timeout)
-        start_time = time.time()
-        sock.sendto(b'\x08\x00\x7d\x4b\x00\x00\x00\x00Ping', (server, 1))
-        sock.recvfrom(1024)
-        end_time = time.time()
-        sock.close()
-        return (end_time - start_time) * 1000
-    except Exception as e:
-        print(f"[⚠️] Ping 测试失败: {server}, 错误: {e}", file=sys.stderr)
-        return None
-
 async def test_connection_async(session, proxy_config, semaphore):
-    """异步测试单个节点的连接性，针对 vless 优化：socket 或 ping"""
+    """异步测试单个节点的连接性，针对 vless 优化：仅 socket 测试"""
     async with semaphore:
         node_name = proxy_config.get('name', '未知节点')
         server = proxy_config.get('server')
         port = int(proxy_config.get('port', 0))
         if not server or not port:
             print(f"[❌] {node_name} | 缺少服务器或端口信息", file=sys.stderr)
-            return None, None
+            return None
 
         loop = asyncio.get_running_loop()
-        # 仅使用 socket 测试，禁用 ping 测试以提高成功率
         socket_latency = await loop.run_in_executor(
             concurrent.futures.ThreadPoolExecutor(),
             direct_socket_test, server, port
         )
         if socket_latency is None:
             print(f"[❌] {node_name} | Socket 连接失败", file=sys.stderr)
-            return None, None
+            return None
 
-        final_latency = socket_latency
         print(f"[✅] {node_name} | vless (Socket: {socket_latency:.0f}ms)")
-
-        return proxy_config, final_latency
+        return proxy_config  # 返回原始配置，不添加 latency
 
 async def main():
     """主函数，包含异步下载和测试流程"""
@@ -217,10 +201,10 @@ async def main():
 
     merged = deduplicate(all_proxies)
     print(f"[📦] 合并并去重后节点总数: {len(merged)}")
+    print(f"[🔍] 所有节点: {[p['name'] for p in merged]}")
     save_yaml(OUTPUT_ALL, merged)
     print(f"[💾] 已保存所有去重节点到 {OUTPUT_ALL}")
 
-    # 筛选出所有 US 节点进行测试
     us_nodes_to_test = filter_us(merged)
     if not us_nodes_to_test:
         print("[⚠️] 未找到任何名称包含 'US'、'USA' 或 '美国' 的节点，us.yaml 文件将为空。")
@@ -233,13 +217,14 @@ async def main():
         tasks = [test_connection_async(session, node, semaphore) for node in us_nodes_to_test]
         results = await asyncio.gather(*tasks)
 
-    for node_result, latency in results:
+    for node_result in results:
         if node_result:
-            node_result['latency'] = latency
             available_us_nodes.append(node_result)
 
-    available_us_nodes.sort(key=lambda x: x['latency'])
+    # 按名称排序（可选：如果需要保持顺序）
+    available_us_nodes.sort(key=lambda x: x['name'])
     print(f"[✅] 经过测试，获得 {len(available_us_nodes)} 个可用 US 节点")
+    print(f"[🔍] 可用 US 节点: {[node['name'] for node in available_us_nodes]}")
     
     if not available_us_nodes:
         print("[⚠️] 所有 US 节点测试失败，us.yaml 将为空")
