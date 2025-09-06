@@ -1,378 +1,6 @@
 proxies:
 - name: US🐲™️【请勿测速】
   network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: cfvs.eu.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=108.165.152.131:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: cfvs.eu.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: lovemoneycat.ggff.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: lovemoneycat.ggff.net
-    path: /snippets?ip=108.165.152.131:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: www2.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www2.zmxquick.cloudns.org
-    path: /snippets?ip=108.165.152.131:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: cfvs.eu.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: www.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.zmxquick.cloudns.org
-    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: www2.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www2.zmxquick.cloudns.org
-    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: www.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.zmxquick.cloudns.org
-    path: /snippets?ip=108.165.152.131:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 108.165.152.98
-  servername: www2.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www2.zmxquick.cloudns.org
-    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: www2.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www2.zmxquick.cloudns.org
-    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: cfvs.eu.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=91.149.239.122:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 162.120.94.232
-  servername: www.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.zmxquick.cloudns.org
-    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: www.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.zmxquick.cloudns.org
-    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2083
-  server: 135.84.74.254
-  servername: www.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.zmxquick.cloudns.org
-    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 108.165.152.98
-  servername: www.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.zmxquick.cloudns.org
-    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: cfvs.eu.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: www.vl.de5.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.vl.de5.net
-    path: /snippets?ip=108.165.152.131:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2083
-  server: 135.84.74.254
-  servername: cfvs.eu.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 108.165.152.98
-  servername: lovemoneycat.ggff.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: lovemoneycat.ggff.net
-    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=108.165.152.131:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: www.vl.de5.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.vl.de5.net
-    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: cloud.5587124.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 162.120.94.232
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: www.vl.de5.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.vl.de5.net
-    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: www2.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www2.zmxquick.cloudns.org
-    path: /snippets?ip=91.149.239.122:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 162.120.94.232
-  servername: cfvs.eu.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: www.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.zmxquick.cloudns.org
-    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2083
-  server: 135.84.74.254
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: www2.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www2.zmxquick.cloudns.org
-    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
   port: 2087
   server: 108.165.152.98
   servername: cloud.5587124.xyz
@@ -382,67 +10,7 @@ proxies:
   ws-opts:
     headers:
       Host: cloud.5587124.xyz
-    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2083
-  server: 135.84.74.254
-  servername: www2.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www2.zmxquick.cloudns.org
-    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: www.vl.de5.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.vl.de5.net
-    path: /snippets?ip=91.149.239.122:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: cloud.5587124.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=91.149.239.122:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 50.228.203.26
-  servername: lovemoneycat.ggff.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: lovemoneycat.ggff.net
-    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
 - name: US🐲™️【请勿测速】
   network: ws
   port: 443
@@ -454,11 +22,11 @@ proxies:
   ws-opts:
     headers:
       Host: cloud.5587124.xyz
-    path: /snippets?ip=108.165.152.131:443&nat64=6to4
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
 - name: US🐲™️【请勿测速】
   network: ws
-  port: 2083
-  server: 135.84.74.254
+  port: 2087
+  server: 154.211.8.98
   servername: cloud.5587124.xyz
   tls: true
   type: vless
@@ -466,19 +34,115 @@ proxies:
   ws-opts:
     headers:
       Host: cloud.5587124.xyz
-    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
 - name: US🐲™️【请勿测速】
   network: ws
-  port: 443
-  server: 50.228.203.26
-  servername: www2.zmxquick.cloudns.org
+  port: 2083
+  server: 135.84.74.254
+  servername: cfvs.eu.org
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
   ws-opts:
     headers:
-      Host: www2.zmxquick.cloudns.org
-    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+      Host: cfvs.eu.org
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  server: 154.211.8.152
+  servername: cloud.5587124.xyz
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  server: 108.165.152.131
+  servername: blog.1547415.xyz
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  server: 91.149.239.122
+  servername: blog.1547415.xyz
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  server: 154.26.183.16
+  servername: cloud.5587124.xyz
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  server: 154.211.8.152
+  servername: cfvs.eu.org
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cfvs.eu.org
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  server: 91.149.239.122
+  servername: cfvs.eu.org
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cfvs.eu.org
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  server: 50.228.203.26
+  servername: cloud.5587124.xyz
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  server: 50.228.203.26
+  servername: blog.1547415.xyz
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
 - name: US🐲™️【请勿测速】
   network: ws
   port: 443
@@ -490,19 +154,91 @@ proxies:
   ws-opts:
     headers:
       Host: cfvs.eu.org
-    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
 - name: US🐲™️【请勿测速】
   network: ws
-  port: 443
-  server: 50.228.203.26
-  servername: www.vl.de5.net
+  port: 2087
+  server: 154.211.8.98
+  servername: blog.1547415.xyz
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
   ws-opts:
     headers:
-      Host: www.vl.de5.net
-    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+      Host: blog.1547415.xyz
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  server: 154.211.8.98
+  servername: cfvs.eu.org
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cfvs.eu.org
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2083
+  server: 135.84.74.254
+  servername: blog.1547415.xyz
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  server: 108.165.152.98
+  servername: blog.1547415.xyz
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2083
+  server: 135.84.74.254
+  servername: cloud.5587124.xyz
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  server: 162.120.94.232
+  servername: blog.1547415.xyz
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  server: 108.165.152.131
+  servername: cfvs.eu.org
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cfvs.eu.org
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
 - name: US🐲™️【请勿测速】
   network: ws
   port: 8443
@@ -514,35 +250,11 @@ proxies:
   ws-opts:
     headers:
       Host: cloud.5587124.xyz
-    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
 - name: US🐲™️【请勿测速】
   network: ws
   port: 443
-  server: 50.228.203.26
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=50.228.203.26:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: lovemoneycat.ggff.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: lovemoneycat.ggff.net
-    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 50.228.203.26
+  server: 91.149.239.122
   servername: cloud.5587124.xyz
   tls: true
   type: vless
@@ -550,7 +262,19 @@ proxies:
   ws-opts:
     headers:
       Host: cloud.5587124.xyz
-    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  server: 162.120.94.232
+  servername: cfvs.eu.org
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cfvs.eu.org
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
 - name: US🐲™️【请勿测速】
   network: ws
   port: 2087
@@ -562,71 +286,11 @@ proxies:
   ws-opts:
     headers:
       Host: cfvs.eu.org
-    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: lovemoneycat.ggff.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: lovemoneycat.ggff.net
-    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
 - name: US🐲™️【请勿测速】
   network: ws
   port: 2053
   server: 154.211.8.152
-  servername: www.flashspeed.cloud-ip.cc
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: www.vl.de5.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.vl.de5.net
-    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 108.165.152.98
-  servername: www.vl.de5.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.vl.de5.net
-    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: lovemoneycat.ggff.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: lovemoneycat.ggff.net
-    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 108.165.152.98
   servername: blog.1547415.xyz
   tls: true
   type: vless
@@ -634,119 +298,23 @@ proxies:
   ws-opts:
     headers:
       Host: blog.1547415.xyz
-    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 162.120.94.232
-  servername: www2.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www2.zmxquick.cloudns.org
-    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 162.120.94.232
-  servername: www.vl.de5.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.vl.de5.net
-    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2083
-  server: 135.84.74.254
-  servername: lovemoneycat.ggff.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: lovemoneycat.ggff.net
-    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2083
-  server: 135.84.74.254
-  servername: www.vl.de5.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.vl.de5.net
-    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 162.120.94.232
-  servername: lovemoneycat.ggff.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: lovemoneycat.ggff.net
-    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: lovemoneycat.ggff.net
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: lovemoneycat.ggff.net
-    path: /snippets?ip=91.149.239.122:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: cloud.5587124.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: www.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.zmxquick.cloudns.org
-    path: /snippets?ip=91.149.239.122:443&nat64=6to4
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
 - name: US🐲™️【请勿测速】
   network: ws
   port: 8443
   server: 154.26.183.16
-  servername: cloud.5587124.xyz
+  servername: cfvs.eu.org
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
   ws-opts:
     headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+      Host: cfvs.eu.org
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
 - name: US🐲™️【请勿测速】
   network: ws
-  port: 443
-  server: 91.149.239.122
+  port: 8443
+  server: 154.26.183.16
   servername: blog.1547415.xyz
   tls: true
   type: vless
@@ -754,328 +322,4 @@ proxies:
   ws-opts:
     headers:
       Host: blog.1547415.xyz
-    path: /snippets?ip=91.149.239.122:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: www.flashspeed.cloud-ip.cc
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 50.228.203.26
-  servername: www.zmxquick.cloudns.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.zmxquick.cloudns.org
-    path: /snippets?ip=50.228.203.26:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: www.1154874.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.1154874.xyz
-    path: /snippets?ip=108.165.152.131:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: www.1154874.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.1154874.xyz
-    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: www.flashspeed.cloud-ip.cc
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=91.149.239.122:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 50.228.203.26
-  servername: www.1154874.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.1154874.xyz
-    path: /snippets?ip=50.228.203.26:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 50.228.203.26
-  servername: speed.gospeedygo.cyou
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: speed.gospeedygo.cyou
-    path: /snippets?ip=50.228.203.26:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 162.120.94.232
-  servername: www.flashspeed.cloud-ip.cc
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: www.1154874.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.1154874.xyz
-    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: speed.gospeedygo.cyou
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: speed.gospeedygo.cyou
-    path: /snippets?ip=91.149.239.122:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 108.165.152.98
-  servername: www.1154874.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.1154874.xyz
-    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: www.flashspeed.cloud-ip.cc
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=108.165.152.131:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2083
-  server: 135.84.74.254
-  servername: speed.gospeedygo.cyou
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: speed.gospeedygo.cyou
-    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: speed.gospeedygo.cyou
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: speed.gospeedygo.cyou
-    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 108.165.152.98
-  servername: speed.gospeedygo.cyou
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: speed.gospeedygo.cyou
-    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 162.120.94.232
-  servername: www.1154874.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.1154874.xyz
-    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: www.flashspeed.cloud-ip.cc
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2083
-  server: 135.84.74.254
-  servername: www.1154874.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.1154874.xyz
-    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: speed.gospeedygo.cyou
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: speed.gospeedygo.cyou
-    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: speed.gospeedygo.cyou
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: speed.gospeedygo.cyou
-    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: speed.gospeedygo.cyou
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: speed.gospeedygo.cyou
-    path: /snippets?ip=108.165.152.131:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 108.165.152.98
-  servername: www.flashspeed.cloud-ip.cc
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: www.1154874.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.1154874.xyz
-    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: www.1154874.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.1154874.xyz
-    path: /snippets?ip=91.149.239.122:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 50.228.203.26
-  servername: www.flashspeed.cloud-ip.cc
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=50.228.203.26:443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 8443
-  server: 162.120.94.232
-  servername: speed.gospeedygo.cyou
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: speed.gospeedygo.cyou
-    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
-- name: US🐲™️【请勿测速】
-  network: ws
-  port: 2083
-  server: 135.84.74.254
-  servername: www.flashspeed.cloud-ip.cc
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
