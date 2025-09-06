@@ -103,7 +103,7 @@ proxy-groups:
       - ♻️ 自动选择
       - DIRECT
     use:
-      - us
+      - all
 
   - name: ♻️ 自动选择
     type: url-test
@@ -111,7 +111,7 @@ proxy-groups:
     interval: 300
     # 自动选择组，从订阅中选择
     use:
-      - us
+      - all
 
   - name: 🌍 国外媒体
     type: select
