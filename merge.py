@@ -15,7 +15,16 @@ from aiohttp import client_exceptions
 
 # ========== 配置：多个订阅源 ==========
 SUBSCRIPTION_URLS = [
-    "https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/United%20States/config.txt"
+    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=www.flashspeed.cloud-ip.cc&type=ws&host=www.flashspeed.cloud-ip.cc&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
+    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=speed.gospeedygo.cyou&type=ws&host=speed.gospeedygo.cyou&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
+    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=www.1154874.xyz&type=ws&host=www.1154874.xyz&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
+    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=cloud.5587124.xyz&type=ws&host=cloud.5587124.xyz&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
+    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=blog.1547415.xyz&type=ws&host=blog.1547415.xyz&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
+    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=www.zmxquick.cloudns.org&type=ws&host=www.zmxquick.cloudns.org&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
+    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=www.vl.de5.net&type=ws&host=www.vl.de5.net&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
+    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=www2.zmxquick.cloudns.org&type=ws&host=www2.zmxquick.cloudns.org&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
+    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=lovemoneycat.ggff.net&type=ws&host=lovemoneycat.ggff.net&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4",
+    "https://gosub.sosorg.nyc.mn/sub?uuid=01991f31-4f11-1c67-b1f4-ff7fab35e816&encryption=none&security=tls&sni=cfvs.eu.org&type=ws&host=cfvs.eu.org&path=%2Fsnippets%3Fip%3Dproxyip%3Aport%28443%29%26nat64%3D6to4"
 ]
 
 OUTPUT_ALL = "providers/all.yaml"
