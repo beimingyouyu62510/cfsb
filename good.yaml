@@ -6,135 +6,132 @@ find-process-mode: strict
 global-client-fingerprint: chrome
 
 profile:
-  store-selected: true
-  store-fake-ip: true
+  store-selected: true
+  store-fake-ip: true
 
 # ================= 嗅探设置 =================
 sniffer:
-  enable: true
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  skip-domain:
-    - "Mijia Cloud"
-    - "dlg.io.mi.com"
-    - "*.push.apple.com"
-    - "*.icloud.com"
-    - "*.mi.com"
-    - "*.lan"
-    - "*.local"
-    - "localhost" # 增加本地回环地址
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "dlg.io.mi.com"
+    - "*.push.apple.com"
+    - "*.icloud.com"
+    - "*.mi.com"
+    - "*.lan"
+    - "*.local"
+    - "localhost"
 
 # ================= TUN 模式 =================
 tun:
-  enable: true
-  stack: system
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  auto-route: true
-  auto-detect-interface: true
-  strict-route: true
-  endpoint-independent-nat: true
+  enable: true
+  stack: system
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: true
+  endpoint-independent-nat: true
 
 # ================= DNS 设置 =================
 dns:
-  enable: true
-  listen: 0.0.0.0:53
-  ipv6: false
-  prefer-h3: true
-  respect-rules: true
-  enhanced-mode: fake-ip
-  use-hosts: true
+  enable: true
+  listen: 0.0.0.0:53
+  ipv6: false
+  prefer-h3: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  use-hosts: true
 
-  nameserver:
-    - https://dns.google/dns-query
-    - https://1.1.1.1/dns-query
-    - https://dns.alidns.com/dns-query # 结合常用国内外 DoH
+  nameserver:
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+    - https://dns.alidns.com/dns-query
 
-  fallback:
-    - 223.5.5.5
-    - 119.29.29.29
+  fallback:
+    - 223.5.5.5
+    - 119.29.29.29
 
-  nameserver-policy:
-    # 合并并优化中国大陆规则
-    "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
-      - 223.5.5.5
-      - 117.50.11.11
-      - 180.168.255.18
-    "geosite:google,youtube,netflix,github,openai,microsoft,telegram,discord,apple@!cn":
-      - https://dns.google/dns-query
-      - https://1.1.1.1/dns-query
-      - https://dns.quad9.net/dns-query
-    "rule-set:ChinaDomain,ChinaCompanyIp,ChinaMedia,GoogleCN,SteamCN,NetEaseMusic,BilibiliHMT,Bilibili":
-      - 223.5.5.5
-      - 117.50.11.11
-      - 180.168.255.18
+  nameserver-policy:
+    "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
+      - 223.5.5.5
+      - 117.50.11.11
+      - 180.168.255.18
+    "geosite:google,youtube,netflix,github,openai,microsoft,telegram,discord,apple@!cn":
+      - https://dns.google/dns-query
+      - https://1.1.1.1/dns-query
+      - https://dns.quad9.net/dns-query
+    "rule-set:ChinaDomain,ChinaCompanyIp,ChinaMedia,GoogleCN,SteamCN,NetEaseMusic,BilibiliHMT,Bilibili":
+      - 223.5.5.5
+      - 117.50.11.11
+      - 180.168.255.18
 
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - '+.stun.*' # 简化通配符
-    - "localhost.ptlogin2.qq.com" # 针对性增加，防止QQ登录问题
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - '+.stun.*'
+    - "localhost.ptlogin2.qq.com"
 
 # ================= 节点订阅 =================
 proxy-providers:
-  all:
-    type: http
-    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/all.yaml"
-    interval: 3600
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 600
+  all:
+    type: http
+    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/all.yaml"
+    interval: 3600
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 600
 
 # ================= 代理分组 =================
 proxy-groups:
-  - name: 🚀 节点选择
-    type: select
-    # 将所有订阅节点放在一个组，然后从这个组中选择
-    proxies:
-      - ♻️ 自动选择
-      - DIRECT
-    use:
-      - all
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - DIRECT
+    use:
+      - all
 
-  - name: ♻️ 自动选择
-    type: url-test
-    url: http://cp.cloudflare.com/generate_204
-    interval: 300
-    # 自动选择组，从订阅中选择
-    use:
-      - all
+  - name: ♻️ 自动选择
+    type: url-test
+    url: http://cp.cloudflare.com/generate_204
+    interval: 300
+    use:
+      - all
 
-  - name: 🌍 国外媒体
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
 
-  - name: 🎯 国内直连
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
+  - name: 🎯 国内直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
 
-  - name: 🛑 拦截广告
-    type: select
-    proxies:
-      - REJECT
+  - name: 🛑 拦截广告
+    type: select
+    proxies:
+      - REJECT
 
-  - name: 🐟 漏网之鱼
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
 
 # ================= 规则集 =================
 rule-providers:
@@ -177,7 +174,7 @@ rule-providers:
     path: ruleset/BanProgramAD.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list
     interval: 86400
-  # --- 错误修正：你提供的规则集配置中缺少了其他规则，请确保它们被正确添加
+
   GoogleCN:
     type: http
     behavior: classical
@@ -185,6 +182,7 @@ rule-providers:
     path: ruleset/GoogleCN.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleCN.list
     interval: 86400
+
   SteamCN:
     type: http
     behavior: classical
@@ -192,6 +190,7 @@ rule-providers:
     path: ruleset/SteamCN.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/SteamCN.list
     interval: 86400
+
   NetEaseMusic:
     type: http
     behavior: classical
@@ -199,6 +198,7 @@ rule-providers:
     path: ruleset/NetEaseMusic.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/NetEaseMusic.list
     interval: 86400
+
   BilibiliHMT:
     type: http
     behavior: classical
@@ -206,6 +206,7 @@ rule-providers:
     path: ruleset/BilibiliHMT.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BilibiliHMT.list
     interval: 86400
+
   Bilibili:
     type: http
     behavior: classical
@@ -213,6 +214,7 @@ rule-providers:
     path: ruleset/Bilibili.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bilibili.list
     interval: 86400
+
   ChinaMedia:
     type: http
     behavior: classical
@@ -220,6 +222,7 @@ rule-providers:
     path: ruleset/ChinaMedia.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list
     interval: 86400
+
   ChinaDomain:
     type: http
     behavior: classical
@@ -227,6 +230,7 @@ rule-providers:
     path: ruleset/ChinaDomain.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaDomain.list
     interval: 86400
+
   ChinaCompanyIp:
     type: http
     behavior: classical
@@ -234,6 +238,7 @@ rule-providers:
     path: ruleset/ChinaCompanyIp.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaCompanyIp.list
     interval: 86400
+
   Download:
     type: http
     behavior: classical
@@ -241,6 +246,7 @@ rule-providers:
     path: ruleset/Download.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list
     interval: 86400
+
   GoogleFCM:
     type: http
     behavior: classical
@@ -248,6 +254,7 @@ rule-providers:
     path: ruleset/GoogleFCM.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleFCM.list
     interval: 86400
+
   Bing:
     type: http
     behavior: classical
@@ -255,6 +262,7 @@ rule-providers:
     path: ruleset/Bing.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bing.list
     interval: 86400
+
   OneDrive:
     type: http
     behavior: classical
@@ -262,6 +270,7 @@ rule-providers:
     path: ruleset/OneDrive.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OneDrive.list
     interval: 86400
+
   Microsoft:
     type: http
     behavior: classical
@@ -269,6 +278,7 @@ rule-providers:
     path: ruleset/Microsoft.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Microsoft.list
     interval: 86400
+
   Apple:
     type: http
     behavior: classical
@@ -276,6 +286,7 @@ rule-providers:
     path: ruleset/Apple.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Apple.list
     interval: 86400
+
   Telegram:
     type: http
     behavior: classical
@@ -283,6 +294,7 @@ rule-providers:
     path: ruleset/Telegram.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Telegram.list
     interval: 86400
+
   AI:
     type: http
     behavior: classical
@@ -290,6 +302,7 @@ rule-providers:
     path: ruleset/AI.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/AI.list
     interval: 86400
+
   OpenAi:
     type: http
     behavior: classical
@@ -297,6 +310,7 @@ rule-providers:
     path: ruleset/OpenAi.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OpenAi.list
     interval: 86400
+
   Epic:
     type: http
     behavior: classical
@@ -304,6 +318,7 @@ rule-providers:
     path: ruleset/Epic.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Epic.list
     interval: 86400
+
   Origin:
     type: http
     behavior: classical
@@ -311,6 +326,7 @@ rule-providers:
     path: ruleset/Origin.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Origin.list
     interval: 86400
+
   Sony:
     type: http
     behavior: classical
@@ -318,6 +334,7 @@ rule-providers:
     path: ruleset/Sony.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Sony.list
     interval: 86400
+
   Steam:
     type: http
     behavior: classical
@@ -325,6 +342,7 @@ rule-providers:
     path: ruleset/Steam.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Steam.list
     interval: 86400
+
   Nintendo:
     type: http
     behavior: classical
@@ -332,6 +350,7 @@ rule-providers:
     path: ruleset/Nintendo.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Nintendo.list
     interval: 86400
+
   YouTube:
     type: http
     behavior: classical
@@ -339,6 +358,7 @@ rule-providers:
     path: ruleset/YouTube.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/YouTube.list
     interval: 86400
+
   Netflix:
     type: http
     behavior: classical
@@ -346,6 +366,7 @@ rule-providers:
     path: ruleset/Netflix.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Netflix.list
     interval: 86400
+
   Bahamut:
     type: http
     behavior: classical
@@ -353,6 +374,7 @@ rule-providers:
     path: ruleset/Bahamut.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bahamut.list
     interval: 86400
+
   ProxyMedia:
     type: http
     behavior: classical
@@ -360,6 +382,7 @@ rule-providers:
     path: ruleset/ProxyMedia.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyMedia.list
     interval: 86400
+
   ProxyGFWlist:
     type: http
     behavior: classical
@@ -370,57 +393,51 @@ rule-providers:
 
 # ================= 分流规则 =================
 rules:
-  # 广告拦截优先，将所有广告规则合并
-  - RULE-SET,BanAD,🛑 拦截广告
-  - RULE-SET,QiufengAD,🛑 拦截广告
-  - RULE-SET,BanProgramAD,🛑 拦截广告
-  - DOMAIN-SUFFIX,umengcloud.com,🛑 拦截广告
-  - DOMAIN-SUFFIX,adbiding.cn,🛑 拦截广告
-  - DOMAIN-SUFFIX,wxcjgg.cn,🛑 拦截广告
-  - PROCESS-NAME,subs-check*,🎯 国内直连
-  - RULE-SET,UnBan,🎯 国内直连
-  - RULE-SET,LocalAreaNetwork,🎯 国内直连
-  - RULE-SET,ChinaDomain,🎯 国内直连
-  - RULE-SET,ChinaCompanyIp,🎯 国内直连
-  - GEOIP,CN,🎯 国内直连
-  - RULE-SET,GoogleCN,🎯 国内直连
-  - RULE-SET,SteamCN,🎯 国内直连
-  - RULE-SET,NetEaseMusic,🎯 国内直连
-  - RULE-SET,BilibiliHMT,🎯 国内直连
-  - RULE-SET,Bilibili,🎯 国内直连
-  - RULE-SET,ChinaMedia,🎯 国内直连
-  - RULE-SET,Download,🎯 国内直连
-
-  # 媒体、服务等分流规则，使用更通用的组
-  - RULE-SET,YouTube,🌍 国外媒体
-  - RULE-SET,Netflix,🌍 国外媒体
-  - RULE-SET,Bahamut,🌍 国外媒体
-  - RULE-SET,ProxyMedia,🌍 国外媒体
-
-  # 通用代理规则
-  - RULE-SET,ProxyGFWlist,🚀 节点选择
-  - RULE-SET,Apple,🚀 节点选择
-  - RULE-SET,Microsoft,🚀 节点选择
-  - RULE-SET,Bing,🚀 节点选择
-  - RULE-SET,OneDrive,🚀 节点选择
-  - RULE-SET,Telegram,🚀 节点选择
-  - RULE-SET,AI,🚀 节点选择
-  - RULE-SET,OpenAi,🚀 节点选择
-  - RULE-SET,Epic,🚀 节点选择
-  - RULE-SET,Origin,🚀 节点选择
-  - RULE-SET,Sony,🚀 节点选择
-  - RULE-SET,Steam,🚀 节点选择
-  - RULE-SET,Nintendo,🚀 节点选择
-  - RULE-SET,GoogleFCM,🚀 节点选择
-  - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
-  - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,addons.kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,github.com,🚀 节点选择
-  - DOMAIN-SUFFIX,githubusercontent.com,🚀 节点选择
-  - DOMAIN-SUFFIX,raw.githubusercontent.com,🚀 节点选择
-  - DOMAIN-SUFFIX,cloudfront.net,🚀 节点选择
-  - DOMAIN-SUFFIX,akamaihd.net,🚀 节点选择
-  - DOMAIN-KEYWORD,kodi,🚀 节点选择
-
-  - MATCH,🐟 漏网之鱼
+  - RULE-SET,BanAD,🛑 拦截广告
+  - RULE-SET,QiufengAD,🛑 拦截广告
+  - RULE-SET,BanProgramAD,🛑 拦截广告
+  - DOMAIN-SUFFIX,umengcloud.com,🛑 拦截广告
+  - DOMAIN-SUFFIX,adbiding.cn,🛑 拦截广告
+  - DOMAIN-SUFFIX,wxcjgg.cn,🛑 拦截广告
+  - PROCESS-NAME,subs-check*,🎯 国内直连
+  - RULE-SET,UnBan,🎯 国内直连
+  - RULE-SET,LocalAreaNetwork,🎯 国内直连
+  - RULE-SET,ChinaDomain,🎯 国内直连
+  - RULE-SET,ChinaCompanyIp,🎯 国内直连
+  - GEOIP,CN,🎯 国内直连
+  - RULE-SET,GoogleCN,🎯 国内直连
+  - RULE-SET,SteamCN,🎯 国内直连
+  - RULE-SET,NetEaseMusic,🎯 国内直连
+  - RULE-SET,BilibiliHMT,🎯 国内直连
+  - RULE-SET,Bilibili,🎯 国内直连
+  - RULE-SET,ChinaMedia,🎯 国内直连
+  - RULE-SET,Download,🎯 国内直连
+  - RULE-SET,YouTube,🌍 国外媒体
+  - RULE-SET,Netflix,🌍 国外媒体
+  - RULE-SET,Bahamut,🌍 国外媒体
+  - RULE-SET,ProxyMedia,🌍 国外媒体
+  - RULE-SET,ProxyGFWlist,🚀 节点选择
+  - RULE-SET,Apple,🚀 节点选择
+  - RULE-SET,Microsoft,🚀 节点选择
+  - RULE-SET,Bing,🚀 节点选择
+  - RULE-SET,OneDrive,🚀 节点选择
+  - RULE-SET,Telegram,🚀 节点选择
+  - RULE-SET,AI,🚀 节点选择
+  - RULE-SET,OpenAi,🚀 节点选择
+  - RULE-SET,Epic,🚀 节点选择
+  - RULE-SET,Origin,🚀 节点选择
+  - RULE-SET,Sony,🚀 节点选择
+  - RULE-SET,Steam,🚀 节点选择
+  - RULE-SET,Nintendo,🚀 节点选择
+  - RULE-SET,GoogleFCM,🚀 节点选择
+  - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
+  - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
+  - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
+  - DOMAIN-SUFFIX,addons.kodi.tv,🚀 节点选择
+  - DOMAIN-SUFFIX,github.com,🚀 节点选择
+  - DOMAIN-SUFFIX,githubusercontent.com,🚀 节点选择
+  - DOMAIN-SUFFIX,raw.githubusercontent.com,🚀 节点选择
+  - DOMAIN-SUFFIX,cloudfront.net,🚀 节点选择
+  - DOMAIN-SUFFIX,akamaihd.net,🚀 节点选择
+  - DOMAIN-KEYWORD,kodi,🚀 节点选择
+  - MATCH,🐟 漏网之鱼
