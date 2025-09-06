@@ -50,11 +50,10 @@ async def fetch_subscription_urls(session):
             if not content.strip():
                 print(f"[⚠️] {UPDATE_FILE_URL} 文件为空，使用本地 fallback URLs", file=sys.stderr)
                 return load_fallback_urls()
-            # 假设每行一个 URL，解析并过滤有效 URL
             urls = [line.strip() for line in content.splitlines() if line.strip() and line.strip().startswith('http')]
             if urls:
                 print(f"[✅] 从 {UPDATE_FILE_URL} 获取 {len(urls)} 个订阅源")
-                save_fallback_urls(urls)  # 更新本地 fallback 文件
+                save_fallback_urls(urls)
                 return urls
             else:
                 print(f"[⚠️] {UPDATE_FILE_URL} 无有效 URL，使用本地 fallback URLs", file=sys.stderr)
@@ -115,13 +114,11 @@ def parse_base64_links(text):
                 server, port = server_port.split(":", 1)
                 params = urllib.parse.parse_qs(params_raw[0]) if params_raw else {}
                 
-                # 使用原始名称，附加 server/port 确保唯一性
                 name = base_name
                 if name in seen_names:
                     name = f"{base_name}_{server}_{port}"
                 seen_names.add(name)
                 
-                # 检查 UUID 重复
                 uuid_count[uuid] = uuid_count.get(uuid, 0) + 1
                 if uuid_count[uuid] > 5:
                     print(f"[⚠️] UUID {uuid} 重复使用超过 5 次，可能影响节点可用性", file=sys.stderr)
@@ -189,6 +186,9 @@ def save_yaml(path, proxies):
         yaml.safe_dump({"proxies": proxies}, f, allow_unicode=True)
     print(f"[💾] 已保存到 {abs_path}")
     if os.path.exists(abs_path):
+        with open(abs_path, "r", encoding="utf-8") as f:
+            content = f.read()
+            print(f"[DEBUG] 文件 {abs_path} 内容首行: {content.splitlines()[0][:50]}...")  # 调试输出前50字符
         print(f"[✅] 文件 {abs_path} 存在")
     else:
         print(f"[❌] 文件 {abs_path} 未生成")
@@ -223,7 +223,7 @@ async def test_connection_async(session, proxy_config, semaphore):
             concurrent.futures.ThreadPoolExecutor(),
             direct_socket_test, server, port
         )
-        if socket_latency is None or socket_latency > 2000:  # 过滤高延迟节点
+        if socket_latency is None or socket_latency > 2000:
             print(f"[❌] {node_name} | Socket 连接失败或延迟过高 ({socket_latency}ms)", file=sys.stderr)
             return None
 
@@ -236,7 +236,6 @@ async def main():
 
     print("--- 开始从固定 URL 获取订阅源 ---")
     async with aiohttp.ClientSession() as session:
-        # 动态获取订阅源列表，更新并使用 fallback
         subscription_urls = await fetch_subscription_urls(session)
         
         print("--- 开始下载并合并订阅 ---")
@@ -257,7 +256,6 @@ async def main():
     print(f"[📦] 合并并去重后节点总数: {len(merged)}")
     print(f"[🔍] 所有节点: {[p['name'] for p in merged]}")
     save_yaml(OUTPUT_ALL, merged)
-    print(f"[💾] 已保存所有去重节点到 {OUTPUT_ALL}")
 
     us_nodes_to_test = filter_us(merged)
     if not us_nodes_to_test:
@@ -283,7 +281,6 @@ async def main():
         print("[⚠️] 所有 US 节点测试失败，us.yaml 将为空")
     else:
         save_yaml(OUTPUT_US, available_us_nodes)
-        print(f"[💾] 已保存 {len(available_us_nodes)} 个可用美国节点到 {OUTPUT_US}")
 
 if __name__ == "__main__":
     try:
