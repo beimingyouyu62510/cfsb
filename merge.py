@@ -31,9 +31,12 @@ OUTPUT_US = "providers/us.yaml"
 
 # 测试配置
 TEST_URL = "http://cp.cloudflare.com/generate_204"
-TEST_TIMEOUT = 10  # 增加超时时间以提高成功率
-MAX_CONCURRENCY = 50  # 降低并发数以减少网络压力
+TEST_TIMEOUT = 20  # 增加超时时间以提高成功率
+MAX_CONCURRENCY = 50  # 并发数
 PING_TIMEOUT = 3  # ping 超时时间（未使用）
+
+# 全局节点计数器
+node_counter = 0
 
 # ========== 代理处理函数 ==========
 async def fetch_subscription(session, url):
@@ -64,8 +67,10 @@ def parse_clash_yaml(text):
     return None
 
 def parse_base64_links(text):
-    """解析 Base64 编码的订阅链接，专注于 vless 协议，生成唯一名称"""
+    """解析 Base64 编码的订阅链接，专注于 vless 协议，生成固定名称"""
+    global node_counter
     proxies = []
+    uuid_count = {}  # 跟踪 UUID 重复
     try:
         text_corrected = text.strip().replace('-', '+').replace('_', '/')
         decoded_text = base64.b64decode(text_corrected + "===").decode("utf-8", errors="ignore")
@@ -85,8 +90,14 @@ def parse_base64_links(text):
                 server, port = server_port.split(":", 1)
                 params = urllib.parse.parse_qs(params_raw[0]) if params_raw else {}
                 
-                # 生成唯一名称
-                name = f"{base_name}_{server}_{port}"
+                # 生成固定名称
+                node_counter += 1
+                name = f"US_Node_{node_counter}"  # 示例：US_Node_1
+                
+                # 检查 UUID 重复
+                uuid_count[uuid] = uuid_count.get(uuid, 0) + 1
+                if uuid_count[uuid] > 5:
+                    print(f"[⚠️] UUID {uuid} 重复使用超过 5 次，可能影响节点可用性", file=sys.stderr)
                 
                 node_config = {
                     "name": name,
@@ -97,7 +108,10 @@ def parse_base64_links(text):
                     "network": params.get("type", ["tcp"])[0],
                 }
                 if node_config["network"] == "ws":
-                    ws_opts = {"path": params.get("path", [""])[0]}
+                    path = params.get("path", [""])[0]
+                    if "proxyip:port(443)" in path:
+                        path = path.replace("proxyip:port(443)", f"{server}:{port}")
+                    ws_opts = {"path": path}
                     if "host" in params:
                         ws_opts["headers"] = {"Host": params["host"][0]}
                     node_config["ws-opts"] = ws_opts
@@ -130,7 +144,7 @@ def filter_us(proxies):
     us_nodes = []
     for p in proxies:
         name = p.get("name", "").upper()
-        if any(keyword in name for keyword in ["US", "USA", "美国", "UNITED STATES"]):
+        if any(keyword in name for keyword in ["US", "USA", "美国", "UNITED STATES", "AMERICA"]):
             us_nodes.append(p)
     print(f"[🔍] 筛选出 {len(us_nodes)} 个 US 节点: {[p['name'] for p in us_nodes]}")
     return us_nodes
@@ -178,10 +192,12 @@ async def test_connection_async(session, proxy_config, semaphore):
             return None
 
         print(f"[✅] {node_name} | vless (Socket: {socket_latency:.0f}ms)")
-        return proxy_config  # 返回原始配置，不添加 latency
+        return proxy_config
 
 async def main():
     """主函数，包含异步下载和测试流程"""
+    global node_counter
+    node_counter = 0  # 重置计数器
     all_proxies = []
 
     print("--- 开始下载并合并订阅 ---")
@@ -207,7 +223,7 @@ async def main():
 
     us_nodes_to_test = filter_us(merged)
     if not us_nodes_to_test:
-        print("[⚠️] 未找到任何名称包含 'US'、'USA' 或 '美国' 的节点，us.yaml 文件将为空。")
+        print("[⚠️] 未找到任何名称包含 'US'、'USA'、'美国'、'UNITED STATES' 或 'AMERICA' 的节点，us.yaml 文件将为空。")
         return
 
     available_us_nodes = []
@@ -221,7 +237,6 @@ async def main():
         if node_result:
             available_us_nodes.append(node_result)
 
-    # 按名称排序（可选：如果需要保持顺序）
     available_us_nodes.sort(key=lambda x: x['name'])
     print(f"[✅] 经过测试，获得 {len(available_us_nodes)} 个可用 US 节点")
     print(f"[🔍] 可用 US 节点: {[node['name'] for node in available_us_nodes]}")
@@ -229,8 +244,8 @@ async def main():
     if not available_us_nodes:
         print("[⚠️] 所有 US 节点测试失败，us.yaml 将为空")
     else:
-        save_yaml(OUTPUT_US, available_us_nodes[:50])
-        print(f"[💾] 已保存 {len(available_us_nodes[:50])} 个可用美国节点到 {OUTPUT_US}")
+        save_yaml(OUTPUT_US, available_us_nodes)  # 保存所有节点
+        print(f"[💾] 已保存 {len(available_us_nodes)} 个可用美国节点到 {OUTPUT_US}")
 
 if __name__ == "__main__":
     try:
