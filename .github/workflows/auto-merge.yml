@@ -75,11 +75,9 @@ jobs:
 
       - name: Notify failure
         if: failure()
-        uses: rjstone/github-action-slack-notify@v1.0.4
+        uses: rtCamp/github-action-slack-notify@v2
         with:
-          # 替换为你的 Slack Webhook URL
           webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }} 
-          # 可选：自定义通知信息
           text: |
             Workflow failed: ${{ github.workflow }}
             Repository: ${{ github.repository }}
