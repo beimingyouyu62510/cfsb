@@ -15,6 +15,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.0  # 固定版本
 
+      - name: Clear cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pip
+            ${{ github.workspace }}  # 清除工作目录缓存
+          key: clear-cache-${{ github.run_id }}  # 每次运行生成唯一 key 强制清除
+        if: always()
+
       - name: Set up Python
         uses: actions/setup-python@v5.1.0  # 固定版本
         with:
@@ -33,27 +42,52 @@ jobs:
           python merge.py > merge.log 2>&1 || { echo "Merge script failed"; exit 1; }
           echo "Merge script completed"
 
+      - name: Verify and display file contents
+        run: |
+          if [ -f providers/all.yaml ]; then 
+            echo "all.yaml exists, first line: $(head -n 1 providers/all.yaml)"
+          else 
+            echo "all.yaml not found"
+          fi
+          if [ -f providers/us.yaml ]; then 
+            echo "us.yaml exists, first line: $(head -n 1 providers/us.yaml)"
+          else 
+            echo "us.yaml not found"
+          fi
+
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
           # 显式添加文件，检查是否存在
-          if [ -f providers/all.yaml ]; then git add providers/all.yaml; else echo "all.yaml not found"; fi
-          if [ -f providers/us.yaml ]; then git add providers/us.yaml; else echo "us.yaml not found"; fi
-          if [ -f fallback_urls.txt ]; then git add fallback_urls.txt; else echo "fallback_urls.txt not found"; fi
+          if [ -f providers/all.yaml ]; then 
+            git add providers/all.yaml
+            git diff --staged providers/all.yaml || echo "No changes in all.yaml"
+          else 
+            echo "all.yaml not found"
+          fi
+          if [ -f providers/us.yaml ]; then 
+            git add providers/us.yaml
+            git diff --staged providers/us.yaml || echo "No changes in us.yaml"
+          else 
+            echo "us.yaml not found"
+          fi
+          if [ -f fallback_urls.txt ]; then 
+            git add fallback_urls.txt
+            git diff --staged fallback_urls.txt || echo "No changes in fallback_urls.txt"
+          else 
+            echo "fallback_urls.txt not found"
+          fi
           
           # 提交更改，如果有变化
           git commit -m "Update proxy lists" || echo "No changes to commit"
 
       - name: Push changes
-        uses: stefanzweifel/git-auto-commit-action@v5  # 使用 v5 版本
+        uses: ad-m/github-push-action@master
         with:
-          commit_message: "Update proxy lists"
-          file_pattern: "providers/all.yaml providers/us.yaml fallback_urls.txt"
-          commit_user_name: "GitHub Action"
-          commit_user_email: "action@github.com"
-          commit_author: "GitHub Action <action@github.com>"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
       - name: Upload logs
         if: always()
