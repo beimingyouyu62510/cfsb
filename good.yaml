@@ -85,7 +85,7 @@ dns:
 
 # ================= 节点订阅 =================
 proxy-providers:
-  us:
+  all:
     type: http
     url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/all.yaml"
     interval: 3600
