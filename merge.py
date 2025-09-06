@@ -10,7 +10,7 @@ import urllib.parse
 import asyncio
 import aiohttp
 import socket
-import concurrent.futures # Needed for direct_socket_test if not using async socket
+import concurrent.futures
 from aiohttp import client_exceptions
 
 # ========== 配置：多个订阅源 ==========
@@ -119,17 +119,23 @@ def parse_base64_links(text):
                     "tls": params.get("security", [""])[0] == "tls",
                 })
             
-            # vless://
+            # vless://  -- 优化后
             elif line.startswith("vless://"):
-                info = line[8:]
-                uuid, server_info = info.split("@", 1)
+                # 首先，按 # 分割，获取备注
+                url_part, *remark_part = line[8:].split("#", 1)
+                
+                # 如果有备注，进行 URL 解码
+                name = urllib.parse.unquote(remark_part[0]) if remark_part else "vless"
+                
+                # 剩下的部分继续解析
+                uuid, server_info = url_part.split("@", 1)
                 server_port, *params_raw = server_info.split("?", 1)
                 server, port = server_port.split(":", 1)
                 
                 params = urllib.parse.parse_qs(params_raw[0]) if params_raw else {}
                 
                 node_config = {
-                    "name": params.get("peer", ["vless"])[0],
+                    "name": name,  # 使用解析出来的备注作为名称
                     "type": "vless",
                     "server": server,
                     "port": int(port),
@@ -262,7 +268,7 @@ async def test_connection_async(session, proxy_config, semaphore):
                         print(f"[✅] {node_name} | 代理 {proxy_type} 通过, 延迟: {final_latency}ms")
                     else:
                         print(f"[⚠️] {node_name} | 代理 {proxy_type} 状态码 {resp.status}, 仍按Socket延迟 ({socket_latency}ms) 计入", file=sys.stderr)
-                
+            
             except Exception as e:
                 print(f"[⚠️] {node_name} | 代理 {proxy_type} 功能测试失败: {e}, 仍按Socket延迟 ({socket_latency}ms) 计入", file=sys.stderr)
         elif proxy_type in ["vmess", "vless", "ssr"]:
