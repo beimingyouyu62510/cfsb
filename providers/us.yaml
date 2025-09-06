@@ -1,81 +1,885 @@
+metadata:
+  generated_at: '2025-09-06T20:00:15.813463'
+  quality_tested: 90
+  total_nodes: 90
 proxies:
 - name: US🐲™️【请勿测速】
   network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: www.flashspeed.cloud-ip.cc
+  port: 8443
+  quality_score: 101.3
+  server: 162.120.94.232
+  servername: cfvs.eu.org
+  test_info:
+    avg_latency: 2.77
+    last_tested: '2025-09-06T19:59:30.748847'
+    success_rate: 0.714
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
   ws-opts:
     headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=108.165.152.131:443&nat64=6to4
-- name: US🐲™️【请勿测速】_108.165.152.98_2087
+      Host: cfvs.eu.org
+    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
   network: ws
-  port: 2087
-  server: 108.165.152.98
-  servername: www.flashspeed.cloud-ip.cc
+  port: 8443
+  quality_score: 101.22
+  server: 162.120.94.232
+  servername: www.vl.de5.net
+  test_info:
+    avg_latency: 3.31
+    last_tested: '2025-09-06T19:59:30.284936'
+    success_rate: 0.714
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
   ws-opts:
     headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】_135.84.74.254_2083
+      Host: www.vl.de5.net
+    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 101.15
+  server: 108.165.152.131
+  servername: www2.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 2.85
+    last_tested: '2025-09-06T19:59:30.323189'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www2.zmxquick.cloudns.org
+    path: /snippets?ip=108.165.152.131:443&nat64=6to4
+- name: US🐲™️【请勿测速】
   network: ws
   port: 2083
+  quality_score: 101.03
   server: 135.84.74.254
-  servername: www.flashspeed.cloud-ip.cc
+  servername: www.vl.de5.net
+  test_info:
+    avg_latency: 3.24
+    last_tested: '2025-09-06T19:59:30.320863'
+    success_rate: 0.714
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
   ws-opts:
     headers:
-      Host: www.flashspeed.cloud-ip.cc
+      Host: www.vl.de5.net
     path: /snippets?ip=135.84.74.254:2083&nat64=6to4
-- name: US🐲™️【请勿测速】_154.211.8.152_2053
+- name: US🐲™️【请勿测速】
   network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: www.flashspeed.cloud-ip.cc
+  port: 2083
+  quality_score: 101.03
+  server: 135.84.74.254
+  servername: cfvs.eu.org
+  test_info:
+    avg_latency: 5.8
+    last_tested: '2025-09-06T19:59:30.850123'
+    success_rate: 0.714
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
   ws-opts:
     headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
-- name: US🐲™️【请勿测速】_154.211.8.98_2087
+      Host: cfvs.eu.org
+    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2083
+  quality_score: 101.02
+  server: 135.84.74.254
+  servername: lovemoneycat.ggff.net
+  test_info:
+    avg_latency: 5.29
+    last_tested: '2025-09-06T19:59:30.660113'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: lovemoneycat.ggff.net
+    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 100.99
+  server: 162.120.94.232
+  servername: www.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 6.23
+    last_tested: '2025-09-06T19:59:30.008324'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.zmxquick.cloudns.org
+    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 100.99
+  server: 162.120.94.232
+  servername: lovemoneycat.ggff.net
+  test_info:
+    avg_latency: 7.77
+    last_tested: '2025-09-06T19:59:30.581730'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: lovemoneycat.ggff.net
+    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
   network: ws
   port: 2087
+  quality_score: 100.99
+  server: 108.165.152.98
+  servername: cfvs.eu.org
+  test_info:
+    avg_latency: 6.91
+    last_tested: '2025-09-06T19:59:30.781936'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cfvs.eu.org
+    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 100.98
+  server: 162.120.94.232
+  servername: www2.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 7.4
+    last_tested: '2025-09-06T19:59:30.359294'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www2.zmxquick.cloudns.org
+    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 100.97
+  server: 162.120.94.232
+  servername: blog.1547415.xyz
+  test_info:
+    avg_latency: 6.02
+    last_tested: '2025-09-06T19:59:29.985017'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.97
+  server: 108.165.152.131
+  servername: lovemoneycat.ggff.net
+  test_info:
+    avg_latency: 6.22
+    last_tested: '2025-09-06T19:59:30.515543'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: lovemoneycat.ggff.net
+    path: /snippets?ip=108.165.152.131:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 100.95
+  server: 108.165.152.98
+  servername: www.vl.de5.net
+  test_info:
+    avg_latency: 6.45
+    last_tested: '2025-09-06T19:59:30.305094'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.vl.de5.net
+    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.93
+  server: 108.165.152.131
+  servername: cfvs.eu.org
+  test_info:
+    avg_latency: 7.41
+    last_tested: '2025-09-06T19:59:30.694375'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cfvs.eu.org
+    path: /snippets?ip=108.165.152.131:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 100.9
   server: 154.211.8.98
-  servername: www.flashspeed.cloud-ip.cc
+  servername: cfvs.eu.org
+  test_info:
+    avg_latency: 7.85
+    last_tested: '2025-09-06T19:59:30.856932'
+    success_rate: 0.714
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
   ws-opts:
     headers:
-      Host: www.flashspeed.cloud-ip.cc
+      Host: cfvs.eu.org
     path: /snippets?ip=154.211.8.98:2087&nat64=6to4
-- name: US🐲™️【请勿测速】_154.26.183.16_8443
+- name: US🐲™️【请勿测速】
   network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: www.flashspeed.cloud-ip.cc
+  port: 2087
+  quality_score: 100.87
+  server: 154.211.8.98
+  servername: www.vl.de5.net
+  test_info:
+    avg_latency: 6.69
+    last_tested: '2025-09-06T19:59:30.332175'
+    success_rate: 0.714
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
   ws-opts:
     headers:
-      Host: www.flashspeed.cloud-ip.cc
-    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
-- name: US🐲™️【请勿测速】_162.120.94.232_8443
+      Host: www.vl.de5.net
+    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2083
+  quality_score: 100.83
+  server: 135.84.74.254
+  servername: cloud.5587124.xyz
+  test_info:
+    avg_latency: 2.63
+    last_tested: '2025-09-06T19:59:29.904752'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 100.83
+  server: 108.165.152.98
+  servername: www.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 7.22
+    last_tested: '2025-09-06T19:59:30.019012'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.zmxquick.cloudns.org
+    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.82
+  server: 108.165.152.131
+  servername: www.vl.de5.net
+  test_info:
+    avg_latency: 7.31
+    last_tested: '2025-09-06T19:59:30.247926'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.vl.de5.net
+    path: /snippets?ip=108.165.152.131:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  quality_score: 100.8
+  server: 154.211.8.152
+  servername: www.vl.de5.net
+  test_info:
+    avg_latency: 10.88
+    last_tested: '2025-09-06T19:59:30.355014'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.vl.de5.net
+    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 100.79
+  server: 154.211.8.98
+  servername: blog.1547415.xyz
+  test_info:
+    avg_latency: 5.65
+    last_tested: '2025-09-06T19:59:29.988422'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  quality_score: 100.78
+  server: 154.211.8.152
+  servername: www2.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 12.13
+    last_tested: '2025-09-06T19:59:30.518989'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www2.zmxquick.cloudns.org
+    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  quality_score: 100.77
+  server: 154.211.8.152
+  servername: blog.1547415.xyz
+  test_info:
+    avg_latency: 7.85
+    last_tested: '2025-09-06T19:59:29.998558'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 100.75
+  server: 154.211.8.98
+  servername: www.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 7.58
+    last_tested: '2025-09-06T19:59:30.146959'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.zmxquick.cloudns.org
+    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.74
+  server: 108.165.152.131
+  servername: www.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 7.55
+    last_tested: '2025-09-06T19:59:30.006164'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.zmxquick.cloudns.org
+    path: /snippets?ip=108.165.152.131:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2083
+  quality_score: 100.7
+  server: 135.84.74.254
+  servername: www2.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 9.79
+    last_tested: '2025-09-06T19:59:30.509365'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www2.zmxquick.cloudns.org
+    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 100.67
+  server: 108.165.152.98
+  servername: blog.1547415.xyz
+  test_info:
+    avg_latency: 9.3
+    last_tested: '2025-09-06T19:59:30.002369'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.66
+  server: 108.165.152.131
+  servername: blog.1547415.xyz
+  test_info:
+    avg_latency: 7.45
+    last_tested: '2025-09-06T19:59:29.965989'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=108.165.152.131:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  quality_score: 100.62
+  server: 154.211.8.152
+  servername: cloud.5587124.xyz
+  test_info:
+    avg_latency: 9.92
+    last_tested: '2025-09-06T19:59:29.938508'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
+- name: US🐲™️【请勿测速】
   network: ws
   port: 8443
+  quality_score: 100.58
+  server: 162.120.94.232
+  servername: cloud.5587124.xyz
+  test_info:
+    avg_latency: 10.4
+    last_tested: '2025-09-06T19:59:29.833504'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.51
+  server: 108.165.152.131
+  servername: cloud.5587124.xyz
+  test_info:
+    avg_latency: 7.65
+    last_tested: '2025-09-06T19:59:29.806224'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=108.165.152.131:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.46
+  server: 50.228.203.26
+  servername: cfvs.eu.org
+  test_info:
+    avg_latency: 26.4
+    last_tested: '2025-09-06T19:59:30.793694'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cfvs.eu.org
+    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.43
+  server: 50.228.203.26
+  servername: lovemoneycat.ggff.net
+  test_info:
+    avg_latency: 27.54
+    last_tested: '2025-09-06T19:59:30.653638'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: lovemoneycat.ggff.net
+    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.35
+  server: 50.228.203.26
+  servername: www2.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 31.16
+    last_tested: '2025-09-06T19:59:30.466520'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www2.zmxquick.cloudns.org
+    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.28
+  server: 50.228.203.26
+  servername: blog.1547415.xyz
+  test_info:
+    avg_latency: 27.44
+    last_tested: '2025-09-06T19:59:30.092876'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 100.26
+  server: 154.26.183.16
+  servername: cfvs.eu.org
+  test_info:
+    avg_latency: 32.21
+    last_tested: '2025-09-06T19:59:30.939281'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cfvs.eu.org
+    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 100.21
+  server: 154.26.183.16
+  servername: lovemoneycat.ggff.net
+  test_info:
+    avg_latency: 33.01
+    last_tested: '2025-09-06T19:59:30.771691'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: lovemoneycat.ggff.net
+    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.2
+  server: 91.149.239.122
+  servername: cfvs.eu.org
+  test_info:
+    avg_latency: 29.54
+    last_tested: '2025-09-06T19:59:30.916969'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cfvs.eu.org
+    path: /snippets?ip=91.149.239.122:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 100.19
+  server: 154.26.183.16
+  servername: www2.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 28.35
+    last_tested: '2025-09-06T19:59:30.537150'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www2.zmxquick.cloudns.org
+    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.15
+  server: 91.149.239.122
+  servername: www2.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 33.3
+    last_tested: '2025-09-06T19:59:30.537705'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www2.zmxquick.cloudns.org
+    path: /snippets?ip=91.149.239.122:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.12
+  server: 91.149.239.122
+  servername: www.vl.de5.net
+  test_info:
+    avg_latency: 29.85
+    last_tested: '2025-09-06T19:59:30.431597'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.vl.de5.net
+    path: /snippets?ip=91.149.239.122:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  quality_score: 100.09
+  server: 154.211.8.152
+  servername: cfvs.eu.org
+  test_info:
+    avg_latency: 20.87
+    last_tested: '2025-09-06T19:59:30.925350'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cfvs.eu.org
+    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 100.07
+  server: 91.149.239.122
+  servername: www.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 34.87
+    last_tested: '2025-09-06T19:59:30.158395'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.zmxquick.cloudns.org
+    path: /snippets?ip=91.149.239.122:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 100.06
+  server: 108.165.152.98
+  servername: lovemoneycat.ggff.net
+  test_info:
+    avg_latency: 21.03
+    last_tested: '2025-09-06T19:59:30.656027'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: lovemoneycat.ggff.net
+    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 100.05
+  server: 154.26.183.16
+  servername: www.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 31.29
+    last_tested: '2025-09-06T19:59:30.148658'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.zmxquick.cloudns.org
+    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 100.05
+  server: 108.165.152.98
+  servername: www2.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 21.04
+    last_tested: '2025-09-06T19:59:30.475506'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www2.zmxquick.cloudns.org
+    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 100.01
+  server: 154.211.8.98
+  servername: lovemoneycat.ggff.net
+  test_info:
+    avg_latency: 20.93
+    last_tested: '2025-09-06T19:59:30.729761'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: lovemoneycat.ggff.net
+    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  quality_score: 100.01
+  server: 154.211.8.152
+  servername: lovemoneycat.ggff.net
+  test_info:
+    avg_latency: 25.48
+    last_tested: '2025-09-06T19:59:30.759245'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: lovemoneycat.ggff.net
+    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 100.0
+  server: 154.211.8.98
+  servername: www2.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 20.86
+    last_tested: '2025-09-06T19:59:30.555159'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www2.zmxquick.cloudns.org
+    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  quality_score: 99.97
+  server: 154.211.8.152
+  servername: www.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 21.15
+    last_tested: '2025-09-06T19:59:30.240899'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.zmxquick.cloudns.org
+    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 99.96
+  server: 154.26.183.16
+  servername: cloud.5587124.xyz
+  test_info:
+    avg_latency: 31.24
+    last_tested: '2025-09-06T19:59:29.980847'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 99.91
   server: 162.120.94.232
   servername: www.flashspeed.cloud-ip.cc
+  test_info:
+    avg_latency: 19.33
+    last_tested: '2025-09-06T19:59:29.522669'
+    success_rate: 0.714
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
@@ -83,11 +887,203 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=162.120.94.232:8443&nat64=6to4
-- name: US🐲™️【请勿测速】_50.228.203.26_443
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2083
+  quality_score: 99.91
+  server: 135.84.74.254
+  servername: www.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 24.56
+    last_tested: '2025-09-06T19:59:30.330192'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.zmxquick.cloudns.org
+    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+- name: US🐲™️【请勿测速】
   network: ws
   port: 443
+  quality_score: 99.9
+  server: 91.149.239.122
+  servername: blog.1547415.xyz
+  test_info:
+    avg_latency: 39.79
+    last_tested: '2025-09-06T19:59:30.155948'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=91.149.239.122:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 99.88
+  server: 162.120.94.232
+  servername: speed.gospeedygo.cyou
+  test_info:
+    avg_latency: 13.06
+    last_tested: '2025-09-06T19:59:29.491620'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: speed.gospeedygo.cyou
+    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2083
+  quality_score: 99.81
+  server: 135.84.74.254
+  servername: blog.1547415.xyz
+  test_info:
+    avg_latency: 21.35
+    last_tested: '2025-09-06T19:59:30.068991'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 99.79
+  server: 108.165.152.98
+  servername: cloud.5587124.xyz
+  test_info:
+    avg_latency: 22.99
+    last_tested: '2025-09-06T19:59:29.908296'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 99.75
+  server: 50.228.203.26
+  servername: www.vl.de5.net
+  test_info:
+    avg_latency: 40.78
+    last_tested: '2025-09-06T19:59:30.444422'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.vl.de5.net
+    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 99.71
+  server: 50.228.203.26
+  servername: www.zmxquick.cloudns.org
+  test_info:
+    avg_latency: 41.03
+    last_tested: '2025-09-06T19:59:30.181381'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.zmxquick.cloudns.org
+    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 99.66
+  server: 108.165.152.98
+  servername: speed.gospeedygo.cyou
+  test_info:
+    avg_latency: 19.02
+    last_tested: '2025-09-06T19:59:29.522043'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: speed.gospeedygo.cyou
+    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 99.66
+  server: 154.211.8.98
+  servername: cloud.5587124.xyz
+  test_info:
+    avg_latency: 20.87
+    last_tested: '2025-09-06T19:59:29.969839'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 99.64
+  server: 91.149.239.122
+  servername: lovemoneycat.ggff.net
+  test_info:
+    avg_latency: 49.23
+    last_tested: '2025-09-06T19:59:30.833307'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: lovemoneycat.ggff.net
+    path: /snippets?ip=91.149.239.122:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 99.63
+  server: 154.26.183.16
+  servername: www.vl.de5.net
+  test_info:
+    avg_latency: 46.1
+    last_tested: '2025-09-06T19:59:30.518240'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.vl.de5.net
+    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 99.55
   server: 50.228.203.26
   servername: www.flashspeed.cloud-ip.cc
+  test_info:
+    avg_latency: 32.71
+    last_tested: '2025-09-06T19:59:29.588844'
+    success_rate: 0.714
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
@@ -95,11 +1091,67 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=50.228.203.26:443&nat64=6to4
-- name: US🐲™️【请勿测速】_91.149.239.122_443
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 99.49
+  server: 154.26.183.16
+  servername: blog.1547415.xyz
+  test_info:
+    avg_latency: 51.15
+    last_tested: '2025-09-06T19:59:30.212979'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: blog.1547415.xyz
+    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
   network: ws
   port: 443
+  quality_score: 99.46
+  server: 50.228.203.26
+  servername: cloud.5587124.xyz
+  test_info:
+    avg_latency: 44.97
+    last_tested: '2025-09-06T19:59:29.996637'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 99.41
+  server: 91.149.239.122
+  servername: cloud.5587124.xyz
+  test_info:
+    avg_latency: 48.97
+    last_tested: '2025-09-06T19:59:30.068260'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: cloud.5587124.xyz
+    path: /snippets?ip=91.149.239.122:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 99.35
   server: 91.149.239.122
   servername: www.flashspeed.cloud-ip.cc
+  test_info:
+    avg_latency: 51.0
+    last_tested: '2025-09-06T19:59:29.680811'
+    success_rate: 0.714
   tls: true
   type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
@@ -107,3 +1159,377 @@ proxies:
     headers:
       Host: www.flashspeed.cloud-ip.cc
     path: /snippets?ip=91.149.239.122:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  quality_score: 99.32
+  server: 154.211.8.152
+  servername: speed.gospeedygo.cyou
+  test_info:
+    avg_latency: 27.37
+    last_tested: '2025-09-06T19:59:29.563504'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: speed.gospeedygo.cyou
+    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 99.05
+  server: 154.26.183.16
+  servername: www.1154874.xyz
+  test_info:
+    avg_latency: 46.19
+    last_tested: '2025-09-06T19:59:29.656475'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.1154874.xyz
+    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 98.98
+  server: 91.149.239.122
+  servername: speed.gospeedygo.cyou
+  test_info:
+    avg_latency: 45.87
+    last_tested: '2025-09-06T19:59:29.655797'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: speed.gospeedygo.cyou
+    path: /snippets?ip=91.149.239.122:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 98.97
+  server: 50.228.203.26
+  servername: speed.gospeedygo.cyou
+  test_info:
+    avg_latency: 51.18
+    last_tested: '2025-09-06T19:59:29.681458'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: speed.gospeedygo.cyou
+    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2083
+  quality_score: 98.27
+  server: 135.84.74.254
+  servername: speed.gospeedygo.cyou
+  test_info:
+    avg_latency: 45.77
+    last_tested: '2025-09-06T19:59:29.655051'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: speed.gospeedygo.cyou
+    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 98.14
+  server: 154.26.183.16
+  servername: speed.gospeedygo.cyou
+  test_info:
+    avg_latency: 65.86
+    last_tested: '2025-09-06T19:59:29.754476'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: speed.gospeedygo.cyou
+    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  quality_score: 98.07
+  server: 154.211.8.152
+  servername: www.1154874.xyz
+  test_info:
+    avg_latency: 46.91
+    last_tested: '2025-09-06T19:59:29.661385'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.1154874.xyz
+    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 98.05
+  server: 108.165.152.98
+  servername: www.1154874.xyz
+  test_info:
+    avg_latency: 49.32
+    last_tested: '2025-09-06T19:59:29.673525'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.1154874.xyz
+    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 97.84
+  server: 154.211.8.98
+  servername: www.flashspeed.cloud-ip.cc
+  test_info:
+    avg_latency: 45.46
+    last_tested: '2025-09-06T19:59:29.653607'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 97.83
+  server: 108.165.152.131
+  servername: www.1154874.xyz
+  test_info:
+    avg_latency: 49.89
+    last_tested: '2025-09-06T19:59:29.675862'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.1154874.xyz
+    path: /snippets?ip=108.165.152.131:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 97.82
+  server: 154.211.8.98
+  servername: www.1154874.xyz
+  test_info:
+    avg_latency: 52.81
+    last_tested: '2025-09-06T19:59:29.690128'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.1154874.xyz
+    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2083
+  quality_score: 97.56
+  server: 135.84.74.254
+  servername: www.flashspeed.cloud-ip.cc
+  test_info:
+    avg_latency: 45.17
+    last_tested: '2025-09-06T19:59:29.652697'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 97.43
+  server: 108.165.152.131
+  servername: www.flashspeed.cloud-ip.cc
+  test_info:
+    avg_latency: 48.18
+    last_tested: '2025-09-06T19:59:29.666887'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=108.165.152.131:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 91.1
+  server: 162.120.94.232
+  servername: www.1154874.xyz
+  test_info:
+    avg_latency: 8.0
+    last_tested: '2025-09-06T19:59:29.466552'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.1154874.xyz
+    path: /snippets?ip=162.120.94.232:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  quality_score: 91.05
+  server: 154.211.8.152
+  servername: www.flashspeed.cloud-ip.cc
+  test_info:
+    avg_latency: 8.6
+    last_tested: '2025-09-06T19:59:29.469627'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=154.211.8.152:2053&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 90.86
+  server: 108.165.152.98
+  servername: www.flashspeed.cloud-ip.cc
+  test_info:
+    avg_latency: 10.62
+    last_tested: '2025-09-06T19:59:29.479226'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=108.165.152.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 90.58
+  server: 50.228.203.26
+  servername: www.1154874.xyz
+  test_info:
+    avg_latency: 25.38
+    last_tested: '2025-09-06T19:59:29.552145'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.1154874.xyz
+    path: /snippets?ip=50.228.203.26:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  quality_score: 90.38
+  server: 154.26.183.16
+  servername: www.flashspeed.cloud-ip.cc
+  test_info:
+    avg_latency: 32.07
+    last_tested: '2025-09-06T19:59:29.586530'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=154.26.183.16:8443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 90.2
+  server: 91.149.239.122
+  servername: www.1154874.xyz
+  test_info:
+    avg_latency: 39.68
+    last_tested: '2025-09-06T19:59:29.625912'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.1154874.xyz
+    path: /snippets?ip=91.149.239.122:443&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  quality_score: 88.98
+  server: 154.211.8.98
+  servername: speed.gospeedygo.cyou
+  test_info:
+    avg_latency: 45.21
+    last_tested: '2025-09-06T19:59:29.652116'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: speed.gospeedygo.cyou
+    path: /snippets?ip=154.211.8.98:2087&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 2083
+  quality_score: 88.71
+  server: 135.84.74.254
+  servername: www.1154874.xyz
+  test_info:
+    avg_latency: 44.97
+    last_tested: '2025-09-06T19:59:29.651092'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.1154874.xyz
+    path: /snippets?ip=135.84.74.254:2083&nat64=6to4
+- name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  quality_score: 88.65
+  server: 108.165.152.131
+  servername: speed.gospeedygo.cyou
+  test_info:
+    avg_latency: 45.56
+    last_tested: '2025-09-06T19:59:29.654589'
+    success_rate: 0.714
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: speed.gospeedygo.cyou
+    path: /snippets?ip=108.165.152.131:443&nat64=6to4
