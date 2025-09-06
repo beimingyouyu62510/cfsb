@@ -29,7 +29,7 @@ BLACKLIST_FILE = "blacklist_ips.txt"
 # 优化的测试配置
 TEST_URLS = [
     "http://cp.cloudflare.com/generate_204",
-    "http://www.google.com/generate_204", 
+    "http://www.google.com/generate_204",
     "http://detectportal.firefox.com/success.txt",
     "http://connectivity-check.ubuntu.com/"
 ]
@@ -43,10 +43,10 @@ MIN_QUALITY_SCORE = 60  # 最低质量分数要求
 
 # 质量评分权重 - 调整权重更注重稳定性
 WEIGHTS = {
-    'latency': 0.35,      # 延迟权重
-    'success_rate': 0.35,  # 成功率权重  
-    'stability': 0.25,     # 稳定性权重
-    'diversity': 0.05      # IP多样性权重
+    'latency': 0.35,
+    'success_rate': 0.35,
+    'stability': 0.25,
+    'diversity': 0.05
 }
 
 # ========== IP 质量管理 ==========
@@ -67,7 +67,7 @@ def is_valid_ip(ip):
     try:
         ip_obj = ipaddress.ip_address(ip)
         # 排除内网、回环、多播等特殊IP
-        if (ip_obj.is_private or ip_obj.is_loopback or 
+        if (ip_obj.is_private or ip_obj.is_loopback or
             ip_obj.is_multicast or ip_obj.is_reserved):
             return False
         return True
@@ -114,7 +114,7 @@ def analyze_current_nodes(yaml_file):
         # UUID重复情况
         if len(uuid_count) < 5:
             print(f"⚠️ UUID多样性不足，只有{len(uuid_count)}个不同UUID")
-            
+        
         return proxies, ip_count, uuid_count
         
     except Exception as e:
@@ -195,7 +195,7 @@ def enhanced_us_filter(proxies):
     exclude_keywords = [
         # 亚洲
         "HK", "HONG KONG", "香港", "港", "HONGKONG",
-        "SG", "SINGAPORE", "新加坡", "狮城", 
+        "SG", "SINGAPORE", "新加坡", "狮城",
         "JP", "JAPAN", "日本", "东京", "TOKYO", "OSAKA",
         "KR", "KOREA", "韩国", "首尔", "SEOUL",
         "TW", "TAIWAN", "台湾", "台北", "TAIPEI",
@@ -266,8 +266,8 @@ def is_likely_us_ip(ip):
         
         # 一些已知的美国IP段 (简化版本)
         us_ranges = [
-            (ipaddress.ip_address('8.8.8.0'), ipaddress.ip_address('8.8.8.255')),    # Google DNS
-            (ipaddress.ip_address('1.1.1.0'), ipaddress.ip_address('1.1.1.255')),    # Cloudflare
+            (ipaddress.ip_address('8.8.8.0'), ipaddress.ip_address('8.8.8.255')),  # Google DNS
+            (ipaddress.ip_address('1.1.1.0'), ipaddress.ip_address('1.1.1.255')),  # Cloudflare
             # 可以添加更多已知的美国IP段
         ]
         
@@ -419,8 +419,8 @@ def save_yaml_optimized(path, proxies):
     # 清理配置，移除测试数据
     clean_proxies = []
     for proxy in sorted_proxies:
-        clean_proxy = {k: v for k, v in proxy.items() 
-                      if k not in ['quality_score', 'test_info']}
+        clean_proxy = {k: v for k, v in proxy.items()
+                     if k not in ['quality_score', 'test_info']}
         clean_proxies.append(clean_proxy)
     
     # 标准Clash格式
@@ -455,7 +455,7 @@ async def fetch_subscription_urls(session):
             content = await resp.text()
             if not content.strip():
                 return load_fallback_urls()
-            urls = [line.strip() for line in content.splitlines() 
+            urls = [line.strip() for line in content.splitlines()
                    if line.strip() and line.strip().startswith('http')]
             if urls:
                 print(f"[✅] 获取 {len(urls)} 个订阅源")
@@ -636,4 +636,49 @@ async def main():
     
     # 智能去重
     deduplicated = intelligent_dedup(all_proxies)
-    save
+    
+    print("\n--- 开始全面质量测试 ---")
+    tested_proxies = []
+    failed_proxies = 0
+
+    async with aiohttp.ClientSession(
+        connector=aiohttp.TCPConnector(limit=MAX_CONCURRENCY),
+        timeout=aiohttp.ClientTimeout(total=TEST_TIMEOUT * 2) # 测试超时时间可以更长
+    ) as session:
+        tasks = [
+            comprehensive_quality_test(session, proxy)
+            for proxy in deduplicated
+        ]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+
+        for result in results:
+            if isinstance(result, Exception):
+                print(f"[❌] 测试中发生异常: {result}")
+                continue
+            
+            tested_proxy, status = result
+            if tested_proxy:
+                tested_proxies.append(tested_proxy)
+            else:
+                failed_proxies += 1
+
+    print(f"\n--- 测试结果总结 ---")
+    print(f"总共测试节点: {len(deduplicated)}")
+    print(f"成功节点数: {len(tested_proxies)}")
+    print(f"失败节点数: {failed_proxies}")
+
+    # 保存 US 节点
+    us_nodes = enhanced_us_filter(tested_proxies)
+    save_yaml_optimized(OUTPUT_US, us_nodes)
+    
+    # 保存所有通过测试的节点
+    save_yaml_optimized(OUTPUT_ALL, tested_proxies)
+    
+# 主入口
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\n程序被用户中断")
+    except Exception as e:
+        print(f"\n程序发生未知错误: {e}")
