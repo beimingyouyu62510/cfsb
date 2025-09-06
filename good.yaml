@@ -92,7 +92,7 @@ dns:
 proxy-providers:
   all:
     type: http
-    url: "https://wget.la/https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/all.yaml"
+    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/providers/us.yaml"
     interval: 3600
     health-check:
       enable: true
