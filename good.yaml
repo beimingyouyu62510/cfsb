@@ -117,7 +117,7 @@ proxy-groups:
     interval: 180
     tolerance: 30
     use:
-      - us
+      - all
 
   - name: 🚀 节点选择
     type: select
@@ -125,25 +125,25 @@ proxy-groups:
       - ♻️ 自动选择
       - DIRECT
 
-  - name: 🇺🇸 美国节点
+  - name: 白嫖
     type: select
     proxies:
       - DIRECT
     use:
-      - us
+      - all
 
   - name: 🌍 国外媒体
     type: select
     proxies:
       - 🚀 节点选择
-      - 🇺🇸 美国节点
+      - 白嫖
       - DIRECT
 
   - name: 📲 电报信息
     type: select
     proxies:
       - 🚀 节点选择
-      - 🇺🇸 美国节点
+      - 白嫖
       - DIRECT
 
   - name: Ⓜ️ 微软服务
@@ -151,20 +151,20 @@ proxy-groups:
     proxies:
       - DIRECT
       - 🚀 节点选择
-      - 🇺🇸 美国节点
+      - 白嫖
 
   - name: 🍎 苹果服务
     type: select
     proxies:
       - 🚀 节点选择
-      - 🇺🇸 美国节点
+      - 白嫖
       - DIRECT
 
   - name: 📢 谷歌FCM
     type: select
     proxies:
       - 🚀 节点选择
-      - 🇺🇸 美国节点
+      - 白嫖
       - DIRECT
 
   - name: 🎯 全球直连
@@ -189,7 +189,7 @@ proxy-groups:
     proxies:
       - DIRECT
       - 🚀 节点选择
-      - 🇺🇸 美国节点
+      - 白嫖
 
 # ================= 规则集 =================
 rule-providers:
