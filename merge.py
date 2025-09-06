@@ -182,38 +182,30 @@ def filter_us(proxies):
 
 def save_yaml(path, proxies):
     """将代理列表保存为 YAML 文件"""
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
+    import os
+    abs_path = os.path.abspath(path)
+    os.makedirs(os.path.dirname(abs_path), exist_ok=True)
+    with open(abs_path, "w", encoding="utf-8") as f:
         yaml.safe_dump({"proxies": proxies}, f, allow_unicode=True)
+    print(f"[💾] 已保存到 {abs_path}")
+    if os.path.exists(abs_path):
+        print(f"[✅] 文件 {abs_path} 存在")
+    else:
+        print(f"[❌] 文件 {abs_path} 未生成")
 
 def direct_socket_test(server, port, timeout=TEST_TIMEOUT):
-    """直接使用 socket 测试 TCP 连接，支持 IPv4 和 IPv6，返回延迟(ms)或 None"""
-    # IPv4 测试
+    """直接使用 socket 测试 TCP 连接，返回延迟(ms)或 None"""
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(timeout)
         start_time = time.time()
-        result = sock.connect_ex((server, port))
+        result = sock.connect_ex((server, int(port)))
         end_time = time.time()
         sock.close()
         if result == 0:
             return (end_time - start_time) * 1000
     except Exception as e:
-        print(f"[⚠️] IPv4 Socket 测试失败: {server}:{port}, 错误: {e}", file=sys.stderr)
-    
-    # IPv6 测试（针对 nat64=6to4）
-    try:
-        sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
-        sock.settimeout(timeout)
-        start_time = time.time()
-        result = sock.connect_ex((server, port))
-        end_time = time.time()
-        sock.close()
-        if result == 0:
-            return (end_time - start_time) * 1000
-    except Exception as e:
-        print(f"[⚠️] IPv6 Socket 测试失败: {server}:{port}, 错误: {e}", file=sys.stderr)
-    
+        print(f"[⚠️] Socket 测试失败: {server}:{port}, 错误: {e}", file=sys.stderr)
     return None
 
 async def test_connection_async(session, proxy_config, semaphore):
