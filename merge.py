@@ -368,30 +368,31 @@ def filter_us(proxies):
     return us_nodes
 
 def save_yaml(path, proxies):
-    """保存 YAML 文件，增加质量信息"""
+    """保存 YAML 文件，Clash 兼容格式"""
     abs_path = os.path.abspath(path)
     os.makedirs(os.path.dirname(abs_path), exist_ok=True)
     
     # 按质量分数排序
     sorted_proxies = sorted(proxies, key=lambda x: x.get('quality_score', 0), reverse=True)
     
-    # 添加元数据
-    output_data = {
-        "proxies": sorted_proxies,
-        "metadata": {
-            "generated_at": datetime.now().isoformat(),
-            "total_nodes": len(sorted_proxies),
-            "quality_tested": sum(1 for p in sorted_proxies if 'quality_score' in p)
-        }
-    }
+    # 清理代理配置，移除测试相关的额外字段
+    clean_proxies = []
+    for proxy in sorted_proxies:
+        clean_proxy = {k: v for k, v in proxy.items() 
+                      if k not in ['quality_score', 'test_info']}
+        clean_proxies.append(clean_proxy)
+    
+    # 只保存 proxies 数组，符合 Clash 格式要求
+    output_data = {"proxies": clean_proxies}
     
     with open(abs_path, "w", encoding="utf-8") as f:
         yaml.safe_dump(output_data, f, allow_unicode=True, default_flow_style=False)
     
-    print(f"[💾] 已保存到 {abs_path}，节点数: {len(proxies)}")
+    print(f"[💾] 已保存到 {abs_path}，节点数: {len(clean_proxies)}")
     if sorted_proxies and 'quality_score' in sorted_proxies[0]:
         avg_score = statistics.mean([p['quality_score'] for p in sorted_proxies if 'quality_score' in p])
         print(f"[📊] 平均质量分数: {avg_score:.2f}")
+        print(f"[ℹ️] 已移除测试数据，确保 Clash 兼容性")
 
 # ========== 增强的连接测试 ==========
 async def advanced_connection_test(session, proxy_config, test_urls=None):
