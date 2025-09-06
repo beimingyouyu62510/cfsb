@@ -1,1 +1,118 @@
-proxies: []
+proxies:
+- latency: 8.47935676574707
+  name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  server: 108.165.152.131
+  servername: www.flashspeed.cloud-ip.cc
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- latency: 8.483171463012695
+  name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  server: 108.165.152.98
+  servername: www.flashspeed.cloud-ip.cc
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- latency: 8.576393127441406
+  name: US🐲™️【请勿测速】
+  network: ws
+  port: 2053
+  server: 154.211.8.152
+  servername: www.flashspeed.cloud-ip.cc
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- latency: 8.688211441040039
+  name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  server: 162.120.94.232
+  servername: www.flashspeed.cloud-ip.cc
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- latency: 8.690834045410156
+  name: US🐲™️【请勿测速】
+  network: ws
+  port: 2087
+  server: 154.211.8.98
+  servername: www.flashspeed.cloud-ip.cc
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- latency: 8.710622787475586
+  name: US🐲™️【请勿测速】
+  network: ws
+  port: 2083
+  server: 135.84.74.254
+  servername: www.flashspeed.cloud-ip.cc
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- latency: 8.843421936035156
+  name: US🐲™️【请勿测速】
+  network: ws
+  port: 8443
+  server: 154.26.183.16
+  servername: www.flashspeed.cloud-ip.cc
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- latency: 9.706735610961914
+  name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  server: 91.149.239.122
+  servername: www.flashspeed.cloud-ip.cc
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+- latency: 86.03739738464355
+  name: US🐲™️【请勿测速】
+  network: ws
+  port: 443
+  server: 50.228.203.26
+  servername: www.flashspeed.cloud-ip.cc
+  tls: true
+  type: vless
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  ws-opts:
+    headers:
+      Host: www.flashspeed.cloud-ip.cc
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
