@@ -15,19 +15,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.0
 
-      # --- 优化点：删除不必要的缓存清除 ---
-      # 这个步骤会使缓存失效，降低效率。
-      # GitHub Actions 内置的 setup-python 已经包含了依赖缓存功能。
-      # - name: Clear cache
-      #   uses: actions/cache@v3
-      #   ...
-
+      # 优化点：删除不必要的缓存清除。
+      # GitHub Actions 内置的 setup-python 已经包含了高效的依赖缓存功能，
+      # 该步骤反而会强制清除缓存，降低运行效率。
       - name: Set up Python
         uses: actions/setup-python@v5.1.0
         with:
           python-version: '3.10'
-          # 内置的缓存功能，无需手动清理
-          cache: 'pip'
+          cache: 'pip' # 启用 pip 缓存
 
       - name: Install dependencies
         run: |
@@ -38,7 +33,7 @@ jobs:
       - name: Run merge script
         run: |
           set -e
-          # 将日志同时输出到控制台和文件
+          # 使用 `tee` 命令同时将日志输出到控制台和文件，方便实时查看和保存
           python merge.py 2>&1 | tee merge.log || { echo "Merge script failed"; exit 1; }
           echo "Merge script completed"
 
@@ -54,19 +49,23 @@ jobs:
           else
             echo "us.yaml not found"
           fi
+          if [ -f fallback_urls.txt ]; then
+            echo "fallback_urls.txt exists."
+          fi
 
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          # 检查是否有文件更改，如果有则添加并提交
+          # 优化点：在提交前检查是否有文件更改
+          # 这样可以避免在没有更新时创建空提交
           if git status --porcelain | grep -q "providers/"; then
+            echo "Changes detected in providers/, committing files."
             git add providers/all.yaml providers/us.yaml fallback_urls.txt
             git commit -m "Update proxy lists"
-            echo "Changes committed."
           else
-            echo "No changes to commit."
+            echo "No changes to commit. Exiting commit step."
           fi
 
       - name: Push changes
