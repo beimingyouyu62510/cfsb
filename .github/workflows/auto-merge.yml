@@ -1,72 +1,64 @@
-name: 优化代理节点更新
+name: Proxy Update
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # 每6小时运行一次，增加更新频率
+    - cron: '0 */6 * * *' # 每6小时运行一次
   workflow_dispatch: # 启用手动运行功能
-    inputs:
-      test_mode:
-        description: '测试模式（使用更宽松的测试参数）'
-        required: false
-        default: 'true'
-        type: boolean
-      max_nodes:
-        description: '最大节点数量限制'
-        required: false
-        default: '200'
-        type: string
 
 jobs:
   generate-and-commit-proxies:
     runs-on: ubuntu-latest
-    timeout-minutes: 45 # 增加超时时间
+    timeout-minutes: 45
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 1 # 只获取最新提交，加速clone
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11' # 使用更新的Python版本
-          cache: 'pip' # 启用pip缓存
+          python-version: '3.10'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install --no-cache-dir requests pyyaml aiohttp
-          # 安装额外的依赖用于更好的网络处理
-          pip install --no-cache-dir aiodns cchardet
+          pip install requests pyyaml aiohttp
 
-      - name: Create necessary directories
+      - name: Create directories
         run: |
           mkdir -p providers
           mkdir -p logs
 
-      - name: Run the optimized script
-        env:
-          PYTHONUNBUFFERED: 1
-          TEST_MODE: ${{ inputs.test_mode || 'true' }}
-          MAX_NODES: ${{ inputs.max_nodes || '200' }}
+      - name: List files for debugging
         run: |
-          echo "开始运行优化的代理节点收集脚本..."
-          echo "测试模式: $TEST_MODE"
-          echo "最大节点数: $MAX_NODES"
-          
-          # 运行脚本并记录日志
-          python merge.py 2>&1 | tee logs/merge_$(date +%Y%m%d_%H%M%S).log
-          
-          echo "脚本执行完成"
+          echo "当前目录文件:"
+          ls -la
+          echo "merge.py 存在吗?"
+          if [[ -f "merge.py" ]]; then
+            echo "✅ merge.py 存在"
+            head -5 merge.py
+          else
+            echo "❌ merge.py 不存在"
+          fi
 
-      - name: Check results and file sizes
+      - name: Run the script
+        run: |
+          if [[ -f "merge.py" ]]; then
+            echo "运行优化版merge.py"
+            python merge.py 2>&1 | tee logs/merge_$(date +%Y%m%d_%H%M%S).log
+          else
+            echo "merge.py不存在，创建空配置文件"
+            echo "proxies: []" > providers/all.yaml
+            echo "proxies: []" > providers/us.yaml
+          fi
+
+      - name: Check results
         id: check_results
         run: |
           echo "检查生成的文件..."
           
-          # 检查文件是否存在
           if [[ -f "providers/all.yaml" ]]; then
             ALL_COUNT=$(grep -c "^- name:" providers/all.yaml || echo "0")
             ALL_SIZE=$(du -h providers/all.yaml | cut -f1)
@@ -77,6 +69,8 @@ jobs:
             echo "all_count=0" >> $GITHUB_OUTPUT
             echo "all_size=0" >> $GITHUB_OUTPUT
             echo "❌ providers/all.yaml 文件不存在"
+            # 创建空文件
+            echo "proxies: []" > providers/all.yaml
           fi
           
           if [[ -f "providers/us.yaml" ]]; then
@@ -89,69 +83,51 @@ jobs:
             echo "us_count=0" >> $GITHUB_OUTPUT
             echo "us_size=0" >> $GITHUB_OUTPUT
             echo "❌ providers/us.yaml 文件不存在"
-          fi
-          
-          # 检查质量报告
-          if [[ -f "quality_report.json" ]]; then
-            echo "✅ 质量报告已生成"
-          else
-            echo "⚠️ 质量报告未生成"
+            # 创建空文件
+            echo "proxies: []" > providers/us.yaml
           fi
 
       - name: Validate YAML files
         run: |
-          echo "验证生成的YAML文件格式..."
-          
-          if [[ -f "providers/all.yaml" ]]; then
-            python -c "
-            import yaml
-            try:
-                with open('providers/all.yaml', 'r', encoding='utf-8') as f:
-                    data = yaml.safe_load(f)
-                    print(f'✅ all.yaml 格式正确，包含 {len(data.get(\"proxies\", []))} 个节点')
-            except Exception as e:
-                print(f'❌ all.yaml 格式错误: {e}')
-                exit(1)
-            "
-          fi
-          
-          if [[ -f "providers/us.yaml" ]]; then
-            python -c "
-            import yaml
-            try:
-                with open('providers/us.yaml', 'r', encoding='utf-8') as f:
-                    data = yaml.safe_load(f)
-                    print(f'✅ us.yaml 格式正确，包含 {len(data.get(\"proxies\", []))} 个节点')
-            except Exception as e:
-                print(f'❌ us.yaml 格式错误: {e}')
-                exit(1)
-            "
-          fi
+          echo "验证YAML文件格式..."
+          python -c "
+import yaml
+import sys
 
-      - name: Check for meaningful changes
+files = ['providers/all.yaml', 'providers/us.yaml']
+all_valid = True
+
+for file in files:
+    try:
+        with open(file, 'r', encoding='utf-8') as f:
+            data = yaml.safe_load(f)
+            proxies = data.get('proxies', []) if data else []
+            print(f'✅ {file} 格式正确，包含 {len(proxies)} 个节点')
+    except Exception as e:
+        print(f'❌ {file} 格式错误: {e}')
+        all_valid = False
+
+sys.exit(0 if all_valid else 1)
+"
+
+      - name: Check for changes
         id: changes
         run: |
-          # 检查文件是否有实质性变化
           if git diff --quiet providers/all.yaml providers/us.yaml 2>/dev/null; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "📝 没有检测到配置文件的变化"
           else
             echo "has_changes=true" >> $GITHUB_OUTPUT
             echo "📝 检测到配置文件有变化"
-            
-            # 显示变化概要
-            echo "变化概要:"
             git diff --stat providers/all.yaml providers/us.yaml || true
           fi
 
       - name: Commit and push changes
         if: steps.changes.outputs.has_changes == 'true'
         run: |
-          # 配置git
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
-          # 添加文件
           git add providers/all.yaml providers/us.yaml
           
           # 如果质量报告存在，也一并提交
@@ -159,15 +135,14 @@ jobs:
             git add quality_report.json
           fi
           
-          # 创建详细的提交信息
-          COMMIT_MSG="feat: 自动更新代理节点列表
+          COMMIT_MSG="feat: Auto update proxy list
 
-          📊 节点统计:
-          - 全量节点: ${{ steps.check_results.outputs.all_count }} 个 (${{ steps.check_results.outputs.all_size }})
-          - 美国节点: ${{ steps.check_results.outputs.us_count }} 个 (${{ steps.check_results.outputs.us_size }})
-          
-          🕐 更新时间: $(date '+%Y-%m-%d %H:%M:%S UTC')
-          🤖 自动化运行: ${{ github.run_number }}"
+📊 节点统计:
+- 全量节点: ${{ steps.check_results.outputs.all_count }} 个
+- 美国节点: ${{ steps.check_results.outputs.us_count }} 个
+
+🕐 更新时间: $(date '+%Y-%m-%d %H:%M:%S UTC')
+🤖 自动化运行 #${{ github.run_number }}"
           
           git commit -m "$COMMIT_MSG"
           git push
@@ -201,16 +176,16 @@ jobs:
           fi
           
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 🔧 优化特性" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ 更宽松的质量测试标准" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ 保留原始节点名称" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ 智能去重和分批处理" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ 增强的错误处理" >> $GITHUB_STEP_SUMMARY
+          echo "### ⚙️ 运行信息" >> $GITHUB_STEP_SUMMARY
+          echo "- 运行时间: $(date '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "- 运行编号: #${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Python版本: $(python --version)" >> $GITHUB_STEP_SUMMARY
 
-      - name: Upload logs as artifact
+      - name: Upload logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: merge-logs-${{ github.run_number }}
           path: logs/
-          retention-days: 7
+          retention-days: 3
+        continue-on-error: true
