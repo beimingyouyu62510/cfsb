@@ -1,325 +1,61 @@
 proxies:
 - name: US🐲™️【请勿测速】
-  network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: cfvs.eu.org
-  tls: true
   type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #2'
-  network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #3'
-  network: ws
-  port: 443
-  server: 108.165.152.131
-  servername: cloud.5587124.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #4'
-  network: ws
-  port: 2087
-  server: 108.165.152.98
-  servername: cloud.5587124.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #5'
-  network: ws
+  server: 108.165.152.82
   port: 8443
-  server: 162.120.94.232
-  servername: cloud.5587124.xyz
-  tls: true
-  type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #6'
   network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: cfvs.eu.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
   ws-opts:
-    headers:
-      Host: cfvs.eu.org
     path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #7'
-  network: ws
-  port: 2083
-  server: 135.84.74.254
-  servername: cloud.5587124.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
     headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #8'
-  network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: cfvs.eu.org
+      Host: lovemoneycat.ggff.net
   tls: true
+  servername: lovemoneycat.ggff.net
+- name: 'US #2'
   type: vless
+  server: 64.69.24.13
+  port: 443
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  network: ws
   ws-opts:
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+    headers:
+      Host: blog.1547415.xyz
+  tls: true
+  servername: blog.1547415.xyz
+- name: 'US #3'
+  type: vless
+  server: 64.69.24.13
+  port: 443
+  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
+  network: ws
+  ws-opts:
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
     headers:
       Host: cfvs.eu.org
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #9'
-  network: ws
-  port: 2087
-  server: 108.165.152.98
-  servername: cfvs.eu.org
   tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #10'
-  network: ws
-  port: 2083
-  server: 135.84.74.254
   servername: cfvs.eu.org
-  tls: true
+- name: 'US #4'
   type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #11'
-  network: ws
+  server: 160.79.105.160
   port: 8443
-  server: 162.120.94.232
-  servername: cfvs.eu.org
-  tls: true
-  type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #12'
   network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: cloud.5587124.xyz
+  ws-opts:
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
+    headers:
+      Host: lovemoneycat.ggff.net
   tls: true
+  servername: lovemoneycat.ggff.net
+- name: 'US #5'
   type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #13'
-  network: ws
-  port: 2083
-  server: 135.84.74.254
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #14'
-  network: ws
-  port: 443
-  server: 50.228.203.26
-  servername: cfvs.eu.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #15'
-  network: ws
-  port: 443
-  server: 50.228.203.26
-  servername: cloud.5587124.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #16'
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #17'
-  network: ws
+  server: 160.79.105.160
   port: 8443
-  server: 154.26.183.16
-  servername: cloud.5587124.xyz
-  tls: true
-  type: vless
   uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #18'
   network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
   ws-opts:
+    path: /snippets?ip=proxyip:port(443)&nat64=6to4
     headers:
       Host: blog.1547415.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #19'
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: cfvs.eu.org
   tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #20'
-  network: ws
-  port: 8443
-  server: 154.26.183.16
-  servername: cfvs.eu.org
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cfvs.eu.org
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #21'
-  network: ws
-  port: 8443
-  server: 162.120.94.232
   servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #22'
-  network: ws
-  port: 443
-  server: 50.228.203.26
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #23'
-  network: ws
-  port: 2053
-  server: 154.211.8.152
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #24'
-  network: ws
-  port: 2087
-  server: 108.165.152.98
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #25'
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: cloud.5587124.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #26'
-  network: ws
-  port: 2087
-  server: 154.211.8.98
-  servername: blog.1547415.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: blog.1547415.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
-- name: 'US🐲™️【请勿测速】 #27'
-  network: ws
-  port: 443
-  server: 91.149.239.122
-  servername: cloud.5587124.xyz
-  tls: true
-  type: vless
-  uuid: 01991f31-4f11-1c67-b1f4-ff7fab35e816
-  ws-opts:
-    headers:
-      Host: cloud.5587124.xyz
-    path: /snippets?ip=proxyip:port(443)&nat64=6to4
