@@ -18,7 +18,7 @@ jobs:
           python-version: 3.11
 
       - name: Install dependencies
-        run: pip install -q pyyaml requests
+        run: pip install -q pyyaml requests aiohttp
 
       - name: Run optimizer
         run: python merge.py
