@@ -3,7 +3,8 @@ name: Proxy Update
 on:
   schedule:
     - cron: '0 */6 * * *' # 每6小时运行一次
-  workflow_dispatch: # 启用手动运行功能
+  workflow_dispatch:
+  # 启用手动运行功能
 
 jobs:
   generate-and-commit-proxies:
