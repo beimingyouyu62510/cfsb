@@ -325,4 +325,5 @@ def save_yaml_optimized(path, proxies):
     if not proxies:
         with open(abs_path, "w", encoding="utf-8") as f:
             yaml.safe_dump({"proxies": []}, f, allow_unicode=True)
-        print(f"[⚠️] 保存空文件:
+        print(f"[⚠️] 保存空文件: {abs_path}")
+        return
