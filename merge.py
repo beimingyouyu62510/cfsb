@@ -17,6 +17,9 @@ from datetime import datetime, timedelta
 import random
 import ipaddress
 from collections import defaultdict
+import re
+import subprocess
+import tempfile
 
 # ========== 配置：固定更新文件 URL 和文件路径 ==========
 UPDATE_FILE_URL = "https://apicsv.sosorg.nyc.mn/gengxin.txt?token=CMorg"
@@ -26,27 +29,36 @@ OUTPUT_US = "providers/us.yaml"
 QUALITY_REPORT = "quality_report.json"
 BLACKLIST_FILE = "blacklist_ips.txt"
 
-# 优化的测试配置
+# 优化后的测试配置 - 更宽松但更实用
 TEST_URLS = [
     "http://cp.cloudflare.com/generate_204",
-    "http://www.google.com/generate_204",
+    "http://www.google.com/generate_204", 
     "http://detectportal.firefox.com/success.txt",
-    "http://connectivity-check.ubuntu.com/"
+    "http://httpbin.org/ip"  # 添加IP检测URL
 ]
-TEST_TIMEOUT = 12  # 进一步降低超时，快速淘汰慢节点
-MAX_CONCURRENCY = 25  # 降低并发数提高稳定性
+TEST_TIMEOUT = 25  # 增加超时时间
+MAX_CONCURRENCY = 15  # 降低并发数提高稳定性
 RETRY_COUNT = 2
-LATENCY_THRESHOLD = 1000  # 降低延迟阈值到1秒
-SUCCESS_RATE_THRESHOLD = 0.7  # 提高成功率要求
-MAX_NODES_PER_IP = 3  # 限制每个IP的节点数量
-MIN_QUALITY_SCORE = 60  # 最低质量分数要求
+LATENCY_THRESHOLD = 3000  # 放宽延迟阈值到3秒
+SUCCESS_RATE_THRESHOLD = 0.3  # 降低成功率要求到30%
+MAX_NODES_PER_IP = 5  # 增加每个IP的节点数量限制
+MIN_QUALITY_SCORE = 25  # 大幅降低最低质量分数要求
 
-# 质量评分权重 - 调整权重更注重稳定性
+# 命名配置
+NAMING_CONFIG = {
+    "PRESERVE_ORIGINAL_NAMES": True,  # 保留原始名称
+    "CLEAN_JUNK_CHARS": True,         # 清理垃圾字符
+    "ADD_LOCATION_PREFIX": False,     # 不添加地理位置前缀
+    "MAX_NAME_LENGTH": 80,            # 增加最大名称长度
+    "REMOVE_TEST_WARNINGS": True,     # 移除测速警告
+}
+
+# 质量评分权重 - 更注重连通性而非速度
 WEIGHTS = {
-    'latency': 0.35,
-    'success_rate': 0.35,
-    'stability': 0.25,
-    'diversity': 0.05
+    'connectivity': 0.50,    # 连通性权重最高
+    'latency': 0.25,         # 降低延迟权重
+    'success_rate': 0.20,    # 成功率权重
+    'stability': 0.05        # 稳定性权重最低
 }
 
 # ========== IP 质量管理 ==========
@@ -63,12 +75,11 @@ def save_ip_blacklist(blacklist):
         f.write("\n".join(sorted(blacklist)))
 
 def is_valid_ip(ip):
-    """验证IP地址有效性，排除内网IP"""
+    """验证IP地址有效性，但不排除所有内网IP（某些代理可能使用）"""
     try:
         ip_obj = ipaddress.ip_address(ip)
-        # 排除内网、回环、多播等特殊IP
-        if (ip_obj.is_private or ip_obj.is_loopback or
-            ip_obj.is_multicast or ip_obj.is_reserved):
+        # 只排除回环、多播等明显无效的IP
+        if ip_obj.is_loopback or ip_obj.is_multicast or ip_obj.is_reserved:
             return False
         return True
     except:
@@ -105,7 +116,7 @@ def analyze_current_nodes(yaml_file):
         print(f"唯一UUID数量: {len(uuid_count)}")
         
         # 重复IP过多的情况
-        high_repeat_ips = {ip: count for ip, count in ip_count.items() if count > 10}
+        high_repeat_ips = {ip: count for ip, count in ip_count.items() if count > 8}
         if high_repeat_ips:
             print(f"⚠️ 高重复IP ({len(high_repeat_ips)}个):")
             for ip, count in sorted(high_repeat_ips.items(), key=lambda x: x[1], reverse=True)[:5]:
@@ -123,8 +134,8 @@ def analyze_current_nodes(yaml_file):
 
 # ========== 增强的节点验证和筛选 ==========
 def enhanced_validate_proxy(proxy):
-    """增强的代理配置验证"""
-    required_fields = ['name', 'type', 'server', 'port', 'uuid']
+    """增强的代理配置验证，更宽松的验证规则"""
+    required_fields = ['name', 'type', 'server', 'port']
     
     # 基础字段检查
     for field in required_fields:
@@ -139,27 +150,23 @@ def enhanced_validate_proxy(proxy):
     except:
         return False, "端口不是数字"
     
-    # IP地址验证
+    # IP地址验证（更宽松）
     server = proxy.get('server', '')
     if not is_valid_ip(server):
-        return False, f"无效IP: {server}"
+        # 允许域名
+        if not re.match(r'^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', server):
+            return False, f"无效服务器地址: {server}"
     
-    # UUID验证 (基础长度检查)
-    uuid = proxy.get('uuid', '')
-    if len(uuid) < 30:  # UUID应该足够长
-        return False, f"UUID过短: {uuid}"
-    
-    # 协议特定验证
+    # UUID验证（更宽松）
     if proxy.get('type') == 'vless':
-        if proxy.get('network') == 'ws':
-            ws_opts = proxy.get('ws-opts', {})
-            if not ws_opts.get('path'):
-                return False, "WebSocket缺少path"
+        uuid = proxy.get('uuid', '')
+        if len(uuid) < 20:  # 放宽UUID要求
+            return False, f"UUID过短: {uuid}"
     
     return True, "valid"
 
 def intelligent_dedup(proxies):
-    """智能去重，保留质量更好的节点"""
+    """智能去重，保留更多节点"""
     # 按服务器IP分组
     ip_groups = defaultdict(list)
     for proxy in proxies:
@@ -175,11 +182,11 @@ def intelligent_dedup(proxies):
             print(f"[⚠️] 跳过黑名单IP: {ip}")
             continue
             
-        # 限制每个IP的节点数量
+        # 增加每个IP的节点数量限制
         if len(group) > MAX_NODES_PER_IP:
             print(f"[📊] IP {ip} 有 {len(group)} 个节点，限制为 {MAX_NODES_PER_IP} 个")
-            # 按端口和配置多样性排序
-            group.sort(key=lambda x: (x.get('port', 0), x.get('servername', ''), x.get('uuid', '')))
+            # 按端口和配置多样性排序，保留不同配置的节点
+            group.sort(key=lambda x: (x.get('port', 0), x.get('servername', ''), str(x.get('ws-opts', {}))))
             group = group[:MAX_NODES_PER_IP]
         
         result.extend(group)
@@ -213,6 +220,7 @@ def enhanced_us_filter(proxies):
         "ES", "SPAIN", "西班牙",
         "RU", "RUSSIA", "俄罗斯", "莫斯科",
         "TR", "TURKEY", "土耳其",
+        "PL", "POLAND", "波兰",
         # 其他
         "CA", "CANADA", "加拿大", "TORONTO",
         "AU", "AUSTRALIA", "澳大利亚",
@@ -244,7 +252,7 @@ def enhanced_us_filter(proxies):
         has_us_keyword = any(keyword in name for keyword in us_keywords)
         has_exclude_keyword = any(exclude in name for exclude in exclude_keywords)
         
-        # 基于IP地址的地理位置推断(简单的IP段判断)
+        # 基于IP地址的地理位置推断
         ip_seems_us = is_likely_us_ip(server)
         
         if (has_us_keyword and not has_exclude_keyword) or ip_seems_us:
@@ -252,8 +260,6 @@ def enhanced_us_filter(proxies):
                 us_nodes.append(proxy)
             else:
                 print(f"[⚠️] IP似乎是美国但名称显示其他地区: {proxy['name']}")
-        elif has_exclude_keyword:
-            print(f"[⚠️] 排除非 US 节点: {proxy['name']}")
     
     print(f"[DEBUG] 筛选出 {len(us_nodes)} 个 US 节点")
     return us_nodes
@@ -264,11 +270,16 @@ def is_likely_us_ip(ip):
         ip_obj = ipaddress.ip_address(ip)
         ip_int = int(ip_obj)
         
-        # 一些已知的美国IP段 (简化版本)
+        # 一些已知的美国IP段
         us_ranges = [
-            (ipaddress.ip_address('8.8.8.0'), ipaddress.ip_address('8.8.8.255')),  # Google DNS
-            (ipaddress.ip_address('1.1.1.0'), ipaddress.ip_address('1.1.1.255')),  # Cloudflare
-            # 可以添加更多已知的美国IP段
+            # Cloudflare
+            (ipaddress.ip_address('1.1.1.0'), ipaddress.ip_address('1.1.1.255')),
+            # Google DNS
+            (ipaddress.ip_address('8.8.8.0'), ipaddress.ip_address('8.8.8.255')),
+            # 常见美国数据中心IP段
+            (ipaddress.ip_address('108.0.0.0'), ipaddress.ip_address('108.255.255.255')),
+            (ipaddress.ip_address('162.0.0.0'), ipaddress.ip_address('162.255.255.255')),
+            (ipaddress.ip_address('154.0.0.0'), ipaddress.ip_address('154.255.255.255')),
         ]
         
         for start, end in us_ranges:
@@ -279,9 +290,73 @@ def is_likely_us_ip(ip):
         pass
     return False
 
-# ========== 增强的连接质量测试 ==========
-async def comprehensive_quality_test(session, proxy_config):
-    """全面的节点质量测试"""
+# ========== 优化的节点名称处理 ==========
+def clean_node_name(original_name):
+    """清理节点名称，保留有意义的信息"""
+    if not original_name:
+        return "Unknown"
+    
+    cleaned_name = original_name
+    
+    if NAMING_CONFIG["CLEAN_JUNK_CHARS"]:
+        # 移除测速警告和装饰字符
+        junk_patterns = [
+            r'【请勿测速】',
+            r'™️+',
+            r'🐲+',
+            r'🌐+', 
+            r'：t\.me/\w+',  # 移除电报群链接
+            r'HKG™️+',
+        ]
+        
+        for pattern in junk_patterns:
+            cleaned_name = re.sub(pattern, '', cleaned_name, flags=re.IGNORECASE)
+    
+    # 清理多余空格和标点
+    cleaned_name = re.sub(r'\s+', ' ', cleaned_name).strip()
+    cleaned_name = re.sub(r'^[^\w]+|[^\w]+$', '', cleaned_name)
+    
+    # 如果清理后为空或过短，返回原名
+    if len(cleaned_name) < 3:
+        return original_name[:NAMING_CONFIG["MAX_NAME_LENGTH"]]
+    
+    # 限制长度
+    if len(cleaned_name) > NAMING_CONFIG["MAX_NAME_LENGTH"]:
+        cleaned_name = cleaned_name[:NAMING_CONFIG["MAX_NAME_LENGTH"]] + "..."
+    
+    return cleaned_name if cleaned_name else original_name
+
+def ensure_unique_names(proxies):
+    """确保节点名称唯一，但尽量保持原始含义"""
+    name_counts = defaultdict(int)
+    result = []
+    
+    for proxy in proxies:
+        original_name = proxy.get('name', 'Unknown')
+        
+        if NAMING_CONFIG["PRESERVE_ORIGINAL_NAMES"]:
+            base_name = clean_node_name(original_name)
+        else:
+            # 如果不保留原名，生成标准化名称
+            server = proxy.get('server', 'unknown')
+            port = proxy.get('port', 'unknown')
+            base_name = f"VLESS-{server}:{port}"
+        
+        # 处理重复名称
+        name_counts[base_name] += 1
+        if name_counts[base_name] == 1:
+            final_name = base_name
+        else:
+            final_name = f"{base_name} #{name_counts[base_name]}"
+        
+        proxy['name'] = final_name
+        result.append(proxy)
+    
+    return result
+
+# ========== 更宽松的连接质量测试 ==========
+async def relaxed_quality_test(session, proxy_config):
+    """更宽松的节点质量测试，重点测试基础连通性"""
     node_name = proxy_config.get('name', '未知节点')
     server = proxy_config.get('server')
     port = int(proxy_config.get('port', 0))
@@ -291,109 +366,71 @@ async def comprehensive_quality_test(session, proxy_config):
     
     print(f"[🔍] 测试节点: {node_name} ({server}:{port})")
     
-    # 1. 多轮 Socket 连接测试
+    # 1. Socket 连接测试 - 降低要求
     socket_results = []
-    for round_num in range(3):
-        latency = await test_socket_connection(server, port, timeout=8)
+    for round_num in range(2):  # 减少测试轮数
+        latency = await test_socket_connection(server, port, timeout=15)
         if latency is not None:
             socket_results.append(latency)
-        await asyncio.sleep(0.2)  # 轮次间隔
+        await asyncio.sleep(0.5)  # 增加轮次间隔
     
-    if len(socket_results) < 2:  # 至少成功2次
-        print(f"[❌] {node_name} | Socket 连接失败")
+    if not socket_results:  # 完全无法连接
+        print(f"[❌] {node_name} | Socket 连接完全失败")
         return None, "Socket连接失败"
     
     socket_avg = statistics.mean(socket_results)
-    socket_std = statistics.stdev(socket_results) if len(socket_results) > 1 else 0
     
     if socket_avg > LATENCY_THRESHOLD:
-        print(f"[❌] {node_name} | 延迟过高: {socket_avg:.0f}ms")
-        return None, f"延迟过高: {socket_avg:.0f}ms"
+        print(f"[⚠️] {node_name} | 延迟较高但可接受: {socket_avg:.0f}ms")
+        # 不直接拒绝，继续测试
     
-    # 2. HTTP 连通性测试
-    http_results = []
-    test_urls = random.sample(TEST_URLS, min(2, len(TEST_URLS)))
+    # 2. 简化的HTTP测试 - 只测试一个URL
+    http_success = False
+    test_url = random.choice(TEST_URLS)
     
-    for test_url in test_urls:
-        for attempt in range(2):  # 每个URL测试2次
-            try:
-                start_time = time.time()
-                timeout = aiohttp.ClientTimeout(total=TEST_TIMEOUT)
-                async with session.get(test_url, timeout=timeout) as resp:
-                    await resp.read()
-                    latency = (time.time() - start_time) * 1000
-                    if resp.status in [200, 204]:
-                        http_results.append(latency)
-                        break
-                    await asyncio.sleep(0.1)
-            except Exception as e:
-                if attempt == 1:  # 最后一次尝试
-                    print(f"[⚠️] {node_name} HTTP测试失败: {test_url} - {e}")
-                continue
+    for attempt in range(2):
+        try:
+            timeout = aiohttp.ClientTimeout(total=TEST_TIMEOUT)
+            async with session.get(test_url, timeout=timeout) as resp:
+                if resp.status in [200, 204]:
+                    http_success = True
+                    break
+            await asyncio.sleep(1)
+        except Exception as e:
+            continue
     
-    # 3. 综合评分
-    all_latencies = socket_results + http_results
-    total_tests = 6  # 3次socket + 最多4次HTTP
-    success_count = len(all_latencies)
-    success_rate = success_count / total_tests
-    
-    if success_rate < SUCCESS_RATE_THRESHOLD:
-        print(f"[❌] {node_name} | 成功率过低: {success_rate:.2f}")
-        return None, f"成功率过低: {success_rate:.2f}"
-    
-    # 计算质量分数
-    quality_score = calculate_enhanced_quality_score(
-        all_latencies, success_count, total_tests, socket_std
-    )
-    
-    if quality_score < MIN_QUALITY_SCORE:
-        print(f"[❌] {node_name} | 质量分数过低: {quality_score:.2f}")
-        return None, f"质量分数过低: {quality_score:.2f}"
-    
-    # 成功的节点
-    proxy_config['quality_score'] = quality_score
-    proxy_config['test_info'] = {
-        'avg_latency': round(statistics.mean(all_latencies), 2),
-        'socket_latency': round(socket_avg, 2),
-        'socket_stability': round(socket_std, 2),
-        'success_rate': round(success_rate, 3),
-        'test_time': datetime.now().isoformat()
-    }
-    
-    print(f"[✅] {node_name} | 质量: {quality_score:.2f} | 延迟: {socket_avg:.0f}±{socket_std:.0f}ms | 成功率: {success_count}/{total_tests}")
-    return proxy_config, "success"
-
-def calculate_enhanced_quality_score(latencies, success_count, total_tests, stability_variance):
-    """增强的质量分数计算"""
-    if not latencies:
-        return 0
-    
-    avg_latency = statistics.mean(latencies)
-    success_rate = success_count / total_tests if total_tests > 0 else 0
-    
-    # 延迟分数 (0-100)
-    latency_score = max(0, 100 - (avg_latency / 15))
-    
-    # 成功率分数 (0-100)
-    success_score = success_rate * 100
-    
-    # 稳定性分数 (基于延迟方差)
-    stability_score = max(0, 100 - (stability_variance / 5))
-    
-    # 速度分数 (基于最小延迟)
-    speed_score = max(0, 100 - (min(latencies) / 10)) if latencies else 0
-    
-    # 综合评分
-    final_score = (
+    # 3. 宽松的质量评分
+    connectivity_score = 100 if http_success else 0
+    if socket_results:
+        latency_score = max(0, 100 - (socket_avg / 50))  # 更宽松的延迟评分
+    else:
+        latency_score = 0
+        
+    # 综合评分 - 重点关注连通性
+    quality_score = (
+        connectivity_score * WEIGHTS['connectivity'] +
         latency_score * WEIGHTS['latency'] +
-        success_score * WEIGHTS['success_rate'] +
-        stability_score * WEIGHTS['stability'] +
-        speed_score * 0.1  # 速度权重
+        50 * WEIGHTS['success_rate'] +  # 基础分数
+        50 * WEIGHTS['stability']       # 基础分数
     )
     
-    return round(final_score, 2)
+    # 大幅降低筛选标准
+    if socket_results and quality_score >= MIN_QUALITY_SCORE:
+        proxy_config['quality_score'] = quality_score
+        proxy_config['test_info'] = {
+            'avg_latency': round(socket_avg, 2) if socket_results else None,
+            'http_success': http_success,
+            'test_time': datetime.now().isoformat()
+        }
+        
+        status = "优秀" if quality_score >= 70 else "良好" if quality_score >= 50 else "可用"
+        print(f"[✅] {node_name} | 质量: {quality_score:.0f} ({status}) | 延迟: {socket_avg:.0f}ms | HTTP: {'通过' if http_success else '失败'}")
+        return proxy_config, "success"
+    else:
+        print(f"[❌] {node_name} | 质量分数过低: {quality_score:.0f}")
+        return None, f"质量分数过低: {quality_score:.0f}"
 
-async def test_socket_connection(server, port, timeout=8):
+async def test_socket_connection(server, port, timeout=15):
     """优化的异步 Socket 连接测试"""
     try:
         start_time = time.time()
@@ -409,48 +446,52 @@ async def test_socket_connection(server, port, timeout=8):
         return None
 
 def save_yaml_optimized(path, proxies):
-    """优化的YAML保存，确保Clash兼容性，并解决节点名称重复问题"""
+    """优化的YAML保存，保留原始名称并确保兼容性"""
     abs_path = os.path.abspath(path)
     os.makedirs(os.path.dirname(abs_path), exist_ok=True)
+    
+    if not proxies:
+        print(f"[⚠️] 没有可保存的节点到 {abs_path}")
+        # 创建空文件以避免错误
+        with open(abs_path, "w", encoding="utf-8") as f:
+            yaml.safe_dump({"proxies": []}, f, allow_unicode=True)
+        return
     
     # 按质量分数排序
     sorted_proxies = sorted(proxies, key=lambda x: x.get('quality_score', 0), reverse=True)
     
-    # 清理配置，移除测试数据并确保名称唯一
-    clean_proxies = []
-    name_counts = defaultdict(int)
+    # 处理节点名称
+    named_proxies = ensure_unique_names(sorted_proxies)
     
-    for proxy in sorted_proxies:
+    # 清理配置，移除测试数据
+    clean_proxies = []
+    for proxy in named_proxies:
         clean_proxy = {k: v for k, v in proxy.items()
                        if k not in ['quality_score', 'test_info']}
-                       
-        # 确保名称唯一
-        original_name = clean_proxy.get('name', 'unnamed')
-        name_counts[original_name] += 1
-        if name_counts[original_name] > 1:
-            clean_proxy['name'] = f"{original_name} #{name_counts[original_name]}"
-        
         clean_proxies.append(clean_proxy)
     
     # 标准Clash格式
     output_data = {"proxies": clean_proxies}
     
-    with open(abs_path, "w", encoding="utf-8") as f:
-        yaml.safe_dump(output_data, f, allow_unicode=True, default_flow_style=False)
-    
-    print(f"[💾] 已保存到 {abs_path}，节点数: {len(clean_proxies)}")
-    
-    if sorted_proxies and 'quality_score' in sorted_proxies[0]:
-        avg_score = statistics.mean([p.get('quality_score', 0) for p in sorted_proxies])
-        best_score = sorted_proxies[0]['quality_score']
-        print(f"[📊] 最高质量分数: {best_score:.2f}")
-        print(f"[📊] 平均质量分数: {avg_score:.2f}")
-        print(f"[ℹ️] 已移除测试数据，确保 Clash 兼容性")
+    try:
+        with open(abs_path, "w", encoding="utf-8") as f:
+            yaml.safe_dump(output_data, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
         
-        # 显示前5个最佳节点
-        print(f"[🏆] 前5个最佳节点:")
-        for i, proxy in enumerate(sorted_proxies[:5], 1):
-            print(f"  {i}. {proxy['name']} (分数: {proxy['quality_score']:.2f})")
+        print(f"[💾] 已保存到 {abs_path}，节点数: {len(clean_proxies)}")
+        
+        if sorted_proxies and 'quality_score' in sorted_proxies[0]:
+            scores = [p.get('quality_score', 0) for p in sorted_proxies]
+            avg_score = statistics.mean(scores)
+            best_score = max(scores)
+            print(f"[📊] 质量分数范围: {min(scores):.0f}-{best_score:.0f}，平均: {avg_score:.1f}")
+            
+            # 显示前3个最佳节点
+            print(f"[🏆] 前3个最佳节点:")
+            for i, proxy in enumerate(sorted_proxies[:3], 1):
+                print(f"  {i}. {proxy['name']} (分数: {proxy.get('quality_score', 0):.0f})")
+                
+    except Exception as e:
+        print(f"[❌] 保存文件失败: {e}")
 
 # ========== 从固定 URL 获取订阅源 ==========
 async def fetch_subscription_urls(session):
@@ -459,7 +500,8 @@ async def fetch_subscription_urls(session):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
     }
     try:
-        async with session.get(UPDATE_FILE_URL, timeout=15, headers=headers) as resp:
+        timeout = aiohttp.ClientTimeout(total=20)
+        async with session.get(UPDATE_FILE_URL, timeout=timeout, headers=headers) as resp:
             resp.raise_for_status()
             content = await resp.text()
             if not content.strip():
@@ -480,7 +522,10 @@ def load_fallback_urls():
     """加载本地保存的 fallback URL 列表"""
     if os.path.exists(FALLBACK_FILE):
         with open(FALLBACK_FILE, "r", encoding="utf-8") as f:
-            return [line.strip() for line in f if line.strip() and line.strip().startswith('http')]
+            urls = [line.strip() for line in f if line.strip() and line.strip().startswith('http')]
+            print(f"[💾] 从本地加载 {len(urls)} 个备用订阅源")
+            return urls
+    print(f"[⚠️] 没有找到备用订阅源文件")
     return []
 
 def save_fallback_urls(urls):
@@ -497,7 +542,7 @@ async def fetch_subscription(session, url):
     
     for attempt in range(RETRY_COUNT):
         try:
-            timeout = aiohttp.ClientTimeout(total=15 + attempt * 5)
+            timeout = aiohttp.ClientTimeout(total=20 + attempt * 10)
             async with session.get(url, timeout=timeout, headers=headers) as resp:
                 resp.raise_for_status()
                 text = await resp.text()
@@ -507,7 +552,8 @@ async def fetch_subscription(session, url):
                 print(f"[❌] 下载失败: {url} - {e}")
                 return url, None
             else:
-                await asyncio.sleep(2 ** attempt)
+                print(f"[⚠️] 尝试 {attempt + 1} 失败，重试: {url}")
+                await asyncio.sleep(3 * (attempt + 1))
     
     return url, None
 
@@ -521,8 +567,7 @@ def parse_clash_yaml(text):
                 is_valid, reason = enhanced_validate_proxy(proxy)
                 if is_valid:
                     valid_proxies.append(proxy)
-                else:
-                    print(f"[⚠️] 跳过无效配置: {proxy.get('name', 'unknown')} - {reason}")
+                # 不再打印每个无效配置的详细信息
             return valid_proxies
     except Exception as e:
         print(f"[⚠️] 解析 Clash YAML 失败: {e}")
@@ -559,8 +604,6 @@ def parse_base64_links(text):
                 is_valid, reason = enhanced_validate_proxy(proxy_config)
                 if is_valid:
                     proxies.append(proxy_config)
-                else:
-                    print(f"[⚠️] 跳过无效vless配置: {reason}")
     
     return proxies
 
@@ -601,7 +644,13 @@ def parse_vless_url(url):
 
 async def main():
     """主函数 - 全面优化流程"""
-    print("=== 代理节点质量优化工具 ===\n")
+    print("=== 代理节点质量优化工具 v2.0 ===")
+    print("优化特性:")
+    print("✓ 更宽松的质量测试标准")
+    print("✓ 保留原始节点名称")
+    print("✓ 增强的连通性测试")
+    print("✓ 智能去重算法")
+    print()
     
     # 分析当前节点(如果存在)
     if os.path.exists(OUTPUT_US):
@@ -613,8 +662,12 @@ async def main():
 
     print("--- 获取订阅源 ---")
     async with aiohttp.ClientSession(
-        connector=aiohttp.TCPConnector(limit=50, ttl_dns_cache=300),
-        timeout=aiohttp.ClientTimeout(total=30)
+        connector=aiohttp.TCPConnector(
+            limit=30, 
+            ttl_dns_cache=600,
+            limit_per_host=5
+        ),
+        timeout=aiohttp.ClientTimeout(total=60)
     ) as session:
         subscription_urls = await fetch_subscription_urls(session)
         if not subscription_urls:
@@ -625,8 +678,10 @@ async def main():
         tasks = [fetch_subscription(session, url) for url in subscription_urls]
         responses = await asyncio.gather(*tasks, return_exceptions=True)
         
+        successful_downloads = 0
         for result in responses:
             if isinstance(result, Exception):
+                print(f"[❌] 下载异常: {result}")
                 continue
                 
             url, text = result
@@ -635,9 +690,19 @@ async def main():
                 if proxies:
                     print(f"[✅] {url} → {len(proxies)} 节点")
                     all_proxies.extend(proxies)
+                    successful_downloads += 1
+                else:
+                    print(f"[⚠️] {url} → 无有效节点")
+            else:
+                print(f"[❌] {url} → 下载失败")
+        
+        print(f"\n成功下载: {successful_downloads}/{len(subscription_urls)} 个订阅源")
 
     if not all_proxies:
         print("[❌] 未获取到任何节点")
+        # 创建空文件避免错误
+        save_yaml_optimized(OUTPUT_ALL, [])
+        save_yaml_optimized(OUTPUT_US, [])
         return
 
     print(f"\n--- 节点处理与筛选 ---")
@@ -646,48 +711,140 @@ async def main():
     # 智能去重
     deduplicated = intelligent_dedup(all_proxies)
     
-    print("\n--- 开始全面质量测试 ---")
+    print(f"\n--- 开始质量测试 ---")
+    print(f"测试配置: 超时{TEST_TIMEOUT}s, 延迟阈值{LATENCY_THRESHOLD}ms, 成功率阈值{SUCCESS_RATE_THRESHOLD*100}%")
+    
     tested_proxies = []
     failed_proxies = 0
 
     async with aiohttp.ClientSession(
-        connector=aiohttp.TCPConnector(limit=MAX_CONCURRENCY),
-        timeout=aiohttp.ClientTimeout(total=TEST_TIMEOUT * 2) # 测试超时时间可以更长
+        connector=aiohttp.TCPConnector(
+            limit=MAX_CONCURRENCY,
+            keepalive_timeout=30,
+            enable_cleanup_closed=True
+        ),
+        timeout=aiohttp.ClientTimeout(total=TEST_TIMEOUT * 2)
     ) as session:
-        tasks = [
-            comprehensive_quality_test(session, proxy)
-            for proxy in deduplicated
-        ]
-        results = await asyncio.gather(*tasks, return_exceptions=True)
-
-        for result in results:
-            if isinstance(result, Exception):
-                print(f"[❌] 测试中发生异常: {result}")
-                continue
+        
+        # 分批处理以避免过载
+        batch_size = MAX_CONCURRENCY
+        total_batches = (len(deduplicated) + batch_size - 1) // batch_size
+        
+        for batch_idx in range(total_batches):
+            start_idx = batch_idx * batch_size
+            end_idx = min(start_idx + batch_size, len(deduplicated))
+            batch = deduplicated[start_idx:end_idx]
             
-            tested_proxy, status = result
-            if tested_proxy:
-                tested_proxies.append(tested_proxy)
-            else:
-                failed_proxies += 1
+            print(f"\n[📊] 处理批次 {batch_idx + 1}/{total_batches} ({len(batch)} 个节点)")
+            
+            tasks = [relaxed_quality_test(session, proxy) for proxy in batch]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+
+            batch_success = 0
+            for result in results:
+                if isinstance(result, Exception):
+                    print(f"[❌] 测试异常: {result}")
+                    failed_proxies += 1
+                    continue
+                
+                tested_proxy, status = result
+                if tested_proxy:
+                    tested_proxies.append(tested_proxy)
+                    batch_success += 1
+                else:
+                    failed_proxies += 1
+            
+            print(f"[✅] 批次 {batch_idx + 1} 成功: {batch_success}/{len(batch)}")
+            
+            # 批次间休息
+            if batch_idx < total_batches - 1:
+                await asyncio.sleep(2)
 
     print(f"\n--- 测试结果总结 ---")
     print(f"总共测试节点: {len(deduplicated)}")
     print(f"成功节点数: {len(tested_proxies)}")
     print(f"失败节点数: {failed_proxies}")
+    print(f"成功率: {len(tested_proxies)/len(deduplicated)*100:.1f}%")
 
-    # 保存 US 节点
+    if not tested_proxies:
+        print("[❌] 没有节点通过测试，保存空配置")
+        save_yaml_optimized(OUTPUT_ALL, [])
+        save_yaml_optimized(OUTPUT_US, [])
+        return
+    
+    # 筛选US节点
+    print(f"\n--- 筛选地区节点 ---")
     us_nodes = enhanced_us_filter(tested_proxies)
+    
+    # 保存结果
+    print(f"\n--- 保存结果 ---")
+    save_yaml_optimized(OUTPUT_ALL, tested_proxies)
     save_yaml_optimized(OUTPUT_US, us_nodes)
     
-    # 保存所有通过测试的节点
-    save_yaml_optimized(OUTPUT_ALL, tested_proxies)
+    # 生成质量报告
+    generate_quality_report(tested_proxies, us_nodes)
     
+    print(f"\n=== 完成 ===")
+    print(f"✅ 全量节点: {len(tested_proxies)} 个")
+    print(f"✅ US节点: {len(us_nodes)} 个")
+    print(f"📊 配置已保存到 providers/ 目录")
+
+def generate_quality_report(all_nodes, us_nodes):
+    """生成质量报告"""
+    try:
+        if not all_nodes:
+            return
+            
+        scores = [node.get('quality_score', 0) for node in all_nodes]
+        
+        report = {
+            "generated_at": datetime.now().isoformat(),
+            "total_nodes": len(all_nodes),
+            "us_nodes": len(us_nodes),
+            "quality_stats": {
+                "min_score": min(scores),
+                "max_score": max(scores),
+                "avg_score": statistics.mean(scores),
+                "median_score": statistics.median(scores)
+            },
+            "grade_distribution": {
+                "excellent": len([s for s in scores if s >= 80]),
+                "good": len([s for s in scores if 60 <= s < 80]),
+                "fair": len([s for s in scores if 40 <= s < 60]),
+                "poor": len([s for s in scores if s < 40])
+            },
+            "top_nodes": [
+                {
+                    "name": node.get('name', 'Unknown'),
+                    "server": node.get('server', 'Unknown'),
+                    "score": node.get('quality_score', 0)
+                }
+                for node in sorted(all_nodes, key=lambda x: x.get('quality_score', 0), reverse=True)[:10]
+            ]
+        }
+        
+        with open(QUALITY_REPORT, 'w', encoding='utf-8') as f:
+            json.dump(report, f, indent=2, ensure_ascii=False)
+            
+        print(f"[📊] 质量报告已保存到 {QUALITY_REPORT}")
+        
+    except Exception as e:
+        print(f"[⚠️] 生成质量报告失败: {e}")
+
 # 主入口
 if __name__ == "__main__":
     try:
+        # 设置事件循环策略（Windows兼容）
+        if os.name == 'nt':
+            asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+        
         asyncio.run(main())
+        
     except KeyboardInterrupt:
-        print("\n程序被用户中断")
+        print("\n[⚠️] 程序被用户中断")
+        sys.exit(1)
     except Exception as e:
-        print(f"\n程序发生未知错误: {e}")
+        print(f"\n[❌] 程序发生未知错误: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
