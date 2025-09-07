@@ -1,134 +1,37 @@
-name: Proxy Update
-
-# 关键1：显式写权限，否则无法 push
-permissions:
-  contents: write
-  actions: read
+name: Proxy Nodes Update
 
 on:
-  workflow_dispatch: {}           # 手动运行按钮
+  workflow_dispatch:
   schedule:
-    - cron: "0 */6 * * *"         # 每6小时
+    - cron: "0 */6 * * *"   # 每6小时运行一次
 
 jobs:
-  generate-and-commit-proxies:
+  update:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
-    # 统一用 bash，避免 [[ ... ]] 在 sh 下报错
-    defaults:
-      run:
-        shell: bash
+    timeout-minutes: 30
 
     steps:
-      - name: 1) Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0          # 让 git diff 更稳定使用历史
-          # 默认就会用 GITHUB_TOKEN；无需额外 token
 
-      - name: 2) Set up Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: '3.11'
 
-      - name: 3) Install dependencies
+      - name: Install dependencies
         run: |
-          set -euxo pipefail
           python -m pip install --upgrade pip
           pip install requests pyyaml aiohttp
 
-      - name: 4) Prepare workspace
+      - name: Run main script
         run: |
-          set -euxo pipefail
-          mkdir -p providers logs
-          echo "Workspace: $GITHUB_WORKSPACE"
-          ls -la
+          python main.py
 
-      - name: 5) Run merge.py (or create empty providers)
+      - name: Commit and push results
         run: |
-          set -euxo pipefail
-          if [[ -f "merge.py" ]]; then
-            echo "Found merge.py, running..."
-            # 保留日志；用 UTC 时间避免 runner 时区差异
-            python merge.py 2>&1 | tee "logs/merge_$(date -u +%Y%m%d_%H%M%S).log"
-          else
-            echo "merge.py not found, write empty files."
-            printf 'proxies: []\n' > providers/all.yaml
-            printf 'proxies: []\n' > providers/us.yaml
-          fi
-
-      - name: 6) Validate YAML format
-        run: |
-          set -euxo pipefail
-          python <<'PY'
-import sys, yaml, pathlib
-ok = True
-for p in map(pathlib.Path, ['providers/all.yaml','providers/us.yaml']):
-    if not p.exists():
-        print(f'❌ missing {p}')
-        ok = False
-        continue
-    try:
-        data = yaml.safe_load(p.read_text(encoding='utf-8')) or {}
-        proxies = data.get('proxies')
-        if proxies is None:
-            raise ValueError("missing 'proxies' key")
-        if not isinstance(proxies, list):
-            raise ValueError("'proxies' must be a list")
-        print(f'✅ {p}: {len(proxies)} proxies')
-    except Exception as e:
-        print(f'❌ {p}: {e}')
-        ok = False
-sys.exit(0 if ok else 1)
-PY
-
-      - name: 7) Detect changes
-        id: diff
-        run: |
-          set -euxo pipefail
-          # 让 git 能对未跟踪文件做 diff
-          git add -N providers/all.yaml providers/us.yaml 2>/dev/null || true
-          if git diff --quiet -- providers/all.yaml providers/us.yaml; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "No changes."
-          else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "Changes detected:"
-            git diff --stat -- providers/all.yaml providers/us.yaml || true
-          fi
-
-      - name: 8) Commit & push
-        if: steps.diff.outputs.changed == 'true'
-        run: |
-          set -euxo pipefail
-          # 避免“unsafe repository”
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git config --global user.name  "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add providers/all.yaml providers/us.yaml
-          git commit -m "chore: update providers ($(date -u +'%F %T UTC'))"
-          # 若分支受保护，这里会失败；需在仓库设置里放行
+          git config --global user.email "actions@github.com"
+          git config --global user.name "github-actions[bot]"
+          git add providers/*.yaml quality_report.json fallback_urls.txt blacklist_ips.txt || true
+          git commit -m "Auto update nodes $(date '+%Y-%m-%d %H:%M:%S')" || echo "No changes"
           git push
-
-      - name: 9) Summarize
-        if: always()
-        run: |
-          echo "## 🚀 代理节点更新摘要" >> $GITHUB_STEP_SUMMARY
-          for f in providers/all.yaml providers/us.yaml; do
-            if [[ -f "$f" ]]; then
-              sz=$(du -h "$f" | cut -f1)
-              cnt=$(grep -c '^- name:' "$f" || true)
-              echo "- $f : $cnt 条（$sz）" >> $GITHUB_STEP_SUMMARY
-            else
-              echo "- $f : ⛔ 文件缺失" >> $GITHUB_STEP_SUMMARY
-            fi
-          done
-
-      - name: 10) Upload logs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: merge-logs-${{ github.run_number }}
-          path: logs/
-          retention-days: 7
