@@ -26,7 +26,7 @@ jobs:
 
       - name: Run main script
         run: |
-          python main.py
+          python merge.py
 
       - name: Commit and push results
         run: |
