@@ -191,13 +191,13 @@ def enhanced_us_filter(proxies):
     for proxy in proxies:
         name = proxy.get("name", "").upper()
         server = proxy.get("server", "")
+        latency = proxy.get("test_info", {}).get("avg_latency", 9999)
         has_us_keyword = any(keyword in name for keyword in us_keywords)
         has_exclude_keyword = any(exclude in name for exclude in exclude_keywords)
         ip_seems_us = is_likely_us_ip(server)
-        if (has_us_keyword and not has_exclude_keyword) or ip_seems_us:
-            if not has_exclude_keyword:
-                us_nodes.append(proxy)
-    print(f"[DEBUG] 筛选出 {len(us_nodes)} 个 US 节点")
+        if ((has_us_keyword and not has_exclude_keyword) or ip_seems_us) and latency >= 50:
+            us_nodes.append(proxy)
+    print(f"[DEBUG] 筛选出 {len(us_nodes)} 个真实 US 节点（延迟 ≥ 50ms）")
     return us_nodes
 
 def is_likely_us_ip(ip):
@@ -325,159 +325,4 @@ def save_yaml_optimized(path, proxies):
     if not proxies:
         with open(abs_path, "w", encoding="utf-8") as f:
             yaml.safe_dump({"proxies": []}, f, allow_unicode=True)
-        print(f"[⚠️] 保存空文件: {abs_path}")
-        return
-    sorted_proxies = sorted(proxies, key=lambda x: x.get('quality_score', 0), reverse=True)
-    named_proxies = ensure_unique_names(sorted_proxies)
-    clean_proxies = [{k:v for k,v in proxy.items() if k not in ['quality_score','test_info']} for proxy in named_proxies]
-    output_data = {"proxies": clean_proxies}
-    with open(abs_path, "w", encoding="utf-8") as f:
-        yaml.safe_dump(output_data, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
-    print(f"[💾] 已保存到 {abs_path}，节点数: {len(clean_proxies)}")
-
-# ========= 订阅获取 =========
-async def fetch_subscription_urls(session):
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    try:
-        timeout = aiohttp.ClientTimeout(total=20)
-        async with session.get(UPDATE_FILE_URL, timeout=timeout, headers=headers) as resp:
-            resp.raise_for_status()
-            content = await resp.text()
-            if not content.strip():
-                return load_fallback_urls()
-            urls = [line.strip() for line in content.splitlines() if line.strip().startswith('http')]
-            if urls:
-                save_fallback_urls(urls)
-                return urls
-            return load_fallback_urls()
-    except:
-        return load_fallback_urls()
-
-def load_fallback_urls():
-    if os.path.exists(FALLBACK_FILE):
-        with open(FALLBACK_FILE, "r", encoding="utf-8") as f:
-            urls = [line.strip() for line in f if line.strip().startswith('http')]
-            print(f"[💾] 加载 {len(urls)} 个备用订阅源")
-            return urls
-    return []
-
-def save_fallback_urls(urls):
-    os.makedirs(os.path.dirname(FALLBACK_FILE) or ".", exist_ok=True)
-    with open(FALLBACK_FILE, "w", encoding="utf-8") as f:
-        f.write("\n".join(urls))
-
-async def fetch_subscription(session, url):
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    for attempt in range(RETRY_COUNT):
-        try:
-            timeout = aiohttp.ClientTimeout(total=20 + attempt * 10)
-            async with session.get(url, timeout=timeout, headers=headers) as resp:
-                resp.raise_for_status()
-                return url, await resp.text()
-        except:
-            if attempt == RETRY_COUNT - 1:
-                return url, None
-            await asyncio.sleep(3 * (attempt + 1))
-    return url, None
-
-def parse_clash_yaml(text):
-    try:
-        data = yaml.safe_load(text)
-        if isinstance(data, dict) and "proxies" in data:
-            return [p for p in data["proxies"] if enhanced_validate_proxy(p)[0]]
-    except:
-        pass
-    return []
-
-def parse_base64_links(text):
-    proxies = []
-    try:
-        decoded_text = base64.urlsafe_b64decode(text + "===" ).decode("utf-8", errors="ignore")
-    except:
-        decoded_text = text
-    for line in decoded_text.splitlines():
-        line = line.strip()
-        if line.startswith("vless://"):
-            pc = parse_vless_url(line)
-            if pc and enhanced_validate_proxy(pc)[0]:
-                proxies.append(pc)
-    return proxies
-
-def parse_vless_url(url):
-    try:
-        url_part, *remark_part = url[8:].split("#", 1)
-        base_name = urllib.parse.unquote(remark_part[0]) if remark_part else "vless"
-        uuid, server_info = url_part.split("@", 1)
-        server_port, *params_raw = server_info.split("?", 1)
-        server, port = server_port.split(":", 1)
-        params = urllib.parse.parse_qs(params_raw[0]) if params_raw else {}
-        node_config = {
-            "name": base_name,
-            "type": "vless",
-            "server": server,
-            "port": int(port),
-            "uuid": uuid,
-            "network": params.get("type", ["tcp"])[0],
-        }
-        if node_config["network"] == "ws":
-            path = params.get("path", [""])[0]
-            ws_opts = {"path": path}
-            if "host" in params:
-                ws_opts["headers"] = {"Host": params["host"][0]}
-            node_config["ws-opts"] = ws_opts
-        if params.get("security", [""])[0] == "tls":
-            node_config["tls"] = True
-            if "sni" in params:
-                node_config["servername"] = params["sni"][0]
-        return node_config
-    except:
-        return None
-
-# ========= 主函数 =========
-async def main():
-    print("=== 代理节点质量优化工具 v2.0 ===")
-    if os.path.exists(OUTPUT_US):
-        analyze_current_nodes(OUTPUT_US)
-    
-    all_proxies = []
-    async with aiohttp.ClientSession() as session:
-        urls = await fetch_subscription_urls(session)
-        if not urls:
-            print("[❌] 无订阅 URL")
-            return
-        tasks = [fetch_subscription(session, url) for url in urls]
-        responses = await asyncio.gather(*tasks)
-        for url, text in responses:
-            if text:
-                proxies = parse_clash_yaml(text) or parse_base64_links(text)
-                all_proxies.extend(proxies)
-    
-    if not all_proxies:
-        save_yaml_optimized(OUTPUT_ALL, [])
-        save_yaml_optimized(OUTPUT_US, [])
-        return
-    
-    deduplicated = intelligent_dedup(all_proxies)
-    
-    tested_proxies = []
-    async with aiohttp.ClientSession() as session:
-        for i in range(0, len(deduplicated), MAX_CONCURRENCY):
-            batch = deduplicated[i:i+MAX_CONCURRENCY]
-            results = await asyncio.gather(*[relaxed_quality_test(session, p) for p in batch])
-            for proxy, status in results:
-                if proxy:
-                    tested_proxies.append(proxy)
-    
-    save_yaml_optimized(OUTPUT_ALL, tested_proxies)
-    
-    us_nodes = enhanced_us_filter(tested_proxies)
-    if us_nodes:
-        # 选择前5个最佳US节点
-        us_nodes_sorted = sorted(us_nodes, key=lambda x: (-x.get('quality_score',0), x.get('test_info',{}).get('avg_latency',99999)))
-        top_us_nodes = us_nodes_sorted[:5]
-        save_yaml_optimized(OUTPUT_US, top_us_nodes)
-    else:
-        save_yaml_optimized(OUTPUT_US, [])
-
-if __name__ == "__main__":
-    asyncio.run(main())
+        print(f"[⚠️] 保存空文件:
