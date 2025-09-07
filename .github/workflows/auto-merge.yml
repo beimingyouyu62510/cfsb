@@ -1,9 +1,9 @@
 name: Optimize US Nodes
 
 on:
-  workflow_dispatch:  # 手动运行
+  workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"   # 每天 0 点自动运行
+    - cron: "0 0 * * *"
 
 jobs:
   update:
@@ -18,7 +18,7 @@ jobs:
           python-version: 3.11
 
       - name: Install dependencies
-        run: pip install pyyaml
+        run: pip install -q pyyaml requests
 
       - name: Run optimizer
         run: python merge.py
