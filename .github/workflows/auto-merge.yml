@@ -1,37 +1,32 @@
-name: Proxy Nodes Update
+name: Optimize US Nodes
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # 手动运行
   schedule:
-    - cron: "0 */6 * * *"   # 每6小时运行一次
+    - cron: "0 0 * * *"   # 每天 0 点自动运行
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: 3.11
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests pyyaml aiohttp
+        run: pip install pyyaml
 
-      - name: Run main script
-        run: |
-          python merge.py
+      - name: Run optimizer
+        run: python merge.py
 
-      - name: Commit and push results
+      - name: Commit changes
         run: |
-          git config --global user.email "actions@github.com"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
-          git add providers/*.yaml quality_report.json fallback_urls.txt blacklist_ips.txt || true
-          git commit -m "Auto update nodes $(date '+%Y-%m-%d %H:%M:%S')" || echo "No changes"
+          git add providers/us.yaml
+          git commit -m "Keep top 5 US nodes" || echo "No changes to commit"
           git push
