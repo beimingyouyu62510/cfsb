@@ -1,9 +1,9 @@
 name: Proxy Update
 
 on:
-  workflow_dispatch: {}   # 手动运行
+  workflow_dispatch: {}   # ✅ 手动运行
   schedule:
-    - cron: '0 */6 * * *' # 每6小时运行
+    - cron: "0 */6 * * *" # ✅ 每6小时运行一次
 
 jobs:
   generate-and-commit-proxies:
@@ -19,18 +19,16 @@ jobs:
       - name: 2. Set up Python and dependencies
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.10"
       - run: |
           python -m pip install --upgrade pip
           pip install requests pyyaml aiohttp
 
       - name: 3. Create directories and check script existence
         run: |
-          mkdir -p providers
-          mkdir -p logs
+          mkdir -p providers logs
           echo "当前目录文件:"
           ls -la
-          echo "merge.py 存在吗?"
           if [[ -f "merge.py" ]]; then
             echo "✅ merge.py 存在"
             head -5 merge.py
@@ -41,10 +39,10 @@ jobs:
       - name: 4. Run the main script
         run: |
           if [[ -f "merge.py" ]]; then
-            echo "运行优化版merge.py"
+            echo "运行优化版 merge.py"
             python merge.py 2>&1 | tee logs/merge_$(date +%Y%m%d_%H%M%S).log
           else
-            echo "merge.py不存在，创建空配置文件"
+            echo "merge.py 不存在，创建空配置文件"
             echo "proxies: []" > providers/all.yaml
             echo "proxies: []" > providers/us.yaml
           fi
@@ -53,7 +51,7 @@ jobs:
         id: check_results
         run: |
           echo "检查生成的文件..."
-          
+
           if [[ -f "providers/all.yaml" ]]; then
             ALL_COUNT=$(grep -c "^- name:" providers/all.yaml || echo "0")
             ALL_SIZE=$(du -h providers/all.yaml | cut -f1)
@@ -66,7 +64,7 @@ jobs:
             echo "❌ providers/all.yaml 文件不存在"
             echo "proxies: []" > providers/all.yaml
           fi
-          
+
           if [[ -f "providers/us.yaml" ]]; then
             US_COUNT=$(grep -c "^- name:" providers/us.yaml || echo "0")
             US_SIZE=$(du -h providers/us.yaml | cut -f1)
@@ -82,31 +80,26 @@ jobs:
 
       - name: 6. Validate YAML files format
         run: |
-          echo "验证YAML文件格式..."
+          echo "验证 YAML 文件格式..."
           python -c "
-import yaml
-import sys
-
+import yaml, sys
 files = ['providers/all.yaml', 'providers/us.yaml']
-all_valid = True
-
-for file in files:
+ok = True
+for f in files:
     try:
-        with open(file, 'r', encoding='utf-8') as f:
-            data = yaml.safe_load(f)
-            proxies = data.get('proxies', []) if data else []
-            print(f'✅ {file} 格式正确，包含 {len(proxies)} 个节点')
+        data = yaml.safe_load(open(f, encoding='utf-8'))
+        proxies = data.get('proxies', []) if data else []
+        print(f'✅ {f} 格式正确，包含 {len(proxies)} 个节点')
     except Exception as e:
-        print(f'❌ {file} 格式错误: {e}')
-        all_valid = False
-
-sys.exit(0 if all_valid else 1)
+        print(f'❌ {f} 格式错误: {e}')
+        ok = False
+sys.exit(0 if ok else 1)
 "
 
       - name: 7. Check for changes
         id: changes
         run: |
-          if git diff --quiet providers/all.yaml providers/us.yaml 2>/dev/null; then
+          if git diff --quiet providers/all.yaml providers/us.yaml; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "📝 没有检测到配置文件的变化"
           else
@@ -120,13 +113,10 @@ sys.exit(0 if all_valid else 1)
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
+
           git add providers/all.yaml providers/us.yaml
-          
-          if [[ -f "quality_report.json" ]]; then
-            git add quality_report.json
-          fi
-          
+          [[ -f "quality_report.json" ]] && git add quality_report.json
+
           COMMIT_MSG="feat: Auto update proxy list
 
 📊 节点统计:
@@ -135,7 +125,7 @@ sys.exit(0 if all_valid else 1)
 
 🕐 更新时间: $(date '+%Y-%m-%d %H:%M:%S UTC')
 🤖 自动化运行 #${{ github.run_number }}"
-          
+
           git commit -m "$COMMIT_MSG"
           git push
 
@@ -146,19 +136,19 @@ sys.exit(0 if all_valid else 1)
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| 文件 | 节点数量 | 文件大小 | 状态 |" >> $GITHUB_STEP_SUMMARY
           echo "|------|----------|----------|------|" >> $GITHUB_STEP_SUMMARY
-          
+
           if [[ -f "providers/all.yaml" ]]; then
             echo "| providers/all.yaml | ${{ steps.check_results.outputs.all_count }} | ${{ steps.check_results.outputs.all_size }} | ✅ |" >> $GITHUB_STEP_SUMMARY
           else
             echo "| providers/all.yaml | 0 | - | ❌ |" >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           if [[ -f "providers/us.yaml" ]]; then
             echo "| providers/us.yaml | ${{ steps.check_results.outputs.us_count }} | ${{ steps.check_results.outputs.us_size }} | ✅ |" >> $GITHUB_STEP_SUMMARY
           else
             echo "| providers/us.yaml | 0 | - | ❌ |" >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 📝 更新状态" >> $GITHUB_STEP_SUMMARY
           if [[ "${{ steps.changes.outputs.has_changes }}" == "true" ]]; then
@@ -166,7 +156,7 @@ sys.exit(0 if all_valid else 1)
           else
             echo "ℹ️ 没有变化，跳过提交" >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### ⚙️ 运行信息" >> $GITHUB_STEP_SUMMARY
           echo "- 运行时间: $(date '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
