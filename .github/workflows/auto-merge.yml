@@ -3,8 +3,7 @@ name: Proxy Update
 on:
   schedule:
     - cron: '0 */6 * * *' # 每6小时运行一次
-  workflow_dispatch:
-  # 启用手动运行功能
+  workflow_dispatch: # 启用手动运行功能
 
 jobs:
   generate-and-commit-proxies:
@@ -12,28 +11,23 @@ jobs:
     timeout-minutes: 45
 
     steps:
-      - name: Checkout repository
+      - name: 1. Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Python
+      - name: 2. Set up Python and dependencies
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
+      - run: |
           python -m pip install --upgrade pip
           pip install requests pyyaml aiohttp
 
-      - name: Create directories
+      - name: 3. Create directories and check script existence
         run: |
           mkdir -p providers
           mkdir -p logs
-
-      - name: List files for debugging
-        run: |
           echo "当前目录文件:"
           ls -la
           echo "merge.py 存在吗?"
@@ -44,7 +38,7 @@ jobs:
             echo "❌ merge.py 不存在"
           fi
 
-      - name: Run the script
+      - name: 4. Run the main script
         run: |
           if [[ -f "merge.py" ]]; then
             echo "运行优化版merge.py"
@@ -55,7 +49,7 @@ jobs:
             echo "proxies: []" > providers/us.yaml
           fi
 
-      - name: Check results
+      - name: 5. Check and validate generated files
         id: check_results
         run: |
           echo "检查生成的文件..."
@@ -70,7 +64,6 @@ jobs:
             echo "all_count=0" >> $GITHUB_OUTPUT
             echo "all_size=0" >> $GITHUB_OUTPUT
             echo "❌ providers/all.yaml 文件不存在"
-            # 创建空文件
             echo "proxies: []" > providers/all.yaml
           fi
           
@@ -84,11 +77,10 @@ jobs:
             echo "us_count=0" >> $GITHUB_OUTPUT
             echo "us_size=0" >> $GITHUB_OUTPUT
             echo "❌ providers/us.yaml 文件不存在"
-            # 创建空文件
             echo "proxies: []" > providers/us.yaml
           fi
 
-      - name: Validate YAML files
+      - name: 6. Validate YAML files format
         run: |
           echo "验证YAML文件格式..."
           python -c "
@@ -111,7 +103,7 @@ for file in files:
 sys.exit(0 if all_valid else 1)
 "
 
-      - name: Check for changes
+      - name: 7. Check for changes
         id: changes
         run: |
           if git diff --quiet providers/all.yaml providers/us.yaml 2>/dev/null; then
@@ -123,7 +115,7 @@ sys.exit(0 if all_valid else 1)
             git diff --stat providers/all.yaml providers/us.yaml || true
           fi
 
-      - name: Commit and push changes
+      - name: 8. Commit and push changes
         if: steps.changes.outputs.has_changes == 'true'
         run: |
           git config --global user.name "github-actions[bot]"
@@ -131,7 +123,6 @@ sys.exit(0 if all_valid else 1)
           
           git add providers/all.yaml providers/us.yaml
           
-          # 如果质量报告存在，也一并提交
           if [[ -f "quality_report.json" ]]; then
             git add quality_report.json
           fi
@@ -148,7 +139,7 @@ sys.exit(0 if all_valid else 1)
           git commit -m "$COMMIT_MSG"
           git push
 
-      - name: Create summary
+      - name: 9. Create summary
         if: always()
         run: |
           echo "## 🚀 代理节点更新摘要" >> $GITHUB_STEP_SUMMARY
@@ -182,7 +173,7 @@ sys.exit(0 if all_valid else 1)
           echo "- 运行编号: #${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
           echo "- Python版本: $(python --version)" >> $GITHUB_STEP_SUMMARY
 
-      - name: Upload logs
+      - name: 10. Upload logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
