@@ -80,13 +80,13 @@ proxies:
     server: laji.jisucf.cloudns.biz
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
-    udp: true
+    cipher: auto 
     tls: true
     servername: new.jisucf.cloudns.ch
     network: ws
-    ws-path: "/" # VLESS 链接中没有 path，通常默认为 "/"
+    ws-path: "/" 
     ws-headers:
-      Host: new.jisucf.cloudns.ch  
+      Host: new.jisucf.cloudns.ch
   - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
