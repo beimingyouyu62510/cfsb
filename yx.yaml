@@ -80,13 +80,14 @@ proxies:
     server: laji.jisucf.cloudns.biz
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
-    cipher: auto 
+    cipher: none # 确保这里是 none
     tls: true
-    servername: new.jisucf.cloudns.ch
+    servername: new.jisucf.cloudns.ch # TLS SNI
     network: ws
-    ws-path: "/" 
-    ws-headers:
-      Host: new.jisucf.cloudns.ch
+    ws-opts: # WebSocket 选项 (在 Clash.Meta 核心中，ws-opts是更规范的写法)
+      path: "/" # 路径，V2Ray 配置中未指定，默认为 /
+      headers:
+        Host: new.jisucf.cloudns.ch # 明确指定 Host 头部
   - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
