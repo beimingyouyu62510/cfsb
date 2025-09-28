@@ -75,6 +75,18 @@ dns:
     - +.stun.*.*.*.*
     - +.stun.*.*.*.*.*
 proxies:
+  - name: 天书new
+    type: vless
+    server: laji.jisucf.cloudns.biz
+    port: 443
+    uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
+    udp: true
+    tls: true
+    servername: new.jisucf.cloudns.ch
+    network: ws
+    ws-path: "/" # VLESS 链接中没有 path，通常默认为 "/"
+    ws-headers:
+      Host: new.jisucf.cloudns.ch  
   - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -110,6 +122,7 @@ proxy-groups:
     interval: 180
     tolerance: 30
     proxies:
+      - 天书new
       - 天书git
       - 天书cf
   - name: 🚀 节点选择
