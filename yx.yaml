@@ -131,10 +131,10 @@ proxy-groups:
     proxies:
       - ♻️ 自动选择
   - name: 🌐 智能兜底
-    type: url-test
+    type: fallback
+    lazy: true
     url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    timeout: 1000
     proxies:
       - DIRECT
       - ♻️ 自动选择    
@@ -171,12 +171,10 @@ proxy-groups:
     type: select
     proxies:
       - REJECT
-      - DIRECT
   - name: 🍃 应用净化
     type: select
     proxies:
       - REJECT
-      - DIRECT
   - name: 🐟 漏网之鱼
     type: select
     proxies:
