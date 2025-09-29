@@ -130,7 +130,14 @@ proxy-groups:
     type: select
     proxies:
       - ♻️ 自动选择
+  - name: 🌐 智能兜底
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    proxies:
       - DIRECT
+      - ♻️ 自动选择    
   - name: 🌍 国外媒体
     type: select
     proxies:
@@ -173,8 +180,7 @@ proxy-groups:
   - name: 🐟 漏网之鱼
     type: select
     proxies:
-      - DIRECT
-      - 🚀 节点选择
+      - 🌐 智能兜底
 rule-providers:
   LocalAreaNetwork:
     type: http
