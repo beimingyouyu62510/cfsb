@@ -158,11 +158,6 @@ proxy-groups:
     proxies:
       - 🚀 节点选择
       - DIRECT
-  - name: 📢 谷歌FCM
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -221,13 +216,6 @@ rule-providers:
     format: text
     path: ruleset/ChinaMedia.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list
-    interval: 86400
-  Google China:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/GoogleFCM.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleCN.list
     interval: 86400
   Bing:
     type: http
@@ -301,23 +289,13 @@ rules:
   - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
   - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
   - RULE-SET,QiufengAD,🍃 应用净化
-  - RULE-SET,GoogleFCM,📢 谷歌FCM
   - RULE-SET,Bing,Ⓜ️ 微软服务
   - RULE-SET,OneDrive,Ⓜ️ 微软服务
   - RULE-SET,Microsoft,Ⓜ️ 微软服务
   - RULE-SET,Apple,🍎 苹果服务
   - RULE-SET,Telegram,📲 电报信息
   - DOMAIN-SUFFIX,imem.app,📲 电报信息
-  - RULE-SET,AI,🚀 节点选择
-  - RULE-SET,OpenAi,🚀 节点选择
-  - RULE-SET,Epic,🚀 节点选择
-  - RULE-SET,Origin,🚀 节点选择
-  - RULE-SET,Sony,🚀 节点选择
-  - RULE-SET,Steam,🚀 节点选择
-  - RULE-SET,Nintendo,🚀 节点选择
-  - RULE-SET,YouTube,🌍 国外媒体
   - RULE-SET,Netflix,🌍 国外媒体
-  - RULE-SET,Bahamut,🌍 国外媒体
   - RULE-SET,ProxyMedia,🌍 国外媒体
   - RULE-SET,ProxyGFWlist,🚀 节点选择
   - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
