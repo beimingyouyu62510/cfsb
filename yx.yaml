@@ -222,12 +222,12 @@ rule-providers:
     path: ruleset/ChinaMedia.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list
     interval: 86400
-  GoogleFCM:
+  Google China:
     type: http
     behavior: classical
     format: text
     path: ruleset/GoogleFCM.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleFCM.list
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleCN.list
     interval: 86400
   Bing:
     type: http
@@ -264,75 +264,12 @@ rule-providers:
     path: ruleset/Telegram.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Telegram.list
     interval: 86400
-  AI:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/AI.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/AI.list
-    interval: 86400
-  OpenAi:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/OpenAi.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OpenAi.list
-    interval: 86400
-  Epic:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Epic.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Epic.list
-    interval: 86400
-  Origin:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Origin.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Origin.list
-    interval: 86400
-  Sony:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Sony.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Sony.list
-    interval: 86400
-  Steam:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Steam.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Steam.list
-    interval: 86400
-  Nintendo:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Nintendo.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Nintendo.list
-    interval: 86400
-  YouTube:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/YouTube.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/YouTube.list
-    interval: 86400
   Netflix:
     type: http
     behavior: classical
     format: text
     path: ruleset/Netflix.list
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Netflix.list
-    interval: 86400
-  Bahamut:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Bahamut.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bahamut.list
     interval: 86400
   ProxyMedia:
     type: http
