@@ -310,7 +310,7 @@ rules:
   - RULE-SET,Netflix,🌍 国外媒体
   - RULE-SET,ProxyMedia,🌍 国外媒体
   - RULE-SET,ProxyGFWlist,🚀 节点选择
-  - DOMAIN-SUFFIX,strem.io,Proxy
+  - DOMAIN-SUFFIX,strem.io,🚀 节点选择
   - DOMAIN-SUFFIX,torrentio.strem.io,🚀 节点选择
   - DOMAIN-SUFFIX,real-debrid.com,🚀 节点选择
   - DOMAIN-SUFFIX,alldebrid.com,🚀 节点选择
