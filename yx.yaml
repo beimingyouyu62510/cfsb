@@ -77,7 +77,7 @@ dns:
     - +.stun.*.*.*.*
     - +.stun.*.*.*.*.*
 proxies:
-  - name: 天书new
+  - name: New-Git
     type: vless
     server: laji.jisucf.cloudns.biz
     port: 443
@@ -90,6 +90,19 @@ proxies:
       path: "/"
       headers:
         Host: new.jisucf.cloudns.ch
+  - name: New-CF
+    type: vless
+    server: new.jisucf.cloudns.biz
+    port: 443
+    uuid: 28fe704b-4648-4f60-915c-31cf551cd006
+    cipher: none
+    tls: true
+    servername: new.jisucf.cloudns.biz
+    network: ws
+    ws-opts:
+      path: "/"
+      headers:
+        Host: new.jisucf.cloudns.biz
   - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -125,7 +138,8 @@ proxy-groups:
     interval: 180
     tolerance: 30
     proxies:
-      - 天书new
+      - New-Git
+      - New-CF
       - 天书git
       - 天书cf
   - name: 🚀 节点选择
@@ -296,6 +310,11 @@ rules:
   - RULE-SET,Netflix,🌍 国外媒体
   - RULE-SET,ProxyMedia,🌍 国外媒体
   - RULE-SET,ProxyGFWlist,🚀 节点选择
+  - DOMAIN-SUFFIX,strem.io,Proxy
+  - DOMAIN-SUFFIX,torrentio.strem.io,🚀 节点选择
+  - DOMAIN-SUFFIX,real-debrid.com,🚀 节点选择
+  - DOMAIN-SUFFIX,alldebrid.com,🚀 节点选择
+  - DOMAIN-SUFFIX,elfhosted.com,🚀 节点选择
   - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
   - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
   - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
