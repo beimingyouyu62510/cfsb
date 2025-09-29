@@ -36,6 +36,7 @@ tun:
   dns-hijack:
     - any:53
     - tcp://any:53
+    - udp://any:53
   auto-route: true
   auto-detect-interface: true
   strict-route: true
@@ -49,14 +50,14 @@ dns:
   enhanced-mode: fake-ip
   use-hosts: true
   nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  proxy-server-nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
     - https://dns.cloudflare.com/dns-query
-  proxy-server-nameserver:
-    - 223.5.5.5
-    - https://dns.alidns.com/dns-query
-    - 119.29.29.29
-    - https://doh.pub/dns-query
   nameserver-policy:
     "cn,apple-cn,category-games,private,ChinaDomain,ChinaCompanyIp,ChinaMedia":
       - 223.5.5.5
@@ -80,14 +81,14 @@ proxies:
     server: laji.jisucf.cloudns.biz
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
-    cipher: none # 确保这里是 none
+    cipher: none
     tls: true
-    servername: new.jisucf.cloudns.ch # TLS SNI
+    servername: new.jisucf.cloudns.ch
     network: ws
-    ws-opts: # WebSocket 选项 (在 Clash.Meta 核心中，ws-opts是更规范的写法)
-      path: "/" # 路径，V2Ray 配置中未指定，默认为 /
+    ws-opts:
+      path: "/"
       headers:
-        Host: new.jisucf.cloudns.ch # 明确指定 Host 头部
+        Host: new.jisucf.cloudns.ch
   - name: 天书git
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -119,7 +120,7 @@ proxies:
 proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204 
     interval: 180
     tolerance: 30
     proxies:
@@ -133,11 +134,11 @@ proxy-groups:
   - name: 🌐 智能兜底
     type: fallback
     lazy: true
-    url: http://www.gstatic.com/generate_204
-    timeout: 1000
+    url: https://www.gstatic.com/generate_204
+    timeout: 3000
     proxies:
       - DIRECT
-      - ♻️ 自动选择    
+      - ♻️ 自动选择
   - name: 🌍 国外媒体
     type: select
     proxies:
@@ -170,24 +171,20 @@ proxy-groups:
     type: select
     proxies:
       - REJECT
-  - name: 🐟 漏网之鱼
-    type: select
-    proxies:
-      - 🌐 智能兜底
 rule-providers:
   LocalAreaNetwork:
     type: http
     behavior: classical
     format: text
     path: ruleset/LocalAreaNetwork.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
     interval: 86400
   UnBan:
     type: http
     behavior: classical
     format: text
     path: ruleset/UnBan.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list
     interval: 86400
   QiufengAD:
     type: http
@@ -201,81 +198,81 @@ rule-providers:
     behavior: classical
     format: text
     path: ruleset/ChinaDomain.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaDomain.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaDomain.list
     interval: 86400
   ChinaCompanyIp:
     type: http
     behavior: classical
     format: text
     path: ruleset/ChinaCompanyIp.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaCompanyIp.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaCompanyIp.list
     interval: 86400
   ChinaMedia:
     type: http
     behavior: classical
     format: text
     path: ruleset/ChinaMedia.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list
     interval: 86400
   Bing:
     type: http
     behavior: classical
     format: text
     path: ruleset/Bing.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bing.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bing.list
     interval: 86400
   OneDrive:
     type: http
     behavior: classical
     format: text
     path: ruleset/OneDrive.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OneDrive.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OneDrive.list
     interval: 86400
   Microsoft:
     type: http
     behavior: classical
     format: text
     path: ruleset/Microsoft.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Microsoft.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Microsoft.list
     interval: 86400
   Apple:
     type: http
     behavior: classical
     format: text
     path: ruleset/Apple.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Apple.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Apple.list
     interval: 86400
   Telegram:
     type: http
     behavior: classical
     format: text
     path: ruleset/Telegram.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Telegram.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Telegram.list
     interval: 86400
   Netflix:
     type: http
     behavior: classical
     format: text
     path: ruleset/Netflix.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Netflix.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Netflix.list
     interval: 86400
   ProxyMedia:
     type: http
     behavior: classical
     format: text
     path: ruleset/ProxyMedia.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyMedia.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyMedia.list
     interval: 86400
   ProxyGFWlist:
     type: http
     behavior: classical
     format: text
     path: ruleset/ProxyGFWlist.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list
+    url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list
     interval: 86400
 rules:
   - IP-CIDR,1.1.1.1/32,🚀 节点选择
-  - IP-CIDR,1.0.0.1/32,🚀 节点选择 
+  - IP-CIDR,1.0.0.1/32,🚀 节点选择
   - IP-CIDR,8.8.8.8/32,🚀 节点选择
   - IP-CIDR,8.8.4.4/32,🚀 节点选择
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
@@ -308,4 +305,4 @@ rules:
   - DOMAIN-SUFFIX,cloudfront.net,🚀 节点选择
   - DOMAIN-SUFFIX,akamaihd.net,🚀 节点选择
   - DOMAIN-KEYWORD,kodi,🚀 节点选择
-  - MATCH,🐟 漏网之鱼
+  - MATCH,🌐 智能兜底
