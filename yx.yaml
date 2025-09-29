@@ -349,6 +349,10 @@ rule-providers:
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list
     interval: 86400
 rules:
+  - IP-CIDR,1.1.1.1/32,🚀 节点选择
+  - IP-CIDR,1.0.0.1/32,🚀 节点选择 
+  - IP-CIDR,8.8.8.8/32,🚀 节点选择
+  - IP-CIDR,8.8.4.4/32,🚀 节点选择
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
   - RULE-SET,UnBan,🎯 全球直连
   - RULE-SET,ChinaDomain,🎯 全球直连
@@ -366,6 +370,7 @@ rules:
   - RULE-SET,Microsoft,Ⓜ️ 微软服务
   - RULE-SET,Apple,🍎 苹果服务
   - RULE-SET,Telegram,📲 电报信息
+  - DOMAIN-SUFFIX,imem.app,📲 电报信息
   - RULE-SET,AI,🚀 节点选择
   - RULE-SET,OpenAi,🚀 节点选择
   - RULE-SET,Epic,🚀 节点选择
