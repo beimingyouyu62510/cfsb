@@ -55,9 +55,10 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   proxy-server-nameserver:
-    - https://dns.google/dns-query
-    - https://1.1.1.1/dns-query
-    - https://dns.cloudflare.com/dns-query
+    - 8.8.8.8
+    - 1.1.1.1
+    - 1.0.0.1
+    - 8.8.4.4
   nameserver-policy:
     "cn,apple-cn,category-games,private,ChinaDomain,ChinaCompanyIp,ChinaMedia":
       - 223.5.5.5
