@@ -194,7 +194,7 @@ proxy-groups:
 
 script:
   shortcuts:
-    smart-fallback: Script.js # 关联您的脚本文件
+    smart-fallback: select-smart.js # 关联您的脚本文件
 
 rule-providers:
   LocalAreaNetwork:
