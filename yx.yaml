@@ -1,3 +1,5 @@
+# 配置文件名称：Optimized-Clash-Config.yaml
+
 allow-lan: true
 unified-delay: false
 tcp-concurrent: true
@@ -6,6 +8,7 @@ global-client-fingerprint: chrome
 profile:
   store-selected: true
   store-fake-ip: true
+
 sniffer:
   enable: true
   sniff:
@@ -30,6 +33,7 @@ sniffer:
     - "*.mi.com"
     - "*.lan"
     - "*.local"
+
 tun:
   enable: true
   stack: system
@@ -41,6 +45,7 @@ tun:
   auto-detect-interface: true
   strict-route: true
   endpoint-independent-nat: true
+
 dns:
   enable: true
   listen: 0.0.0.0:53
@@ -76,6 +81,7 @@ dns:
     - +.stun.*.*.*
     - +.stun.*.*.*.*
     - +.stun.*.*.*.*.*
+
 proxies:
   - name: New-Git
     type: vless
@@ -131,10 +137,11 @@ proxies:
       path: /?ed=2560
       headers:
         Host: git02.jisucf.cloudns.biz
+
 proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
-    url: https://www.gstatic.com/generate_204 
+    url: https://www.gstatic.com/generate_204
     interval: 180
     tolerance: 30
     proxies:
@@ -146,10 +153,10 @@ proxy-groups:
     type: select
     proxies:
       - ♻️ 自动选择
-  - name: 🌐 智能兜底
+  - name: 🌐 智能兜底 # 此组需手动选择 script:smart-fallback 才会执行优选
     type: select
     proxies:
-      - script:smart-fallback   # 调用脚本
+      - script:smart-fallback  # 调用脚本
       - DIRECT
       - ♻️ 自动选择
   - name: 🌍 国外媒体
@@ -187,7 +194,8 @@ proxy-groups:
 
 script:
   shortcuts:
-    smart-fallback: Script.js 
+    smart-fallback: Script.js # 关联您的脚本文件
+
 rule-providers:
   LocalAreaNetwork:
     type: http
@@ -287,6 +295,7 @@ rule-providers:
     path: ruleset/ProxyGFWlist.list
     url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list
     interval: 86400
+
 rules:
   - IP-CIDR,1.1.1.1/32,🚀 节点选择
   - IP-CIDR,1.0.0.1/32,🚀 节点选择
