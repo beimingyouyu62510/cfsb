@@ -300,6 +300,11 @@ rules:
   - GEOIP,CN,🎯 全球直连
   - GEOSITE,CN,🎯 全球直连
   - PROCESS-NAME,subs-check*,🎯 全球直连
+  - DOMAIN-KEYWORD,libvio,🎯 全球直连
+  - DOMAIN-KEYWORD,ddys,🎯 全球直连
+  - DOMAIN-KEYWORD,gamer520,🎯 全球直连
+  - DOMAIN-KEYWORD,subhd,🎯 全球直连
+  - DOMAIN-KEYWORD,zimuku,🎯 全球直连
   - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
   - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
   - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
