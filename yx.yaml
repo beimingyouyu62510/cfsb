@@ -153,8 +153,8 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     timeout: 3000 # 保持 3 秒超时
     proxies:
-      - DIRECT
       - ♻️ 自动选择
+      - DIRECT
   - name: 🌍 国外媒体
     type: select
     proxies:
@@ -298,6 +298,7 @@ rules:
   - RULE-SET,ChinaCompanyIp,🎯 全球直连
   - RULE-SET,ChinaMedia,🎯 全球直连
   - GEOIP,CN,🎯 全球直连
+  - GEOSITE,CN,🎯 全球直连
   - PROCESS-NAME,subs-check*,🎯 全球直连
   - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
   - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
