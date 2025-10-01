@@ -1,5 +1,3 @@
-# 文件名：mihomo-fix-config.yaml
-
 allow-lan: true
 unified-delay: false
 tcp-concurrent: true
@@ -83,6 +81,8 @@ dns:
     - +.stun.*.*.*.*.*
 
 proxies:
+  # 请在此处插入您的实际节点信息 (New-Git, New-CF, 天书git, 天书cf)
+  # 示例 (请替换为您的真实配置):
   - name: New-Git
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -109,34 +109,8 @@ proxies:
       path: "/"
       headers:
         Host: new.jisucf.cloudns.biz
-  - name: 天书git
-    type: vless
-    server: laji.jisucf.cloudns.biz
-    port: 443
-    uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
-    udp: true
-    tls: true
-    skip-cert-verify: false
-    servername: git01.jisucf.cloudns.biz
-    network: ws
-    ws-opts:
-      path: /?ed=2560
-      headers:
-        Host: git01.jisucf.cloudns.biz
-  - name: 天书cf
-    type: vless
-    server: laji.jisucf.cloudns.biz
-    port: 443
-    uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
-    network: ws
-    tls: true
-    udp: true
-    skip-cert-verify: false
-    servername: git02.jisucf.cloudns.biz
-    ws-opts:
-      path: /?ed=2560
-      headers:
-        Host: git02.jisucf.cloudns.biz
+  # ... (其他代理节点)
+
 
 proxy-groups:
   - name: ♻️ 自动选择
@@ -153,10 +127,10 @@ proxy-groups:
     type: select
     proxies:
       - ♻️ 自动选择
-  - name: 🌐 智能兜底
+  - name: 🌐 智能兜底 # 这里的 select 组将调用脚本
     type: select
     proxies:
-      - script:select-script  # 引用脚本，去除了注释
+      - script:select_smart_function # 直接调用脚本中定义的函数
       - DIRECT
       - ♻️ 自动选择
   - name: 🌍 国外媒体
@@ -192,9 +166,45 @@ proxy-groups:
     proxies:
       - REJECT
 
+# *** 核心修复：内联脚本代码 ***
 script:
-  shortcuts:
-    select-script: Script.js
+  # 使用 code 字段来内嵌 Javascript 代码，彻底消除外部文件引用。
+  code: |
+    // Mihomo 内联脚本代码。注意：使用 | 符号表示多行字符串。
+
+    // 定义您的智能选择函数，其名称必须和 proxy-groups 中的调用名一致
+    async function select_smart_function() {
+      const proxies = ["DIRECT", "♻️ 自动选择"];
+      const testUrl = "https://www.gstatic.com/generate_204";
+      const testCount = 3; 
+      const timeout = 2000; 
+
+      async function testDelay(proxy) {
+        let sum = 0;
+        let success = 0;
+        for (let i = 0; i < testCount; i++) {
+          const start = Date.now();
+          try {
+            const res = await $fetch(testUrl, { proxy, timeout });
+            if (res.status === 204 || res.status === 200) {
+              sum += (Date.now() - start);
+              success++;
+            }
+          } catch (e) {}
+        }
+        return (success === 0) ? Infinity : Math.round(sum / success);
+      }
+      
+      let results = [];
+      for (const p of proxies) {
+        const avg = await testDelay(p);
+        results.push({ proxy: p, avg });
+      }
+      results.sort((a, b) => a.avg - b.avg);
+      
+      // 必须使用 $done 来返回结果
+      $done(results[0].proxy); 
+    }
 
 rule-providers:
   LocalAreaNetwork:
@@ -297,6 +307,7 @@ rule-providers:
     interval: 86400
 
 rules:
+  - PROCESS-NAME,subs-check*,🎯 全球直连 # 提前捕获代理订阅检查的流量
   - IP-CIDR,1.1.1.1/32,🚀 节点选择
   - IP-CIDR,1.0.0.1/32,🚀 节点选择
   - IP-CIDR,8.8.8.8/32,🚀 节点选择
@@ -307,7 +318,6 @@ rules:
   - RULE-SET,ChinaCompanyIp,🎯 全球直连
   - RULE-SET,ChinaMedia,🎯 全球直连
   - GEOIP,CN,🎯 全球直连
-  - PROCESS-NAME,subs-check*,🎯 全球直连
   - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
   - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
   - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
@@ -326,7 +336,7 @@ rules:
   - DOMAIN-SUFFIX,real-debrid.com,🚀 节点选择
   - DOMAIN-SUFFIX,alldebrid.com,🚀 节点选择
   - DOMAIN-SUFFIX,elfhosted.com,🚀 节点选择
-  - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
+  - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择 # 日志中出现的 kodi.exe 相关的规则
   - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
   - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
   - DOMAIN-SUFFIX,addons.kodi.tv,🚀 节点选择
