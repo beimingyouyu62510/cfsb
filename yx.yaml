@@ -147,11 +147,9 @@ proxy-groups:
     proxies:
       - ♻️ 自动选择
   - name: 🌐 智能兜底
-    type: fallback
-    lazy: true
-    url: https://www.gstatic.com/generate_204
-    timeout: 3000
+    type: select
     proxies:
+      - script:smart-fallback   # 调用脚本
       - DIRECT
       - ♻️ 自动选择
   - name: 🌍 国外媒体
@@ -186,6 +184,10 @@ proxy-groups:
     type: select
     proxies:
       - REJECT
+
+script:
+  shortcuts:
+    smart-fallback: Script.js 
 rule-providers:
   LocalAreaNetwork:
     type: http
