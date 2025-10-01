@@ -1,4 +1,4 @@
-# 配置文件名称：Optimized-Clash-Config.yaml
+# 文件名：mihomo-fix-config.yaml
 
 allow-lan: true
 unified-delay: false
@@ -153,10 +153,10 @@ proxy-groups:
     type: select
     proxies:
       - ♻️ 自动选择
-  - name: 🌐 智能兜底 # 此组需手动选择 script:smart-fallback 才会执行优选
+  - name: 🌐 智能兜底
     type: select
     proxies:
-      - script:smart-fallback  # 调用脚本
+      - script:select-script  # 引用脚本，去除了注释
       - DIRECT
       - ♻️ 自动选择
   - name: 🌍 国外媒体
@@ -194,7 +194,7 @@ proxy-groups:
 
 script:
   shortcuts:
-    smart-fallback: select-smart.js # 关联您的脚本文件
+    select-script: select-smart.js # **快捷方式名称已统一为纯英文**
 
 rule-providers:
   LocalAreaNetwork:
