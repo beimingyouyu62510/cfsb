@@ -194,7 +194,7 @@ proxy-groups:
 
 script:
   shortcuts:
-    select-script: select-smart.js # **快捷方式名称已统一为纯英文**
+    select-script: Script.js
 
 rule-providers:
   LocalAreaNetwork:
