@@ -93,7 +93,7 @@ proxies:
         Host: new.jisucf.cloudns.ch
   - name: New-CF
     type: vless
-    server: new.jisucf.cloudns.biz
+    server: laji.jisucf.cloudns.biz
     port: 443
     uuid: 28fe704b-4648-4f60-915c-31cf551cd006
     cipher: none
