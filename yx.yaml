@@ -129,7 +129,7 @@ proxies:
     skip-cert-verify: false
     servername: git02.jisucf.cloudns.biz
     ws-opts:
-      path: /?ed=2560
+      path: "/"
       headers:
         Host: git02.jisucf.cloudns.biz
 proxy-groups:
