@@ -88,7 +88,7 @@ proxies:
     servername: new.jisucf.cloudns.ch
     network: ws
     ws-opts:
-      path: /?ed=2560
+      path: "/"
       headers:
         Host: new.jisucf.cloudns.ch
   - name: New-CF
