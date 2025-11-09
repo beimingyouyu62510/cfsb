@@ -80,7 +80,7 @@ dns:
 proxies:
   - name: New-Git
     type: vless
-    server: laji.jisucf.cloudns.biz
+    server: subbeta.775678.xyz
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     cipher: none
@@ -93,7 +93,7 @@ proxies:
         Host: new.jisucf.cloudns.ch
   - name: New-CF
     type: vless
-    server: laji.jisucf.cloudns.biz
+    server: subbeta.775678.xyz
     port: 443
     uuid: 28fe704b-4648-4f60-915c-31cf551cd006
     cipher: none
