@@ -106,7 +106,7 @@ proxies:
         Host: new.jisucf.cloudns.biz
   - name: 天书git
     type: vless
-    server: laji.jisucf.cloudns.biz
+    server: subbeta.775678.xyz
     port: 443
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
     udp: true
@@ -120,7 +120,7 @@ proxies:
         Host: git01.jisucf.cloudns.biz
   - name: 天书cf
     type: vless
-    server: laji.jisucf.cloudns.biz
+    server: subbeta.775678.xyz
     port: 443
     uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
     network: ws
