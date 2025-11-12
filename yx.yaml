@@ -168,8 +168,13 @@ proxy-groups:
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
-      - DIRECT
       - 🚀 节点选择
+      - DIRECT
+  - name: 🖧 GitHub
+    type: select
+    proxies:
+      - 🚀 节点选择 
+      - DIRECT
   - name: 🍎 苹果服务
     type: select
     proxies:
@@ -305,6 +310,17 @@ rules:
   - DOMAIN-KEYWORD,gamer520,🎯 全球直连
   - DOMAIN-KEYWORD,subhd,🎯 全球直连
   - DOMAIN-KEYWORD,zimuku,🎯 全球直连
+  - DOMAIN-SUFFIX,github.com,🖧 GitHub
+  - DOMAIN-SUFFIX,github.io,🖧 GitHub
+  - DOMAIN-SUFFIX,githubassets.com,🖧 GitHub
+  - DOMAIN-SUFFIX,githubusercontent.com,🖧 GitHub
+  - DOMAIN-SUFFIX,github-releases.githubusercontent.com,🖧 GitHub
+  - DOMAIN-SUFFIX,camo.githubusercontent.com,🖧 GitHub
+  - DOMAIN-SUFFIX,github.githubassets.com,🖧 GitHub
+  - DOMAIN,api.github.com,🖧 GitHub
+  - DOMAIN,raw.githubusercontent.com,🖧 GitHub
+  - DOMAIN,github.global.ssl.fastly.net,🖧 GitHub
+  - DOMAIN-SUFFIX,github.blog,🖧 GitHub
   - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
   - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
   - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
