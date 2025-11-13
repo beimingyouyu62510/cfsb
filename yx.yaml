@@ -3,80 +3,28 @@ unified-delay: false
 tcp-concurrent: true
 find-process-mode: strict
 global-client-fingerprint: chrome
-profile:
-  store-selected: true
-  store-fake-ip: true
-sniffer:
-  enable: true
-  sniff:
-    HTTP:
-      ports:
-        - 80
-        - 8080-8880
-      override-destination: true
-    TLS:
-      ports:
-        - 443
-        - 8443
-    QUIC:
-      ports:
-        - 443
-        - 8443
-  skip-domain:
-    - mijia.cloud
-    - dlg.io.mi.com
-    - "*.push.apple.com"
-    - "*.icloud.com"
-    - "*.mi.com"
-    - "*.lan"
-    - "*.local"
+
 tun:
-  enable: true
+  enable: false  # ❌ 关闭 TUN 模式，不再劫持整个网卡流量
   stack: system
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-    - udp://any:53 # 保持这个优化，提高兼容性
-  auto-route: true
-  auto-detect-interface: true
-  strict-route: true
-  endpoint-independent-nat: true
+  auto-route: false
+  auto-detect-interface: false
+  strict-route: false
+
 dns:
   enable: true
-  listen: 0.0.0.0:53
+  listen: 127.0.0.1:1053  # ✅ 改为仅本机监听，不占用局域网的53端口
   ipv6: false
-  prefer-h3: true
   respect-rules: true
-  enhanced-mode: fake-ip
-  use-hosts: true
+  enhanced-mode: redir-host  # ✅ 改为 redir-host，关闭 Fake-IP
   nameserver:
     - 223.5.5.5
     - 119.29.29.29
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-  # 关键修复：将海外 DoH 替换为 IP 地址
   proxy-server-nameserver:
     - 8.8.8.8
     - 1.1.1.1
-    - 1.0.0.1
-    - 8.8.4.4
-  nameserver-policy:
-    "cn,apple-cn,category-games,private,ChinaDomain,ChinaCompanyIp,ChinaMedia":
-      - 223.5.5.5
-      - 117.50.11.11
-      - https://dns.alidns.com/dns-query
-    "google,youtube,netflix,github,openai,microsoft,apple,telegram,discord":
-      - https://dns.google/dns-query
-      - https://1.1.1.1/dns-query
-      - https://dns.cloudflare.com/dns-query
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - +.stun.*.*
-    - +.stun.*.*.*
-    - +.stun.*.*.*.*
-    - +.stun.*.*.*.*.*
 proxies:
   - name: New-Git
     type: vless
