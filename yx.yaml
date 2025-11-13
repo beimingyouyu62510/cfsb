@@ -28,7 +28,7 @@ dns:
 proxies:
   - name: New-Git
     type: vless
-    server: subbeta.775678.xyz
+    server: laji.jisucf.cloudns.biz
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     cipher: none
@@ -41,7 +41,7 @@ proxies:
         Host: new.jisucf.cloudns.ch
   - name: New-CF
     type: vless
-    server: subbeta.775678.xyz
+    server: laji.jisucf.cloudns.biz
     port: 443
     uuid: 28fe704b-4648-4f60-915c-31cf551cd006
     cipher: none
@@ -54,7 +54,7 @@ proxies:
         Host: new.jisucf.cloudns.biz
   - name: 天书git
     type: vless
-    server: subbeta.775678.xyz
+    server: laji.jisucf.cloudns.biz
     port: 443
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
     udp: true
@@ -68,7 +68,7 @@ proxies:
         Host: git01.jisucf.cloudns.biz
   - name: 天书cf
     type: vless
-    server: subbeta.775678.xyz
+    server: laji.jisucf.cloudns.biz
     port: 443
     uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
     network: ws
