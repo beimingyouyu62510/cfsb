@@ -44,7 +44,6 @@ proxies:
     server: laji.jisucf.cloudns.biz
     port: 443
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
-    cipher: none
     tls: true
     servername: git01.jisucf.cloudns.biz
     network: ws
