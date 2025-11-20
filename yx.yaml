@@ -26,60 +26,70 @@ dns:
     - 8.8.8.8
     - 1.1.1.1
 proxies:
-  - name: New-Git
-    type: vless
-    server: laji.jisucf.cloudns.biz
-    port: 443
-    uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
-    cipher: none
-    tls: true
-    servername: new.jisucf.cloudns.ch
-    network: ws
-    ws-opts:
-      path: "/"
-      headers:
-        Host: new.jisucf.cloudns.ch
-  - name: New-CF
-    type: vless
-    server: laji.jisucf.cloudns.biz
-    port: 443
-    uuid: 28fe704b-4648-4f60-915c-31cf551cd006
-    cipher: none
-    tls: true
-    servername: new.jisucf.cloudns.biz
-    network: ws
-    ws-opts:
-      path: "/"
-      headers:
-        Host: new.jisucf.cloudns.biz
-  - name: 天书git
-    type: vless
-    server: laji.jisucf.cloudns.biz
-    port: 443
-    uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
-    udp: true
-    tls: true
-    skip-cert-verify: false
-    servername: git01.jisucf.cloudns.biz
-    network: ws
-    ws-opts:
-      path: /?ed=2560
-      headers:
-        Host: git01.jisucf.cloudns.biz
-  - name: 天书cf
+  - name: "TS-cf"
     type: vless
     server: laji.jisucf.cloudns.biz
     port: 443
     uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
-    network: ws
+    cipher: auto
     tls: true
-    udp: true
-    skip-cert-verify: false
     servername: git02.jisucf.cloudns.biz
-    ws-opts:
-      path: "/"
-      headers:
-        Host: git02.jisucf.cloudns.biz
+    network: ws
+    ws-path: "/my-key=511622/"
+    ws-headers:
+      Host: git02.jisucf.cloudns.biz
+    alpn:
+      - "h2"
+      - "http/1.1"
+    fingerprint: random
+  - name: "TS-git"
+    type: vless
+    server: laji.jisucf.cloudns.biz
+    port: 443
+    uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
+    cipher: auto
+    tls: true
+    servername: git01.jisucf.cloudns.biz
+    network: ws
+    ws-path: "/?ed=2560"
+    ws-headers:
+      Host: git01.jisucf.cloudns.biz
+    alpn:
+      - "h2"
+      - "http/1.1"
+    fingerprint: random
+  - name: "new-cf"
+    type: vless
+    server: laji.jisucf.cloudns.biz
+    port: 443
+    uuid: 28fe704b-4648-4f60-915c-31cf551cd006
+    cipher: auto
+    tls: true
+    servername: new.jisucf.cloudns.biz
+    network: ws
+    ws-path: "/my-key=511622/"
+    ws-headers:
+      Host: new.jisucf.cloudns.biz
+    alpn:
+      - "h2"
+      - "http/1.1"
+    fingerprint: random
+  - name: "new-git"
+    type: vless
+    server: laji.jisucf.cloudns.biz
+    port: 443
+    uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
+    cipher: auto
+    tls: true
+    servername: new.jisucf.cloudns.ch
+    network: ws
+    ws-path: "/my-key=511622/"
+    ws-headers:
+      Host: new.jisucf.cloudns.ch
+    alpn:
+      - "h2"
+      - "http/1/1" # 注意：这里根据原链接中的http/1.1配置，部分Clash核心可能需要写为 http/1.1
+    fingerprint: random
 proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
