@@ -48,9 +48,10 @@ proxies:
     tls: true
     servername: git01.jisucf.cloudns.biz
     network: ws
-    ws-path: "/?ed=2560"
-    ws-headers:
-      Host: git01.jisucf.cloudns.biz
+    ws-opts:
+       path: "//?ed=2560/"
+       headers:
+         Host: git01.jisucf.cloudns.biz
   - name: "new-cf"
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -60,9 +61,10 @@ proxies:
     tls: true
     servername: new.jisucf.cloudns.biz
     network: ws
-    ws-path: "/my-key=511622/"
-    ws-headers:
-      Host: new.jisucf.cloudns.biz
+    ws-opts:
+       path: "/my-key=511622/"
+       headers:
+         Host: new.jisucf.cloudns.biz
   - name: "new-git"
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -72,9 +74,10 @@ proxies:
     tls: true
     servername: new.jisucf.cloudns.ch
     network: ws
-    ws-path: "/my-key=511622/"
-    ws-headers:
-      Host: new.jisucf.cloudns.ch
+    ws-opts:
+       path: "/my-key=511622/"
+       headers:
+         Host: new.jisucf.cloudns.ch
 proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
