@@ -38,10 +38,6 @@ proxies:
     ws-path: "/my-key=511622/"
     ws-headers:
       Host: git02.jisucf.cloudns.biz
-    alpn:
-      - "h2"
-      - "http/1.1"
-    fingerprint: random
   - name: "TS-git"
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -54,10 +50,6 @@ proxies:
     ws-path: "/?ed=2560"
     ws-headers:
       Host: git01.jisucf.cloudns.biz
-    alpn:
-      - "h2"
-      - "http/1.1"
-    fingerprint: random
   - name: "new-cf"
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -70,10 +62,6 @@ proxies:
     ws-path: "/my-key=511622/"
     ws-headers:
       Host: new.jisucf.cloudns.biz
-    alpn:
-      - "h2"
-      - "http/1.1"
-    fingerprint: random
   - name: "new-git"
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -86,10 +74,6 @@ proxies:
     ws-path: "/my-key=511622/"
     ws-headers:
       Host: new.jisucf.cloudns.ch
-    alpn:
-      - "h2"
-      - "http/1/1" # 注意：这里根据原链接中的http/1.1配置，部分Clash核心可能需要写为 http/1.1
-    fingerprint: random
 proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
