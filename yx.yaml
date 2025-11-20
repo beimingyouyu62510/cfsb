@@ -49,7 +49,7 @@ proxies:
     servername: git01.jisucf.cloudns.biz
     network: ws
     ws-opts:
-       path: "//?ed=2560/"
+       path: "/?ed=2560/"
        headers:
          Host: git01.jisucf.cloudns.biz
   - name: "new-cf"
