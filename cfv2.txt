@@ -1,5 +1,4 @@
-vless://aa6afb24-210c-4fdc-979e-58f71a6f779f@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git01.jisucf.cloudns.biz&type=ws&host=git01.jisucf.cloudns.biz&path=%2F%3Fed%3D2560#TS-git
-vless://ab23f618-3f94-4d74-8c8b-d5703403b5be@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git02.jisucf.cloudns.biz&type=ws&host=git02.jisucf.cloudns.biz&path=%2F#TS-cf
-vless://28fe704b-4648-4f60-915c-31cf551cd006@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=new.jisucf.cloudns.biz&type=ws&host=new.jisucf.cloudns.biz#new-cf
-vless://5fbbf263-0518-446c-8ef2-13b2001aa69d@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=new.jisucf.cloudns.ch&type=ws&host=new.jisucf.cloudns.ch#new-git
-vless://c20a5080-8902-43e4-abb7-f0658d5b4b5c@laji.jisucf.cloudns.biz:8443?encryption=none&security=tls&sni=snippets.cnmak.netlib.re&fp=random&allowInsecure=1&type=ws&host=snippets.cnmak.netlib.re&path=%2Fproxyip%3Dd23d61f1.tp81.ip.090227.xyz#snippets%20%40Ciallo_neko
+vless://ab23f618-3f94-4d74-8c8b-d5703403b5be@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git02.jisucf.cloudns.biz&alpn=h2%2Chttp%2F1.1&fp=random&type=ws&path=%2Fmy-key%3D511622%2F#TS-cf
+vless://aa6afb24-210c-4fdc-979e-58f71a6f779f@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git01.jisucf.cloudns.biz&alpn=h2%2Chttp%2F1.1&fp=random&type=ws&host=git01.jisucf.cloudns.biz&path=%2F%3Fed%3D2560#TS-git
+vless://28fe704b-4648-4f60-915c-31cf551cd006@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=new.jisucf.cloudns.biz&alpn=h2%2Chttp%2F1.1&fp=random&type=ws&path=%2Fmy-key%3D511622%2F#new-cf
+vless://5fbbf263-0518-446c-8ef2-13b2001aa69d@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=new.jisucf.cloudns.ch&alpn=h2%2Chttp%2F1.1&fp=random&type=ws&path=%2Fmy-key%3D511622%2F#new-git
