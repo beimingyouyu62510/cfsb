@@ -3,10 +3,10 @@ unified-delay: false
 tcp-concurrent: true
 find-process-mode: strict
 global-client-fingerprint: chrome
-tfo: true # 新增优化：开启 TCP Fast Open 以减少连接延迟，对游戏有益
+tfo: false # 修复尝试：关闭 TFO，排除中间设备兼容性导致的断线问题
 
 tun:
-  enable: false  # ❌ 关闭 TUN 模式，不再劫持整个网卡流量
+  enable: false
   stack: system
   auto-route: false
   auto-detect-interface: false
@@ -14,10 +14,10 @@ tun:
 
 dns:
   enable: true
-  listen: 127.0.0.1:1053  # ✅ 改为仅本机监听，不占用局域网的53端口
+  listen: 127.0.0.1:1053
   ipv6: false
   respect-rules: true
-  enhanced-mode: redir-host  # ✅ 改为 redir-host，关闭 Fake-IP
+  enhanced-mode: redir-host
   nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -79,16 +79,23 @@ proxies:
         headers:
           Host: new.jisucf.cloudns.ch
 proxy-groups:
+  - name: 🎮 PoE专线 # 新增：游戏专用组，用于手动选择最稳定节点，杜绝自动切换
+    type: select
+    proxies:
+      - "new-git"
+      - "new-cf"
+      - "TS-git"
+      - "TS-cf"
   - name: ♻️ 自动选择
     type: url-test
     url: https://www.gstatic.com/generate_204
-    interval: 180
+    interval: 600 # 优化：测速间隔增加到 600s (10 分钟)，减少自动切换频率
     tolerance: 30
     proxies:
-      - "new-git" # 已修正：使用 proxies 列表中定义的精确名称
-      - "new-cf"  # 已修正：使用 proxies 列表中定义的精确名称
-      - "TS-git"  # 已修正：使用 proxies 列表中定义的精确名称
-      - "TS-cf"   # 已修正：使用 proxies 列表中定义的精确名称
+      - "new-git"
+      - "new-cf"
+      - "TS-git"
+      - "TS-cf"
   - name: 🚀 节点选择
     type: select
     proxies:
@@ -97,7 +104,7 @@ proxy-groups:
     type: fallback
     lazy: true
     url: https://www.gstatic.com/generate_204
-    timeout: 3000 # 保持 3 秒超时
+    timeout: 3000
     proxies:
       - ♻️ 自动选择
       - DIRECT
@@ -238,16 +245,16 @@ rule-providers:
     url: https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list
     interval: 86400
 rules:
+  # --- DNS IP 优先规则 ---
   - IP-CIDR,1.1.1.1/32,🚀 节点选择
   - IP-CIDR,1.0.0.1/32,🚀 节点选择
   - IP-CIDR,8.8.8.8/32,🚀 节点选择
   - IP-CIDR,8.8.4.4/32,🚀 节点选择
-  - IP-CIDR,114.114.114.114/32,🚀 节点选择 # 新增的 IP 也要确保走代理
+  - IP-CIDR,114.114.114.114/32,🚀 节点选择
   
   # --- Path of Exile (流放之路) 游戏规则 ---
-  # 强制 Path of Exile 客户端流量走代理，以获得最低延迟。
-  - PROCESS-NAME,PathofExile.exe,🚀 节点选择
-  - PROCESS-NAME,PathOfExileSteam.exe,🚀 节点选择
+  - PROCESS-NAME,PathofExile.exe,🎮 PoE专线 
+  - PROCESS-NAME,PathOfExileSteam.exe,🎮 PoE专线
   # ---------------------------------------------
   
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
