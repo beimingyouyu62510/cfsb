@@ -3,6 +3,7 @@ unified-delay: false
 tcp-concurrent: true
 find-process-mode: strict
 global-client-fingerprint: chrome
+tfo: true # 新增优化：开启 TCP Fast Open 以减少连接延迟，对游戏有益
 
 tun:
   enable: false  # ❌ 关闭 TUN 模式，不再劫持整个网卡流量
@@ -36,9 +37,9 @@ proxies:
     servername: git02.jisucf.cloudns.biz
     network: ws
     ws-opts:
-       path: "/my-key=511622/"
-       headers:
-         Host: git02.jisucf.cloudns.biz
+        path: "/my-key=511622/"
+        headers:
+          Host: git02.jisucf.cloudns.biz
   - name: "TS-git"
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -48,9 +49,9 @@ proxies:
     servername: git01.jisucf.cloudns.biz
     network: ws
     ws-opts:
-       path: /?ed=2560
-       headers:
-         Host: git01.jisucf.cloudns.biz
+        path: /?ed=2560
+        headers:
+          Host: git01.jisucf.cloudns.biz
   - name: "new-cf"
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -61,9 +62,9 @@ proxies:
     servername: new.jisucf.cloudns.biz
     network: ws
     ws-opts:
-       path: "/my-key=511622/"
-       headers:
-         Host: new.jisucf.cloudns.biz
+        path: "/my-key=511622/"
+        headers:
+          Host: new.jisucf.cloudns.biz
   - name: "new-git"
     type: vless
     server: laji.jisucf.cloudns.biz
@@ -74,9 +75,9 @@ proxies:
     servername: new.jisucf.cloudns.ch
     network: ws
     ws-opts:
-       path: "/my-key=511622/"
-       headers:
-         Host: new.jisucf.cloudns.ch
+        path: "/my-key=511622/"
+        headers:
+          Host: new.jisucf.cloudns.ch
 proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
@@ -84,10 +85,10 @@ proxy-groups:
     interval: 180
     tolerance: 30
     proxies:
-      - New-Git
-      - New-CF
-      - 天书git
-      - 天书cf
+      - "new-git" # 已修正：使用 proxies 列表中定义的精确名称
+      - "new-cf"  # 已修正：使用 proxies 列表中定义的精确名称
+      - "TS-git"  # 已修正：使用 proxies 列表中定义的精确名称
+      - "TS-cf"   # 已修正：使用 proxies 列表中定义的精确名称
   - name: 🚀 节点选择
     type: select
     proxies:
@@ -242,6 +243,13 @@ rules:
   - IP-CIDR,8.8.8.8/32,🚀 节点选择
   - IP-CIDR,8.8.4.4/32,🚀 节点选择
   - IP-CIDR,114.114.114.114/32,🚀 节点选择 # 新增的 IP 也要确保走代理
+  
+  # --- Path of Exile (流放之路) 游戏规则 ---
+  # 强制 Path of Exile 客户端流量走代理，以获得最低延迟。
+  - PROCESS-NAME,PathofExile.exe,🚀 节点选择
+  - PROCESS-NAME,PathOfExileSteam.exe,🚀 节点选择
+  # ---------------------------------------------
+  
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
   - RULE-SET,UnBan,🎯 全球直连
   - RULE-SET,ChinaDomain,🎯 全球直连
