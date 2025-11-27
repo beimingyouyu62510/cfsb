@@ -29,7 +29,7 @@ dns:
 proxies:
   - name: "TS-cf"
     type: vless
-    server: laji.jisucf.cloudns.biz
+    server: yx.chenmo.netlib.re
     port: 443
     uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
     cipher: none
@@ -42,7 +42,7 @@ proxies:
           Host: git02.jisucf.cloudns.biz
   - name: "TS-git"
     type: vless
-    server: laji.jisucf.cloudns.biz
+    server: yx.chenmo.netlib.re
     port: 443
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
     tls: true
@@ -54,7 +54,7 @@ proxies:
           Host: git01.jisucf.cloudns.biz
   - name: "new-cf"
     type: vless
-    server: laji.jisucf.cloudns.biz
+    server: yx.chenmo.netlib.re
     port: 443
     uuid: 28fe704b-4648-4f60-915c-31cf551cd006
     cipher: none
@@ -67,7 +67,7 @@ proxies:
           Host: new.jisucf.cloudns.biz
   - name: "new-git"
     type: vless
-    server: laji.jisucf.cloudns.biz
+    server: yx.chenmo.netlib.re
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     cipher: none
