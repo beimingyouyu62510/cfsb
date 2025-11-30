@@ -37,7 +37,7 @@ proxies:
     servername: git02.jisucf.cloudns.biz
     network: ws
     ws-opts:
-        path: "/my-key=511622/"
+        path: /
         headers:
           Host: git02.jisucf.cloudns.biz
   - name: "TS-git"
@@ -62,7 +62,7 @@ proxies:
     servername: new.jisucf.cloudns.biz
     network: ws
     ws-opts:
-        path: "/my-key=511622/"
+        path: /
         headers:
           Host: new.jisucf.cloudns.biz
   - name: "new-git"
@@ -75,7 +75,7 @@ proxies:
     servername: new.jisucf.cloudns.ch
     network: ws
     ws-opts:
-        path: "/my-key=511622/"
+        path: /
         headers:
           Host: new.jisucf.cloudns.ch
 proxy-groups:
