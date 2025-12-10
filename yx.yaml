@@ -29,7 +29,7 @@ dns:
 proxies:
   - name: "TS-cf"
     type: vless
-    server: yx.chenmo.netlib.re
+    server: yx.yxip.de5.net
     port: 443
     uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
     cipher: none
@@ -42,7 +42,7 @@ proxies:
           Host: git02.jisucf.cloudns.biz
   - name: "TS-git"
     type: vless
-    server: yx.chenmo.netlib.re
+    server: yx.yxip.de5.net
     port: 443
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
     tls: true
