@@ -31,15 +31,15 @@ proxies:
     type: vless
     server: yx.yxip.de5.net
     port: 443
-    uuid: ab23f618-3f94-4d74-8c8b-d5703403b5be
+    uuid: 32d19347-7d37-436c-93b1-97a6bbc4ae4b
     cipher: none
     tls: true
-    servername: git02.jisucf.cloudns.biz
+    servername: ts02.3xxx.de5.net
     network: ws
     ws-opts:
         path: /
         headers:
-          Host: git02.jisucf.cloudns.biz
+          Host: ts02.3xxx.de5.net
   - name: "TS-git"
     type: vless
     server: yx.yxip.de5.net
