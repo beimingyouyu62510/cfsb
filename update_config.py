@@ -7,15 +7,10 @@ from typing import List, Dict, Any
 SUBSCRIBE_URL = "https://go6.marcozf.top/"
 CONFIG_FILE = "free.yaml"
 # 节点组名称列表，需要同步更新 proxies 列表
-# 根据您提供的 free.yaml 文件结构，需要更新 '自动选择' 和 '手动选择' 组，以及 '老司机' 组。
 PROXY_GROUP_NAMES_TO_UPDATE = [
     "自动选择",
     "手动选择",
     "老司机" 
-    # 注意：'老司机' 组目前配置的是 data.yaml 底部的那几个非数字节点。
-    # 如果您希望 '老司机' 组也使用所有新拉取的节点，请保留 '老司机'。
-    # 如果您希望 '老司机' 组只包含 data.yaml 底部那几个特定节点，请在下面 get_new_proxy_names_from_subscription 函数中处理，
-    # 但根据您最开始的需求，所有 proxy-groups 应该配套更新，因此全部保留。
 ]
 # --- 配置信息结束 ---
 
@@ -35,21 +30,29 @@ def get_new_proxy_names_from_subscription(proxies: List[Dict[str, Any]]) -> List
 
 def fetch_and_parse_subscription(url: str) -> List[Dict[str, Any]] or None:
     """
-    下载 Clash 配置文件并提取 'proxies' 列表。
+    下载 Clash 配置文件，清理内容，并提取 'proxies' 列表。
     """
     print(f"-> 正在下载订阅：{url}")
     try:
         response = requests.get(url, timeout=15)
+        # 确保以 UTF-8 编码读取，并处理可能的编码问题
+        response.encoding = 'utf-8' 
         response.raise_for_status()
         content = response.text
     except requests.exceptions.RequestException as e:
         print(f"⚠️ 下载订阅失败: {e}")
         return None
+        
+    # --- 关键修正：清理控制字符 ---
+    # 移除所有非打印的 C1 控制字符，特别是 #x008a 所在的范围 (0x80 到 0x9F)
+    # C0 和 C1 控制字符通常是导致 YAML/JSON 解析错误的元凶。
+    # \x00-\x1F 是 C0 控制字符，\x7F 是 DEL，\x80-\x9F 是 C1 控制字符。
+    clean_content = re.sub(r'[\x00-\x1F\x7F-\x9F]', '', content)
+    # -------------------------------
 
     # 直接解析为 YAML
     try:
-        # 使用 safe_load 解析内容
-        sub_config = yaml.safe_load(content)
+        sub_config = yaml.safe_load(clean_content)
         
         if not isinstance(sub_config, dict):
             print("❌ 订阅内容解析后不是有效的字典格式。")
@@ -66,6 +69,7 @@ def fetch_and_parse_subscription(url: str) -> List[Dict[str, Any]] or None:
             
     except yaml.YAMLError as e:
         print(f"❌ YAML 解析失败，请检查订阅源格式: {e}")
+        print(f"原始内容长度: {len(content)}, 清理后长度: {len(clean_content)}")
         return None
 
 def update_config_file(new_proxies: List[Dict[str, Any]]):
@@ -74,7 +78,7 @@ def update_config_file(new_proxies: List[Dict[str, Any]]):
     """
     print(f"-> 正在读取配置文件: {CONFIG_FILE}")
     try:
-        # 读取文件时使用 safe_load_all，以防文件中有多个 YAML 文档 (虽然通常只有一个)
+        # 读取文件时使用 safe_load_all，以防文件中有多个 YAML 文档
         with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
             config_docs = list(yaml.safe_load_all(f))
             if not config_docs:
@@ -117,7 +121,6 @@ def update_config_file(new_proxies: List[Dict[str, Any]]):
     try:
         # 使用 PyYAML 的 Dumper 保持可读性，并使用 sort_keys=False 保持键的原始顺序
         with open(CONFIG_FILE, 'w', encoding='utf-8') as f:
-            # 写入主配置文档
             yaml.safe_dump(main_config, f, 
                                 allow_unicode=True, 
                                 sort_keys=False, 
