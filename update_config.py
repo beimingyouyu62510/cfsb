@@ -12,10 +12,11 @@ PROXY_GROUP_NAMES_TO_UPDATE = [
     "手动选择",
     "老司机" 
 ]
-# 用于修复头部 YAML 结构的关键顶层配置项（这些键通常不会出现在其他地方）
+# 用于修复头部 YAML 结构的关键顶层配置项。
+# 【关键修复】已将 'unifiée-delay' 修正为正确的 'unified-delay'。
 TOP_LEVEL_HEADER_KEYS = [
     "allow-lan", "mode", "log-level", "external-controller", 
-    "secret", "unifiée-delay", "global-client-fingerprint", "dns", 
+    "secret", "unified-delay", "global-client-fingerprint", "dns", 
     "proxies" # 'proxies'是修复的终点
 ]
 # --- 配置信息结束 ---
@@ -40,7 +41,8 @@ def fetch_and_parse_subscription(url: str) -> List[Dict[str, Any]] or None:
     """
     print(f"-> 正在下载订阅：{url}")
     try:
-        response = requests.get(url, url, timeout=15)
+        # 允许重定向，设置超时
+        response = requests.get(url, timeout=15, allow_redirects=True) 
         # 确保以 UTF-8 编码读取
         response.encoding = 'utf-8' 
         response.raise_for_status()
@@ -50,15 +52,16 @@ def fetch_and_parse_subscription(url: str) -> List[Dict[str, Any]] or None:
         return None
 
     # 1. 清理控制字符 (解决 #x008a 等问题)
+    # 使用 re.sub 替换掉所有 ASCII 控制字符 (0x00-0x1F) 和扩展的控制字符 (0x7F-0x9F)
     clean_content = re.sub(r'[\x00-\x1F\x7F-\x9F]', '', content)
     
     # 2. 尝试修复 YAML 结构性错误 (解决键值对被合并到一行的问题)
-    # 在下一个顶层 key (如 allow-lan:) 之前强制插入换行符。
     fixed_content = clean_content
     for key in TOP_LEVEL_HEADER_KEYS:
         # 匹配模式：
         # 找到一个非空格/非换行符/非冒号的字符 (即前一个值的末尾)，紧接着是我们的 key 和冒号。
-        # 目标是：在 '值' 和 '下一个键' 之间插入一个换行符 \n
+        # flags=re.IGNORECASE 允许匹配大小写不敏感的 key。
+        # \s* 匹配零个或多个空格。
         pattern = r'([^ \n:])(' + re.escape(key) + r'\s*:)'
         # 替换成：[前一个字符] + 换行符 + [下一个键: ...]
         fixed_content = re.sub(pattern, r'\1\n\2', fixed_content, flags=re.IGNORECASE)
@@ -78,13 +81,18 @@ def fetch_and_parse_subscription(url: str) -> List[Dict[str, Any]] or None:
             return proxies
         else:
             print("⚠️ 订阅内容中不包含有效的 'proxies' 列表。")
+            # 打印修复后的头部，以便进一步排查
+            header_lines = fixed_content.splitlines()[:10]
+            print("--- 修复后的头部内容片段 ---")
+            print('\n'.join(header_lines))
+            print("--------------------------")
             return None
             
     except yaml.YAMLError as e:
         print(f"❌ YAML 解析失败，请检查订阅源格式: {e}")
         print(f"尝试修复后的内容长度: {len(fixed_content)}")
         
-        # 打印修复后的内容片段，方便排查
+        # 打印失败行，方便排查
         error_line_match = re.search(r'line (\d+), column (\d+)', str(e))
         if error_line_match:
             line_num = int(error_line_match.group(1))
@@ -134,7 +142,8 @@ def update_config_file(new_proxies: List[Dict[str, Any]]):
                 # 替换为最新的节点名称列表
                 group['proxies'] = new_proxy_names
     
-    # 3. 确保 allow-lan 开启 (根据您的要求)
+    # 3. 确保 allow-lan 开启 
+    # 这一步是为了防止订阅源覆盖掉该配置项
     main_config['allow-lan'] = True
     print("-> 确保 'allow-lan: true' 已设置。")
     
