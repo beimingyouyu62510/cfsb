@@ -98,41 +98,428 @@ dns:
     - '+.stun.*.*.*.*'
     - '+.stun.*.*.*.*.*'
 
-# ================= 节点订阅 =================
-proxy-providers:
-  us:
-    type: http
-    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/us.yaml"
-    interval: 3600
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 600
+# ================= 节点配置 =================
+proxies:
+  - name: 节点1
+    type: hysteria
+    server: 2604:6600::5cb
+    port: '15823'
+    auth_str: dongtaiwang.com
+    up: 100
+    down: 100
+    fast-open: true
+    protocol: udp
+    sni: apple.com
+    skip-cert-verify: true
+    alpn:
+      - h3
+    recv_window_conn: 5767168
+    recv-window: 23068672
+  - name: 节点2
+    type: hysteria
+    server: 89.144.35.231
+    port: '10023'
+    auth_str: dongtaiwang.com
+    up: 100
+    down: 100
+    fast-open: true
+    protocol: udp
+    sni: apple.com
+    skip-cert-verify: true
+    alpn:
+      - h3
+    recv_window_conn: 69206016
+    recv-window: 276824064
+  - name: 节点3
+    type: hysteria
+    server: 51.159.107.20
+    port: '40121'
+    auth_str: dongtaiwang.com
+    up: 100
+    down: 100
+    fast-open: true
+    protocol: udp
+    sni: apple.com
+    skip-cert-verify: true
+    alpn:
+      - h3
+    recv_window_conn: 69206016
+    recv-window: 276824064
+  - name: 节点4
+    type: hysteria
+    server: 62.210.127.177
+    port: '23880'
+    auth_str: dongtaiwang.com
+    up: 100
+    down: 100
+    fast-open: true
+    protocol: udp
+    sni: bing.com
+    skip-cert-verify: true
+    alpn:
+      - h3
+    recv_window_conn: 57671680
+    recv-window: 230686720
+  - name: 节点5
+    type: hysteria2
+    server: 2001:bc8:32d7:17b::8
+    port: '22000'
+    password: dongtaiwang.com
+    fast-open: true
+    sni: apple.com
+    skip-cert-verify: true
+    up: 100 Mbps
+    down: 100 Mbps
+  - name: 节点6
+    type: hysteria2
+    server: 2001:bc8:32d7:302::11
+    port: '20088'
+    password: dongtaiwang.com
+    fast-open: true
+    sni: apple.com
+    skip-cert-verify: true
+    up: 100 Mbps
+    down: 100 Mbps
+  - name: 节点7
+    type: hysteria2
+    server: 51.158.194.63
+    port: '32952'
+    password: dongtaiwang.com
+    fast-open: true
+    sni: www.microsoft.com
+    skip-cert-verify: true
+    up: 100 Mbps
+    down: 100 Mbps
+  - name: 节点8
+    type: hysteria
+    server: 89.144.35.231
+    port: '18899'
+    auth_str: dongtaiwang.com
+    up: 100
+    down: 100
+    fast-open: true
+    protocol: udp
+    sni: apple.com
+    skip-cert-verify: true
+    alpn:
+      - h3
+    recv_window_conn: 69206016
+    recv-window: 276824064
+  - name: 节点9
+    type: hysteria2
+    server: 2604:6600::5cb
+    port: '22222'
+    password: dongtaiwang.com
+    fast-open: true
+    sni: www.bing.com
+    skip-cert-verify: true
+    up: 100 Mbps
+    down: 100 Mbps
+  - name: 节点10
+    type: hysteria2
+    server: 2001:bc8:32d7:158::9
+    port: '33356'
+    password: dongtaiwang.com
+    fast-open: true
+    sni: apple.com
+    skip-cert-verify: true
+    up: 100 Mbps
+    down: 100 Mbps
+  - name: 节点11
+    type: vmess
+    server: 104.21.238.35
+    uuid: ee420fda-efb7-48a8-9249-8987e36ebd9e
+    alterId: 0
+    port: 2086
+    cipher: auto
+    udp: true
+    network: ws
+    ws-opts:
+      path: github.com/Alvin9999
+      headers:
+        Host: ip29.9447609.xyz
+  - name: 节点12
+    type: vless
+    server: 2001:bc8:32d7:302::13
+    uuid: 26c462ba-a90c-4814-9d7c-a629bc0bdb5c
+    port: 34324
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    servername: dash.cloudflare.com
+    reality-opts:
+      public-key: pHn5CHa2P6-lNBIkTOI3zJQN19jfNFkXxGFuyefpP0M
+      short-id: ''
+    client-figerprint: chrome
+  - name: 节点13
+    type: vmess
+    server: 104.21.238.35
+    uuid: ee420fda-efb7-48a8-9249-8987e36ebd9e
+    alterId: 0
+    port: 2086
+    cipher: auto
+    udp: true
+    network: ws
+    ws-opts:
+      path: github.com/Alvin9999
+      headers:
+        Host: ip19.9447609.xyz
+  - name: 节点14
+    type: vmess
+    server: 2001:bc8:32d7:302::10
+    uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
+    alterId: 0
+    port: 44579
+    cipher: auto
+    udp: true
+    network: ws
+    ws-opts:
+      path: ''
+      headers: {}
+  - name: 节点15
+    type: vless
+    server: 89.144.35.231
+    uuid: 2460b5d1-0d74-427d-ad6c-bbe2aaab65cf
+    port: 23889
+    udp: true
+    tls: true
+  - name: 节点16
+    type: vless
+    server: fan3.394615.xyz
+    uuid: 8b66e552-e89d-4c4f-bb5a-e3d37bf151b8
+    port: 34500
+    udp: true
+    tls: true
+  - name: 节点17
+    type: vless
+    server: 2001:bc8:32d7:14f::6
+    uuid: a1f699e4-d7b7-4cdc-8414-1105e08fe4c5
+    port: 60011
+    udp: true
+    tls: true
+  - name: 节点18
+    type: hysteria
+    server: 62.210.127.177
+    port: 23880
+    auth_str: dongtaiwang.com
+    up: 100
+    down: 100
+    fast-open: true
+    protocol: udp
+    sni: bing.com
+    skip-cert-verify: true
+    alpn:
+      - h3
+  - name: 节点19
+    type: hysteria
+    server: 2001:bc8:32d7:902::6
+    port: 26691
+    auth_str: dongtaiwang.com
+    up: 100
+    down: 100
+    fast-open: true
+    protocol: udp
+    sni: bing.com
+    skip-cert-verify: true
+    alpn:
+      - h3
+  - type: vless
+    name: visa.com
+    server: visa.com
+    port: 443
+    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts: &ref_0
+      headers:
+        Host: less17.ytu67kht.netlib.re
+      path: /
+    servername: less17.ytu67kht.netlib.re
+  - type: vless
+    name: www.visa.com
+    server: www.visa.com
+    port: 443
+    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts: *ref_0
+    servername: less17.ytu67kht.netlib.re
+  - type: vless
+    name: www.visa.cn
+    server: www.visa.cn
+    port: 443
+    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts: *ref_0
+    servername: less17.ytu67kht.netlib.re
+  - type: vless
+    name: zoneabc.net
+    server: zoneabc.net
+    port: 443
+    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts: *ref_0
+    servername: less17.ytu67kht.netlib.re
+  - type: vless
+    name: youxuan.cf.090227.xyz
+    server: youxuan.cf.090227.xyz
+    port: 443
+    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts: *ref_0
+    servername: less17.ytu67kht.netlib.re
+  - type: vless
+    name: www.shopify.com
+    server: www.shopify.com
+    port: 443
+    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts: *ref_0
+    servername: less17.ytu67kht.netlib.re
+  - type: vless
+    name: store.ubi.com
+    server: store.ubi.com
+    port: 443
+    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts: *ref_0
+    servername: less17.ytu67kht.netlib.re
+  - type: vless
+    name: cf.tencentapp.cn
+    server: cf.tencentapp.cn
+    port: 443
+    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts: *ref_0
+    servername: less17.ytu67kht.netlib.re
+  - type: vless
+    name: cloudflare-dl.byoip.top
+    server: cloudflare-dl.byoip.top
+    port: 443
+    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts: *ref_0
+    servername: less17.ytu67kht.netlib.re
+
+# ================= 节点订阅 (已移除，使用静态节点) =================
+# proxy-providers:
+#   us:
+#     type: http
+#     url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/us.yaml"
+#     interval: 3600
+#     health-check:
+#       enable: true
+#       url: http://cp.cloudflare.com/generate_204
+#       interval: 600
 
 # ================= 代理分组 =================
 proxy-groups:
+  # 注意：在静态节点模式下，我们不能直接使用 `use` 关键字。
+  # 我们需要手动列出所有的节点名称，并将其添加到分组中。
+  # 由于节点数量较多，以下分组将只使用**部分**节点作为示例，
+  # 您需要根据实际需要手动添加或使用节点选择功能。
+
+  - name: 🚀 静态节点选择
+    type: select
+    proxies:
+      - 节点1
+      - 节点2
+      - 节点3
+      - 节点4
+      - 节点5
+      - 节点6
+      - 节点7
+      - 节点8
+      - 节点9
+      - 节点10
+      - 节点11
+      - 节点12
+      - 节点13
+      - 节点14
+      - 节点15
+      - 节点16
+      - 节点17
+      - 节点18
+      - 节点19
+      - visa.com
+      - www.visa.com
+      - www.visa.cn
+      - zoneabc.net
+      - youxuan.cf.090227.xyz
+      - www.shopify.com
+      - store.ubi.com
+      - cf.tencentapp.cn
+      - cloudflare-dl.byoip.top
+      - DIRECT # 预留 DIRECT 选项
+
   - name: ♻️ 自动选择
     type: url-test
     url: http://cp.cloudflare.com/generate_204
     interval: 180
     tolerance: 30
-    use:
-      - us
-
+    proxies:
+      - 节点1
+      - 节点2
+      - 节点3
+      - 节点4
+      - 节点5
+      - 节点6
+      - 节点7
+      - 节点8
+      - 节点9
+      - 节点10
+      - 节点11
+      - 节点12
+      - 节点13
+      - 节点14
+      - 节点15
+      - 节点16
+      - 节点17
+      - 节点18
+      - 节点19
+      - visa.com
+      - www.visa.com
+      - www.visa.cn
+      - zoneabc.net
+      - youxuan.cf.090227.xyz
+      - www.shopify.com
+      - store.ubi.com
+      - cf.tencentapp.cn
+      - cloudflare-dl.byoip.top
+  
+  # 由于移除了 proxy-providers，原先使用 `use: - us` 的分组需要改为使用具体的代理名称列表
   - name: 🚀 节点选择
     type: select
     proxies:
       - ♻️ 自动选择
       - DIRECT
-    use:
-      - us
+      - 🚀 静态节点选择 # 新增静态节点选择作为备选
 
   - name: 🇺🇸 美国节点
     type: select
     proxies:
       - DIRECT
-    use:
-      - us
+      # 此处仅使用部分节点作为示例，您可以根据需要手动调整
+      - 节点1
+      - 节点2
+      - 节点3
+      - 节点4
 
   - name: 🌍 国外媒体
     type: select
