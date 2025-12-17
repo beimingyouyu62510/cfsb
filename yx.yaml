@@ -67,7 +67,7 @@ proxies:
           Host: new.jisucf.cloudns.biz
   - name: "new-git"
     type: vless
-    server: yx.chenmo.de5.net
+    server: hk.yxip.de5.net
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     cipher: none
