@@ -54,7 +54,7 @@ proxies:
           Host: git01.jisucf.cloudns.biz
   - name: "new-cf"
     type: vless
-    server: hk.yxip.de5.net
+    server: us.yxip.de5.net
     port: 443
     uuid: 28fe704b-4648-4f60-915c-31cf551cd006
     cipher: none
