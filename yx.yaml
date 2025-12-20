@@ -62,12 +62,12 @@ proxies:
     servername: new.jisucf.cloudns.biz
     network: ws
     ws-opts:
-        path: /
+        path: /my-key=511622
         headers:
           Host: new.jisucf.cloudns.biz
   - name: "new-git"
     type: vless
-    server: hk.cf01.dpdns.org
+    server: visa.ca
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     cipher: none
