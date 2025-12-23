@@ -27,6 +27,20 @@ dns:
     - 8.8.8.8
     - 1.1.1.1
 proxies:
+  - name: "爪云日本"
+    type: vless
+    server: hk.cf01.dpdns.org
+    port: 443
+    uuid: 47cc10f5-5219-4c74-86c3-f34ac5762cba
+    cipher: none
+    tls: true
+    udp: true
+    servername: agon.cf02.dpdns.org
+    network: ws
+    ws-opts:
+        path: /47cc10f5-5219-4c74-86c3-f34ac5762cba?ed=2048
+        headers:
+            Host: agon.cf02.dpdns.org
   - name: "TS-cf"
     type: vless
     server: hk.cf01.dpdns.org
@@ -82,6 +96,7 @@ proxy-groups:
   - name: 🎮 PoE专线 # 新增：游戏专用组，用于手动选择最稳定节点，杜绝自动切换
     type: select
     proxies:
+      - "爪云日本"
       - "new-git"
       - "new-cf"
       - "TS-git"
@@ -92,6 +107,7 @@ proxy-groups:
     interval: 600 # 优化：测速间隔增加到 600s (10 分钟)，减少自动切换频率
     tolerance: 30
     proxies:
+      - "爪云日本"
       - "new-git"
       - "new-cf"
       - "TS-git"
