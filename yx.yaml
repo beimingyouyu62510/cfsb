@@ -67,7 +67,7 @@ proxies:
         Host: ts02.3xxx.de5.net
   - name: "new-git"
     type: vless
-    server: 104.16.40.11
+    server: us.cf01.dpdns.org
     port: 2053
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     tls: true
@@ -94,22 +94,22 @@ proxy-groups:
   - name: 🎮 PoE专线 # 新增：游戏专用组，用于手动选择最稳定节点，杜绝自动切换
     type: select
     proxies:
-      - "爪云日本"
       - "new-git"
       - "new-cf"
       - "TS-git"
       - "TS-cf"
+      - "爪云日本"
   - name: ♻️ 自动选择
     type: url-test
     url: https://www.gstatic.com/generate_204
     interval: 600 # 优化：测速间隔增加到 600s (10 分钟)，减少自动切换频率
     tolerance: 30
     proxies:
-      - "爪云日本"
       - "new-git"
       - "new-cf"
       - "TS-git"
       - "TS-cf"
+      - "爪云日本"
   - name: 🚀 节点选择
     type: select
     proxies:
