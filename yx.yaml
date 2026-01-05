@@ -41,19 +41,6 @@ proxies:
         path: /47cc10f5-5219-4c74-86c3-f34ac5762cba?ed=2048
         headers:
             Host: agon.cf02.dpdns.org
-  - name: "TS-cf"
-    type: vless
-    server: hk.cf01.dpdns.org
-    port: 443
-    uuid: 32d19347-7d37-436c-93b1-97a6bbc4ae4b
-    cipher: none
-    tls: true
-    servername: ts02.3xxx.de5.net
-    network: ws
-    ws-opts:
-        path: /
-        headers:
-          Host: ts02.3xxx.de5.net
   - name: "TS-git"
     type: vless
     server: hk.cf01.dpdns.org
@@ -66,32 +53,43 @@ proxies:
         path: /?ed=2560
         headers:
           Host: git01.jisucf.cloudns.biz
-  - name: "new-cf"
+  - name: "TS-cf"
     type: vless
     server: us.cf01.dpdns.org
-    port: 443
-    uuid: 28fe704b-4648-4f60-915c-31cf551cd006
-    cipher: none
+    port: 2053
+    uuid: 871f3020-6158-4829-88ed-81843bb956e1
     tls: true
-    servername: new.jisucf.cloudns.biz
+    servername: ts02.3xxx.de5.net
     network: ws
     ws-opts:
-        path: /my-key=511622
-        headers:
-          Host: new.jisucf.cloudns.biz
+      path: /
+      headers:
+        Host: ts02.3xxx.de5.net
   - name: "new-git"
     type: vless
-    server: visa.ca
-    port: 443
+    server: 104.16.40.11
+    port: 2053
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
-    cipher: none
     tls: true
     servername: new.jisucf.cloudns.ch
     network: ws
     ws-opts:
-        path: /
-        headers:
-          Host: new.jisucf.cloudns.ch
+      path: /
+      headers:
+        Host: new.jisucf.cloudns.ch
+  - name: "new-git"
+  - name: "new-cf"
+    type: vless
+    server: hk.cf01.dpdns.org
+    port: 2053
+    uuid: 78de7682-9d3c-4f82-86d9-f53944311adf
+    tls: true
+    servername: new.jisucf.cloudns.biz
+    network: ws
+    ws-opts:
+      path: /
+      headers:
+        Host: new.jisucf.cloudns.biz
 proxy-groups:
   - name: 🎮 PoE专线 # 新增：游戏专用组，用于手动选择最稳定节点，杜绝自动切换
     type: select
