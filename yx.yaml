@@ -43,7 +43,7 @@ proxies:
             Host: agon.cf02.dpdns.org
   - name: "TS-git"
     type: vless
-    server: hk.cf01.dpdns.org
+    server: xzhk.cf01.dpdns.org
     port: 443
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
     tls: true
@@ -67,7 +67,7 @@ proxies:
         Host: ts02.3xxx.de5.net
   - name: "new-git"
     type: vless
-    server: us.cf01.dpdns.org
+    server: xzus.cf01.dpdns.org
     port: 2053
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     tls: true
@@ -77,7 +77,6 @@ proxies:
       path: /
       headers:
         Host: new.jisucf.cloudns.ch
-  - name: "new-git"
   - name: "new-cf"
     type: vless
     server: hk.cf01.dpdns.org
