@@ -1,4 +1,4 @@
-vless://ab23f618-3f94-4d74-8c8b-d5703403b5be@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git02.jisucf.cloudns.biz&alpn=h2%2Chttp%2F1.1&fp=random&type=ws&path=%2Fmy-key%3D511622%2F#TS-cf
-vless://aa6afb24-210c-4fdc-979e-58f71a6f779f@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=git01.jisucf.cloudns.biz&alpn=h2%2Chttp%2F1.1&fp=random&type=ws&host=git01.jisucf.cloudns.biz&path=%2F%3Fed%3D2560#TS-git
-vless://28fe704b-4648-4f60-915c-31cf551cd006@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=new.jisucf.cloudns.biz&alpn=h2%2Chttp%2F1.1&fp=random&type=ws&path=%2Fmy-key%3D511622%2F#new-cf
-vless://5fbbf263-0518-446c-8ef2-13b2001aa69d@laji.jisucf.cloudns.biz:443?encryption=none&security=tls&sni=new.jisucf.cloudns.ch&alpn=h2%2Chttp%2F1.1&fp=random&type=ws&path=%2Fmy-key%3D511622%2F#new-git
+vless://aa6afb24-210c-4fdc-979e-58f71a6f779f@hk.cf01.dpdns.org:443?encryption=none&security=tls&sni=git01.jisucf.cloudns.biz&insecure=1&allowInsecure=1&type=ws&host=git01.jisucf.cloudns.biz&path=%2F%3Fed%3D2560#TS-git
+vless://871f3020-6158-4829-88ed-81843bb956e1@us.cf01.dpdns.org:2053?encryption=none&security=tls&sni=ts02.3xxx.de5.net&fp=chrome&alpn=http%2F1.1&insecure=0&allowInsecure=0&type=ws&host=ts02.3xxx.de5.net&path=%2F#TS-cf
+vless://5fbbf263-0518-446c-8ef2-13b2001aa69d@104.16.40.11:2053?encryption=none&security=tls&sni=new.jisucf.cloudns.ch&fp=chrome&alpn=http%2F1.1&insecure=0&allowInsecure=0&type=ws&host=new.jisucf.cloudns.ch&path=%2F#new-git
+vless://78de7682-9d3c-4f82-86d9-f53944311adf@hk.cf01.dpdns.org:2053?encryption=none&security=tls&sni=new.jisucf.cloudns.biz&fp=chrome&alpn=http%2F1.1&insecure=0&allowInsecure=0&type=ws&host=new.jisucf.cloudns.biz&path=%2F#new-cf
