@@ -29,7 +29,7 @@ dns:
 proxies:
   - name: "爪云日本"
     type: vless
-    server: hk.cf01.dpdns.org
+    server: xzhk.cf01.dpdns.org
     port: 443
     uuid: 47cc10f5-5219-4c74-86c3-f34ac5762cba
     cipher: none
@@ -79,7 +79,7 @@ proxies:
         Host: new.jisucf.cloudns.ch
   - name: "new-cf"
     type: vless
-    server: hk.cf01.dpdns.org
+    server: xzhk.cf01.dpdns.org
     port: 2053
     uuid: 78de7682-9d3c-4f82-86d9-f53944311adf
     tls: true
