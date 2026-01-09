@@ -27,20 +27,6 @@ dns:
     - 8.8.8.8
     - 1.1.1.1
 proxies:
-  - name: "爪云日本"
-    type: vless
-    server: xzhk.cf01.dpdns.org
-    port: 443
-    uuid: 47cc10f5-5219-4c74-86c3-f34ac5762cba
-    cipher: none
-    tls: true
-    udp: true
-    servername: agon.cf02.dpdns.org
-    network: ws
-    ws-opts:
-        path: /47cc10f5-5219-4c74-86c3-f34ac5762cba?ed=2048
-        headers:
-            Host: agon.cf02.dpdns.org
   - name: "TS-git"
     type: vless
     server: xzhk.cf01.dpdns.org
@@ -97,7 +83,6 @@ proxy-groups:
       - "new-cf"
       - "TS-git"
       - "TS-cf"
-      - "爪云日本"
   - name: ♻️ 自动选择
     type: url-test
     url: https://www.gstatic.com/generate_204
@@ -108,7 +93,6 @@ proxy-groups:
       - "new-cf"
       - "TS-git"
       - "TS-cf"
-      - "爪云日本"
   - name: 🚀 节点选择
     type: select
     proxies:
