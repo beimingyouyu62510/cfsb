@@ -29,7 +29,7 @@ dns:
 proxies:
   - name: "TS-git"
     type: vless
-    server: xzhk.cf01.dpdns.org
+    server: xzus.cf01.dpdns.org
     port: 443
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
     tls: true
