@@ -53,7 +53,7 @@ proxies:
         Host: ts02.3xxx.de5.net
   - name: "new-git"
     type: vless
-    server: 104.17.97.5
+    server: hk.cf01.dpdns.org
     port: 2053
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     tls: true
