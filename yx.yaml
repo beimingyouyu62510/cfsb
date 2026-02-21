@@ -75,18 +75,6 @@ proxies:
       path: /
       headers:
         Host: new.jisucf.cloudns.ch     
-  - name: "new-cf"
-    type: vless
-    server: xzus.cf01.dpdns.org
-    port: 443
-    uuid: 78de7682-9d3c-4f82-86d9-f53944311adf
-    tls: true
-    servername: new.jisucf.cloudns.biz
-    network: ws
-    ws-opts:
-      path: /
-      headers:
-        Host: new.jisucf.cloudns.biz
   - name: "myvl"
     type: vless
     server: xzus.cf01.dpdns.org
@@ -105,7 +93,6 @@ proxy-groups:
     proxies:
       - "new-git"
       - "new1-git"
-      - "new-cf"
       - "myvl"
       - "TS-git"
       - "TS-cf"
@@ -117,7 +104,6 @@ proxy-groups:
     proxies:
       - "new-git"
       - "new1-git"
-      - "new-cf"
       - "myvl"
       - "TS-git"
       - "TS-cf"
