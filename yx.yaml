@@ -41,7 +41,7 @@ proxies:
           Host: git01.jisucf.cloudns.biz
   - name: "TS-cf"
     type: vless
-    server: xzus.cf01.dpdns.org
+    server: 104.17.97.5
     port: 443
     uuid: 871f3020-6158-4829-88ed-81843bb956e1
     tls: true
