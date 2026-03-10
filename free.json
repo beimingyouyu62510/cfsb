@@ -32,31 +32,107 @@
       }
     ],
     "rules": [
-      { "clash_mode": "direct", "server": "dns-ali" },
-      { "clash_mode": "global", "server": "dns-cloudflare" },
-      { "rule_set": "fakeip-filter", "server": "dns-cloudflare" },
-      { "rule_set": "cn_domain", "server": "dns-ali" },
-      { "query_type": ["A", "AAAA"], "server": "dns-fakeip" }
+      {
+        "clash_mode": "direct",
+        "server": "dns-ali"
+      },
+      {
+        "clash_mode": "global",
+        "server": "dns-cloudflare"
+      },
+      {
+        "rule_set": "fakeip-filter",
+        "server": "dns-cloudflare"
+      },
+      {
+        "rule_set": "cn_domain",
+        "server": "dns-ali"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fakeip"
+      }
     ],
     "final": "dns-cloudflare",
     "reverse_mapping": true
   },
   "inbounds": [
-    { "type": "mixed", "listen": "::", "listen_port": 7890 },
-    { "type": "tproxy", "tag": "tproxy-in", "listen": "::", "listen_port": 9898 },
-    { "type": "redirect", "tag": "redirect-in", "listen": "::", "listen_port": 9797 }
+    {
+      "type": "mixed",
+      "listen": "::",
+      "listen_port": 7890
+    },
+    {
+      "type": "tproxy",
+      "tag": "tproxy-in",
+      "listen": "::",
+      "listen_port": 9898
+    },
+    {
+      "type": "redirect",
+      "tag": "redirect-in",
+      "listen": "::",
+      "listen_port": 9797
+    }
   ],
   "outbounds": [
-    { "type": "selector", "tag": "Emby", "outbounds": ["Main", "Manual", "Auto"] },
-    { "type": "selector", "tag": "Ai", "outbounds": ["Main", "Manual", "Auto"] },
-    { "type": "selector", "tag": "Telegram", "outbounds": ["Main", "Manual", "Auto"] },
-    { "type": "selector", "tag": "CloudFlare", "outbounds": ["Main", "Manual", "Auto"] },
-    { "type": "selector", "tag": "GoogleFCM", "outbounds": ["Main", "Manual", "Auto"] },
-    { "type": "selector", "tag": "Google", "outbounds": ["Main", "Manual", "Auto"] },
-    { "type": "selector", "tag": "Microsoft", "outbounds": ["Main", "Manual", "Auto"] },
-    { "type": "direct", "tag": "direct" },
-    { "type": "selector", "tag": "Final", "outbounds": ["Main", "Manual", "Auto"] },
-    { "type": "selector", "tag": "Main", "outbounds": ["Manual", "Auto"] },
+    {
+      "type": "selector",
+      "tag": "Emby",
+      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
+    },
+    {
+      "type": "selector",
+      "tag": "Ai",
+      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
+    },
+    {
+      "type": "selector",
+      "tag": "Telegram",
+      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
+    },
+    {
+      "type": "selector",
+      "tag": "CloudFlare",
+      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
+    },
+    {
+      "type": "selector",
+      "tag": "GoogleFCM",
+      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
+    },
+    {
+      "type": "selector",
+      "tag": "Google",
+      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
+    },
+    {
+      "type": "selector",
+      "tag": "Microsoft",
+      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
+    },
+    {
+      "type": "selector",
+      "tag": "CN",
+      "outbounds": ["direct", "Manual", "Auto", "HK", "TW", "JP", "SG", "US"]
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "selector",
+      "tag": "Final",
+      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
+    },
+    {
+      "type": "selector",
+      "tag": "Main",
+      "outbounds": ["Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
+    },
     {
       "type": "selector",
       "tag": "Manual",
@@ -71,6 +147,41 @@
       "tolerance": 50
     },
     {
+      "type": "selector",
+      "tag": "HK",
+      "outbounds": ["Manual"],
+      "include": "香港|hong kong|hk|hksar",
+      "use_all_providers": true
+    },
+    {
+      "type": "selector",
+      "tag": "TW",
+      "outbounds": ["Manual"],
+      "include": "台湾|taiwan|tw|twn|台北|taipei|高雄|kaohsiung|台中|taichung|新北|new taipei",
+      "use_all_providers": true
+    },
+    {
+      "type": "selector",
+      "tag": "JP",
+      "outbounds": ["Manual"],
+      "include": "日本|japan|jpn|jp|tokyo|大阪|osaka|京都|kyoto|福冈|fukuoka|札幌|sapporo|名古屋|nagoya",
+      "use_all_providers": true
+    },
+    {
+      "type": "selector",
+      "tag": "SG",
+      "outbounds": ["Manual"],
+      "include": "新加坡|狮城|singapore|sg|sgp",
+      "use_all_providers": true
+    },
+    {
+      "type": "selector",
+      "tag": "US",
+      "outbounds": ["Manual"],
+      "include": "美国|united states|usa|us|america|加州|california|纽约|new york|德克萨斯|texas|佛罗里达|florida|华盛顿|washington|芝加哥|chicago|洛杉矶|los angeles|旧金山|san francisco",
+      "use_all_providers": true
+    },
+    {
       "type": "vless",
       "tag": "new-git",
       "server": "xzus.cf01.dpdns.org",
@@ -79,12 +190,23 @@
       "tls": {
         "enabled": true,
         "server_name": "new.jisucf.cloudns.ch",
-        "utls": { "enabled": true, "fingerprint": "chrome" },
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
         "alpn": ["http/1.1"],
         "insecure": false
       },
-      "transport": { "type": "ws", "path": "/", "headers": { "Host": "new.jisucf.cloudns.ch" } },
-      "multiplex": { "enabled": true }
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "new.jisucf.cloudns.ch"
+        }
+      },
+      "multiplex": {
+        "enabled": true
+      }
     },
     {
       "type": "vless",
@@ -95,12 +217,23 @@
       "tls": {
         "enabled": true,
         "server_name": "new.jisucf.cloudns.ch",
-        "utls": { "enabled": true, "fingerprint": "chrome" },
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
         "alpn": ["http/1.1"],
         "insecure": false
       },
-      "transport": { "type": "ws", "path": "/", "headers": { "Host": "new.jisucf.cloudns.ch" } },
-      "multiplex": { "enabled": true }
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "new.jisucf.cloudns.ch"
+        }
+      },
+      "multiplex": {
+        "enabled": true
+      }
     },
     {
       "type": "vless",
@@ -113,8 +246,16 @@
         "server_name": "git01.jisucf.cloudns.biz",
         "insecure": true
       },
-      "transport": { "type": "ws", "path": "/?ed=2560", "headers": { "Host": "git01.jisucf.cloudns.biz" } },
-      "multiplex": { "enabled": true }
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "git01.jisucf.cloudns.biz"
+        }
+      },
+      "multiplex": {
+        "enabled": true
+      }
     },
     {
       "type": "vless",
@@ -125,12 +266,23 @@
       "tls": {
         "enabled": true,
         "server_name": "ts02.3xxx.de5.net",
-        "utls": { "enabled": true, "fingerprint": "chrome" },
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
         "alpn": ["http/1.1"],
         "insecure": false
       },
-      "transport": { "type": "ws", "path": "/", "headers": { "Host": "ts02.3xxx.de5.net" } },
-      "multiplex": { "enabled": true }
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "ts02.3xxx.de5.net"
+        }
+      },
+      "multiplex": {
+        "enabled": true
+      }
     },
     {
       "type": "vless",
@@ -141,59 +293,207 @@
       "tls": {
         "enabled": true,
         "server_name": "ts02.3xxx.de5.net",
-        "utls": { "enabled": true, "fingerprint": "chrome" },
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
         "alpn": ["http/1.1"],
         "insecure": false
       },
-      "transport": { "type": "ws", "path": "/", "headers": { "Host": "ts02.3xxx.de5.net" } },
-      "multiplex": { "enabled": true }
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "ts02.3xxx.de5.net"
+        }
+      },
+      "multiplex": {
+        "enabled": true
+      }
+    }
+  ],
+  "providers": [
+    {
+      "type": "remote",
+      "tag": "provider_1",
+      "url": "http://127.0.0.1:3000/download/%E8%8A%B1%E4%BA%91",
+      "download_detour": "direct",
+      "health_check": {
+        "enabled": true,
+        "url": "https://cp.cloudflare.com"
+      }
     }
   ],
   "route": {
     "rules": [
-      { "action": "sniff" },
+      {
+        "action": "sniff"
+      },
       {
         "type": "logical",
         "mode": "or",
-        "rules": [{ "port": 53 }, { "protocol": "dns" }],
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
         "action": "hijack-dns"
       },
-      { "ip_is_private": true, "outbound": "direct" },
-      { "rule_set": "Emby", "outbound": "Emby" },
-      { "rule_set": "Ai", "outbound": "Ai" },
-      { "rule_set": ["Telegram-ip", "Telegram-domain"], "outbound": "Telegram" },
-      { "rule_set": ["cloudflare_ip", "cloudflare_domain"], "outbound": "CloudFlare" },
+      {
+        "ip_is_private": true,
+        "outbound": "CN"
+      },
+      {
+        "rule_set": "Emby",
+        "outbound": "Emby"
+      },
+      {
+        "rule_set": "Ai",
+        "outbound": "Ai"
+      },
+      {
+        "rule_set": ["Telegram-ip", "Telegram-domain"],
+        "outbound": "Telegram"
+      },
+      {
+        "rule_set": ["cloudflare_ip", "cloudflare_domain"],
+        "outbound": "CloudFlare"
+      },
       {
         "type": "logical",
         "mode": "and",
         "rules": [
-          { "domain_suffix": ["mtalk.google.com", "alt1-mtalk.google.com", "alt2-mtalk.google.com", "alt3-mtalk.google.com", "alt4-mtalk.google.com", "alt5-mtalk.google.com", "alt6-mtalk.google.com", "alt7-mtalk.google.com", "alt8-mtalk.google.com"] },
-          { "port": 443 }
+          {
+            "domain_suffix": [
+              "mtalk.google.com",
+              "alt1-mtalk.google.com",
+              "alt2-mtalk.google.com",
+              "alt3-mtalk.google.com",
+              "alt4-mtalk.google.com",
+              "alt5-mtalk.google.com",
+              "alt6-mtalk.google.com",
+              "alt7-mtalk.google.com",
+              "alt8-mtalk.google.com"
+            ]
+          },
+          {
+            "port": 443
+          }
         ],
         "outbound": "GoogleFCM"
       },
-      { "port": 5228, "outbound": "GoogleFCM" },
-      { "rule_set": ["google_ip", "google_domain"], "outbound": "Google" },
-      { "rule_set": "microsoft_domain", "outbound": "Microsoft" },
-      { "clash_mode": "Rule", "rule_set": "awavenue", "action": "reject" },
-      { "rule_set": ["cn_ip", "cn_domain"], "outbound": "direct" },
-      { "clash_mode": "direct", "outbound": "direct" },
-      { "clash_mode": "global", "outbound": "Main" }
+      {
+        "port": 5228,
+        "outbound": "GoogleFCM"
+      },
+      {
+        "rule_set": ["google_ip", "google_domain"],
+        "outbound": "Google"
+      },
+      {
+        "rule_set": "microsoft_domain",
+        "outbound": "Microsoft"
+      },
+      {
+        "clash_mode": "Rule",
+        "rule_set": "awavenue",
+        "action": "reject"
+      },
+      {
+        "rule_set": ["cn_ip", "cn_domain"],
+        "outbound": "CN"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "CN"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "Main"
+      }
     ],
     "rule_set": [
-      { "type": "remote", "tag": "Emby", "url": "https://gh-proxy.com/gist.githubusercontent.com/misak10/975a9f9b0ff00fe9c4b3ed6bdb976385/raw/emby.json", "download_detour": "direct" },
-      { "type": "remote", "tag": "Ai", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/DustinWin/ruleset_geodata/refs/heads/sing-box-ruleset/ai.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "fakeip-filter", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/DustinWin/ruleset_geodata/refs/heads/sing-box-ruleset/fakeip-filter.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "Telegram-ip", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/telegram.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "Telegram-domain", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/telegram.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "cloudflare_ip", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cloudflare.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "cloudflare_domain", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/cloudflare.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "google_ip", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/google.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "google_domain", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "microsoft_domain", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/microsoft.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "awavenue", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/DustinWin/ruleset_geodata/refs/heads/sing-box-ruleset/ads.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "cn_ip", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "cn_domain", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/cn.srs", "download_detour": "direct" }
+      {
+        "type": "remote",
+        "tag": "Emby",
+        "url": "https://gh-proxy.com/gist.githubusercontent.com/misak10/975a9f9b0ff00fe9c4b3ed6bdb976385/raw/emby.json",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "Ai",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/DustinWin/ruleset_geodata/refs/heads/sing-box-ruleset/ai.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "fakeip-filter",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/DustinWin/ruleset_geodata/refs/heads/sing-box-ruleset/fakeip-filter.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "Telegram-ip",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/telegram.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "Telegram-domain",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/telegram.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "cloudflare_ip",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cloudflare.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "cloudflare_domain",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/cloudflare.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "google_ip",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/google.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "google_domain",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "microsoft_domain",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/microsoft.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "awavenue",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "cn_ip",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "cn_domain",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/cn.srs",
+        "download_detour": "direct"
+      }
     ],
     "final": "Final",
     "auto_detect_interface": false,
