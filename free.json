@@ -85,13 +85,7 @@
       "outbounds": [
         "Main",
         "Manual",
-        "Auto",
-        "HK",
-        "TW",
-        "JP",
-        "SG",
-        "US",
-        "CN"
+        "Auto"
       ],
       "providers": null
     },
@@ -101,13 +95,7 @@
       "outbounds": [
         "Main",
         "Manual",
-        "Auto",
-        "HK",
-        "TW",
-        "JP",
-        "SG",
-        "US",
-        "CN"
+        "Auto"
       ],
       "providers": null
     },
@@ -117,13 +105,7 @@
       "outbounds": [
         "Main",
         "Manual",
-        "Auto",
-        "HK",
-        "TW",
-        "JP",
-        "SG",
-        "US",
-        "CN"
+        "Auto"
       ],
       "providers": null
     },
@@ -133,13 +115,7 @@
       "outbounds": [
         "Main",
         "Manual",
-        "Auto",
-        "HK",
-        "TW",
-        "JP",
-        "SG",
-        "US",
-        "CN"
+        "Auto"
       ],
       "providers": null
     },
@@ -149,13 +125,7 @@
       "outbounds": [
         "Main",
         "Manual",
-        "Auto",
-        "HK",
-        "TW",
-        "JP",
-        "SG",
-        "US",
-        "CN"
+        "Auto"
       ],
       "providers": null
     },
@@ -165,13 +135,7 @@
       "outbounds": [
         "Main",
         "Manual",
-        "Auto",
-        "HK",
-        "TW",
-        "JP",
-        "SG",
-        "US",
-        "CN"
+        "Auto"
       ],
       "providers": null
     },
@@ -181,13 +145,7 @@
       "outbounds": [
         "Main",
         "Manual",
-        "Auto",
-        "HK",
-        "TW",
-        "JP",
-        "SG",
-        "US",
-        "CN"
+        "Auto"
       ],
       "providers": null
     },
@@ -197,12 +155,7 @@
       "outbounds": [
         "direct",
         "Manual",
-        "Auto",
-        "HK",
-        "TW",
-        "JP",
-        "SG",
-        "US"
+        "Auto"
       ],
       "providers": null
     },
@@ -216,13 +169,7 @@
       "outbounds": [
         "Main",
         "Manual",
-        "Auto",
-        "HK",
-        "TW",
-        "JP",
-        "SG",
-        "US",
-        "CN"
+        "Auto"
       ],
       "providers": null
     },
@@ -231,13 +178,7 @@
       "tag": "Main",
       "outbounds": [
         "Manual",
-        "Auto",
-        "HK",
-        "TW",
-        "JP",
-        "SG",
-        "US",
-        "CN"
+        "Auto"
       ],
       "providers": null
     },
@@ -258,45 +199,128 @@
       "interval": "2m0s",
       "tolerance": 50
     },
+    // 新增的你的 5 个 vless 节点（放在原有节点后）
     {
-      "type": "selector",
-      "tag": "HK",
-      "outbounds": null,
-      "providers": null,
-      "include": "香港|hong kong|hk|hksar",
-      "use_all_providers": true
+      "type": "vless",
+      "tag": "new-git",
+      "server": "xzus.cf01.dpdns.org",
+      "server_port": 443,
+      "uuid": "5fbbf263-0518-446c-8ef2-13b2001aa69d",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.jisucf.cloudns.ch",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "new.jisucf.cloudns.ch"
+        }
+      },
+      "multiplex": {
+        "enabled": true
+      }
     },
     {
-      "type": "selector",
-      "tag": "TW",
-      "outbounds": null,
-      "providers": null,
-      "include": "台湾|taiwan|tw|twn|台北|taipei|高雄|kaohsiung|台中|taichung|新北|new taipei",
-      "use_all_providers": true
+      "type": "vless",
+      "tag": "new-git-clone",
+      "server": "198.41.208.34",
+      "server_port": 443,
+      "uuid": "5fbbf263-0518-446c-8ef2-13b2001aa69d",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.jisucf.cloudns.ch",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "new.jisucf.cloudns.ch"
+        }
+      },
+      "multiplex": {
+        "enabled": true
+      }
     },
     {
-      "type": "selector",
-      "tag": "JP",
-      "outbounds": null,
-      "providers": null,
-      "include": "日本|japan|jpn|jp|tokyo|大阪|osaka|京都|kyoto|福冈|fukuoka|札幌|sapporo|名古屋|nagoya",
-      "use_all_providers": true
+      "type": "vless",
+      "tag": "TS-git",
+      "server": "104.17.98.5",
+      "server_port": 443,
+      "uuid": "aa6afb24-210c-4fdc-979e-58f71a6f779f",
+      "tls": {
+        "enabled": true,
+        "server_name": "git01.jisucf.cloudns.biz",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "git01.jisucf.cloudns.biz"
+        }
+      },
+      "multiplex": {
+        "enabled": true
+      }
     },
     {
-      "type": "selector",
-      "tag": "SG",
-      "outbounds": null,
-      "providers": null,
-      "include": "新加坡|狮城|singapore|sg|sgp",
-      "use_all_providers": true
+      "type": "vless",
+      "tag": "TS-cf",
+      "server": "162.159.45.162",
+      "server_port": 443,
+      "uuid": "871f3020-6158-4829-88ed-81843bb956e1",
+      "tls": {
+        "enabled": true,
+        "server_name": "ts02.3xxx.de5.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "ts02.3xxx.de5.net"
+        }
+      },
+      "multiplex": {
+        "enabled": true
+      }
     },
     {
-      "type": "selector",
-      "tag": "US",
-      "outbounds": null,
-      "providers": null,
-      "include": "美国|united states|usa|us|america|加州|california|纽约|new york|德克萨斯|texas|佛罗里达|florida|华盛顿|washington|芝加哥|chicago|洛杉矶|los angeles|旧金山|san francisco",
-      "use_all_providers": true
+      "type": "vless",
+      "tag": "TS-cf-clone",
+      "server": "104.17.98.5",
+      "server_port": 443,
+      "uuid": "871f3020-6158-4829-88ed-81843bb956e1",
+      "tls": {
+        "enabled": true,
+        "server_name": "ts02.3xxx.de5.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "ts02.3xxx.de5.net"
+        }
+      },
+      "multiplex": {
+        "enabled": true
+      }
     }
   ],
   "providers": [
