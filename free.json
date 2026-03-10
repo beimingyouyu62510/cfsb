@@ -2,6 +2,12 @@
   "log": {
     "level": "warn"
   },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db"
+    }
+  },
   "dns": {
     "strategy": "ipv4_only",
     "servers": [
@@ -27,25 +33,8 @@
         "server": "fakeip"
       }
     ],
-    "final": "cf"   // 默认用 Cloudflare DoH，更干净
+    "final": "cf"
   },
-  "inbounds": [
-    {
-      "type": "tun",
-      "tag": "tun-in",
-      "interface_name": "tun0",
-      "address": [
-        "172.19.0.1/30"
-      ],
-      "mtu": 1500,
-      "auto_route": true,
-      "strict_route": true,
-      "auto_redirect": true,
-      "stack": "system",
-      "sniff": true,
-      "sniff_override_destination": true
-    }
-  ],
   "outbounds": [
     {
       "type": "selector",
@@ -74,13 +63,9 @@
       "tolerance": 50,
       "lazy": true
     },
-    // 你的节点保持不变（略去重复，复制原节点部分即可）
-    {
-      "type": "vless",
-      "tag": "new-git",
-      // ... 你的原配置
-    },
-    // ... 其他节点同上
+    // 你的 vless 节点部分（保持原样，省略重复粘贴）
+    // { "type": "vless", "tag": "new-git", ... },
+    // ... 其他节点
     {
       "type": "direct",
       "tag": "direct"
@@ -96,39 +81,41 @@
       {
         "tag": "ads",
         "type": "remote",
-        "format": "binary",  // 建议转成 .srs 后用 binary
-        "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml",  // 或转 srs
-        "download_detour": "proxy",
-        "update_interval": "24h"
-      },
-      {
-        "tag": "geosite-cn",
-        "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/lyc8503/sing-box-rules/rule-set-geosite/geosite-cn.srs",
-        "download_detour": "proxy",
-        "update_interval": "24h"
-      },
-      {
-        "tag": "geoip-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/lyc8503/sing-box-rules/rule-set-geoip/geoip-cn.srs",
-        "download_detour": "proxy",
+        "url": "https://fastly.jsdelivr.net/gh/SagerNet/sing-geosite@rule-set/geosite-category-ads-all.srs",
+        "download_detour": "direct",
         "update_interval": "24h"
       }
+      // 可选加 CN bypass
+      // {
+      //   "tag": "geosite-cn",
+      //   "type": "remote",
+      //   "format": "binary",
+      //   "url": "https://fastly.jsdelivr.net/gh/SagerNet/sing-geosite@rule-set/geosite-cn.srs",
+      //   "download_detour": "direct",
+      //   "update_interval": "24h"
+      // },
+      // {
+      //   "tag": "geoip-cn",
+      //   "type": "remote",
+      //   "format": "binary",
+      //   "url": "https://fastly.jsdelivr.net/gh/SagerNet/sing-geoip@rule-set/geoip-cn.srs",
+      //   "download_detour": "direct",
+      //   "update_interval": "24h"
+      // }
     ],
     "rules": [
       {
         "rule_set": ["ads"],
         "outbound": "block"
-      },
+      }
+      // 可选加 CN 直连（防国内走 proxy 慢）
+      // {
+      //   "rule_set": ["geosite-cn", "geoip-cn"],
+      //   "outbound": "direct"
+      // },
       {
         "ip_is_private": true,
-        "outbound": "direct"
-      },
-      {
-        "rule_set": ["geosite-cn", "geoip-cn"],
         "outbound": "direct"
       }
     ],
