@@ -4,34 +4,33 @@
   },
 
   "dns": {
-
     "strategy": "ipv4_only",
 
     "servers": [
 
       {
+        "type": "fakeip",
         "tag": "fakeip",
-        "address": "fakeip"
+        "inet4_range": "198.18.0.0/15"
       },
 
       {
+        "type": "https",
         "tag": "ali",
-        "address": "https://dns.alidns.com/dns-query",
+        "server": "dns.alidns.com",
+        "path": "/dns-query",
         "detour": "direct"
       },
 
       {
+        "type": "https",
         "tag": "cf",
-        "address": "https://cloudflare-dns.com/dns-query",
+        "server": "cloudflare-dns.com",
+        "path": "/dns-query",
         "detour": "proxy"
       }
 
     ],
-
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15"
-    },
 
     "rules": [
 
@@ -108,7 +107,8 @@
         "TS-cf-clone"
       ],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "3m"
+      "interval": "3m",
+      "tolerance": 50
     },
 
 
@@ -116,8 +116,10 @@
     {
       "type": "vless",
       "tag": "new-git",
+
       "server": "xzus.cf01.dpdns.org",
       "server_port": 443,
+
       "uuid": "5fbbf263-0518-446c-8ef2-13b2001aa69d",
 
       "tls": {
@@ -147,8 +149,10 @@
     {
       "type": "vless",
       "tag": "new-git-clone",
+
       "server": "104.17.98.5",
       "server_port": 443,
+
       "uuid": "5fbbf263-0518-446c-8ef2-13b2001aa69d",
 
       "tls": {
@@ -178,8 +182,10 @@
     {
       "type": "vless",
       "tag": "TS-git",
+
       "server": "104.17.98.5",
       "server_port": 443,
+
       "uuid": "aa6afb24-210c-4fdc-979e-58f71a6f779f",
 
       "tls": {
@@ -206,8 +212,10 @@
     {
       "type": "vless",
       "tag": "TS-cf",
+
       "server": "162.159.45.162",
       "server_port": 443,
+
       "uuid": "871f3020-6158-4829-88ed-81843bb956e1",
 
       "tls": {
@@ -237,8 +245,10 @@
     {
       "type": "vless",
       "tag": "TS-cf-clone",
+
       "server": "104.17.98.5",
       "server_port": 443,
+
       "uuid": "871f3020-6158-4829-88ed-81843bb956e1",
 
       "tls": {
@@ -284,6 +294,7 @@
     "auto_detect_interface": true,
 
     "rule_set": [
+
       {
         "tag": "ads",
         "type": "remote",
@@ -292,6 +303,7 @@
         "download_detour": "proxy",
         "update_interval": "24h"
       }
+
     ],
 
     "rules": [
