@@ -32,102 +32,31 @@
       }
     ],
     "rules": [
-      {
-        "clash_mode": "direct",
-        "server": "dns-ali"
-      },
-      {
-        "clash_mode": "global",
-        "server": "dns-cloudflare"
-      },
-      {
-        "rule_set": "fakeip-filter",
-        "server": "dns-cloudflare"
-      },
-      {
-        "rule_set": "cn_domain",
-        "server": "dns-ali"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "server": "dns-fakeip"
-      }
+      { "clash_mode": "direct", "server": "dns-ali" },
+      { "clash_mode": "global", "server": "dns-cloudflare" },
+      { "rule_set": "fakeip-filter", "server": "dns-cloudflare" },
+      { "rule_set": "cn_domain", "server": "dns-ali" },
+      { "query_type": ["A", "AAAA"], "server": "dns-fakeip" }
     ],
     "final": "dns-cloudflare",
     "reverse_mapping": true
   },
   "inbounds": [
-    {
-      "type": "mixed",
-      "listen": "::",
-      "listen_port": 7890
-    },
-    {
-      "type": "tproxy",
-      "tag": "tproxy-in",
-      "listen": "::",
-      "listen_port": 9898
-    },
-    {
-      "type": "redirect",
-      "tag": "redirect-in",
-      "listen": "::",
-      "listen_port": 9797
-    }
+    { "type": "mixed", "listen": "::", "listen_port": 7890 },
+    { "type": "tproxy", "tag": "tproxy-in", "listen": "::", "listen_port": 9898 },
+    { "type": "redirect", "tag": "redirect-in", "listen": "::", "listen_port": 9797 }
   ],
   "outbounds": [
-    {
-      "type": "selector",
-      "tag": "Emby",
-      "outbounds": ["Main", "Manual", "Auto"]
-    },
-    {
-      "type": "selector",
-      "tag": "Ai",
-      "outbounds": ["Main", "Manual", "Auto"]
-    },
-    {
-      "type": "selector",
-      "tag": "Telegram",
-      "outbounds": ["Main", "Manual", "Auto"]
-    },
-    {
-      "type": "selector",
-      "tag": "CloudFlare",
-      "outbounds": ["Main", "Manual", "Auto"]
-    },
-    {
-      "type": "selector",
-      "tag": "GoogleFCM",
-      "outbounds": ["Main", "Manual", "Auto"]
-    },
-    {
-      "type": "selector",
-      "tag": "Google",
-      "outbounds": ["Main", "Manual", "Auto"]
-    },
-    {
-      "type": "selector",
-      "tag": "Microsoft",
-      "outbounds": ["Main", "Manual", "Auto"]
-    },
-    {
-      "type": "direct",
-      "tag": "direct"
-    },
-    {
-      "type": "selector",
-      "tag": "Final",
-      "outbounds": ["Main", "Manual", "Auto"]
-    },
-    {
-      "type": "selector",
-      "tag": "Main",
-      "outbounds": ["Manual", "Auto"]
-    },
+    { "type": "selector", "tag": "Emby", "outbounds": ["Main", "Manual", "Auto"] },
+    { "type": "selector", "tag": "Ai", "outbounds": ["Main", "Manual", "Auto"] },
+    { "type": "selector", "tag": "Telegram", "outbounds": ["Main", "Manual", "Auto"] },
+    { "type": "selector", "tag": "CloudFlare", "outbounds": ["Main", "Manual", "Auto"] },
+    { "type": "selector", "tag": "GoogleFCM", "outbounds": ["Main", "Manual", "Auto"] },
+    { "type": "selector", "tag": "Google", "outbounds": ["Main", "Manual", "Auto"] },
+    { "type": "selector", "tag": "Microsoft", "outbounds": ["Main", "Manual", "Auto"] },
+    { "type": "direct", "tag": "direct" },
+    { "type": "selector", "tag": "Final", "outbounds": ["Main", "Manual", "Auto"] },
+    { "type": "selector", "tag": "Main", "outbounds": ["Manual", "Auto"] },
     {
       "type": "selector",
       "tag": "Manual",
@@ -154,11 +83,7 @@
         "alpn": ["http/1.1"],
         "insecure": false
       },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": { "Host": "new.jisucf.cloudns.ch" }
-      },
+      "transport": { "type": "ws", "path": "/", "headers": { "Host": "new.jisucf.cloudns.ch" } },
       "multiplex": { "enabled": true }
     },
     {
@@ -174,11 +99,7 @@
         "alpn": ["http/1.1"],
         "insecure": false
       },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": { "Host": "new.jisucf.cloudns.ch" }
-      },
+      "transport": { "type": "ws", "path": "/", "headers": { "Host": "new.jisucf.cloudns.ch" } },
       "multiplex": { "enabled": true }
     },
     {
@@ -192,11 +113,7 @@
         "server_name": "git01.jisucf.cloudns.biz",
         "insecure": true
       },
-      "transport": {
-        "type": "ws",
-        "path": "/?ed=2560",
-        "headers": { "Host": "git01.jisucf.cloudns.biz" }
-      },
+      "transport": { "type": "ws", "path": "/?ed=2560", "headers": { "Host": "git01.jisucf.cloudns.biz" } },
       "multiplex": { "enabled": true }
     },
     {
@@ -212,11 +129,7 @@
         "alpn": ["http/1.1"],
         "insecure": false
       },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": { "Host": "ts02.3xxx.de5.net" }
-      },
+      "transport": { "type": "ws", "path": "/", "headers": { "Host": "ts02.3xxx.de5.net" } },
       "multiplex": { "enabled": true }
     },
     {
@@ -232,11 +145,7 @@
         "alpn": ["http/1.1"],
         "insecure": false
       },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": { "Host": "ts02.3xxx.de5.net" }
-      },
+      "transport": { "type": "ws", "path": "/", "headers": { "Host": "ts02.3xxx.de5.net" } },
       "multiplex": { "enabled": true }
     }
   ],
@@ -282,7 +191,7 @@
       { "type": "remote", "tag": "google_ip", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/google.srs", "download_detour": "direct" },
       { "type": "remote", "tag": "google_domain", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google.srs", "download_detour": "direct" },
       { "type": "remote", "tag": "microsoft_domain", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/microsoft.srs", "download_detour": "direct" },
-      { "type": "remote", "tag": "awavenue", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.srs", "download_detour": "direct" },
+      { "type": "remote", "tag": "awavenue", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/DustinWin/ruleset_geodata/refs/heads/sing-box-ruleset/ads.srs", "download_detour": "direct" },
       { "type": "remote", "tag": "cn_ip", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs", "download_detour": "direct" },
       { "type": "remote", "tag": "cn_domain", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/cn.srs", "download_detour": "direct" }
     ],
