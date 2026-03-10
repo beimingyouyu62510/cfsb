@@ -1,865 +1,299 @@
-# ================= 全局设置 =================
-allow-lan: true
-unified-delay: false
-tcp-concurrent: true
-find-process-mode: strict
-global-client-fingerprint: chrome
-
-profile:
-  store-selected: true
-  store-fake-ip: true
-
-# ================= 嗅探设置 =================
-sniffer:
-  enable: true
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  skip-domain:
-    - "Mijia Cloud"
-    - "dlg.io.mi.com"
-    - "*.push.apple.com"
-    - "*.icloud.com"
-    - "*.mi.com"
-    - "*.lan"
-    - "*.local"
-
-# ================= TUN 模式 =================
-tun:
-  enable: true
-  stack: system
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  auto-route: true
-  auto-detect-interface: true
-  strict-route: true
-  endpoint-independent-nat: true
-
-# ================= DNS 设置 =================
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  ipv6: false
-  prefer-h3: true
-  respect-rules: true
-  enhanced-mode: fake-ip
-  use-hosts: true
-
-  # 主要 DNS 解析器
-  nameserver:
-    - https://dns.google/dns-query
-    - https://1.1.1.1/dns-query
-    - https://dns.cloudflare.com/dns-query
-
-  # 针对代理流量的 DNS
-  proxy-server-nameserver:
-    - 223.5.5.5
-    - https://dns.alidns.com/dns-query
-    - 119.29.29.29
-    - https://doh.pub/dns-query
-
-  # 针对不同规则的 DNS 策略
-  nameserver-policy:
-    "geosite:cn,apple-cn,category-games@cn,private,category-ads-all":
-      - 117.50.11.11
-      - 180.168.255.18
-      - 223.5.5.5
-      - https://dns.alidns.com/dns-query
-    "geosite:google,youtube,netflix,github,openai,microsoft@!cn":
-      - https://dns.google/dns-query
-      - https://8.8.8.8/dns-query
-      - https://dns.quad9.net/dns-query
-    "geosite:telegram,discord":
-      - https://1.1.1.1/dns-query
-      - https://dns.cloudflare.com/dns-query
-    "rule-set:ChinaDomain,ChinaCompanyIp,ChinaMedia":
-      - 223.5.5.5
-      - 117.50.11.11
-      - https://dns.alidns.com/dns-query
-    "geosite:apple@!cn":
-      - https://dns.google/dns-query
-      - https://1.1.1.1/dns-query
-    "geosite:microsoft@!cn":
-      - https://dns.google/dns-query
-      - https://8.8.8.8/dns-query
-
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
-
-# ================= 节点配置 =================
-proxies:
-  - name: 节点1
-    type: hysteria
-    server: 2604:6600::5cb
-    port: '15823'
-    auth_str: dongtaiwang.com
-    up: 100
-    down: 100
-    fast-open: true
-    protocol: udp
-    sni: apple.com
-    skip-cert-verify: true
-    alpn:
-      - h3
-    recv_window_conn: 5767168
-    recv-window: 23068672
-  - name: 节点2
-    type: hysteria
-    server: 89.144.35.231
-    port: '10023'
-    auth_str: dongtaiwang.com
-    up: 100
-    down: 100
-    fast-open: true
-    protocol: udp
-    sni: apple.com
-    skip-cert-verify: true
-    alpn:
-      - h3
-    recv_window_conn: 69206016
-    recv-window: 276824064
-  - name: 节点3
-    type: hysteria
-    server: 51.159.107.20
-    port: '40121'
-    auth_str: dongtaiwang.com
-    up: 100
-    down: 100
-    fast-open: true
-    protocol: udp
-    sni: apple.com
-    skip-cert-verify: true
-    alpn:
-      - h3
-    recv_window_conn: 69206016
-    recv-window: 276824064
-  - name: 节点4
-    type: hysteria
-    server: 62.210.127.177
-    port: '23880'
-    auth_str: dongtaiwang.com
-    up: 100
-    down: 100
-    fast-open: true
-    protocol: udp
-    sni: bing.com
-    skip-cert-verify: true
-    alpn:
-      - h3
-    recv_window_conn: 57671680
-    recv-window: 230686720
-  - name: 节点5
-    type: hysteria2
-    server: 2001:bc8:32d7:17b::8
-    port: '22000'
-    password: dongtaiwang.com
-    fast-open: true
-    sni: apple.com
-    skip-cert-verify: true
-    up: 100 Mbps
-    down: 100 Mbps
-  - name: 节点6
-    type: hysteria2
-    server: 2001:bc8:32d7:302::11
-    port: '20088'
-    password: dongtaiwang.com
-    fast-open: true
-    sni: apple.com
-    skip-cert-verify: true
-    up: 100 Mbps
-    down: 100 Mbps
-  - name: 节点7
-    type: hysteria2
-    server: 51.158.194.63
-    port: '32952'
-    password: dongtaiwang.com
-    fast-open: true
-    sni: www.microsoft.com
-    skip-cert-verify: true
-    up: 100 Mbps
-    down: 100 Mbps
-  - name: 节点8
-    type: hysteria
-    server: 89.144.35.231
-    port: '18899'
-    auth_str: dongtaiwang.com
-    up: 100
-    down: 100
-    fast-open: true
-    protocol: udp
-    sni: apple.com
-    skip-cert-verify: true
-    alpn:
-      - h3
-    recv_window_conn: 69206016
-    recv-window: 276824064
-  - name: 节点9
-    type: hysteria2
-    server: 2604:6600::5cb
-    port: '22222'
-    password: dongtaiwang.com
-    fast-open: true
-    sni: www.bing.com
-    skip-cert-verify: true
-    up: 100 Mbps
-    down: 100 Mbps
-  - name: 节点10
-    type: hysteria2
-    server: 2001:bc8:32d7:158::9
-    port: '33356'
-    password: dongtaiwang.com
-    fast-open: true
-    sni: apple.com
-    skip-cert-verify: true
-    up: 100 Mbps
-    down: 100 Mbps
-  - name: 节点11
-    type: vmess
-    server: 104.21.238.35
-    uuid: ee420fda-efb7-48a8-9249-8987e36ebd9e
-    alterId: 0
-    port: 2086
-    cipher: auto
-    udp: true
-    network: ws
-    ws-opts:
-      path: github.com/Alvin9999
-      headers:
-        Host: ip29.9447609.xyz
-  - name: 节点12
-    type: vless
-    server: 2001:bc8:32d7:302::13
-    uuid: 26c462ba-a90c-4814-9d7c-a629bc0bdb5c
-    port: 34324
-    udp: true
-    tls: true
-    flow: xtls-rprx-vision
-    servername: dash.cloudflare.com
-    reality-opts:
-      public-key: pHn5CHa2P6-lNBIkTOI3zJQN19jfNFkXxGFuyefpP0M
-      short-id: ''
-    client-figerprint: chrome
-  - name: 节点13
-    type: vmess
-    server: 104.21.238.35
-    uuid: ee420fda-efb7-48a8-9249-8987e36ebd9e
-    alterId: 0
-    port: 2086
-    cipher: auto
-    udp: true
-    network: ws
-    ws-opts:
-      path: github.com/Alvin9999
-      headers:
-        Host: ip19.9447609.xyz
-  - name: 节点14
-    type: vmess
-    server: 2001:bc8:32d7:302::10
-    uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
-    alterId: 0
-    port: 44579
-    cipher: auto
-    udp: true
-    network: ws
-    ws-opts:
-      path: ''
-      headers: {}
-  - name: 节点15
-    type: vless
-    server: 89.144.35.231
-    uuid: 2460b5d1-0d74-427d-ad6c-bbe2aaab65cf
-    port: 23889
-    udp: true
-    tls: true
-  - name: 节点16
-    type: vless
-    server: fan3.394615.xyz
-    uuid: 8b66e552-e89d-4c4f-bb5a-e3d37bf151b8
-    port: 34500
-    udp: true
-    tls: true
-  - name: 节点17
-    type: vless
-    server: 2001:bc8:32d7:14f::6
-    uuid: a1f699e4-d7b7-4cdc-8414-1105e08fe4c5
-    port: 60011
-    udp: true
-    tls: true
-  - name: 节点18
-    type: hysteria
-    server: 62.210.127.177
-    port: 23880
-    auth_str: dongtaiwang.com
-    up: 100
-    down: 100
-    fast-open: true
-    protocol: udp
-    sni: bing.com
-    skip-cert-verify: true
-    alpn:
-      - h3
-  - name: 节点19
-    type: hysteria
-    server: 2001:bc8:32d7:902::6
-    port: 26691
-    auth_str: dongtaiwang.com
-    up: 100
-    down: 100
-    fast-open: true
-    protocol: udp
-    sni: bing.com
-    skip-cert-verify: true
-    alpn:
-      - h3
-  - type: vless
-    name: visa.com
-    server: visa.com
-    port: 443
-    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
-    tls: true
-    skip-cert-verify: true
-    network: ws
-    ws-opts: &ref_0
-      headers:
-        Host: less17.ytu67kht.netlib.re
-      path: /
-    servername: less17.ytu67kht.netlib.re
-  - type: vless
-    name: www.visa.com
-    server: www.visa.com
-    port: 443
-    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
-    tls: true
-    skip-cert-verify: true
-    network: ws
-    ws-opts: *ref_0
-    servername: less17.ytu67kht.netlib.re
-  - type: vless
-    name: www.visa.cn
-    server: www.visa.cn
-    port: 443
-    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
-    tls: true
-    skip-cert-verify: true
-    network: ws
-    ws-opts: *ref_0
-    servername: less17.ytu67kht.netlib.re
-  - type: vless
-    name: zoneabc.net
-    server: zoneabc.net
-    port: 443
-    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
-    tls: true
-    skip-cert-verify: true
-    network: ws
-    ws-opts: *ref_0
-    servername: less17.ytu67kht.netlib.re
-  - type: vless
-    name: youxuan.cf.090227.xyz
-    server: youxuan.cf.090227.xyz
-    port: 443
-    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
-    tls: true
-    skip-cert-verify: true
-    network: ws
-    ws-opts: *ref_0
-    servername: less17.ytu67kht.netlib.re
-  - type: vless
-    name: www.shopify.com
-    server: www.shopify.com
-    port: 443
-    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
-    tls: true
-    skip-cert-verify: true
-    network: ws
-    ws-opts: *ref_0
-    servername: less17.ytu67kht.netlib.re
-  - type: vless
-    name: store.ubi.com
-    server: store.ubi.com
-    port: 443
-    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
-    tls: true
-    skip-cert-verify: true
-    network: ws
-    ws-opts: *ref_0
-    servername: less17.ytu67kht.netlib.re
-  - type: vless
-    name: cf.tencentapp.cn
-    server: cf.tencentapp.cn
-    port: 443
-    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
-    tls: true
-    skip-cert-verify: true
-    network: ws
-    ws-opts: *ref_0
-    servername: less17.ytu67kht.netlib.re
-  - type: vless
-    name: cloudflare-dl.byoip.top
-    server: cloudflare-dl.byoip.top
-    port: 443
-    uuid: 2d9b713f-29d6-4d08-77fc-68035992bfc0
-    tls: true
-    skip-cert-verify: true
-    network: ws
-    ws-opts: *ref_0
-    servername: less17.ytu67kht.netlib.re
-
-# ================= 节点订阅 (已移除，使用静态节点) =================
-# proxy-providers:
-#   us:
-#     type: http
-#     url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/main/providers/us.yaml"
-#     interval: 3600
-#     health-check:
-#       enable: true
-#       url: http://cp.cloudflare.com/generate_204
-#       interval: 600
-
-# ================= 代理分组 =================
-proxy-groups:
-  # 注意：在静态节点模式下，我们不能直接使用 `use` 关键字。
-  # 我们需要手动列出所有的节点名称，并将其添加到分组中。
-  # 由于节点数量较多，以下分组将只使用**部分**节点作为示例，
-  # 您需要根据实际需要手动添加或使用节点选择功能。
-
-  - name: 🚀 静态节点选择
-    type: select
-    proxies:
-      - 节点1
-      - 节点2
-      - 节点3
-      - 节点4
-      - 节点5
-      - 节点6
-      - 节点7
-      - 节点8
-      - 节点9
-      - 节点10
-      - 节点11
-      - 节点12
-      - 节点13
-      - 节点14
-      - 节点15
-      - 节点16
-      - 节点17
-      - 节点18
-      - 节点19
-      - visa.com
-      - www.visa.com
-      - www.visa.cn
-      - zoneabc.net
-      - youxuan.cf.090227.xyz
-      - www.shopify.com
-      - store.ubi.com
-      - cf.tencentapp.cn
-      - cloudflare-dl.byoip.top
-      - DIRECT # 预留 DIRECT 选项
-
-  - name: ♻️ 自动选择
-    type: url-test
-    url: http://cp.cloudflare.com/generate_204
-    interval: 180
-    tolerance: 30
-    proxies:
-      - 节点1
-      - 节点2
-      - 节点3
-      - 节点4
-      - 节点5
-      - 节点6
-      - 节点7
-      - 节点8
-      - 节点9
-      - 节点10
-      - 节点11
-      - 节点12
-      - 节点13
-      - 节点14
-      - 节点15
-      - 节点16
-      - 节点17
-      - 节点18
-      - 节点19
-      - visa.com
-      - www.visa.com
-      - www.visa.cn
-      - zoneabc.net
-      - youxuan.cf.090227.xyz
-      - www.shopify.com
-      - store.ubi.com
-      - cf.tencentapp.cn
-      - cloudflare-dl.byoip.top
-  
-  # 由于移除了 proxy-providers，原先使用 `use: - us` 的分组需要改为使用具体的代理名称列表
-  - name: 🚀 节点选择
-    type: select
-    proxies:
-      - ♻️ 自动选择
-      - DIRECT
-      - 🚀 静态节点选择 # 新增静态节点选择作为备选
-
-  - name: 🇺🇸 美国节点
-    type: select
-    proxies:
-      - DIRECT
-      # 此处仅使用部分节点作为示例，您可以根据需要手动调整
-      - 节点1
-      - 节点2
-      - 节点3
-      - 节点4
-
-  - name: 🌍 国外媒体
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
-      - DIRECT
-
-  - name: 📲 电报信息
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
-      - DIRECT
-
-  - name: Ⓜ️ 微软服务
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
-
-  - name: 🍎 苹果服务
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
-      - DIRECT
-
-  - name: 📢 谷歌FCM
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
-      - DIRECT
-
-  - name: 🎯 全球直连
-    type: select
-    proxies:
-      - DIRECT
-
-  - name: 🛑 全球拦截
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-
-  - name: 🍃 应用净化
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-
-  - name: 🐟 漏网之鱼
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - 🇺🇸 美国节点
-
-# ================= 规则集 =================
-rule-providers:
-  LocalAreaNetwork:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/LocalAreaNetwork.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
-    interval: 86400
-
-  UnBan:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/UnBan.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list
-    interval: 86400
-
-  BanAD:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/BanAD.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanAD.list
-    interval: 86400
-
-  QiufengAD:
-    type: http
-    behavior: domain
-    format: yaml
-    path: ruleset/QiufengAD.yaml
-    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
-    interval: 86400
-
-  BanProgramAD:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/BanProgramAD.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list
-    interval: 86400
-  # --- 错误修正：你提供的规则集配置中缺少了其他规则，请确保它们被正确添加
-  GoogleCN:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/GoogleCN.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleCN.list
-    interval: 86400
-  SteamCN:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/SteamCN.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/SteamCN.list
-    interval: 86400
-  NetEaseMusic:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/NetEaseMusic.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/NetEaseMusic.list
-    interval: 86400
-  BilibiliHMT:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/BilibiliHMT.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BilibiliHMT.list
-    interval: 86400
-  Bilibili:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Bilibili.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bilibili.list
-    interval: 86400
-  ChinaMedia:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/ChinaMedia.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list
-    interval: 86400
-  ChinaDomain:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/ChinaDomain.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaDomain.list
-    interval: 86400
-  ChinaCompanyIp:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/ChinaCompanyIp.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaCompanyIp.list
-    interval: 86400
-  Download:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Download.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list
-    interval: 86400
-  GoogleFCM:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/GoogleFCM.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleFCM.list
-    interval: 86400
-  Bing:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Bing.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bing.list
-    interval: 86400
-  OneDrive:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/OneDrive.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OneDrive.list
-    interval: 86400
-  Microsoft:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Microsoft.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Microsoft.list
-    interval: 86400
-  Apple:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Apple.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Apple.list
-    interval: 86400
-  Telegram:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Telegram.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Telegram.list
-    interval: 86400
-  AI:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/AI.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/AI.list
-    interval: 86400
-  OpenAi:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/OpenAi.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OpenAi.list
-    interval: 86400
-  Epic:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Epic.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Epic.list
-    interval: 86400
-  Origin:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Origin.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Origin.list
-    interval: 86400
-  Sony:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Sony.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Sony.list
-    interval: 86400
-  Steam:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Steam.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Steam.list
-    interval: 86400
-  Nintendo:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Nintendo.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Nintendo.list
-    interval: 86400
-  YouTube:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/YouTube.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/YouTube.list
-    interval: 86400
-  Netflix:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Netflix.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Netflix.list
-    interval: 86400
-  Bahamut:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/Bahamut.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bahamut.list
-    interval: 86400
-  ProxyMedia:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/ProxyMedia.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyMedia.list
-    interval: 86400
-  ProxyGFWlist:
-    type: http
-    behavior: classical
-    format: text
-    path: ruleset/ProxyGFWlist.list
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list
-    interval: 86400
-
-
-# ================= 分流规则 =================
-rules:
-  - RULE-SET,LocalAreaNetwork,🎯 全球直连
-  - RULE-SET,UnBan,🎯 全球直连
-  - RULE-SET,GoogleCN,🎯 全球直连
-  - RULE-SET,SteamCN,🎯 全球直连
-  - RULE-SET,NetEaseMusic,🎯 全球直连
-  - RULE-SET,BilibiliHMT,🎯 全球直连
-  - RULE-SET,Bilibili,🎯 全球直连
-  - RULE-SET,ChinaMedia,🎯 全球直连
-  - RULE-SET,ChinaDomain,🎯 全球直连
-  - RULE-SET,ChinaCompanyIp,🎯 全球直连
-  - RULE-SET,Download,🎯 全球直连
-  - GEOIP,CN,🎯 全球直连
-  - PROCESS-NAME,subs-check*,🎯 全球直连
-  - DOMAIN-SUFFIX,umengcloud.com,🍃 应用净化
-  - DOMAIN-SUFFIX,adbiding.cn,🍃 应用净化
-  - DOMAIN-SUFFIX,wxcjgg.cn,🍃 应用净化
-  - RULE-SET,BanAD,🛑 全球拦截
-  - RULE-SET,QiufengAD,🍃 应用净化
-  - RULE-SET,BanProgramAD,🍃 应用净化
-  - RULE-SET,GoogleFCM,📢 谷歌FCM
-  - RULE-SET,Bing,Ⓜ️ 微软服务
-  - RULE-SET,OneDrive,Ⓜ️ 微软服务
-  - RULE-SET,Microsoft,Ⓜ️ 微软服务
-  - RULE-SET,Apple,🍎 苹果服务
-  - RULE-SET,Telegram,📲 电报信息
-  - RULE-SET,AI,🚀 节点选择
-  - RULE-SET,OpenAi,🚀 节点选择
-  - RULE-SET,Epic,🚀 节点选择
-  - RULE-SET,Origin,🚀 节点选择
-  - RULE-SET,Sony,🚀 节点选择
-  - RULE-SET,Steam,🚀 节点选择
-  - RULE-SET,Nintendo,🚀 节点选择
-  - RULE-SET,YouTube,🌍 国外媒体
-  - RULE-SET,Netflix,🌍 国外媒体
-  - RULE-SET,Bahamut,🌍 国外媒体
-  - RULE-SET,ProxyMedia,🌍 国外媒体
-  - RULE-SET,ProxyGFWlist,🚀 节点选择
-  - DOMAIN-SUFFIX,kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,xbmc.org,🚀 节点选择
-  - DOMAIN-SUFFIX,mirrors.kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,addons.kodi.tv,🚀 节点选择
-  - DOMAIN-SUFFIX,github.com,🚀 节点选择
-  - DOMAIN-SUFFIX,githubusercontent.com,🚀 节点选择
-  - DOMAIN-SUFFIX,raw.githubusercontent.com,🚀 节点选择
-  - DOMAIN-SUFFIX,cloudfront.net,🚀 节点选择
-  - DOMAIN-SUFFIX,akamaihd.net,🚀 节点选择
-  - DOMAIN-KEYWORD,kodi,🚀 节点选择
-  - MATCH,🐟 漏网之鱼
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "dns": {
+    "hosts": {
+      "dns.google": [
+        "8.8.8.8",
+        "8.8.4.4",
+        "2001:4860:4860::8888",
+        "2001:4860:4860::8844"
+      ],
+      "dns.alidns.com": [
+        "223.5.5.5",
+        "223.6.6.6",
+        "2400:3200::1",
+        "2400:3200:baba::1"
+      ],
+      "one.one.one.one": [
+        "1.1.1.1",
+        "1.0.0.1",
+        "2606:4700:4700::1111",
+        "2606:4700:4700::1001"
+      ],
+      "1dot1dot1dot1.cloudflare-dns.com": [
+        "1.1.1.1",
+        "1.0.0.1",
+        "2606:4700:4700::1111",
+        "2606:4700:4700::1001"
+      ],
+      "cloudflare-dns.com": [
+        "104.16.249.249",
+        "104.16.248.249",
+        "2606:4700::6810:f8f9",
+        "2606:4700::6810:f9f9"
+      ],
+      "dns.cloudflare.com": [
+        "104.16.132.229",
+        "104.16.133.229",
+        "2606:4700::6810:84e5",
+        "2606:4700::6810:85e5"
+      ],
+      "dot.pub": [
+        "1.12.12.12",
+        "120.53.53.53"
+      ],
+      "doh.pub": [
+        "1.12.12.12",
+        "120.53.53.53"
+      ],
+      "dns.quad9.net": [
+        "9.9.9.9",
+        "149.112.112.112",
+        "2620:fe::fe",
+        "2620:fe::9"
+      ],
+      "dns.yandex.net": [
+        "77.88.8.8",
+        "77.88.8.1",
+        "2a02:6b8::feed:0ff",
+        "2a02:6b8:0:1::feed:0ff"
+      ],
+      "dns.sb": [
+        "185.222.222.222",
+        "2a09::"
+      ],
+      "dns.umbrella.com": [
+        "208.67.220.220",
+        "208.67.222.222",
+        "2620:119:35::35",
+        "2620:119:53::53"
+      ],
+      "dns.sse.cisco.com": [
+        "208.67.220.220",
+        "208.67.222.222",
+        "2620:119:35::35",
+        "2620:119:53::53"
+      ],
+      "engage.cloudflareclient.com": [
+        "162.159.192.1",
+        "2606:4700:d0::a29f:c001"
+      ]
+    },
+    "servers": [
+      {
+        "address": "https://dns.alidns.com/dns-query",
+        "domains": [
+          "domain:alidns.com",
+          "domain:doh.pub",
+          "domain:dot.pub",
+          "domain:360.cn",
+          "domain:onedns.net"
+        ],
+        "skipFallback": true
+      },
+      {
+        "address": "https://cloudflare-dns.com/dns-query",
+        "domains": [
+          "geosite:google"
+        ],
+        "skipFallback": true
+      },
+      {
+        "address": "https://dns.alidns.com/dns-query",
+        "domains": [
+          "geosite:private",
+          "geosite:cn"
+        ],
+        "skipFallback": true
+      },
+      {
+        "address": "119.29.29.29",
+        "domains": [
+          "full:dns.alidns.com",
+          "full:cloudflare-dns.com"
+        ],
+        "skipFallback": true
+      },
+      "https://cloudflare-dns.com/dns-query"
+    ]
+  },
+  "inbounds": [
+    {
+      "tag": "socks",
+      "port": 10808,
+      "listen": "0.0.0.0",
+      "protocol": "mixed",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ],
+        "routeOnly": false
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true,
+        "allowTransparent": false
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "proxy",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "198.41.208.34",
+            "port": 443,
+            "users": [
+              {
+                "id": "5fbbf263-0518-446c-8ef2-13b2001aa69d",
+                "email": "t@t.tt",
+                "security": "auto",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "allowInsecure": false,
+          "serverName": "new.jisucf.cloudns.ch",
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "chrome"
+        },
+        "wsSettings": {
+          "path": "/",
+          "host": "new.jisucf.cloudns.ch",
+          "headers": {}
+        }
+      },
+      "mux": {
+        "enabled": false,
+        "concurrency": -1
+      }
+    },
+    {
+      "tag": "direct",
+      "protocol": "freedom"
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "type": "field",
+        "inboundTag": [
+          "api"
+        ],
+        "outboundTag": "api"
+      },
+      {
+        "type": "field",
+        "port": "443",
+        "network": "udp",
+        "outboundTag": "block"
+      },
+      {
+        "type": "field",
+        "outboundTag": "proxy",
+        "domain": [
+          "geosite:google"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "ip": [
+          "geoip:private"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": [
+          "geosite:private"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "ip": [
+          "223.5.5.5",
+          "223.6.6.6",
+          "2400:3200::1",
+          "2400:3200:baba::1",
+          "119.29.29.29",
+          "1.12.12.12",
+          "120.53.53.53",
+          "2402:4e00::",
+          "2402:4e00:1::",
+          "180.76.76.76",
+          "2400:da00::6666",
+          "114.114.114.114",
+          "114.114.115.115",
+          "114.114.114.119",
+          "114.114.115.119",
+          "114.114.114.110",
+          "114.114.115.110",
+          "180.184.1.1",
+          "180.184.2.2",
+          "101.226.4.6",
+          "218.30.118.6",
+          "123.125.81.6",
+          "140.207.198.6",
+          "1.2.4.8",
+          "210.2.4.8",
+          "52.80.66.66",
+          "117.50.22.22",
+          "2400:7fc0:849e:200::4",
+          "2404:c2c0:85d8:901::4",
+          "117.50.10.10",
+          "52.80.52.52",
+          "2400:7fc0:849e:200::8",
+          "2404:c2c0:85d8:901::8",
+          "117.50.60.30",
+          "52.80.60.30"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": [
+          "domain:alidns.com",
+          "domain:doh.pub",
+          "domain:dot.pub",
+          "domain:360.cn",
+          "domain:onedns.net"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "ip": [
+          "geoip:cn"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": [
+          "geosite:cn"
+        ]
+      }
+    ]
+  }
+}
