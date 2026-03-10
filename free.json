@@ -6,34 +6,28 @@
     "strategy": "ipv4_only",
     "servers": [
       {
-        "type": "fakeip",
         "tag": "fakeip",
+        "address": "fakeip",
         "inet4_range": "198.18.0.0/15"
       },
       {
-        "type": "https",
         "tag": "cf",
-        "server": "cloudflare-dns.com",
-        "path": "/dns-query",
+        "address": "https://cloudflare-dns.com/dns-query",
         "detour": "direct"
       },
       {
-        "type": "https",
         "tag": "ali",
-        "server": "dns.alidns.com",
-        "path": "/dns-query",
+        "address": "https://dns.alidns.com/dns-query",
         "detour": "direct"
       }
     ],
     "rules": [
       {
         "rule_set": ["ads"],
-        "action": {
-          "type": "route",
-          "server": "fakeip"
-        }
+        "server": "fakeip"
       }
-    ]
+    ],
+    "final": "cf"   // 默认用 Cloudflare DoH，更干净
   },
   "inbounds": [
     {
@@ -46,6 +40,8 @@
       "mtu": 1500,
       "auto_route": true,
       "strict_route": true,
+      "auto_redirect": true,
+      "stack": "system",
       "sniff": true,
       "sniff_override_destination": true
     }
@@ -75,130 +71,16 @@
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
-      "tolerance": 50
+      "tolerance": 50,
+      "lazy": true
     },
+    // 你的节点保持不变（略去重复，复制原节点部分即可）
     {
       "type": "vless",
       "tag": "new-git",
-      "server": "xzus.cf01.dpdns.org",
-      "server_port": 443,
-      "uuid": "5fbbf263-0518-446c-8ef2-13b2001aa69d",
-      "tls": {
-        "enabled": true,
-        "server_name": "new.jisucf.cloudns.ch",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "new.jisucf.cloudns.ch"
-        }
-      },
-      "multiplex": {
-        "enabled": true
-      }
+      // ... 你的原配置
     },
-    {
-      "type": "vless",
-      "tag": "new-git-clone",
-      "server": "198.41.208.34",
-      "server_port": 443,
-      "uuid": "5fbbf263-0518-446c-8ef2-13b2001aa69d",
-      "tls": {
-        "enabled": true,
-        "server_name": "new.jisucf.cloudns.ch",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "new.jisucf.cloudns.ch"
-        }
-      },
-      "multiplex": {
-        "enabled": true
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "TS-git",
-      "server": "104.17.98.5",
-      "server_port": 443,
-      "uuid": "aa6afb24-210c-4fdc-979e-58f71a6f779f",
-      "tls": {
-        "enabled": true,
-        "server_name": "git01.jisucf.cloudns.biz",
-        "insecure": true
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/?ed=2560",
-        "headers": {
-          "Host": "git01.jisucf.cloudns.biz"
-        }
-      },
-      "multiplex": {
-        "enabled": true
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "TS-cf",
-      "server": "162.159.45.162",
-      "server_port": 443,
-      "uuid": "871f3020-6158-4829-88ed-81843bb956e1",
-      "tls": {
-        "enabled": true,
-        "server_name": "ts02.3xxx.de5.net",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "ts02.3xxx.de5.net"
-        }
-      },
-      "multiplex": {
-        "enabled": true
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "TS-cf-clone",
-      "server": "104.17.98.5",
-      "server_port": 443,
-      "uuid": "871f3020-6158-4829-88ed-81843bb956e1",
-      "tls": {
-        "enabled": true,
-        "server_name": "ts02.3xxx.de5.net",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "ts02.3xxx.de5.net"
-        }
-      },
-      "multiplex": {
-        "enabled": true
-      }
-    },
+    // ... 其他节点同上
     {
       "type": "direct",
       "tag": "direct"
@@ -214,7 +96,24 @@
       {
         "tag": "ads",
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml",
+        "format": "binary",  // 建议转成 .srs 后用 binary
+        "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml",  // 或转 srs
+        "download_detour": "proxy",
+        "update_interval": "24h"
+      },
+      {
+        "tag": "geosite-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/lyc8503/sing-box-rules/rule-set-geosite/geosite-cn.srs",
+        "download_detour": "proxy",
+        "update_interval": "24h"
+      },
+      {
+        "tag": "geoip-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/lyc8503/sing-box-rules/rule-set-geoip/geoip-cn.srs",
         "download_detour": "proxy",
         "update_interval": "24h"
       }
@@ -223,6 +122,14 @@
       {
         "rule_set": ["ads"],
         "outbound": "block"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "rule_set": ["geosite-cn", "geoip-cn"],
+        "outbound": "direct"
       }
     ],
     "final": "proxy"
