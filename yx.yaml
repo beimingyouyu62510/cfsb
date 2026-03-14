@@ -57,24 +57,24 @@ proxies:
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     tls: true
-    servername: new.jisucf.cloudns.ch
+    servername: newgit.jisucf.cloudns.ch
     network: ws
     ws-opts:
       path: /
       headers:
-        Host: new.jisucf.cloudns.ch
+        Host: newgit.jisucf.cloudns.ch
   - name: "new1-git"
     type: vless
     server: xzus.cf01.dpdns.org
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     tls: true
-    servername: new.jisucf.cloudns.ch
+    servername: newgit.jisucf.cloudns.ch
     network: ws
     ws-opts:
       path: /
       headers:
-        Host: new.jisucf.cloudns.ch     
+        Host: newgit.jisucf.cloudns.ch
   - name: "myvl"
     type: vless
     server: xzus.cf01.dpdns.org
