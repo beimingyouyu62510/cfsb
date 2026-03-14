@@ -1,5 +1,5 @@
-vless://5fbbf263-0518-446c-8ef2-13b2001aa69d@xzus.cf01.dpdns.org:443?encryption=none&security=tls&sni=new.jisucf.cloudns.ch&fp=chrome&alpn=http%2F1.1&insecure=0&allowInsecure=0&type=ws&host=new.jisucf.cloudns.ch&path=%2F#new-git
-vless://5fbbf263-0518-446c-8ef2-13b2001aa69d@198.41.208.34:443?encryption=none&security=tls&sni=new.jisucf.cloudns.ch&fp=chrome&alpn=http%2F1.1&insecure=0&allowInsecure=0&type=ws&host=new.jisucf.cloudns.ch&path=%2F#new-git-clone
+vless://5fbbf263-0518-446c-8ef2-13b2001aa69d@xzus.cf01.dpdns.org:443?encryption=none&security=tls&sni=newgit.jisucf.cloudns.ch&fp=chrome&alpn=http%2F1.1&insecure=0&allowInsecure=0&type=ws&host=newgit.jisucf.cloudns.ch&path=%2F#new-git
+vless://5fbbf263-0518-446c-8ef2-13b2001aa69d@104.17.98.5:443?encryption=none&security=tls&sni=newgit.jisucf.cloudns.ch&fp=chrome&alpn=http%2F1.1&insecure=0&allowInsecure=0&type=ws&host=newgit.jisucf.cloudns.ch&path=%2F#new-git-clone
 vless://aa6afb24-210c-4fdc-979e-58f71a6f779f@104.17.98.5:443?encryption=none&security=tls&sni=git01.jisucf.cloudns.biz&insecure=1&allowInsecure=1&type=ws&host=git01.jisucf.cloudns.biz&path=%2F%3Fed%3D2560#TS-git
 vless://871f3020-6158-4829-88ed-81843bb956e1@162.159.45.162:443?encryption=none&security=tls&sni=ts02.3xxx.de5.net&fp=chrome&alpn=http%2F1.1&insecure=0&allowInsecure=0&type=ws&host=ts02.3xxx.de5.net&path=%2F#TS-cf
-vless://871f3020-6158-4829-88ed-81843bb956e1@104.17.98.5:443?encryption=none&security=tls&sni=ts02.3xxx.de5.net&fp=chrome&alpn=http%2F1.1&insecure=0&allowInsecure=0&type=ws&host=ts02.3xxx.de5.net&path=%2F#TS-cf-clone
+vless://5b5e1ef4-7844-4911-b257-ba660c3a3df1@104.17.98.5:443?encryption=none&security=tls&sni=vl.yxip.de5.net&fp=chrome&insecure=1&allowInsecure=1&type=ws&host=vl.yxip.de5.net&path=%2F#myvl
