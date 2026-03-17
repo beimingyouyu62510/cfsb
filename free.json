@@ -1,517 +1,294 @@
 {
   "log": {
-    "level": "panic",
-    "output": "../run/sing-box.log",
-    "timestamp": true
+    "loglevel": "warning"
   },
   "dns": {
+    "hosts": {
+      "dns.google": [
+        "8.8.8.8",
+        "8.8.4.4",
+        "2001:4860:4860::8888",
+        "2001:4860:4860::8844"
+      ],
+      "dns.alidns.com": [
+        "223.5.5.5",
+        "223.6.6.6",
+        "2400:3200::1",
+        "2400:3200:baba::1"
+      ],
+      "one.one.one.one": [
+        "1.1.1.1",
+        "1.0.0.1",
+        "2606:4700:4700::1111",
+        "2606:4700:4700::1001"
+      ],
+      "1dot1dot1dot1.cloudflare-dns.com": [
+        "1.1.1.1",
+        "1.0.0.1",
+        "2606:4700:4700::1111",
+        "2606:4700:4700::1001"
+      ],
+      "cloudflare-dns.com": [
+        "104.16.249.249",
+        "104.16.248.249",
+        "2606:4700::6810:f8f9",
+        "2606:4700::6810:f9f9"
+      ],
+      "dns.cloudflare.com": [
+        "104.16.132.229",
+        "104.16.133.229",
+        "2606:4700::6810:84e5",
+        "2606:4700::6810:85e5"
+      ],
+      "dot.pub": [
+        "1.12.12.12",
+        "120.53.53.53"
+      ],
+      "doh.pub": [
+        "1.12.12.12",
+        "120.53.53.53"
+      ],
+      "dns.quad9.net": [
+        "9.9.9.9",
+        "149.112.112.112",
+        "2620:fe::fe",
+        "2620:fe::9"
+      ],
+      "dns.yandex.net": [
+        "77.88.8.8",
+        "77.88.8.1",
+        "2a02:6b8::feed:0ff",
+        "2a02:6b8:0:1::feed:0ff"
+      ],
+      "dns.sb": [
+        "185.222.222.222",
+        "2a09::"
+      ],
+      "dns.umbrella.com": [
+        "208.67.220.220",
+        "208.67.222.222",
+        "2620:119:35::35",
+        "2620:119:53::53"
+      ],
+      "dns.sse.cisco.com": [
+        "208.67.220.220",
+        "208.67.222.222",
+        "2620:119:35::35",
+        "2620:119:53::53"
+      ],
+      "engage.cloudflareclient.com": [
+        "162.159.192.1"
+      ]
+    },
     "servers": [
       {
-        "type": "udp",
-        "tag": "dns-default",
-        "server": "223.5.5.5",
-        "server_port": 53
-      },
-      {
-        "type": "quic",
-        "tag": "dns-ali",
-        "domain_resolver": "dns-default",
-        "server": "dns.alidns.com"
-      },
-      {
-        "type": "h3",
-        "tag": "dns-cloudflare",
-        "domain_resolver": "dns-default",
-        "server": "cloudflare-dns.com"
-      },
-      {
-        "type": "fakeip",
-        "tag": "dns-fakeip",
-        "inet4_range": "28.0.0.1/8",
-        "inet6_range": "fc00::/18"
-      }
-    ],
-    "rules": [
-      {
-        "clash_mode": "direct",
-        "server": "dns-ali"
-      },
-      {
-        "clash_mode": "global",
-        "server": "dns-cloudflare"
-      },
-      {
-        "rule_set": "fakeip-filter",
-        "server": "dns-cloudflare"
-      },
-      {
-        "rule_set": "cn_domain",
-        "server": "dns-ali"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
+        "address": "https://dns.alidns.com/dns-query",
+        "domains": [
+          "domain:alidns.com",
+          "domain:doh.pub",
+          "domain:dot.pub",
+          "domain:360.cn",
+          "domain:onedns.net"
         ],
-        "server": "dns-fakeip"
-      }
-    ],
-    "final": "dns-cloudflare",
-    "reverse_mapping": true
+        "skipFallback": true
+      },
+      {
+        "address": "https://cloudflare-dns.com/dns-query",
+        "domains": [
+          "geosite:google"
+        ],
+        "skipFallback": true
+      },
+      {
+        "address": "https://dns.alidns.com/dns-query",
+        "domains": [
+          "geosite:private",
+          "geosite:cn"
+        ],
+        "skipFallback": true
+      },
+      {
+        "address": "119.29.29.29",
+        "domains": [
+          "full:dns.alidns.com",
+          "full:cloudflare-dns.com"
+        ],
+        "skipFallback": true
+      },
+      "https://cloudflare-dns.com/dns-query"
+    ]
   },
   "inbounds": [
     {
-      "type": "mixed",
-      "listen": "::",
-      "listen_port": 7890
-    },
-    {
-      "type": "tproxy",
-      "tag": "tproxy-in",
-      "listen": "::",
-      "listen_port": 9898
-    },
-    {
-      "type": "redirect",
-      "tag": "redirect-in",
-      "listen": "::",
-      "listen_port": 9797
+      "tag": "socks",
+      "port": 10808,
+      "listen": "0.0.0.0",
+      "protocol": "mixed",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ],
+        "routeOnly": false
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true,
+        "allowTransparent": false
+      }
     }
   ],
   "outbounds": [
     {
-      "type": "selector",
-      "tag": "Emby",
-      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
-    },
-    {
-      "type": "selector",
-      "tag": "Ai",
-      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
-    },
-    {
-      "type": "selector",
-      "tag": "Telegram",
-      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
-    },
-    {
-      "type": "selector",
-      "tag": "CloudFlare",
-      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
-    },
-    {
-      "type": "selector",
-      "tag": "GoogleFCM",
-      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
-    },
-    {
-      "type": "selector",
-      "tag": "Google",
-      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
-    },
-    {
-      "type": "selector",
-      "tag": "Microsoft",
-      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
-    },
-    {
-      "type": "selector",
-      "tag": "CN",
-      "outbounds": ["direct", "Manual", "Auto", "HK", "TW", "JP", "SG", "US"]
-    },
-    {
-      "type": "direct",
-      "tag": "direct"
-    },
-    {
-      "type": "selector",
-      "tag": "Final",
-      "outbounds": ["Main", "Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
-    },
-    {
-      "type": "selector",
-      "tag": "Main",
-      "outbounds": ["Manual", "Auto", "HK", "TW", "JP", "SG", "US", "CN"]
-    },
-    {
-      "type": "selector",
-      "tag": "Manual",
-      "outbounds": ["new-git", "new-git-clone", "TS-git", "TS-cf", "TS-cf-clone"]
-    },
-    {
-      "type": "urltest",
-      "tag": "Auto",
-      "outbounds": ["new-git", "new-git-clone", "TS-git", "TS-cf", "TS-cf-clone"],
-      "url": "https://cp.cloudflare.com",
-      "interval": "2m0s",
-      "tolerance": 50
-    },
-    {
-      "type": "selector",
-      "tag": "HK",
-      "outbounds": ["Manual"],
-      "include": "香港|hong kong|hk|hksar",
-      "use_all_providers": true
-    },
-    {
-      "type": "selector",
-      "tag": "TW",
-      "outbounds": ["Manual"],
-      "include": "台湾|taiwan|tw|twn|台北|taipei|高雄|kaohsiung|台中|taichung|新北|new taipei",
-      "use_all_providers": true
-    },
-    {
-      "type": "selector",
-      "tag": "JP",
-      "outbounds": ["Manual"],
-      "include": "日本|japan|jpn|jp|tokyo|大阪|osaka|京都|kyoto|福冈|fukuoka|札幌|sapporo|名古屋|nagoya",
-      "use_all_providers": true
-    },
-    {
-      "type": "selector",
-      "tag": "SG",
-      "outbounds": ["Manual"],
-      "include": "新加坡|狮城|singapore|sg|sgp",
-      "use_all_providers": true
-    },
-    {
-      "type": "selector",
-      "tag": "US",
-      "outbounds": ["Manual"],
-      "include": "美国|united states|usa|us|america|加州|california|纽约|new york|德克萨斯|texas|佛罗里达|florida|华盛顿|washington|芝加哥|chicago|洛杉矶|los angeles|旧金山|san francisco",
-      "use_all_providers": true
-    },
-    {
-      "type": "vless",
-      "tag": "new-git",
-      "server": "xzus.cf01.dpdns.org",
-      "server_port": 443,
-      "uuid": "5fbbf263-0518-446c-8ef2-13b2001aa69d",
-      "tls": {
-        "enabled": true,
-        "server_name": "new.jisucf.cloudns.ch",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
+      "tag": "proxy",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.17.97.5",
+            "port": 443,
+            "users": [
+              {
+                "id": "49ccad64-c854-4f33-b334-793cf0d02b74",
+                "email": "t@t.tt",
+                "security": "auto",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "allowInsecure": false,
+          "serverName": "newcx.jisucf.cloudns.ch"
         },
-        "alpn": ["http/1.1"],
-        "insecure": false
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "new.jisucf.cloudns.ch"
+        "wsSettings": {
+          "path": "/",
+          "host": "newcx.jisucf.cloudns.ch",
+          "headers": {}
         }
       },
-      "multiplex": {
-        "enabled": true
+      "mux": {
+        "enabled": false,
+        "concurrency": -1
       }
     },
     {
-      "type": "vless",
-      "tag": "new-git-clone",
-      "server": "198.41.208.34",
-      "server_port": 443,
-      "uuid": "5fbbf263-0518-446c-8ef2-13b2001aa69d",
-      "tls": {
-        "enabled": true,
-        "server_name": "new.jisucf.cloudns.ch",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "alpn": ["http/1.1"],
-        "insecure": false
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "new.jisucf.cloudns.ch"
-        }
-      },
-      "multiplex": {
-        "enabled": true
-      }
+      "tag": "direct",
+      "protocol": "freedom"
     },
     {
-      "type": "vless",
-      "tag": "TS-git",
-      "server": "104.17.98.5",
-      "server_port": 443,
-      "uuid": "aa6afb24-210c-4fdc-979e-58f71a6f779f",
-      "tls": {
-        "enabled": true,
-        "server_name": "git01.jisucf.cloudns.biz",
-        "insecure": true
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/?ed=2560",
-        "headers": {
-          "Host": "git01.jisucf.cloudns.biz"
-        }
-      },
-      "multiplex": {
-        "enabled": true
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "TS-cf",
-      "server": "162.159.45.162",
-      "server_port": 443,
-      "uuid": "871f3020-6158-4829-88ed-81843bb956e1",
-      "tls": {
-        "enabled": true,
-        "server_name": "ts02.3xxx.de5.net",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "alpn": ["http/1.1"],
-        "insecure": false
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "ts02.3xxx.de5.net"
-        }
-      },
-      "multiplex": {
-        "enabled": true
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "TS-cf-clone",
-      "server": "104.17.98.5",
-      "server_port": 443,
-      "uuid": "871f3020-6158-4829-88ed-81843bb956e1",
-      "tls": {
-        "enabled": true,
-        "server_name": "ts02.3xxx.de5.net",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "alpn": ["http/1.1"],
-        "insecure": false
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "ts02.3xxx.de5.net"
-        }
-      },
-      "multiplex": {
-        "enabled": true
-      }
+      "tag": "block",
+      "protocol": "blackhole"
     }
   ],
-  "providers": [
-    {
-      "type": "remote",
-      "tag": "provider_1",
-      "url": "http://127.0.0.1:3000/download/%E8%8A%B1%E4%BA%91",
-      "download_detour": "direct",
-      "health_check": {
-        "enabled": true,
-        "url": "https://cp.cloudflare.com"
-      }
-    }
-  ],
-  "route": {
+  "routing": {
+    "domainStrategy": "AsIs",
     "rules": [
       {
-        "action": "sniff"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
+        "type": "field",
+        "inboundTag": [
+          "api"
         ],
-        "action": "hijack-dns"
+        "outboundTag": "api"
       },
       {
-        "ip_is_private": true,
-        "outbound": "CN"
+        "type": "field",
+        "port": "443",
+        "network": "udp",
+        "outboundTag": "block"
       },
       {
-        "rule_set": "Emby",
-        "outbound": "Emby"
+        "type": "field",
+        "outboundTag": "proxy",
+        "domain": [
+          "geosite:google"
+        ]
       },
       {
-        "rule_set": "Ai",
-        "outbound": "Ai"
+        "type": "field",
+        "outboundTag": "direct",
+        "ip": [
+          "geoip:private"
+        ]
       },
       {
-        "rule_set": ["Telegram-ip", "Telegram-domain"],
-        "outbound": "Telegram"
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": [
+          "geosite:private"
+        ]
       },
       {
-        "rule_set": ["cloudflare_ip", "cloudflare_domain"],
-        "outbound": "CloudFlare"
+        "type": "field",
+        "outboundTag": "direct",
+        "ip": [
+          "223.5.5.5",
+          "223.6.6.6",
+          "2400:3200::1",
+          "2400:3200:baba::1",
+          "119.29.29.29",
+          "1.12.12.12",
+          "120.53.53.53",
+          "2402:4e00::",
+          "2402:4e00:1::",
+          "180.76.76.76",
+          "2400:da00::6666",
+          "114.114.114.114",
+          "114.114.115.115",
+          "114.114.114.119",
+          "114.114.115.119",
+          "114.114.114.110",
+          "114.114.115.110",
+          "180.184.1.1",
+          "180.184.2.2",
+          "101.226.4.6",
+          "218.30.118.6",
+          "123.125.81.6",
+          "140.207.198.6",
+          "1.2.4.8",
+          "210.2.4.8",
+          "52.80.66.66",
+          "117.50.22.22",
+          "2400:7fc0:849e:200::4",
+          "2404:c2c0:85d8:901::4",
+          "117.50.10.10",
+          "52.80.52.52",
+          "2400:7fc0:849e:200::8",
+          "2404:c2c0:85d8:901::8",
+          "117.50.60.30",
+          "52.80.60.30"
+        ]
       },
       {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "domain_suffix": [
-              "mtalk.google.com",
-              "alt1-mtalk.google.com",
-              "alt2-mtalk.google.com",
-              "alt3-mtalk.google.com",
-              "alt4-mtalk.google.com",
-              "alt5-mtalk.google.com",
-              "alt6-mtalk.google.com",
-              "alt7-mtalk.google.com",
-              "alt8-mtalk.google.com"
-            ]
-          },
-          {
-            "port": 443
-          }
-        ],
-        "outbound": "GoogleFCM"
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": [
+          "domain:alidns.com",
+          "domain:doh.pub",
+          "domain:dot.pub",
+          "domain:360.cn",
+          "domain:onedns.net"
+        ]
       },
       {
-        "port": 5228,
-        "outbound": "GoogleFCM"
+        "type": "field",
+        "outboundTag": "direct",
+        "ip": [
+          "geoip:cn"
+        ]
       },
       {
-        "rule_set": ["google_ip", "google_domain"],
-        "outbound": "Google"
-      },
-      {
-        "rule_set": "microsoft_domain",
-        "outbound": "Microsoft"
-      },
-      {
-        "clash_mode": "Rule",
-        "rule_set": "awavenue",
-        "action": "reject"
-      },
-      {
-        "rule_set": ["cn_ip", "cn_domain"],
-        "outbound": "CN"
-      },
-      {
-        "clash_mode": "direct",
-        "outbound": "CN"
-      },
-      {
-        "clash_mode": "global",
-        "outbound": "Main"
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": [
+          "geosite:cn"
+        ]
       }
-    ],
-    "rule_set": [
-      {
-        "type": "remote",
-        "tag": "Emby",
-        "url": "https://gh-proxy.com/gist.githubusercontent.com/misak10/975a9f9b0ff00fe9c4b3ed6bdb976385/raw/emby.json",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "Ai",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/DustinWin/ruleset_geodata/refs/heads/sing-box-ruleset/ai.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "fakeip-filter",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/DustinWin/ruleset_geodata/refs/heads/sing-box-ruleset/fakeip-filter.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "Telegram-ip",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/telegram.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "Telegram-domain",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/telegram.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "cloudflare_ip",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cloudflare.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "cloudflare_domain",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/cloudflare.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "google_ip",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/google.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "google_domain",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "microsoft_domain",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/microsoft.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "awavenue",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "cn_ip",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "cn_domain",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/cn.srs",
-        "download_detour": "direct"
-      }
-    ],
-    "final": "Final",
-    "auto_detect_interface": false,
-    "default_domain_resolver": "dns-cloudflare"
-  },
-  "experimental": {
-    "cache_file": {
-      "enabled": true,
-      "path": "cache.db",
-      "store_fakeip": true,
-      "store_rdrc": true,
-      "rdrc_timeout": "24h0m0s"
-    },
-    "clash_api": {
-      "external_controller": "0.0.0.0:9999",
-      "external_ui": "dashboard",
-      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
-      "secret": "misaki"
-    }
+    ]
   }
 }
