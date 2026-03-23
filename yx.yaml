@@ -75,25 +75,25 @@ proxies:
       path: /
       headers:
         Host: newcx.jisucf.cloudns.ch
-  - name: "myvl"
-    type: vless
-    server: xzus.cf01.dpdns.org
+  - name: "icmp9"
+    type: vmess
+    server: 104.17.97.5
     port: 443
-    uuid: 5b5e1ef4-7844-4911-b257-ba660c3a3df1
+    uuid: 73e1131e-ad68-4c14-8be1-ad8fcbc938ee
     tls: true
-    servername: vl.yxip.de5.net
+    servername: sin.ysy.de5.net
     network: ws
     ws-opts:
       path: /
       headers:
-        Host: vl.yxip.de5.net
+        Host: sin.ysy.de5.net
 proxy-groups:
   - name: 🎮 PoE专线 # 新增：游戏专用组，用于手动选择最稳定节点，杜绝自动切换
     type: select
     proxies:
       - "new-git"
       - "new-cf"
-      - "myvl"
+      - "icmp9"
       - "TS-git"
       - "TS-cf"
   - name: ♻️ 自动选择
@@ -104,7 +104,7 @@ proxy-groups:
     proxies:
       - "new-git"
       - "new-cf"
-      - "myvl"
+      - "icmp9"
       - "TS-git"
       - "TS-cf"
   - name: 🚀 节点选择
