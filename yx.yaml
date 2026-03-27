@@ -1,12 +1,10 @@
 # -------------------------------------------------------------------
-# Mihomo (Clash Meta) 极客硬核配置 - 节点全自适应版
-# 核心逻辑：锚点复用 / 订阅全量展开 / 异步分流规则
+# Mihomo (Clash Meta) 极客硬核配置 - 最终全自适应版
+# 核心逻辑：内置Hosts硬解析 / CDN镜像加速 / 节点全自动展开
 # -------------------------------------------------------------------
 
-# 1. 锚点定义 (全局逻辑复用，修改此处全局生效)
-# pr 定义了所有应用分组（如 YouTube/Google）可选的范围
+# 1. 锚点定义
 pr: &pr { type: select, proxies: [节点选择, 自动选择, 全部节点, DIRECT] }
-# p 定义了订阅更新和健康检查的标准
 p: &p { type: http, interval: 3600, health-check: { enable: true, url: https://cp.cloudflare.com, interval: 300, timeout: 1000 } }
 
 # 2. 基础全局配置
@@ -17,15 +15,12 @@ allow-lan: true
 mixed-port: 7890
 unified-delay: true
 tcp-concurrent: true
-find-process-mode: strict
 global-client-fingerprint: chrome
 
-# 3. DNS 嗅探与解析 (硬核 Fake-IP 模式)
-sniffer:
-  enable: true
-  sniff:
-    TLS: { ports: [443, 8443] }
-    HTTP: { ports: [80, 8080-8880], override-destination: true }
+# 3. DNS 与 Hosts 硬解析 (解决 DNS Resolve Failed 报错)
+hosts:
+  'raw.githubusercontent.com': [185.199.108.133, 185.199.109.133, 185.199.110.133, 185.199.111.133]
+  'ghfast.top': [115.236.137.154]
 
 dns:
   enable: true
@@ -44,25 +39,21 @@ dns:
     "geosite:cn,private": [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
     "geosite:!cn": ["https://dns.cloudflare.com/dns-query", "https://dns.google/dns-query"]
 
-# 4. 远程订阅源 (填入你的 GitHub Raw 链接)
+# 4. 远程订阅源 (已增加 CDN 加速前缀)
 proxy-providers:
   我的订阅:
     <<: *p
-    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
+    url: "https://ghfast.top/https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
     path: ./proxy_provider/nodes.yaml
 
-# 5. 策略组 (核心改动：自适应任何节点名称)
+# 5. 策略组 (自适应任何节点名称)
 proxy-groups:
-  # 总开关：直接展示订阅里的所有具体节点
-  - { name: 节点选择, type: select, use: [我的订阅], proxies: [自动选择, 全部节点, DIRECT], allow-empty: true}
+  - { name: 节点选择, type: select, use: [我的订阅], proxies: [自动选择, 全部节点, DIRECT], allow-empty: true }
   
-  # 自动测速：自动选出延迟最低的节点（自适应）
   - { name: 自动选择, type: url-test, use: [我的订阅], tolerance: 50, interval: 300, allow-empty: true }
 
-  # 全部节点：备用手动选择列表
-  - { name: 全部节点, type: select, use: [我的订阅] }
+  - { name: 全部节点, type: select, use: [我的订阅], allow-empty: true }
 
-  # 应用分流组 (使用锚点快速构建，逻辑全部指向“节点选择”)
   - { name: 境外AI, <<: *pr }
   - { name: Telegram, <<: *pr }
   - { name: Google, <<: *pr }
@@ -73,12 +64,12 @@ proxy-groups:
   - { name: 国内流量, type: select, proxies: [DIRECT, 节点选择] }
   - { name: 漏网之鱼, <<: *pr }
 
-# 6. 规则集 (Rule Providers - 异步加载)
+# 6. 规则集 (已增加 CDN 加速前缀)
 rule-providers:
   ads:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
+    url: "https://ghfast.top/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
     path: ./ruleset/ads.yaml
     interval: 86400
 
