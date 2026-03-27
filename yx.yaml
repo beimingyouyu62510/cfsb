@@ -1,14 +1,21 @@
-# -------------------------------------------------------------------
-# Mihomo (Clash Meta) 深度修复版 - 2026 最终修正
-# 修复重点：DNS硬解析、Provider引用逻辑、策略组兼容性
-# -------------------------------------------------------------------
+# --------------------------------------------------
+# Mihomo 稳定增强版（2026优化）
+# 适用于 Clash Verge / Mihomo 内核
+# --------------------------------------------------
 
-# 1. 锚点定义 (极客复用逻辑)
-p: &p { type: http, interval: 3600, health-check: { enable: true, url: https://cp.cloudflare.com, interval: 300, timeout: 5000 } }
+# 1. 锚点（复用）
+p: &p
+  type: http
+  interval: 3600
+  health-check:
+    enable: true
+    url: https://cp.cloudflare.com
+    interval: 300
+    timeout: 5000
 
-# 2. 基础全局配置
+# 2. 全局配置
 mode: rule
-ipv6: true
+ipv6: false
 log-level: info
 allow-lan: true
 mixed-port: 7890
@@ -16,55 +23,71 @@ unified-delay: true
 tcp-concurrent: true
 global-client-fingerprint: chrome
 
-# 3. DNS 与 Hosts 强力硬解析 (防止 dns resolve failed)
-hosts:
-  'raw.githubusercontent.com': [185.199.108.133, 185.199.109.133, 185.199.110.133, 185.199.111.133]
-  'ghfast.top': [115.236.137.154]
+# 3. Geo 数据（关键修复）
+geodata-mode: true
+geox-url:
+  geoip: "https://github.com/Loyalsoldier/geoip/releases/latest/download/geoip.dat"
+  geosite: "https://github.com/Loyalsoldier/geosite/releases/latest/download/geosite.dat"
 
+# 4. DNS（防污染增强）
 dns:
   enable: true
   listen: :1053
-  ipv6: true
+  ipv6: false
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.1/8
-  default-nameserver: [223.5.5.5, 119.29.29.29]
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
   nameserver:
-    - 'https://doh.pub/dns-query'
-    - 'https://dns.alidns.com/dns-query'
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  fallback:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
 
-# 4. 远程订阅源 (核心修改点)
+# 5. 订阅
 proxy-providers:
   我的订阅:
     <<: *p
-    # 使用 ghfast 镜像，并确保 URL 路径完全正确
     url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
     path: ./proxy_provider/nodes.yaml
 
-# 5. 策略组 (深度优化后的引用逻辑)
+# 6. 策略组
 proxy-groups:
-  # 总开关：核心是使用 use 引用 provider
   - name: 节点选择
     type: select
-    use: 
+    use:
       - 我的订阅
     proxies:
       - 自动选择
-      - 全部节点
+      - 故障转移
       - DIRECT
 
   - name: 自动选择
     type: url-test
-    use: 
+    use:
       - 我的订阅
+    url: https://www.gstatic.com/generate_204
+    interval: 300
     tolerance: 50
+
+  - name: 故障转移
+    type: fallback
+    use:
+      - 我的订阅
+    url: https://www.gstatic.com/generate_204
     interval: 300
 
   - name: 全部节点
     type: select
-    use: 
+    use:
       - 我的订阅
 
-  # 各 App 分组：统一指回“节点选择”
+  # 分流组
   - { name: 境外AI, type: select, proxies: [节点选择, 自动选择, DIRECT] }
   - { name: Telegram, type: select, proxies: [节点选择, 自动选择] }
   - { name: Google, type: select, proxies: [节点选择, 自动选择] }
@@ -75,17 +98,27 @@ proxy-groups:
   - { name: 国内流量, type: select, proxies: [DIRECT, 节点选择] }
   - { name: 漏网之鱼, type: select, proxies: [节点选择, 自动选择, DIRECT] }
 
-# 6. 规则集
+# 7. 规则集（全部换成 YAML 版）
 rule-providers:
   ads:
     type: http
     behavior: domain
-    url: "https://ghfast.top/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.yaml"
     path: ./ruleset/ads.yaml
     interval: 86400
 
+  cn:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cn.yaml"
+    path: ./ruleset/cn.yaml
+    interval: 86400
+
+# 8. 规则
 rules:
   - RULE-SET,ads,广告拦截
+  - RULE-SET,cn,国内流量
+
   - GEOSITE,category-scholar-!cn,境外AI
   - GEOSITE,github,GitHub
   - GEOSITE,telegram,Telegram
@@ -93,6 +126,7 @@ rules:
   - GEOSITE,google,Google
   - GEOSITE,microsoft,微软服务
   - GEOSITE,apple,微软服务
-  - GEOSITE,CN,国内流量
+
   - GEOIP,CN,国内流量
+
   - MATCH,漏网之鱼
