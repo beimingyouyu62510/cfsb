@@ -1,9 +1,8 @@
 # --------------------------------------------------
-# Mihomo 稳定增强版（2026优化）
-# 适用于 Clash Verge / Mihomo 内核
+# Mihomo 稳定增强版（2026最终优化版）
 # --------------------------------------------------
 
-# 1. 锚点（复用）
+# 1. 锚点
 p: &p
   type: http
   interval: 3600
@@ -26,10 +25,13 @@ global-client-fingerprint: chrome
 # 3. Geo 数据（关键修复）
 geodata-mode: true
 geox-url:
-  geoip: "https://github.com/Loyalsoldier/geoip/releases/latest/download/geoip.dat"
-  geosite: "https://github.com/Loyalsoldier/geosite/releases/latest/download/geosite.dat"
+  geoip: "https://ghfast.top/https://github.com/Loyalsoldier/geoip/releases/latest/download/geoip.dat"
+  geosite: "https://ghfast.top/https://github.com/Loyalsoldier/geosite/releases/latest/download/geosite.dat"
 
-# 4. DNS（防污染增强）
+# 4. DNS 与 Hosts (解决解析失败的关键)
+hosts:
+  'raw.githubusercontent.com': [185.199.108.133, 185.199.109.133, 185.199.110.133, 185.199.111.133]
+
 dns:
   enable: true
   listen: :1053
@@ -49,43 +51,40 @@ dns:
     geoip: true
     geoip-code: CN
 
-# 5. 订阅
+# 5. 订阅（建议加上镜像前缀，防止直连 GitHub 失败）
 proxy-providers:
   我的订阅:
     <<: *p
-    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
+    url: "https://ghfast.top/https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
     path: ./proxy_provider/nodes.yaml
 
 # 6. 策略组
 proxy-groups:
   - name: 节点选择
     type: select
-    use:
-      - 我的订阅
-    proxies:
-      - 自动选择
-      - 故障转移
-      - DIRECT
+    use: [我的订阅]
+    allow-empty: true
+    proxies: [自动选择, 故障转移, DIRECT]
 
   - name: 自动选择
     type: url-test
-    use:
-      - 我的订阅
+    use: [我的订阅]
+    allow-empty: true
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
 
   - name: 故障转移
     type: fallback
-    use:
-      - 我的订阅
+    use: [我的订阅]
+    allow-empty: true
     url: https://www.gstatic.com/generate_204
     interval: 300
 
   - name: 全部节点
     type: select
-    use:
-      - 我的订阅
+    use: [我的订阅]
+    allow-empty: true
 
   # 分流组
   - { name: 境外AI, type: select, proxies: [节点选择, 自动选择, DIRECT] }
@@ -98,19 +97,19 @@ proxy-groups:
   - { name: 国内流量, type: select, proxies: [DIRECT, 节点选择] }
   - { name: 漏网之鱼, type: select, proxies: [节点选择, 自动选择, DIRECT] }
 
-# 7. 规则集（全部换成 YAML 版）
+# 7. 规则集（使用镜像加速）
 rule-providers:
   ads:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.yaml"
+    url: "https://ghfast.top/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.yaml"
     path: ./ruleset/ads.yaml
     interval: 86400
 
   cn:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cn.yaml"
+    url: "https://ghfast.top/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cn.yaml"
     path: ./ruleset/cn.yaml
     interval: 86400
 
@@ -118,7 +117,6 @@ rule-providers:
 rules:
   - RULE-SET,ads,广告拦截
   - RULE-SET,cn,国内流量
-
   - GEOSITE,category-scholar-!cn,境外AI
   - GEOSITE,github,GitHub
   - GEOSITE,telegram,Telegram
@@ -126,7 +124,5 @@ rules:
   - GEOSITE,google,Google
   - GEOSITE,microsoft,微软服务
   - GEOSITE,apple,微软服务
-
   - GEOIP,CN,国内流量
-
   - MATCH,漏网之鱼
