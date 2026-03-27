@@ -4,18 +4,21 @@ proxies:
     server: xzus.cf01.dpdns.org
     port: 443
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
+    udp: true
     tls: true
     servername: git01.jisucf.cloudns.biz
     network: ws
     ws-opts:
-        path: /?ed=2560
-        headers:
-          Host: git01.jisucf.cloudns.biz
+      path: /?ed=2560
+      headers:
+        Host: git01.jisucf.cloudns.biz
+
   - name: "TS-cf"
     type: vless
-    server: 104.17.98.5
+    server: 104.17.97.5
     port: 443
     uuid: 871f3020-6158-4829-88ed-81843bb956e1
+    udp: true
     tls: true
     servername: ts02.3xxx.de5.net
     network: ws
@@ -23,11 +26,13 @@ proxies:
       path: /
       headers:
         Host: ts02.3xxx.de5.net
+
   - name: "new-git"
     type: vless
-    server: 104.17.98.5
+    server: 104.17.97.5
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
+    udp: true
     tls: true
     servername: newgit.jisucf.cloudns.biz
     network: ws
@@ -35,11 +40,13 @@ proxies:
       path: /
       headers:
         Host: newgit.jisucf.cloudns.biz
+
   - name: "new-cf"
     type: vless
     server: xzus.cf01.dpdns.org
     port: 443
     uuid: 49ccad64-c854-4f33-b334-793cf0d02b74
+    udp: true
     tls: true
     servername: newcx.jisucf.cloudns.ch
     network: ws
@@ -47,11 +54,15 @@ proxies:
       path: /
       headers:
         Host: newcx.jisucf.cloudns.ch
+
   - name: "icmp9"
     type: vmess
     server: 104.17.97.5
     port: 443
     uuid: 73e1131e-ad68-4c14-8be1-ad8fcbc938ee
+    alterId: 0
+    cipher: auto
+    udp: true
     tls: true
     servername: sin.ysy.de5.net
     network: ws
