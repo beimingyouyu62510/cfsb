@@ -55,7 +55,7 @@ dns:
 proxy-providers:
   我的订阅:
     <<: *p
-    url: "https://ghfast.top/https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
+    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
     path: ./proxy_provider/nodes.yaml
 
 # 6. 策略组
