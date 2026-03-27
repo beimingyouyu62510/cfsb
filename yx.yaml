@@ -37,7 +37,7 @@ proxy-providers:
   我的订阅:
     <<: *p
     # 使用 ghfast 镜像，并确保 URL 路径完全正确
-    url: "https://ghfast.top/https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
+    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
     path: ./proxy_provider/nodes.yaml
 
 # 5. 策略组 (深度优化后的引用逻辑)
