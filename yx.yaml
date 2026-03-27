@@ -1,11 +1,10 @@
 # -------------------------------------------------------------------
-# Mihomo (Clash Meta) 极客硬核配置 - 最终全自适应版
-# 核心逻辑：内置Hosts硬解析 / CDN镜像加速 / 节点全自动展开
+# Mihomo (Clash Meta) 深度修复版 - 2026 最终修正
+# 修复重点：DNS硬解析、Provider引用逻辑、策略组兼容性
 # -------------------------------------------------------------------
 
-# 1. 锚点定义
-pr: &pr { type: select, proxies: [节点选择, 自动选择, 全部节点, DIRECT] }
-p: &p { type: http, interval: 3600, health-check: { enable: true, url: https://cp.cloudflare.com, interval: 300, timeout: 1000 } }
+# 1. 锚点定义 (极客复用逻辑)
+p: &p { type: http, interval: 3600, health-check: { enable: true, url: https://cp.cloudflare.com, interval: 300, timeout: 5000 } }
 
 # 2. 基础全局配置
 mode: rule
@@ -17,7 +16,7 @@ unified-delay: true
 tcp-concurrent: true
 global-client-fingerprint: chrome
 
-# 3. DNS 与 Hosts 硬解析 (解决 DNS Resolve Failed 报错)
+# 3. DNS 与 Hosts 强力硬解析 (防止 dns resolve failed)
 hosts:
   'raw.githubusercontent.com': [185.199.108.133, 185.199.109.133, 185.199.110.133, 185.199.111.133]
   'ghfast.top': [115.236.137.154]
@@ -28,43 +27,55 @@ dns:
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
-  fake-ip-filter: ['*', '+.lan', '+.local', '+.msftncsi.com']
   default-nameserver: [223.5.5.5, 119.29.29.29]
   nameserver:
     - 'https://doh.pub/dns-query'
     - 'https://dns.alidns.com/dns-query'
-  proxy-server-nameserver:
-    - 'https://doh.pub/dns-query'
-  nameserver-policy:
-    "geosite:cn,private": [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
-    "geosite:!cn": ["https://dns.cloudflare.com/dns-query", "https://dns.google/dns-query"]
 
-# 4. 远程订阅源 (已增加 CDN 加速前缀)
+# 4. 远程订阅源 (核心修改点)
 proxy-providers:
   我的订阅:
     <<: *p
+    # 使用 ghfast 镜像，并确保 URL 路径完全正确
     url: "https://ghfast.top/https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
     path: ./proxy_provider/nodes.yaml
 
-# 5. 策略组 (自适应任何节点名称)
+# 5. 策略组 (深度优化后的引用逻辑)
 proxy-groups:
-  - { name: 节点选择, type: select, use: [我的订阅], proxies: [自动选择, 全部节点, DIRECT], allow-empty: true }
-  
-  - { name: 自动选择, type: url-test, use: [我的订阅], tolerance: 50, interval: 300, allow-empty: true }
+  # 总开关：核心是使用 use 引用 provider
+  - name: 节点选择
+    type: select
+    use: 
+      - 我的订阅
+    proxies:
+      - 自动选择
+      - 全部节点
+      - DIRECT
 
-  - { name: 全部节点, type: select, use: [我的订阅], allow-empty: true }
+  - name: 自动选择
+    type: url-test
+    use: 
+      - 我的订阅
+    tolerance: 50
+    interval: 300
 
-  - { name: 境外AI, <<: *pr }
-  - { name: Telegram, <<: *pr }
-  - { name: Google, <<: *pr }
-  - { name: YouTube, <<: *pr }
-  - { name: GitHub, <<: *pr }
+  - name: 全部节点
+    type: select
+    use: 
+      - 我的订阅
+
+  # 各 App 分组：统一指回“节点选择”
+  - { name: 境外AI, type: select, proxies: [节点选择, 自动选择, DIRECT] }
+  - { name: Telegram, type: select, proxies: [节点选择, 自动选择] }
+  - { name: Google, type: select, proxies: [节点选择, 自动选择] }
+  - { name: YouTube, type: select, proxies: [节点选择, 自动选择] }
+  - { name: GitHub, type: select, proxies: [节点选择, 自动选择, DIRECT] }
   - { name: 微软服务, type: select, proxies: [DIRECT, 节点选择] }
   - { name: 广告拦截, type: select, proxies: [REJECT, DIRECT] }
   - { name: 国内流量, type: select, proxies: [DIRECT, 节点选择] }
-  - { name: 漏网之鱼, <<: *pr }
+  - { name: 漏网之鱼, type: select, proxies: [节点选择, 自动选择, DIRECT] }
 
-# 6. 规则集 (已增加 CDN 加速前缀)
+# 6. 规则集
 rule-providers:
   ads:
     type: http
