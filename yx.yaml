@@ -8,7 +8,7 @@ p: &p
   interval: 3600
   health-check:
     enable: true
-    url: https://cp.cloudflare.com
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
     timeout: 5000
 
@@ -70,7 +70,7 @@ proxy-groups:
     type: url-test
     use: [我的订阅]
     allow-empty: true
-    url: https://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
     tolerance: 50
 
@@ -78,7 +78,7 @@ proxy-groups:
     type: fallback
     use: [我的订阅]
     allow-empty: true
-    url: https://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
 
   - name: 全部节点
