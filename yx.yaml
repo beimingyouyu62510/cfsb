@@ -1,8 +1,8 @@
 # --------------------------------------------------
-# Mihomo 稳定增强版（2026最终优化版）
+# Mihomo 稳定增强版（2026 优化版）
 # --------------------------------------------------
 
-# 1. 锚点
+# 1. 锚点（用于 proxy-providers）
 p: &p
   type: http
   interval: 3600
@@ -20,17 +20,21 @@ allow-lan: true
 mixed-port: 7890
 unified-delay: true
 tcp-concurrent: true
-global-client-fingerprint: chrome
+sniff: true                     # 推荐开启，提升域名嗅探准确性
 
-# 3. Geo 数据（关键修复）
+# 3. Geo 数据（推荐使用 MetaCubeX 源，更稳定）
 geodata-mode: true
 geox-url:
-  geoip: "https://ghfast.top/https://github.com/Loyalsoldier/geoip/releases/latest/download/geoip.dat"
-  geosite: "https://ghfast.top/https://github.com/Loyalsoldier/geosite/releases/latest/download/geosite.dat"
+  geoip: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
 
-# 4. DNS 与 Hosts (解决解析失败的关键)
+# 4. Hosts 与 DNS（解决解析失败）
 hosts:
-  'raw.githubusercontent.com': [185.199.108.133, 185.199.109.133, 185.199.110.133, 185.199.111.133]
+  'raw.githubusercontent.com':
+    - 185.199.108.133
+    - 185.199.109.133
+    - 185.199.110.133
+    - 185.199.111.133
 
 dns:
   enable: true
@@ -50,12 +54,15 @@ dns:
   fallback-filter:
     geoip: true
     geoip-code: CN
+  # 可选增强（防止污染）
+  respect-rules: true
+  use-hosts: true
 
-# 5. 订阅（建议加上镜像前缀，防止直连 GitHub 失败）
+# 5. 订阅（保留你的原始订阅地址 + 加速前缀）
 proxy-providers:
   我的订阅:
     <<: *p
-    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
+    url: "https://ghfast.top/https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
     path: ./proxy_provider/nodes.yaml
 
 # 6. 策略组
@@ -93,6 +100,7 @@ proxy-groups:
   - { name: YouTube, type: select, proxies: [节点选择, 自动选择] }
   - { name: GitHub, type: select, proxies: [节点选择, 自动选择, DIRECT] }
   - { name: 微软服务, type: select, proxies: [DIRECT, 节点选择] }
+  - { name: Apple 服务, type: select, proxies: [节点选择, DIRECT] }   # 新增独立组
   - { name: 广告拦截, type: select, proxies: [REJECT, DIRECT] }
   - { name: 国内流量, type: select, proxies: [DIRECT, 节点选择] }
   - { name: 漏网之鱼, type: select, proxies: [节点选择, 自动选择, DIRECT] }
@@ -113,16 +121,27 @@ rule-providers:
     path: ./ruleset/cn.yaml
     interval: 86400
 
-# 8. 规则
+# 8. 规则（优化后的顺序）
 rules:
+  # 广告拦截优先
   - RULE-SET,ads,广告拦截
-  - RULE-SET,cn,国内流量
+
+  # 境外特定服务（优先匹配，避免被国内规则误伤）
   - GEOSITE,category-scholar-!cn,境外AI
   - GEOSITE,github,GitHub
   - GEOSITE,telegram,Telegram
   - GEOSITE,youtube,YouTube
   - GEOSITE,google,Google
   - GEOSITE,microsoft,微软服务
-  - GEOSITE,apple,微软服务
+  - GEOSITE,apple,Apple 服务           # 独立处理 Apple
+
+  # 国内域名与 IP
+  - RULE-SET,cn,国内流量
   - GEOIP,CN,国内流量
+
+  # 最终兜底
   - MATCH,漏网之鱼
+
+# 可选：自动更新 Geo 数据
+geo-auto-update: true
+geo-update-interval: 24
