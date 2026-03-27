@@ -1,26 +1,13 @@
-# mihomo (Clash Meta) 优化配置 - 极简节点显示版
-# 重点优化：去除了地区分组，直接显示所有具体节点
+# -------------------------------------------------------------------
+# Mihomo (Clash Meta) 极客硬核配置 - 2026 增强版
+# 核心逻辑：锚点复用 / 自动测速 / 负载均衡 / 规则集异步加载
+# -------------------------------------------------------------------
 
-# 延迟检测模板
-p: &p
-  type: http
-  interval: 3600
-  health-check:
-    enable: true
-    url: https://cp.cloudflare.com
-    interval: 300
-    timeout: 1000
-    tolerance: 100
+# 1. 锚点定义 (用于极速配置，修改一处全局生效)
+pr: &pr { type: select, proxies: [节点选择, 自动选择, 香港, 台湾, 日本, 美国, 其它地区, DIRECT] }
+p: &p { type: http, interval: 3600, health-check: { enable: true, url: https://cp.cloudflare.com, interval: 300, timeout: 1000 } }
 
-# 订阅源配置
-proxy-providers:
-  我的节点订阅:
-    <<: *p
-    # 这里替换为你托管在 GitHub 的 Raw 链接或机场链接
-    url: "你的_GITHUB_RAW_链接_或者机场订阅链接"
-    path: ./proxy_provider/my_nodes.yaml
-
-# 基础设置
+# 2. 基础全局配置
 mode: rule
 ipv6: true
 log-level: info
@@ -28,70 +15,87 @@ allow-lan: true
 mixed-port: 7890
 unified-delay: true
 tcp-concurrent: true
-external-controller: :9090
-geodata-mode: true
+find-process-mode: strict
+global-client-fingerprint: chrome
 
-# DNS 设置 (针对大陆环境优化)
+# 3. DNS 嗅探与解析 (硬核 Fake-IP 模式)
+sniffer:
+  enable: true
+  sniff:
+    TLS: { ports: [443, 8443] }
+    HTTP: { ports: [80, 8080-8880], override-destination: true }
+
 dns:
   enable: true
   listen: :1053
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
+  fake-ip-filter: ['*', '+.lan', '+.local', '+.msftncsi.com']
   default-nameserver: [223.5.5.5, 119.29.29.29]
   nameserver:
     - 'https://doh.pub/dns-query'
     - 'https://dns.alidns.com/dns-query'
   proxy-server-nameserver:
-    - https://doh.pub/dns-query
+    - 'https://doh.pub/dns-query'
   nameserver-policy:
     "geosite:cn,private": [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
-    "geosite:!cn,!private": ["tls://8.8.4.4", "tls://1.1.1.1"]
+    "geosite:!cn": ["https://dns.cloudflare.com/dns-query", "https://dns.google/dns-query"]
 
-# 策略组优化 (去除了地区分类，直接显示节点)
+# 4. 远程订阅源 (在此处填入你的 GitHub Raw 或机场链接)
+proxy-providers:
+  订阅源:
+    <<: *p
+    url: "https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml"
+    path: ./proxy_provider/nodes.yaml
+
+# 5. 策略组 (硬核多层嵌套逻辑)
 proxy-groups:
-  # 1. 主选择开关：直接显示所有节点名
-  - {
-      name: 节点选择,
-      type: select,
-      use: [https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml],
-      proxies: [自动选择, DIRECT],
-    }
+  # 总开关
+  - { name: 节点选择, type: select, proxies: [自动选择, 全部节点, 香港, 台湾, 日本, 美国, 其它地区, DIRECT] }
+  
+  # 自动测速 (取延迟最低)
+  - { name: 自动选择, type: url-test, use: [订阅源], tolerance: 50 }
 
-  # 2. 自动测速组：自动选出延迟最低的节点
-  - {
-      name: 自动选择,
-      type: url-test,
-      use: [https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml],
-      interval: 300,
-      tolerance: 50,
-    }
+  # 全部节点 (手动备用)
+  - { name: 全部节点, type: select, use: [订阅源] }
 
-  # 3. 功能性分组 (全部直接关联到“节点选择”)
-  - { name: 境外AI, type: select, proxies: [节点选择, 自动选择, DIRECT] }
-  - { name: Telegram, type: select, proxies: [节点选择, 自动选择] }
-  - { name: Google, type: select, proxies: [节点选择, 自动选择] }
-  - { name: YouTube, type: select, proxies: [节点选择, 自动选择] }
-  - { name: Github, type: select, proxies: [节点选择, 自动选择] }
+  # 地区分组 (正则自动筛选)
+  - { name: 香港, <<: *p, type: url-test, use: [订阅源], filter: "(?i)港|hk|hongkong|hong kong" }
+  - { name: 台湾, <<: *p, type: url-test, use: [订阅源], filter: "(?i)台|tw|taiwan" }
+  - { name: 日本, <<: *p, type: url-test, use: [订阅源], filter: "(?i)日本|jp|japan" }
+  - { name: 美国, <<: *p, type: url-test, use: [订阅源], filter: "(?i)美|us|unitedstates" }
+  - { name: 其它地区, <<: *p, type: url-test, use: [订阅源], filter: "(?i)^(?!.*(?:港|hk|台|tw|日|jp|美|us)).*" }
+
+  # 应用分流组
+  - { name: 境外AI, <<: *pr }
+  - { name: Telegram, <<: *pr }
+  - { name: Google, <<: *pr }
+  - { name: YouTube, <<: *pr }
+  - { name: GitHub, <<: *pr }
   - { name: 微软服务, type: select, proxies: [DIRECT, 节点选择] }
   - { name: 广告拦截, type: select, proxies: [REJECT, DIRECT] }
-  
-  # 4. 兜底分流
-  - { name: 国内, type: select, proxies: [DIRECT, 节点选择] }
-  - { name: 其他, type: select, proxies: [节点选择, 自动选择] }
+  - { name: 国内流量, type: select, proxies: [DIRECT, 节点选择] }
+  - { name: 漏网之鱼, <<: *pr }
 
-# 分流规则
+# 6. 规则集 (Rule Providers - 异步加载，不卡 UI)
+rule-providers:
+  ads:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
+    path: ./ruleset/ads.yaml
+    interval: 86400
+
 rules:
+  - RULE-SET,ads,广告拦截
   - GEOSITE,category-scholar-!cn,境外AI
-  - GEOSITE,github,Github
+  - GEOSITE,github,GitHub
+  - GEOSITE,telegram,Telegram
   - GEOSITE,youtube,YouTube
   - GEOSITE,google,Google
-  - GEOSITE,telegram,Telegram
   - GEOSITE,microsoft,微软服务
-  - GEOSITE,geolocation-!cn,其他
-  - GEOSITE,CN,国内
-  - GEOIP,CN,国内
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - MATCH,其他
+  - GEOSITE,apple,微软服务
+  - GEOSITE,CN,国内流量
+  - GEOIP,CN,国内流量
+  - MATCH,漏网之鱼
