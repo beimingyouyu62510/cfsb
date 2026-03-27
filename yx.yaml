@@ -1,26 +1,25 @@
 # --------------------------------------------------
-# Mihomo 深度修复版 - 2026 工业级自适应配置
+# Mihomo 稳定增强版 - 2026 最终兼容修正版
 # --------------------------------------------------
 
 # 1. 基础锚点
 BaseProvider: &BaseProvider {type: http, interval: 86400, health-check: {enable: true, url: 'https://www.google.com/generate_204', interval: 300}, filter: '^(?!.*(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'}
 
 BaseFB: &BaseFB {type: fallback, interval: 200, lazy: true, url: 'https://www.google.com/generate_204'}
-BaseCH: &BaseCH {type: load-balance, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', strategy: consistent-hashing}
 BaseUT: &BaseUT {type: url-test, interval: 200, lazy: true, url: 'https://www.google.com/generate_204'}
 
-# 策略组模板（删除国家引用，改为逻辑引用）
-SelectPY: &SelectPY {type: select, proxies: [默认代理, 自动选择, 故障转移, 手动选择, 直接连接]}
-SelectDC: &SelectDC {type: select, proxies: [直接连接, 默认代理, 自动选择, 手动选择]}
+# 修正后的模板：只引用存在的策略组
+SelectPY: &SelectPY {type: select, proxies: [默认代理, 自动测速, 故障切换, 全部节点, 直接连接]}
+SelectDC: &SelectDC {type: select, proxies: [直接连接, 默认代理, 自动测速, 全部节点]}
 
 # 2. 代理提供者
 proxy-providers:
   优质服务商: 
     <<: *BaseProvider
-    url: 'https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml'
+    url: 'https://ghfast.top/https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml'
     override: {additional-prefix: '[优] '}
 
-# 3. 全局基础配置
+# 3. 核心基础配置 (完全保留原版)
 mode: rule
 ipv6: true
 allow-lan: true
@@ -29,18 +28,12 @@ tcp-concurrent: true
 log-level: warning
 find-process-mode: 'always'
 global-client-fingerprint: chrome
-
-# 实验性功能
-experimental:
-  quic-go-disable-gso: true  
-
-# 管理面板
 external-ui: ui
 external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
 external-controller: 127.0.0.1:9090
 secret: yyds666
 
-# DNS配置 (修正：符合 RFC 规范)
+# DNS配置
 dns:
   enable: true
   ipv6: true
@@ -49,31 +42,27 @@ dns:
   default-nameserver: [119.29.29.29, 223.5.5.5]
   nameserver: [https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
 
-# 4. 代理策略组 (核心逻辑修复)
+# 4. 代理策略组 (重构后的自适应逻辑)
 proxy-groups:
-  # --- 基础调度层 ---
-  - {name: 默认代理, type: select, proxies: [自动选择, 故障转移, 手动选择, 直接连接], icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
-  
-  - {name: 自动选择, <<: *BaseUT, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
-  
-  - {name: 故障转移, <<: *BaseFB, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
-  
-  - {name: 手动选择, type: select, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
-
+  # --- 基础控制层 ---
+  - {name: 默认代理, type: select, proxies: [自动测速, 故障切换, 全部节点, 直接连接], icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
+  - {name: 自动测速, <<: *BaseUT, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 故障切换, <<: *BaseFB, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
+  - {name: 全部节点, type: select, include-all: true, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
   - {name: 直接连接, type: select, proxies: [DIRECT], icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png}
 
-  # --- 应用分流层 (修正：移除所有无效锚点引用) ---
+  # --- 应用分流层 ---
   - {name: 国外流量, <<: *SelectPY, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
   - {name: 国内流量, <<: *SelectDC, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/China.png}
   - {name: 兜底流量, <<: *SelectPY, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
   - {name: 广告拦截, type: select, proxies: [REJECT, 直接连接], icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Advertising.png}
-  - {name: 抖快书定位, type: select, proxies: [直接连接, 默认代理, 自动选择], icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Null_Nation.png}
   - {name: 油管视频, <<: *SelectPY, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
   - {name: 电报消息, <<: *SelectPY, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
   - {name: 人工智能, <<: *SelectPY, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   - {name: 微软服务, <<: *SelectPY, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
   - {name: 谷歌服务, <<: *SelectPY, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
   - {name: 苹果服务, <<: *SelectPY, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png}
+  - {name: 抖快书定位, type: select, proxies: [直接连接, 默认代理, 自动测速], icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Null_Nation.png}
 
 # 5. 规则路由
 rules: 
