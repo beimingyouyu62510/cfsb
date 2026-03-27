@@ -54,10 +54,10 @@ proxy-providers:
 # 5. 策略组 (核心改动：自适应任何节点名称)
 proxy-groups:
   # 总开关：直接展示订阅里的所有具体节点
-  - { name: 节点选择, type: select, use: [我的订阅], proxies: [自动选择, 全部节点, DIRECT] }
+  - { name: 节点选择, type: select, use: [我的订阅], proxies: [自动选择, 全部节点, DIRECT], allow-empty: true}
   
   # 自动测速：自动选出延迟最低的节点（自适应）
-  - { name: 自动选择, type: url-test, use: [我的订阅], tolerance: 50, interval: 300 }
+  - { name: 自动选择, type: url-test, use: [我的订阅], tolerance: 50, interval: 300, allow-empty: true }
 
   # 全部节点：备用手动选择列表
   - { name: 全部节点, type: select, use: [我的订阅] }
