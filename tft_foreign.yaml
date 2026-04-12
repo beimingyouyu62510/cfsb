@@ -1,0 +1,42 @@
+payload:
+  # --- 1. Riot 全球统一验证与账户系统 (解决登录转圈) ---
+  - DOMAIN-SUFFIX,riotgames.com
+  - DOMAIN-SUFFIX,riotgames.net
+  - DOMAIN-SUFFIX,riot-api.com
+  - DOMAIN,auth.riotgames.com
+  - DOMAIN,entitlements.auth.riotgames.com
+  - DOMAIN,playerqueries.riotgames.com
+  - DOMAIN,clientconfig.rpg.riotgames.com
+
+  # --- 2. 游戏核心对局与社交系统 (解决匹配、进不去对局) ---
+  - DOMAIN-SUFFIX,pvp.net
+  - DOMAIN-SUFFIX,leagueoflegends.com
+  - DOMAIN-SUFFIX,pcloud.xyz
+  - DOMAIN-KEYWORD,rpg.riotgames
+  - DOMAIN-KEYWORD,telemetry.riotgames
+
+  # --- 3. 静态资源与 CDN 加速 (解决原画显示、更新下载) ---
+  - DOMAIN-SUFFIX,riotcdn.net
+  - DOMAIN-SUFFIX,riotcdn.com
+  - DOMAIN-SUFFIX,akamaized.net
+  - DOMAIN-SUFFIX,edgekey.net
+  - DOMAIN-SUFFIX,edgesuite.net
+  - DOMAIN-SUFFIX,akamaihd.net
+  - DOMAIN-SUFFIX,fastly.net
+  - DOMAIN,l3cdn.riotgames.com
+  - DOMAIN,riotgames.com.cdn.cloudflare.net
+
+  # --- 4. 地区特定服务域名 (针对不同外服补漏) ---
+  - DOMAIN,na.tft.riotgames.com
+  - DOMAIN,eu.tft.riotgames.com
+  - DOMAIN,ap.tft.riotgames.com
+  - DOMAIN,kr.tft.riotgames.com
+  - DOMAIN,jp.tft.riotgames.com
+  - DOMAIN,tw.tft.riotgames.com
+  - DOMAIN,vn.tft.riotgames.com
+  - DOMAIN,sg.tft.riotgames.com
+
+  # --- 5. 补充 (反作弊与语音等，可选) ---
+  - DOMAIN-SUFFIX,v.pvp.net
+  - DOMAIN-SUFFIX,rep.riotgames.com
+  - DOMAIN,shipping.mcloud.riotgames.com
