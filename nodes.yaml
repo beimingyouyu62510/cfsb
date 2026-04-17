@@ -14,7 +14,7 @@ proxies:
 
   - name: "TS-cf"
     type: vless
-    server: 104.17.98.5
+    server: 104.17.97.5
     port: 443
     uuid: 871f3020-6158-4829-88ed-81843bb956e1
     tls: true
@@ -27,7 +27,7 @@ proxies:
 
   - name: "new-git"
     type: vless
-    server: 104.17.98.5
+    server: 104.17.97.5
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     tls: true
