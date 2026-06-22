@@ -31,12 +31,12 @@ proxies:
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     tls: true
-    servername: newgit.jisucf.cloudns.biz
+    servername: ceshi.jisucf.cloudns.biz
     network: ws
     ws-opts:
       path: /
       headers:
-        Host: newgit.jisucf.cloudns.biz
+        Host: ceshi.jisucf.cloudns.biz
 
   - name: "new-cf"
     type: vless
