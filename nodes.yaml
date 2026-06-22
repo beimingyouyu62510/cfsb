@@ -27,7 +27,7 @@ proxies:
 
   - name: "new-git"
     type: vless
-    server: 104.17.98.5
+    server: 104.17.152.24
     port: 443
     uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
     tls: true
