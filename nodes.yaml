@@ -1,7 +1,7 @@
 proxies:
   - name: "TS-git"
     type: vless
-    server: 104.17.98.5
+    server: 104.17.97.5
     port: 443
     uuid: aa6afb24-210c-4fdc-979e-58f71a6f779f
     tls: true
