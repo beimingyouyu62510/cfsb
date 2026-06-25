@@ -40,13 +40,13 @@ proxies:
 
   - name: "new-cf"
     type: vless
-    server: xzus.cf01.dpdns.org
+    server: 104.17.98.5
     port: 443
-    uuid: 49ccad64-c854-4f33-b334-793cf0d02b74
+    uuid: 871f3020-6158-4829-88ed-81843bb956e1
     tls: true
-    servername: newcx.jisucf.cloudns.ch
+    servername: newcf.3xxx.de5.net
     network: ws
     ws-opts:
       path: /
       headers:
-        Host: newcx.jisucf.cloudns.ch
+        Host: newcf.3xxx.de5.net
