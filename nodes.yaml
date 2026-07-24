@@ -18,12 +18,12 @@ proxies:
     port: 443
     uuid: 871f3020-6158-4829-88ed-81843bb956e1
     tls: true
-    servername: ts02.3xxx.de5.net
+    servername: newcf.3xxx.de5.net
     network: ws
     ws-opts:
       path: /
       headers:
-        Host: ts02.3xxx.de5.net
+        Host: newcf.3xxx.de5.net
 
   - name: "new-git"
     type: vless
