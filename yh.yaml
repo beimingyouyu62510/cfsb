@@ -57,7 +57,7 @@ proxy-providers:
     url: 'https://ghfast.top/https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml'
     override:
       additional-prefix: '[优] '
-
+      client-fingerprint: chrome
 
 # ==================================================
 # 3. 核心配置
@@ -77,8 +77,6 @@ log-level: warning
 
 # Windows 下比 always 更稳妥
 find-process-mode: strict
-
-global-client-fingerprint: chrome
 
 external-ui: ui
 
@@ -104,14 +102,10 @@ profile:
 
 dns:
   enable: true
-
   ipv6: true
-
   enhanced-mode: fake-ip
-
   fake-ip-range: 198.18.0.1/16
 
-  # 避免局域网/本地域名被 fake-ip
   fake-ip-filter:
     - '*.lan'
     - '*.local'
@@ -124,45 +118,27 @@ dns:
     - 'time.*.edu.cn'
     - '+.pool.ntp.org'
 
-  # 只负责解析 DNS 服务器自身
   default-nameserver:
     - 119.29.29.29
     - 223.5.5.5
 
-  # 日常 DNS
   nameserver:
     - 'https://dns.alidns.com/dns-query'
     - 'https://doh.pub/dns-query'
 
-  # 代理节点域名解析
   proxy-server-nameserver:
     - 'https://dns.alidns.com/dns-query'
     - 'https://doh.pub/dns-query'
 
-  # DIRECT 流量重新解析
   direct-nameserver:
     - 119.29.29.29
     - 223.5.5.5
 
   direct-nameserver-follow-policy: false
 
-  # 国外域名出现污染/错误解析时使用备用 DNS
   fallback:
     - 'https://1.1.1.1/dns-query'
     - 'https://8.8.8.8/dns-query'
-
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    geosite:
-      - gfw
-    ipcidr:
-      - 240.0.0.0/4
-      - 0.0.0.0/32
-      - 127.0.0.1/32
-      - 100.64.0.0/10
-
-
 # ==================================================
 # 6. 代理策略组
 # ==================================================
