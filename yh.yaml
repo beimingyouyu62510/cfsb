@@ -1,0 +1,415 @@
+# --------------------------------------------------
+# Mihomo - 中国大陆稳定综合版
+# 目标：
+# 国内直连 / 国外代理 / 游戏稳定 / 广告拦截
+# --------------------------------------------------
+
+# ==================================================
+# 1. 基础锚点
+# ==================================================
+
+BaseProvider: &BaseProvider
+  type: http
+  interval: 86400
+  health-check:
+    enable: true
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
+  filter: '^(?!.*(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'
+
+BaseFB: &BaseFB
+  type: fallback
+  interval: 300
+  lazy: true
+  url: 'https://www.gstatic.com/generate_204'
+
+BaseUT: &BaseUT
+  type: url-test
+  interval: 300
+  lazy: true
+  url: 'https://www.gstatic.com/generate_204'
+
+SelectPY: &SelectPY
+  type: select
+  proxies:
+    - 默认代理
+    - 自动测速
+    - 故障切换
+    - 全部节点
+    - 直接连接
+
+SelectDC: &SelectDC
+  type: select
+  proxies:
+    - 直接连接
+    - 默认代理
+    - 自动测速
+    - 全部节点
+
+
+# ==================================================
+# 2. 代理提供者
+# ==================================================
+
+proxy-providers:
+  优质服务商:
+    <<: *BaseProvider
+    url: 'https://ghfast.top/https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml'
+    override:
+      additional-prefix: '[优] '
+
+
+# ==================================================
+# 3. 核心配置
+# ==================================================
+
+mode: rule
+
+ipv6: true
+
+allow-lan: true
+
+unified-delay: true
+
+tcp-concurrent: true
+
+log-level: warning
+
+# Windows 下比 always 更稳妥
+find-process-mode: strict
+
+global-client-fingerprint: chrome
+
+external-ui: ui
+
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+
+external-controller: 127.0.0.1:9090
+
+secret: yyds666
+
+
+# ==================================================
+# 4. 缓存
+# ==================================================
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+
+# ==================================================
+# 5. DNS
+# ==================================================
+
+dns:
+  enable: true
+
+  ipv6: true
+
+  enhanced-mode: fake-ip
+
+  fake-ip-range: 198.18.0.1/16
+
+  # 避免局域网/本地域名被 fake-ip
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - '+.localhost'
+    - '+.localdomain'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+    - 'time.*.com'
+    - 'time.*.gov'
+    - 'time.*.edu.cn'
+    - '+.pool.ntp.org'
+
+  # 只负责解析 DNS 服务器自身
+  default-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+
+  # 日常 DNS
+  nameserver:
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://doh.pub/dns-query'
+
+  # 代理节点域名解析
+  proxy-server-nameserver:
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://doh.pub/dns-query'
+
+  # DIRECT 流量重新解析
+  direct-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+
+  direct-nameserver-follow-policy: false
+
+  # 国外域名出现污染/错误解析时使用备用 DNS
+  fallback:
+    - 'https://1.1.1.1/dns-query'
+    - 'https://8.8.8.8/dns-query'
+
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+      - gfw
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+      - 127.0.0.1/32
+      - 100.64.0.0/10
+
+
+# ==================================================
+# 6. 代理策略组
+# ==================================================
+
+proxy-groups:
+
+  # ----------------------------
+  # 基础控制层
+  # ----------------------------
+
+  - name: 默认代理
+    type: select
+    proxies:
+      - 自动测速
+      - 故障切换
+      - 全部节点
+      - 直接连接
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png
+
+
+  - name: 自动测速
+    <<: *BaseUT
+    include-all: true
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png
+
+
+  - name: 故障切换
+    <<: *BaseFB
+    include-all: true
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png
+
+
+  - name: 全部节点
+    type: select
+    include-all: true
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png
+
+
+  - name: 直接连接
+    type: select
+    proxies:
+      - DIRECT
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png
+
+
+  # ----------------------------
+  # 应用分流
+  # ----------------------------
+
+  - name: 国外流量
+    <<: *SelectPY
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png
+
+
+  - name: 国内流量
+    <<: *SelectDC
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/China.png
+
+
+  # 兜底默认 DIRECT
+  #
+  # 非中国规则、非国外规则的未知流量
+  # 首先不应该强制走代理
+  #
+  - name: 兜底流量
+    type: select
+    proxies:
+      - 直接连接
+      - 默认代理
+      - 自动测速
+      - 故障切换
+      - 全部节点
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png
+
+
+  # ----------------------------
+  # 广告
+  # ----------------------------
+
+  - name: 广告拦截
+    type: select
+    proxies:
+      - REJECT
+      - 直接连接
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Advertising.png
+
+
+  # ----------------------------
+  # 国外服务
+  # ----------------------------
+
+  - name: 油管视频
+    <<: *SelectPY
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png
+
+
+  - name: 电报消息
+    <<: *SelectPY
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png
+
+
+  - name: 人工智能
+    <<: *SelectPY
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png
+
+
+  - name: 微软服务
+    <<: *SelectPY
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png
+
+
+  - name: 谷歌服务
+    <<: *SelectPY
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png
+
+
+  - name: 苹果服务
+    <<: *SelectPY
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png
+
+
+  - name: 抖快书定位
+    type: select
+    proxies:
+      - 直接连接
+      - 默认代理
+      - 自动测速
+    icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Null_Nation.png
+
+
+# ==================================================
+# 7. 规则路由
+# ==================================================
+
+rules:
+
+  # ----------------------------
+  # 广告
+  # ----------------------------
+
+  - RULE-SET,Tracking,广告拦截
+  - RULE-SET,Advertising,广告拦截
+
+
+  # ----------------------------
+  # 私有/局域网
+  # ----------------------------
+
+  - RULE-SET,Private,直接连接
+
+
+  # ----------------------------
+  # 中国大陆直连
+  # ----------------------------
+
+  - RULE-SET,Direct,直接连接
+  - RULE-SET,AppleCN,直接连接
+  - RULE-SET,China,直接连接
+
+
+  # ----------------------------
+  # 国外服务
+  # ----------------------------
+
+  - RULE-SET,AI,人工智能
+
+  - RULE-SET,Telegram,电报消息
+
+  - RULE-SET,YouTube,油管视频
+
+  - RULE-SET,Apple,苹果服务
+
+  - RULE-SET,Google,谷歌服务
+
+  - RULE-SET,Microsoft,微软服务
+
+  - RULE-SET,Proxy,国外流量
+
+
+  # ----------------------------
+  # 最终兜底
+  # ----------------------------
+
+  - MATCH,兜底流量
+
+
+# ==================================================
+# 8. 规则集
+# ==================================================
+
+BehaviorDN: &BehaviorDN
+  type: http
+  behavior: domain
+  format: mrs
+  interval: 86400
+
+
+rule-providers:
+
+  Tracking:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/Tracking.mrs
+
+  Advertising:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/Advertising.mrs
+
+  Direct:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/Direct.mrs
+
+  Private:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/Private.mrs
+
+  AI:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs
+
+  Telegram:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/Telegram.mrs
+
+  YouTube:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/YouTube.mrs
+
+  Apple:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/Apple.mrs
+
+  AppleCN:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/AppleCN.mrs
+
+  Google:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/Google.mrs
+
+  Microsoft:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/Microsoft.mrs
+
+  Proxy:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/Proxy.mrs
+
+  China:
+    <<: *BehaviorDN
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/China.mrs
