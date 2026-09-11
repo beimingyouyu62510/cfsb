@@ -307,6 +307,12 @@ rules:
 
   - RULE-SET,Telegram,电报消息
 
+    # Telegram IP
+  - IP-CIDR,149.154.160.0/20,电报消息,no-resolve
+  - IP-CIDR,91.108.0.0/16,电报消息,no-resolve
+  - IP-CIDR,95.161.64.0/20,电报消息,no-resolve
+  - IP-CIDR,185.76.151.0/24,电报消息,no-resolve
+  
   - RULE-SET,YouTube,油管视频
 
   - RULE-SET,Apple,苹果服务
