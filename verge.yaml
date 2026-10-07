@@ -30,24 +30,6 @@ geox-url:
   mmdb:    "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/release/country.mmdb"
   asn:     "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/release/GeoLite2-ASN.mmdb"
 
-# 四、LightGBM 智能节点模型
-lgbm-auto-update: true
-lgbm-update-interval: 72
-lgbm-url: "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin"
-
-# 五、请求头伪装
-experimental:
-  http-headers:
-    request:
-      - name: "User-Agent"
-        value: "Mozilla/5.0 (Windows NT 10.0; WOW64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.7115.98 Safari/537.36 Edg/134.0.3348.109"
-
-# 六、外部控制面板
-external-controller: 127.0.0.1:9090
-external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
-external-ui: "./dashboard"
-secret: ""
-
 # 七、节点记忆与持久化缓存
 profile:
   store-selected: true
