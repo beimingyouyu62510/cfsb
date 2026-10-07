@@ -29,7 +29,7 @@ proxies:
     type: vless
     server: 104.17.97.5
     port: 443
-    uuid: 5fbbf263-0518-446c-8ef2-13b2001aa69d
+    uuid: e1861f20-9544-41f0-86cb-c68f5b5bea47
     tls: true
     servername: newgit.jisucf.cloudns.biz
     network: ws
