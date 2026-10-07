@@ -54,7 +54,7 @@ SelectDC: &SelectDC
 proxy-providers:
   优质服务商:
     <<: *BaseProvider
-    url: 'https://ghfast.top/https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml'
+    url: 'https://raw.githubusercontent.com/beimingyouyu62510/cfsb/refs/heads/main/nodes.yaml'
     override:
       additional-prefix: '[优] '
       client-fingerprint: chrome
