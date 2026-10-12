@@ -44,9 +44,9 @@ proxies:
     port: 443
     uuid: 49ccad64-c854-4f33-b334-793cf0d02b74
     tls: true
-    servername: newcscf.jisucf.cloudns.ch
+    servername: newcf.jisucf.cloudns.ch
     network: ws
     ws-opts:
       path: /
       headers:
-        Host: newcscf.jisucf.cloudns.ch
+        Host: newcf.jisucf.cloudns.ch
