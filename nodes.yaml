@@ -40,14 +40,14 @@ proxies:
 
   - name: "法国"
     type: vless
-    server: fr.private-ai.ir
+    server: FR.Private-Ai.IR
     port: 58301
     uuid: 2eb8ba3a-b398-4dbf-a586-c2929a8997ec
     tls: true
     servername: us.demonware.net
     client-fingerprint: firefox
     network: xhttp
-    encryption: "mlkem768x25519plus.random.0rtt.citj-ygtTQbhgMdYj7VW9irmKUqYY84TimDQ1UU2ahc"
+    encryption: mlkem768x25519plus.random.0rtt.citj-ygtTQbhgMdYj7VW9irmKUqYY84TimDQ1UU2ahc
     reality-opts:
       public-key: 0p_erlhDBUneKpUaCBbWYMp2bjUtpvSMZyXr86KpjVw
       short-id: "bf069854b3f8eb17"
