@@ -40,7 +40,7 @@ proxies:
 
   - name: "法国"
     type: vless
-    server: FR.Private-Ai.IR
+    server: fr.private-ai.ir
     port: 58301
     uuid: 2eb8ba3a-b398-4dbf-a586-c2929a8997ec
     tls: true
