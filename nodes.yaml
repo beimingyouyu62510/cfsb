@@ -37,3 +37,20 @@ proxies:
       path: /
       headers:
         Host: newcf.jisucf.cloudns.ch
+
+  - name: "法国|2.2MB/s"
+    type: vless
+    server: 62.210.70.194
+    port: 37783
+    uuid: a289c660-1b12-432b-a06c-c2ae469272b0
+    udp: true
+    tls: true
+    servername: www.yahoo.com
+    network: xhttp
+    xhttp-opts:
+      mode: auto
+      path: /OCrp5Ajs
+    reality-opts:
+      public-key: tQeEamJmYVUUfjRLX7ETvMnPj4DrHzRhR5TI684oYgg
+      short-id: 21569dd6
+    client-fingerprint: chrome
