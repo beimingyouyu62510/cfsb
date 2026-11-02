@@ -38,20 +38,22 @@ proxies:
       headers:
         Host: newcf.jisucf.cloudns.ch
 
-  - name: "法国"
-    type: vless
-    server: fr.private-ai.ir
-    port: 58301
-    uuid: 2eb8ba3a-b398-4dbf-a586-c2929a8997ec
-    udp: true
-    tls: true
-    servername: us.demonware.net
-    client-fingerprint: firefox
+  - client-fingerprint: firefox
+    encryption: mlkem768x25519plus.random.0rtt.citj-ygtTQbhgMdYj7VW9irmKUqYY84TimDQ1UU2ahc
+    name: 法国
     network: xhttp
-    encryption: "mlkem768x25519plus.random.0rtt.citj-ygtTQbhgMdYj7VW9irmKUqYY84TimDQ1UU2ahc"
+    port: 58301
     reality-opts:
       public-key: 0p_erlhDBUneKpUaCBbWYMp2bjUtpvSMZyXr86KpjVw
-      short-id: bf069854b3f8eb17
+      short-id: "bf069854b3f8eb17"
+    server: FR.Private-Ai.IR
+    tls: true
+    type: vless
+    udp: true
+    uuid: 2eb8ba3a-b398-4dbf-a586-c2929a8997ec
     xhttp-opts:
-      path: /
       mode: auto
+      path: /
+    xudp: true
+    packet-encoding: xudp
+    servername: us.demonware.net
