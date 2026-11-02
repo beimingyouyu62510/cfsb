@@ -38,20 +38,21 @@ proxies:
       headers:
         Host: newcf.jisucf.cloudns.ch
 
-- name: "法国|2.2MB/s"
+  - name: "法国"
     type: vless
-    server: 62.210.70.194
-    port: 37783
-    uuid: a289c660-1b12-432b-a06c-c2ae469272b0
-    encryption: none
-    udp: true
+    server: fr.private-ai.ir
+    port: 58301
+    uuid: 2eb8ba3a-b398-4dbf-a586-c2929a8997ec
     tls: true
-    servername: www.yahoo.com
+    servername: us.demonware.net
     network: xhttp
-    xhttp-opts:
-      mode: auto
-      path: /OCrp5Ajs
+    udp: true
+    flow: ""
+    client-fingerprint: firefox
     reality-opts:
-      public-key: tQeEamJmYVUUfjRLX7ETvMnPj4DrHzRhR5TI684oYgg
-      short-id: 21569dd6
-    client-fingerprint: chrome
+      public-key: 0p_erlhDBUneKpUaCBbWYMp2bjUtpvSMZyXr86KpjVw
+      short-id: bf069854b3f8eb17
+    encryption: mlkem768x25519plus.random.0rtt.citj-ygtTQbhgMdYj7VW9irmKUqYY84TimDQ1UU2ahc
+    xhttp-opts:
+      path: /
+      mode: auto
